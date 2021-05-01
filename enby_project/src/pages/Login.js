@@ -1,21 +1,36 @@
 import React from 'react';
 import KakaoLogin from 'react-kakao-login';
 import styled from 'styled-components';
+import {useDispatch} from 'react-redux'
+import {actionsCreators as userActions} from '../redux/modules/user'
 
 const Login =(props)=>{
+  const { Kakao } = window;
+  const dispatch = useDispatch();
+  function SocialLogin(token){
+    dispatch(userActions.KakaoLogin(token))
+  }
+  const KakaoLoginHandler =()=>{
+    Kakao.Auth.authorize({
+      redirectUri : "http://3.36.67.251:8080/callback/kakao"
+    })
+  }
 
     return (
       <React.Fragment>
         <div>
-          <KaKaoBtn
-            token={"fd4e88c3f5967abb55c7aaf8225c8048"}
+          {/* <KaKaoBtn
+            token={"1d88210c3702180b852cda6cb17d915f"}
             onSuccess={(res) => {
-              console.log(res);
+              console.log(res.response.access_token);
+              // const access_token = res.response.access_token
+              // SocialLogin(access_token)
             }}
             onFailure={(err) => console.log(err)}
             buttonText="카카오 계정으로 로그인"
             getProfile={true}
-          />
+          /> */}
+          <button onClick={KakaoLoginHandler}>소셜로그인</button>
         </div>
       </React.Fragment>
     );

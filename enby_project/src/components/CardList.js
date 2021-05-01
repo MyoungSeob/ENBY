@@ -26,12 +26,13 @@ const CardList =(props)=>{
     );
 }
 const ListBody = styled.div`
+    text-align : center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0;
 `
 const PostList = styled.ul`
-float: left;
+
 padding: 0;
 margin: 0;
 width: 100%;

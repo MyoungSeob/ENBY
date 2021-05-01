@@ -19,8 +19,13 @@ const initialState = {
 
 const getPostMainDB =()=>{
     return function (dispatch, getState, {history}) {
+        const token = localStorage.getItem("login_token")
         axios
-        .get(`http://3.36.67.251:8080/main/board`)
+        .get(`http://3.36.67.251:8080/main/board`, {
+            headers :{
+                authorization : `Bearer ${token}`
+            }
+        })
         .then((response) => {
             const post_list = [...response.data]
             dispatch(getPostMain(post_list))
@@ -32,8 +37,13 @@ const getPostMainDB =()=>{
 
 const getPostDetailDB = (id) =>{
     return function (dispatch, getState, {history}){
+        const token = localStorage.getItem("login_token")
         axios
-        .get(`http://3.36.67.251:8080/board/mating/` + `${id}`)
+        .get(`http://3.36.67.251:8080/board/mating/` + `${id}`, {
+            headers :{
+                authorization : `Bearer ${token}`
+            }
+        })
         .then((res) => {
             console.log(res)
             const post_list = [...res.data.boards]
@@ -47,6 +57,7 @@ const getPostDetailDB = (id) =>{
 // 게시글 추가하기
 const addPostDB = (title, contents, boardImg, location, meetTime) => {
     return function (dispatch, getState, {history}) {
+        const token = localStorage.getItem("login_token")
         let formData = new FormData();
 
         formData.append("title", title);
@@ -60,6 +71,9 @@ const addPostDB = (title, contents, boardImg, location, meetTime) => {
             method: "post",
             url: `http://3.36.67.251:8080/board/mating`,
             data: formData,
+            headers : {
+                authorization : `Bearer ${token}`
+            }
         };
 
         axios(DB)

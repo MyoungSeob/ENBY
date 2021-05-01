@@ -5,21 +5,23 @@ import {useSelector, useDispatch} from "react-redux";
 import {actionsCreators as imgActions} from "../redux/modules/image"
 import {actionsCreators as postActions} from "../redux/modules/post"
 
+import DateTime from "../components/DateTime";
+
 
 const MatingBoardWrite = (props) => {
     // const post_list = useSelector(state => state.post.list);
-    const [title, setTitle] = useState();
-    const [contents, setContents] = useState();
+    const [title, setTitle] = useState('');
+    const [contents, setContents] = useState('');
     const [boardImg, setImage] = useState();
-    const [location, setLocation] = useState();
+    const [location, setLocation] = useState('');
     const [meetTime, setMeetTime] = useState();
     // 이미지 추가 미리보기
     const preview = useSelector((state) => state.image.preview);
     const fileInput = useRef();
     const dispatch = useDispatch();
+    // 날짜, 시간 가져오기
     useEffect(() => {
         // setImage(preview);
-        // console.log(preview);
         }, [preview]);
     // 로그인 되어있을때만 포스트작성 가능하게 해준다
     // const is_login = useSelector((state) => state.user.is_login);
@@ -31,9 +33,13 @@ const MatingBoardWrite = (props) => {
     // }
 
     // 인풋에 적히는 내용 캐치 -> 이벤트가 발생하면 이벤트의 name과 value를 가지고 옴
-    const getValue = e => {
-        const { name, value } = e.target;
-    }
+    // const getValue = e => {
+    //     const { name, value } = e.target;
+    //     setTitle(e.target.value);
+    //     setContents(e.target.value);
+    //     console.log(name,value);
+    //     console.log(title);
+    // }
     // 이미지 추가 미리보기
     const selectFile = (e) => {
         const reader = new FileReader();
@@ -53,27 +59,50 @@ const MatingBoardWrite = (props) => {
     };
     return (
       <React.Fragment>
-        <InputBox
-          onChange={getValue}
-          placeholder="제목을 입력하세요"
-          name='title'
-        />
-        <Contents
-          onChange={getValue}
-          placeholder="내용을 입력하세요"
-          name='contents'
-        />
+        <Test>
+          <Container>
+            <InputBox
+              // onChange={getValue}
+              // name='title'
+              label="제목"
+              value={title}
+              onChange={(e) => {
+                console.log("제목추가");
+                setTitle(e.target.value);}}
+              placeholder="제목을 입력하세요"
+              // name='title'
+            />
+            {/* <DateTime
+              value={meetTime}
+              change={date}/> */}
+            <Location
+              label="장소"
+              value={location}
+              onChange={(e) => {
+                console.log("장소추가");
+                setLocation(e.target.value);}}
+              placeholder="장소를 입력하세요"
+            />
+            <Contents
+              label="내용"
+              value={contents}
+              onChange={(e) => {
+                console.log("내용추가");
+                setContents(e.target.value);}}
+              placeholder="내용을 입력하세요"
+            />
+          </Container>
+          <Image
+            onChange={selectFile}
+            placeholder="사진을 추가해주세요"
+            name='image' 
+            ref={fileInput}
+            type='file'
+            src={preview}
+            />
+        </Test>
         
-        <Image
-          onChange={selectFile}
-          placeholder="사진을 추가해주세요"
-          name='image' 
-          ref={fileInput}
-          type='file'
-          />
-        <Preview
-          src={preview}
-        />
+        
 
             {/* <ImgPreview src={imgSrc}/> */}
             {/* <ImgInput name="image" type='file' onChange={onChangeHandle} /> */}
@@ -92,7 +121,7 @@ const MatingBoardWrite = (props) => {
         ) : ( */}
           <button
             onClick={() => {
-              dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime));
+              dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime))
             //   dispatch(imgActions.setPreview(image));
             }}
           >
@@ -103,7 +132,27 @@ const MatingBoardWrite = (props) => {
       
     );
 }
+const Test = styled.div`
+  display: flex;
+`;
+const Container = styled.div`
+  margin-left: 500px;
+`;
 const InputBox = styled.input`
+    display: block;
+    margin: 20px auto;
+    width: 500px;
+    max-width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+`;
+const Location = styled.input`
     display: block;
     margin: 20px auto;
     width: 500px;
@@ -135,29 +184,19 @@ const Contents = styled.input`
 
 const Image = styled.input`
     display: block;
-    margin: 20px auto;
-    width: 500px;
+    margin: 20px 50px;
+    overflow: hidden;
+    width: 400px;
     max-width: 100%;
-    height: 30px;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
+    height: 300px;
+    position: absolute;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
-`;
-
-const Preview = styled.div`
     background-image: url(${(props) => props.src});
-    display: block;
-    margin: 20px auto;
-    width: 500px;
-    max-width: 100%;
-    height: 150px;
-    // border: 1px solid #ced4da;
-    // border-radius: .25rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 `;
 
 

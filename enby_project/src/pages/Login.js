@@ -12,7 +12,7 @@ const Login =(props)=>{
   }
   const KakaoLoginHandler =()=>{
     Kakao.Auth.authorize({
-      redirectUri : "http://3.36.67.251:8080/callback/kakao"
+      redirectUri : "http://localhost:3000/oauth"
     })
   }
 

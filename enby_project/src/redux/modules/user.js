@@ -22,6 +22,10 @@ const KakaoLogin = (KakaoCode)=> {
         .then((res) => {
             console.log(res.data)
             localStorage.setItem("login_token", res.data)
+            history.push('/')
+        })
+        .catch((err) => {
+            console.log(err)
         })
     }
 }

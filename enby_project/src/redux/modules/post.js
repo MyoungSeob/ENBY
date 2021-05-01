@@ -63,8 +63,8 @@ const addPostDB = (title, contents, boardImg, location, meetTime) => {
         formData.append("title", title);
         formData.append("contents", contents);
         formData.append("boardImg", boardImg);
-        formData.append("location", "321");
-        formData.append("meetTime", "2021-04-29T16:14:13");
+        formData.append("location", location);
+        formData.append("meetTime", meetTime);
         
 
         const DB = {

@@ -1,87 +1,15 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-} from 'reactstrap';
-// 캐러셀 부트스트랩 사용
-const items = [
-  {
-    src: 'https://danoshop.net/mall/upload/2021/04/01/0331_WRB_mat.png',
-    altText: 'Slide 1',
-  },
-  {
-    src: 'https://danoshop.net/mall/upload/2021/01/22/1214_WRB_earth.png',
-    altText: 'Slide 2',
-  },
-  {
-    src: 'https://danoshop.net/mall/upload/2021/03/27/0329_WRB_first.png',
-    altText: 'Slide 3',
-  },
-];
+import AwesomeSlider from 'react-awesome-slider';
+import 'react-awesome-slider/dist/styles.css';
+import React from 'react'
 
-const DanoCarousel = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
-
-  const next = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  };
-
-  const slides = items.map((item) => {
-    return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={item.altText}
-        interval={300}
-      >
-        <Img src={item.src} alt={item.altText} />
-      </CarouselItem>
-    );
-  });
-
+function Carousel() {
   return (
-    <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-      <CarouselIndicators
-        items={items}
-        activeIndex={activeIndex}
-        onClickHandler={goToIndex}
-      />
-      {slides}
-      <CarouselControl
-        direction='prev'
-        directionText='Previous'
-        onClickHandler={previous}
-      />
-      <CarouselControl
-        direction='next'
-        directionText='Next'
-        onClickHandler={next}
-      />
-    </Carousel>
-  );
-};
+    <AwesomeSlider>
+        <div data-src="/path/to/image-0.png" />
+        <div data-src="/path/to/image-1.png" />
+        <div data-src="/path/to/image-2.jpg" />
+    </AwesomeSlider>
+  )
+}
 
-const Img = styled.img`
-  width: 100%;
-  height: 400px;
-  cursor: pointer;
-`;
-
-export default DanoCarousel;
+export default Carousel;

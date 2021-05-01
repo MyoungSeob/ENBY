@@ -5,7 +5,14 @@ import {useSelector, useDispatch} from "react-redux";
 import {actionsCreators as imgActions} from "../redux/modules/image"
 import {actionsCreators as postActions} from "../redux/modules/post"
 
-import DateTime from "../components/DateTime";
+// DatePicker
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import ko from 'date-fns/locale/ko';
+registerLocale('ko', ko)
+
+// import DateTime from "../components/DateTime";
 
 
 const MatingBoardWrite = (props) => {
@@ -19,7 +26,30 @@ const MatingBoardWrite = (props) => {
     const preview = useSelector((state) => state.image.preview);
     const fileInput = useRef();
     const dispatch = useDispatch();
-    // 날짜, 시간 가져오기
+    // 날짜, 시간 가져오기(datepicker) => input받은 날짜,시간 형식 변경
+    const [date, setDate] = useState(new Date());
+    console.log(date);
+    var sysdate = new Date(date);
+    function date_to_str(format){
+        var year = format.getFullYear();
+        var month = format.getMonth() + 1;
+        if(month<10) month = '0' + month;
+        var date = format.getDate();
+        if(date<10) date = '0' + date;
+        var hour = format.getHours();
+        if(hour<10) hour = '0' + hour;
+        var min = format.getMinutes();
+        if(min<10) min = '0' + min;
+        var sec = format.getSeconds();
+        if(sec<10) sec = '0' + sec;
+        return year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec;
+    }
+
+    sysdate = date_to_str(sysdate);
+    console.log(sysdate); 
+    // setMeetTime{() => (sysdate);
+    console.log(meetTime);
+
     useEffect(() => {
         // setImage(preview);
         }, [preview]);
@@ -73,8 +103,23 @@ const MatingBoardWrite = (props) => {
               // name='title'
             />
             {/* <DateTime
+              label="날짜시간"
               value={meetTime}
-              change={date}/> */}
+              onChange={(e) => {
+                setMeetTime(e.target.value);}}
+              /> */}
+              <DatePicker
+                label="날짜시간"
+                value={meetTime}
+                selected={date}
+                onChange={date => setDate(date)}
+                // onChange={meetTime => setMeetTime(date)}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={15}
+                timeCaption="time"
+                dateFormat="yyyy/MM/dd h:mm aa"
+              />
             <Location
               label="장소"
               value={location}
@@ -122,6 +167,8 @@ const MatingBoardWrite = (props) => {
           <button
             onClick={() => {
               dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime))
+              setMeetTime(sysdate)
+              console.log(date);
             //   dispatch(imgActions.setPreview(image));
             }}
           >

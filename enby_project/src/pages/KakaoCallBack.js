@@ -4,6 +4,7 @@ import {actionsCreators as userActions} from '../redux/modules/user'
 
 const KakaoCallBack =()=>{
     const dispatch = useDispatch();
+    
     useEffect(()=>{
         const KakaoCode = window.location.href.split('=')[1]
         dispatch(userActions.KakaoLogin(KakaoCode))

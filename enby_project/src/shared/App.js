@@ -1,7 +1,8 @@
 import './App.css';
 
 import Main from '../pages/Main';
-import MatingBoardWrite from '../pages/MatingBoardWrite'
+import MatingBoardWrite from '../pages/MatingBoardWrite';
+import MatingBoard from '../pages/MatingBoard';
 import Login from '../pages/Login'
 import MatingDetail from '../pages/MatingDetail';
 
@@ -24,7 +25,7 @@ function App() {
           />
           <Route path="/login" exact component={Login} />
           <Route path="/board/mating/:id" exact component={MatingDetail} />
-          <Route path="/board/mating" exact component={MatingBoardWrite} />
+          <Route path="/board/mating" exact component={MatingBoard} />
           <Route path="/oauth" exact component={KakaoCallBack} />
         </ConnectedRouter>
       </BrowserRouter>

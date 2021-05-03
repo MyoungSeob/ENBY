@@ -5,10 +5,13 @@ import axios from 'axios';
 const GET_POST_MAIN = "GET_POST_MAIN"
 const GET_POST_DETAIL = "GET_POST_DETAIL"
 const ADD_POST = "ADD_POST";
+const EDIT_POST = "EDIT_POST";// 수정
+
 
 const getPostMain = createAction(GET_POST_MAIN, (post_list) => post_list);
 const getPostDetail = createAction(GET_POST_DETAIL, (post_list) => post_list);
 const addPost = createAction(ADD_POST, (post_list) => ({ post_list }));
+const editPost = createAction(EDIT_POST, (post_id, post) => ({post_id, post}))
 
 
 
@@ -54,7 +57,7 @@ const getPostDetailDB = (id) =>{
     }
 }
 
-// 게시글 추가하기
+// 모임게시글 추가하기
 const addPostDB = (title, contents, boardImg, location, meetTime) => {
     return function (dispatch, getState, {history}) {
         const token = localStorage.getItem("login_token")
@@ -87,6 +90,31 @@ const addPostDB = (title, contents, boardImg, location, meetTime) => {
             });
     };
 };
+
+// 모임게시글 수정하기
+const editPostDB = (title, contents, boardImg, location, meetTime) => {
+    console.log('수정')
+    return function (dispatch, getState, {history}) {
+      let formData = new FormData();
+      formData.append("title", title);
+      formData.append("contents", contents);
+      formData.append("boardImg", boardImg);
+      formData.append("location", location);
+      formData.append("meetTime", meetTime);
+      axios({
+        method: "put",
+        url: "http://3.36.67.251:8080/board/mating/{id}",
+        data:formData
+      })
+        .then((res) => {
+        window.alert(res.data.msg)
+          window.location.replace('/')
+          // let post_id = [...res.data];
+          // dispatch(editPost(post_id));
+        })
+        .catch((e) => console.log(e));
+    };
+  };
 
 export default handleActions(
     {

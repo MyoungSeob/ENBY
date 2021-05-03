@@ -16,6 +16,7 @@ registerLocale('ko', ko)
 
 
 const MatingBoardWrite = (props) => {
+    // 수정모드
     // const post_list = useSelector(state => state.post.list);
     const [title, setTitle] = useState('');
     const [contents, setContents] = useState('');
@@ -48,7 +49,7 @@ const MatingBoardWrite = (props) => {
     sysdate = date_to_str(sysdate);
     console.log(sysdate); 
     // setMeetTime{() => (sysdate);
-    console.log(meetTime);
+    console.log(meetTime); // 글쓰기 눌리면 들어감
 
     useEffect(() => {
         // setImage(preview);

@@ -5,6 +5,9 @@ import {actionsCreators as postActions} from '../redux/modules/post'
 import { history } from '../redux/configStore'
 
 const Card =(props)=>{
+    console.log(props);
+    // const post_list = useSelector((store)=> store.post.detail_list)
+    // console.log(post_list);
     const move_page =()=>{
         history.push(`/board/mating/${props.id}`)
     }
@@ -28,11 +31,27 @@ const Card =(props)=>{
 }
 const CardGrid = styled.div`
     float : left;
-    width : 150px;
-    height : 200px;
-    background-color : gray;
+    width : 250px;
+    height : 311px;
+    // background-color : gray;
     margin : 20px;
+    border: solid 1px #eee;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+        transition-property: box-shadow;
+        transition-duration: 0.15s;
+        transition-timing-function: ease-out;
+        transition-delay: 0s;
+        box-sizing: border-box;
+        letter-spacing: 0px;
+        -webkit-font-smoothing: antialiased;
+        overflow-anchor: none;
+        box-shadow: inset 0 0 0 1px rgb(0 0 0 / 16%);
+    }
 `
+
 const CardTit = styled.div`
     width : 100%;
     height : 10%;

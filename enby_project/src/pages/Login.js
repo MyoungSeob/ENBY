@@ -5,16 +5,7 @@ import {useDispatch} from 'react-redux'
 import {actionsCreators as userActions} from '../redux/modules/user'
 
 const Login =(props)=>{
-  const { Kakao } = window;
-  const dispatch = useDispatch();
-  function SocialLogin(token){
-    dispatch(userActions.KakaoLogin(token))
-  }
-  const KakaoLoginHandler =()=>{
-    Kakao.Auth.authorize({
-      redirectUri : "http://localhost:3000/oauth"
-    })
-  }
+ 
 
     return (
       <React.Fragment>
@@ -30,7 +21,8 @@ const Login =(props)=>{
             buttonText="카카오 계정으로 로그인"
             getProfile={true}
           /> */}
-          <button onClick={KakaoLoginHandler}>소셜로그인</button>
+          <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://localhost:3000/oauth"><button>소셜로그인</button></a>
+          
         </div>
       </React.Fragment>
     );

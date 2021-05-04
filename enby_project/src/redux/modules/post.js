@@ -11,9 +11,7 @@ const EDIT_POST = "EDIT_POST";// 수정
 const getPostMain = createAction(GET_POST_MAIN, (post_list) => post_list);
 const getPostDetail = createAction(GET_POST_DETAIL, (post_list) => post_list);
 const addPost = createAction(ADD_POST, (post_list) => ({ post_list }));
-const editPost = createAction(EDIT_POST, (post_id, post) => ({post_id, post}))
-
-
+const editPost = createAction(EDIT_POST, (post_id, post) => ({post_id}))
 
 const initialState = {
     list : [],
@@ -22,7 +20,7 @@ const initialState = {
 
 const getPostMainDB =()=>{
     return function (dispatch, getState, {history}) {
-        const token = localStorage.getItem("login_token")
+        const token = localStorage.getItem("token")
         axios
         .get(`http://3.36.67.251:8080/main/board`, {
             headers :{
@@ -40,7 +38,7 @@ const getPostMainDB =()=>{
 
 const getPostDetailDB = (id) =>{
     return function (dispatch, getState, {history}){
-        const token = localStorage.getItem("login_token")
+        const token = localStorage.getItem("token")
         axios
         .get(`http://3.36.67.251:8080/board/mating/` + `${id}`, {
             headers :{
@@ -60,7 +58,7 @@ const getPostDetailDB = (id) =>{
 // 모임게시글 추가하기
 const addPostDB = (title, contents, boardImg, location, meetTime) => {
     return function (dispatch, getState, {history}) {
-        const token = localStorage.getItem("login_token")
+        const token = localStorage.getItem("token")
         let formData = new FormData();
 
         formData.append("title", title);
@@ -72,7 +70,7 @@ const addPostDB = (title, contents, boardImg, location, meetTime) => {
 
         const DB = {
             method: "post",
-            url: `http://3.36.67.251:8080/board/mating`,
+            url: `http://3.36.67.251:8080/board/mating?`,
             data: formData,
             headers : {
                 authorization : `Bearer ${token}`
@@ -90,11 +88,30 @@ const addPostDB = (title, contents, boardImg, location, meetTime) => {
             });
     };
 };
+// 게시글 삭제하기
+const deletePostDB = (id) => {
+    return function(dispatch, getState, {history}){
+        const token = localStorage.getItem("token")
+        axios
+        .delete(`http://3.36.67.251:8080/board/mating/` +`${id}`, {
+            headers : {
+                authorization : `Bearer ${token}`
+            }
+        })
+        .then(()=>{
+            window.alert('게시글이 삭제되었습니다.')
+            history.push('/')
+        })
+        .catch(err => console.log(err))
+    }
+}
 
 // 모임게시글 수정하기
-const editPostDB = (title, contents, boardImg, location, meetTime) => {
+const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
     console.log('수정')
     return function (dispatch, getState, {history}) {
+      const token = localStorage.getItem("token")
+
       let formData = new FormData();
       formData.append("title", title);
       formData.append("contents", contents);
@@ -103,12 +120,23 @@ const editPostDB = (title, contents, boardImg, location, meetTime) => {
       formData.append("meetTime", meetTime);
       axios({
         method: "put",
-        url: "http://3.36.67.251:8080/board/mating/{id}",
-        data:formData
+        url: `http://3.36.67.251:8080/board/mating/${post_id}`,
+        data: formData,
+        // {
+        //     title:title,
+        //     contents:contents,
+        //     boardImg:boardImg,
+        //     location:location,
+        //     meetTime:meetTime
+
+        // },
+        headers : {
+            authorization : `Bearer ${token}`
+        }
       })
         .then((res) => {
-        window.alert(res.data.msg)
-          window.location.replace('/')
+            window.alert('게시글이 수정되었습니다.')
+            history.push('/')
           // let post_id = [...res.data];
           // dispatch(editPost(post_id));
         })
@@ -131,9 +159,12 @@ export default handleActions(
 
 const actionsCreators = {
     addPost,
+    editPost,
     getPostMainDB,
     getPostDetailDB,
-    addPostDB
+    addPostDB,
+    deletePostDB,
+    editPostDB
 };
 
 export {actionsCreators};

@@ -14,21 +14,20 @@ const initialState = {
     is_login : false,
 }
 
-const KakaoLogin = (KakaoCode)=> {
-    return function (dispatch, getState, {history}){
-        axios('http://3.36.67.251:8080/callback/kakao/' + `${KakaoCode}`, {
-            method : 'POST',
-        })
-        .then((res) => {
-            console.log(res.data)
-            localStorage.setItem("login_token", res.data)
-            history.push('/')
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
-}
+const KakaoLogin = (KakaoCode) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "get",
+      url: "http://3.36.67.251:8080/callback/kakao?code=" + `${KakaoCode}`,
+    })
+      .then((res) => {
+        localStorage.setItem('token', res.data)
+        dispatch(login())
+        history.push('/')
+      })
+      .catch((err) => console.log(err));
+  };
+};
 
 export default handleActions(
     {

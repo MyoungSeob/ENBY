@@ -18,11 +18,8 @@ function App() {
       <BrowserRouter>
         <ConnectedRouter history={history}>
           <Route path="/" exact component={Main} />
-          <Route
-            path="/board/mating/write"
-            exact
-            component={MatingBoardWrite}
-          />
+          <Route path="/board/mating/write" exact component={MatingBoardWrite} />
+          <Route path="/board/mating/write/:id" exact component={MatingBoardWrite} />
           <Route path="/login" exact component={Login} />
           <Route path="/board/mating/:id" exact component={MatingDetail} />
           <Route path="/board/mating" exact component={MatingBoard} />

@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import ApplyList from '../components/ApplyList'
+
 import styled from 'styled-components';
 import { actionsCreators as postActions} from '../redux/modules/post'
 import { actionsCreators as applyActions} from '../redux/modules/apply'
@@ -11,7 +14,8 @@ const MatingDetail = (props) => {
     
     const dispatch = useDispatch();
     
-    const post_list = useSelector((store)=> store.post.detail_list)
+    const post_list = useSelector((store)=> store.post.detail_list);
+    const apply_list = useSelector((store) => store.post.apply_list);
     const data = post_list
     
     useEffect(()=>{
@@ -30,7 +34,10 @@ const MatingDetail = (props) => {
             dispatch(applyActions.attendApplyDB(id, registContents))
         }
     }
-    
+    const cancelRegistApply=()=>{
+      dispatch(applyActions.cancelApply(id))
+    }
+    console.log(apply_list)
 
     return (
       <React.Fragment>
@@ -59,8 +66,12 @@ const MatingDetail = (props) => {
           />
           <span>
             <button onClick={registApply}>신청하기</button>
+            <button onClick={cancelRegistApply}>신청취소하기</button>
           </span>
         </div>
+        {apply_list.map((p) => {
+          return <ApplyList key={p.id} {...p} />
+        })}
       </React.Fragment>
     );
 }
@@ -68,5 +79,6 @@ const MatingDetail = (props) => {
 const TextArea = styled.textarea`
     width : 400px
 `
+
 
 export default MatingDetail;

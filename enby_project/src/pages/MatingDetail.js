@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 95399dcd44fdc43838f71b819ad014814a5241e4
 import ApplyList from '../components/ApplyList'
 
 import styled from 'styled-components';
@@ -12,7 +16,13 @@ const MatingDetail = (props) => {
     const [registContents, setRegistContents] = React.useState("");
     
     const dispatch = useDispatch();
+<<<<<<< HEAD
     const post_list = useSelector((store)=> store.post.detail_list)
+=======
+    
+    const post_list = useSelector((store)=> store.post.detail_list);
+    const apply_list = useSelector((store) => store.post.apply_list);
+>>>>>>> 95399dcd44fdc43838f71b819ad014814a5241e4
     const data = post_list
     console.log(data);
     
@@ -32,7 +42,10 @@ const MatingDetail = (props) => {
             dispatch(applyActions.attendApplyDB(id, registContents))
         }
     }
-    
+    const cancelRegistApply=()=>{
+      dispatch(applyActions.cancelApply(id))
+    }
+    console.log(apply_list)
 
     return (
       <React.Fragment>
@@ -62,7 +75,11 @@ const MatingDetail = (props) => {
           <span>
             <button onClick={registApply}>신청하기</button>
             <button onClick={cancelRegistApply}>신청취소하기</button>
+<<<<<<< HEAD
          </span>
+=======
+          </span>
+>>>>>>> 95399dcd44fdc43838f71b819ad014814a5241e4
         </div>
         {apply_list.map((p) => {
           return <ApplyList key={p.id} {...p} />
@@ -74,5 +91,6 @@ const MatingDetail = (props) => {
 const TextArea = styled.textarea`
     width : 400px
 `
+
 
 export default MatingDetail;

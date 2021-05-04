@@ -1,21 +1,25 @@
 import { createAction, handleActions } from 'redux-actions';
 import {produce} from 'immer';
 import axios from 'axios';
+import { applyMiddleware } from 'redux';
 
 const GET_POST_MAIN = "GET_POST_MAIN"
 const GET_POST_DETAIL = "GET_POST_DETAIL"
+const GET_APPLY_LIST = "GET_APPLY_LIST"
 const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";// 수정
 
 
 const getPostMain = createAction(GET_POST_MAIN, (post_list) => post_list);
 const getPostDetail = createAction(GET_POST_DETAIL, (post_list) => post_list);
+const getApplyList = createAction(GET_APPLY_LIST, (apply_list) => apply_list);
 const addPost = createAction(ADD_POST, (post_list) => ({ post_list }));
 const editPost = createAction(EDIT_POST, (post_id, post) => ({post_id}))
 
 const initialState = {
     list : [],
     detail_list : [],
+    apply_list : [],
 };
 
 const getPostMainDB =()=>{
@@ -47,9 +51,10 @@ const getPostDetailDB = (id) =>{
         })
         .then((res) => {
             console.log(res)
+            const apply_list = [...res.data.boards]
             const post_list = [...res.data.boards]
             dispatch(getPostDetail(post_list[0]))
-            console.log(post_list)
+            dispatch(getApplyList(apply_list[0].registrations))
         })
         .catch((err) => console.log(err))
     }
@@ -154,6 +159,10 @@ export default handleActions(
         produce(state, (draft) => {
             draft.detail_list = action.payload
         }),
+    [GET_APPLY_LIST] : (state, action) => 
+        produce(state, (draft) => {
+            draft.apply_list = action.payload
+        })
 }, initialState
 )
 

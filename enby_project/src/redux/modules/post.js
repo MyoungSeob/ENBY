@@ -3,15 +3,17 @@ import {produce} from 'immer';
 import axios from 'axios';
 import { applyMiddleware } from 'redux';
 
-const GET_POST_MAIN = "GET_POST_MAIN"
-const GET_POST_DETAIL = "GET_POST_DETAIL"
-const GET_APPLY_LIST = "GET_APPLY_LIST"
+const GET_POST_MAIN = "GET_POST_MAIN";
+const GET_POST_DETAIL = "GET_POST_DETAIL";
+const GET_APPLY_LIST = "GET_APPLY_LIST";
 const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";// 수정
+const GET_MEET_TIME = "GET_MEET_TIME";
 
 
 const getPostMain = createAction(GET_POST_MAIN, (post_list) => post_list);
 const getPostDetail = createAction(GET_POST_DETAIL, (post_list) => post_list);
+const getMeetTime = createAction(GET_MEET_TIME, (post_list) => post_list)
 const getApplyList = createAction(GET_APPLY_LIST, (apply_list) => apply_list);
 const addPost = createAction(ADD_POST, (post_list) => ({ post_list }));
 const editPost = createAction(EDIT_POST, (post_id, post) => ({post_id}))
@@ -20,6 +22,7 @@ const initialState = {
     list : [],
     detail_list : [],
     apply_list : [],
+    time : [],
 };
 
 const getPostMainDB =()=>{
@@ -53,15 +56,18 @@ const getPostDetailDB = (id) =>{
             console.log(res)
             const apply_list = [...res.data.boards]
             const post_list = [...res.data.boards]
+            const time = post_list[0].meetTime.split('T')[0].split('-')
             dispatch(getPostDetail(post_list[0]))
+            dispatch(getMeetTime(time))
             dispatch(getApplyList(apply_list[0].registrations))
+            
         })
         .catch((err) => console.log(err))
     }
 }
 
 // 모임게시글 추가하기
-const addPostDB = (title, contents, boardImg, location, meetTime) => {
+const addPostDB = (title, contents, boardImg, location, meetTime, people_max) => {
     return function (dispatch, getState, {history}) {
         const token = localStorage.getItem("token")
         let formData = new FormData();
@@ -71,6 +77,7 @@ const addPostDB = (title, contents, boardImg, location, meetTime) => {
         formData.append("boardImg", boardImg);
         formData.append("location", location);
         formData.append("meetTime", meetTime);
+        formData.append("people_max", people_max);
         
 
         const DB = {
@@ -162,6 +169,10 @@ export default handleActions(
     [GET_APPLY_LIST] : (state, action) => 
         produce(state, (draft) => {
             draft.apply_list = action.payload
+        }),
+    [GET_MEET_TIME] : (state, action) => 
+        produce(state, (draft) => {
+            draft.time = action.payload
         })
 }, initialState
 )

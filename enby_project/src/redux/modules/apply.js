@@ -12,20 +12,24 @@ const initialState = {
     list : [],
 }
 // 참가신청하기
-const attendApplyDB =(id, registContents)=>{
+const attendApplyDB =(id, kakaoId, applyComment)=>{
     return function(dispatch, getState, {history}) {
         const token = localStorage.getItem("token")
+
+        const formData = new FormData();
+
+        formData.append("board_id", id);
+        formData.append("kakao_id", kakaoId);
+        formData.append("contents", applyComment);
+        formData.append("accepted", false);
+    
         axios({
           method: "post",
           url: `http://3.36.67.251:8080/board/mating/${id}/register`,
           headers: {
             authorization: `Bearer ${token}`,
           },
-          data: {
-              board_id : id,
-              contents : registContents,
-              accepted : false,
-          },
+          data: formData,
         })
           .then((res) => {
             console.log(res)

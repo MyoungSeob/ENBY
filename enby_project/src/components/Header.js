@@ -44,12 +44,7 @@ function Header() {
 }
 
 const Container = styled.div`
-<<<<<<< HEAD
-    // 여기 100% 로 고쳐야함?
-  width: 1920px;
-=======
   width: 100%;
->>>>>>> 7707305f3ac548b14eed45a6298e379362727b85
   height: 100px;
   background-color: #000000;
   display: flex;

@@ -36,7 +36,7 @@ const MatingBoardWrite = (props) => {
     console.log(boardImg);
     const [location, setLocation] = useState(_post? _post.location : "");
     // const [meetTime, setMeetTime] = useState(_post? _post.meetTime : null);
-    const [people_max, setPeople_max] = useState(_post? _post.location : "");
+    const [people_max, setPeople_max] = useState(_post? _post.people_max : "");
 
     // 이미지 추가 미리보기`
     const preview = useSelector((state) => state.image.preview);
@@ -108,7 +108,7 @@ const MatingBoardWrite = (props) => {
             name='image' 
             ref={fileInput}
             type='file'
-            src={preview}
+            src={_post? post_img : preview}
             />
         <Test>
           <Container>
@@ -141,8 +141,7 @@ const MatingBoardWrite = (props) => {
                 dateFormat="yyyy/MM/dd h:mm aa"
               />
             <Place>
-              <img style={{position: "absolute", width: "48px", height:"48px", left: "240px", top:"1069px"}} src={require("../icon/where.png").default}/>
-              {/* padding:"28px" */}
+              <Icon1 src={require("../shared/image/place.png").default}/>
               <Location
                 label="장소"
                 value={location}
@@ -153,12 +152,12 @@ const MatingBoardWrite = (props) => {
                 placeholder="장소"
               />
             </Place>
-              <img style={{width: "28px", height:"26px", padding:"28px"}} src={require("../icon/people.png").default}/>
+              <Icon2 src={require("../shared/image/person.png").default}/>
               <MaxPeople
                 label="인원"
                 value={people_max}
                 onChange={(e) => {
-                  console.log(location);
+                  console.log(people_max);
                   setPeople_max(e.target.value);}}
                 placeholder="인원"
               />
@@ -175,7 +174,7 @@ const MatingBoardWrite = (props) => {
         </Test>
         {/* {() => setMeetTime(finalMeetTime)} */}
         {_post ? (
-          <button
+          <EditButton
             onClick={() => {
               // setMeetTime(finalMeetTime)
               console.log(meetTime)
@@ -183,17 +182,17 @@ const MatingBoardWrite = (props) => {
             }}
           >
             수정하기
-          </button>
+          </EditButton>
         ) : (
-          <button
+          <PostButton
             onClick={() => {
               // setMeetTime(finalMeetTime)
               console.log(meetTime)
               dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime, people_max))
             }}
           >
-            글쓰기
-          </button>
+            작성하기
+          </PostButton>
          )}
       </React.Fragment>
       
@@ -245,20 +244,20 @@ const TextBox2 = styled.div`
   line-height: 150%;
   color: #000000;
 `;
+const Icon1 = styled.img`
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  left: 240px;
+  top: 1127px;
+`;
 
-const About = styled.text`
-position: absolute;
-width: 952px;
-height: 42px;
-left: 728px;
-top: 992px;
-
-font-family: Seravek;
-font-style: italic;
-font-weight: bold;
-font-size: 28px;
-line-height: 150%;
-color: #000000;
+const Icon2 = styled.img`
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  left: 240px;
+  top: 1186px;
 `;
 const Container = styled.div`
   margin: 300px 0px;
@@ -282,23 +281,6 @@ background: #FFFFFF;
 border: 1px solid #B9B9B9;
 box-sizing: border-box;
 border-radius: 20px;
-    // display: flex;
-    // flex-direction: row;
-    // align-items: flex-start;
-    // padding: 6px 20px;
-    // margin:  240px;
-    // width: 1220px;
-    // height: 39px;
-    // max-width: 100%;
-    // padding: .375rem .75rem;
-    // font-size: 1rem;
-    // line-height: 1.5;
-    // color: #495057;
-    // background: #FFFFFF;
-    // border: 1px solid #B9B9B9;
-    // box-sizing: border-box;
-    // border-radius: 20px;
-    // align-items: flex-start;
 `;
 const Location = styled.input`
 display: flex;
@@ -316,19 +298,6 @@ background: #FFFFFF;
 border: 1px solid #B9B9B9;
 box-sizing: border-box;
 border-radius: 20px;
-    // display: block;
-    // margin: 20px -22px;
-    // width: 298px;
-    // height: 39px;
-    // max-width: 100%;
-    // // padding: .375rem .75rem;
-    // // font-size: 1rem;
-    // line-height: 1.5;
-    // color: #495057;
-    // background-color: #FFFFFF;
-    // background-clip: padding-box;
-    // border: 1px solid #B9B9B9;
-    // border-radius: 20px;
     
 `;
 const MaxPeople = styled.input`
@@ -347,36 +316,9 @@ background: #FFFFFF;
 border: 1px solid #B9B9B9;
 box-sizing: border-box;
 border-radius: 20px;
-// // display: block;
-// margin: -22px;
-// // flex-direction: row;
-// // align-items: flex-start;
-// // padding: 6px 20px;
-//     // position: absolute;
-//     width: 298px;
-//     height: 39px;
-//     // left: 308px;
-//     // top: 1132px;
-//     background-color: #FFFFFF;
-//     background-clip: padding-box;
-//     border: 1px solid #B9B9B9;
-//     border-radius: 20px;
 `;
 
 const Contents = styled.input`
-    // display: block;
-    // margin: 20px auto;
-    // width: 500px;
-    // max-width: 100%;
-    // height: 150px;
-    // padding: .375rem .75rem;
-    // font-size: 1rem;
-    // line-height: 1.5;
-    // color: #495057;
-    // background-color: #fff;
-    // background-clip: padding-box;
-    // border: 1px solid #ced4da;
-    // border-radius: .25rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -403,21 +345,49 @@ top: 100px;
 
 background: #D9D9D9;
 border-radius: 0px;
-    // display: block;
-    // // margin: 20px 50px;
-    // overflow: hidden;
-    // width: 100%;
-    // max-width: 100%;
-    // height: 300px;
-    // position: absolute;
-    // background-color: #fff;
-    // background-clip: padding-box;
-    // border: 1px solid #ced4da;
-    // border-radius: .25rem;
     background-image: url(${(props) => props.src});
     // background-image: url(${(props) => props._post? props.post_img : props.src});
     background-size: cover;
     background-repeat: no-repeat;
+`;
+
+const PostButton = styled.button`
+  background: #F1B100;
+  border-radius: 20px;
+  position: absolute;
+  width: 167px;
+  height: 40px;
+  left: 1513px;
+  top: 861px;
+  cursor: pointer;
+
+  // & text {
+  //   position: absolute;
+  //   width: 67px;
+  //   height: 27px;
+  //   left: 1563px;
+  //   top: 867px;
+
+  //   font-family: Noto Sans KR;
+  //   font-style: normal;
+  //   font-weight: normal;
+  //   font-size: 18px;
+  //   line-height: 150%;
+  //   text-align: center;
+
+  //   color: #000000;
+  // }
+`;
+
+const EditButton = styled.button`
+  background: #F1B100;
+  border-radius: 20px;
+  position: absolute;
+  width: 167px;
+  height: 40px;
+  left: 1513px;
+  top: 861px;
+  cursor: pointer;
 `;
 
 

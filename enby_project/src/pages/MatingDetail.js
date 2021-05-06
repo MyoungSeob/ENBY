@@ -8,8 +8,6 @@ import Apply from '../components/Apply';
 
 import jwt_decode from 'jwt-decode'
 
-// import jwt_decode from 'jwt-decode';
-
 import styled from 'styled-components';
 import { actionsCreators as postActions} from '../redux/modules/post'
 import { actionsCreators as applyActions} from '../redux/modules/apply'
@@ -21,16 +19,6 @@ import PermitApply from '../components/PermitApply';
 
 const MatingDetail = (props) => {
     const id = props.match.params.id;
-<<<<<<< HEAD
-    const token = localStorage.getItem("token")
-    // const decode = jwt_decode(token)
-
-    const [registContents, setRegistContents] = React.useState("");
-    
-    const dispatch = useDispatch();
-    const post_list = useSelector((store)=> store.post.detail_list);
-    const apply_list = useSelector((store) => store.post.apply_list);
-=======
 
     const token = localStorage.getItem("token")
     const decode = jwt_decode(token)
@@ -41,7 +29,6 @@ const MatingDetail = (props) => {
     const apply_list = useSelector((store) => store.post.apply_list);
     const time = useSelector((store) => store.post.time);
     console.log(apply_list)
->>>>>>> 7707305f3ac548b14eed45a6298e379362727b85
     const data = post_list
 
     useEffect(()=>{
@@ -97,31 +84,12 @@ const MatingDetail = (props) => {
         
         <button
           onClick={() => {
-            history.push("/board/mating/write/" + id);
+            history.push("/board/write/" + id);
           }}
         >
           수정
         </button>
         <button onClick={deletePost}>삭제</button>
-<<<<<<< HEAD
-        <div>
-          <TextArea
-            placeholder="신청멘트"
-            rows="5"
-            onChange={(e) => {
-              setRegistContents(e.target.value);
-            }}
-          />
-          <span>
-            <button onClick={registApply}>신청하기</button>
-            <button onClick={cancelRegistApply}>신청취소하기</button>
-         </span>
-        </div>
-        {apply_list.map((p) => {
-          return <ApplyList key={p.id} {...p} />
-        })}
-      </React.Fragment>
-=======
         {/* {decode.nickname !== apply_list.createdBy ? (
           <div>
             <TextArea
@@ -144,7 +112,6 @@ const MatingDetail = (props) => {
           </div>
         )} */}
       </Container>
->>>>>>> 7707305f3ac548b14eed45a6298e379362727b85
     );
 }
 

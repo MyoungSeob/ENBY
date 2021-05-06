@@ -10,7 +10,7 @@ const Card =(props)=>{
     const post_list = useSelector((store)=> store.post.detail_list)
     console.log(post_list);
     const move_page =()=>{
-        history.push(`/board/mating/${props.id}`)
+        history.push(`/board/${props.id}`)
     }
 
     // isoString to JS date type
@@ -29,9 +29,9 @@ const Card =(props)=>{
                 </CardTit>
                 <Line />
                 <CardBody>
-                    <p><img style={{padding:"0px 24px"}} src={require("../icon/where.png").default}/>{props.location}</p>
-                    <p><img style={{padding:"0px 24px", width:"40px", height:"32px"}} src={require("../icon/84x84.png").default}/>{meetTime}</p>
-                    <p><img style={{padding:"0px 24px"}} src={require("../icon/people.png").default}/></p>
+                    <p><img style={{padding:"0px 24px"}} src={require("../shared/image/place.png").default}/>{props.location}</p>
+                    <p><img style={{padding:"0px 24px", width:"40px", height:"32px"}} src={require("../shared/image/date.png").default}/>{meetTime}</p>
+                    <p><img style={{padding:"0px 24px"}} src={require("../shared/image/person.png").default}/></p>
                 </CardBody>
             </CardGrid>
         </React.Fragment>

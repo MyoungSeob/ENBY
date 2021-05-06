@@ -4,15 +4,15 @@ import styled from 'styled-components';
 import {actionsCreators as postActions} from '../redux/modules/post'
 import { history } from '../redux/configStore'
 import { CardImg } from 'react-bootstrap';
+import Detail from '../components/Detail';
 
 const Card =(props)=>{
     console.log(props);
     const post_list = useSelector((store)=> store.post.detail_list)
     console.log(post_list);
     const move_page =()=>{
-        history.push(`/board/${props.id}`)
+        history.push(`/board/mating/${props.id}`)
     }
-
     // isoString to JS date type
     // 현재 날짜 보여주는 형식 별로 안이쁨
     const date = new Date(props.meetTime);
@@ -21,9 +21,7 @@ const Card =(props)=>{
     return (
         <React.Fragment>
             <CardGrid onClick={move_page}>
-                <CardImage>
-                    <img style={{width: "338px", height: "221.49px", objectFit: "cover"}}src={props.board_imgUrl} />
-                </CardImage>
+                <CardImage src={props.board_imgUrl} />
                 <CardTit>
                     <h3>{props.title}</h3>
                 </CardTit>
@@ -31,22 +29,24 @@ const Card =(props)=>{
                 <CardBody>
                     <p><img style={{padding:"0px 24px"}} src={require("../shared/image/place.png").default}/>{props.location}</p>
                     <p><img style={{padding:"0px 24px", width:"40px", height:"32px"}} src={require("../shared/image/date.png").default}/>{meetTime}</p>
-                    <p><img style={{padding:"0px 24px"}} src={require("../shared/image/person.png").default}/></p>
+                    <p><img style={{padding:"0px 24px"}} src={require("../shared/image/person.png").default}/>{props.people_count} / {props.people_max}</p>
+                    {/* <Detail {...post_list.PersonBox} /> */}
                 </CardBody>
             </CardGrid>
         </React.Fragment>
     )
 }
 
-const CardImage = styled.div`
-    
+const CardImage = styled.img`
+    width: 338px;
+    height: 221.49px;
+    objectFit: cover;
 `;
 
 const CardGrid = styled.div`
     float : left;
     width : 460px;
     height : 673px;
-    // background-color : gray;
     margin : 20px;
     border: solid 1px #eee;
     border-radius: 6px;

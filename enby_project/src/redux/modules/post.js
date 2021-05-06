@@ -69,7 +69,7 @@ const getPostDetailDB = (id) =>{
 }
 
 // 모임게시글 추가하기
-const addPostDB = (title, contents, boardImg, location, meetTime, people_max) => {
+const addPostDB = (title, contents, boardImg, location, meetTime, people_max, deadline_status) => {
     return function (dispatch, getState, {history}) {
         const token = localStorage.getItem("token")
         let formData = new FormData();
@@ -80,6 +80,7 @@ const addPostDB = (title, contents, boardImg, location, meetTime, people_max) =>
         formData.append("location", location);
         formData.append("meetTime", meetTime);
         formData.append("people_max", people_max);
+        // formData.append("deadline_status", false);
         
 
         const DB = {
@@ -132,6 +133,7 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
       formData.append("boardImg", boardImg);
       formData.append("location", location);
       formData.append("meetTime", meetTime);
+
       axios({
         method: "put",
         url: `http://3.36.67.251:8080/board/mating/${post_id}`,

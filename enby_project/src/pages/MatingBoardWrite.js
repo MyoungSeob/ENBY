@@ -8,7 +8,8 @@ import Header from '../components/Header'
 
 // DatePicker
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
+import "../datepicker.css";
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import ko from 'date-fns/locale/ko';
 registerLocale('ko', ko)
@@ -49,6 +50,7 @@ const MatingBoardWrite = (props) => {
     const timezoneDate = new Date(date - timezoneOffset);
     const finalDate = timezoneDate.toISOString();
     const meetTime = finalDate.split(".")[0];
+    const deadline_status = "false";
     console.log(meetTime);
     // {setMeetTime(finalMeetTime)};
     console.log('그냥 ISOString = '+new Date().toISOString());
@@ -98,6 +100,11 @@ const MatingBoardWrite = (props) => {
         };
     };
     
+    const selectHandler=()=>{
+      const countperonSelect = document.getElementById("countPeople");
+      const getCount = countperonSelect.options[countperonSelect.selectedIndex].value;
+      setPeople_max(getCount)
+    }
 
     return (
       <React.Fragment>
@@ -128,8 +135,8 @@ const MatingBoardWrite = (props) => {
               <TextBox2>          
                   About
               </TextBox2>  
-              <DatePicker
-                style={{ width: "30px" }}
+              <Icon1 src={require("../shared/image/date.png").default}/>
+              <Cal
                 label="날짜시간"
                 value={date}
                 selected={date}
@@ -139,9 +146,10 @@ const MatingBoardWrite = (props) => {
                 timeIntervals={15}
                 timeCaption="time"
                 dateFormat="yyyy/MM/dd h:mm aa"
+                placeholderText="모임 날짜/시간"
               />
             <Place>
-              <Icon1 src={require("../shared/image/place.png").default}/>
+              <Icon2 src={require("../shared/image/place.png").default}/>
               <Location
                 label="장소"
                 value={location}
@@ -152,7 +160,7 @@ const MatingBoardWrite = (props) => {
                 placeholder="장소"
               />
             </Place>
-              <Icon2 src={require("../shared/image/person.png").default}/>
+              <Icon3 src={require("../shared/image/person.png").default}/>
               <MaxPeople
                 label="인원"
                 value={people_max}
@@ -161,6 +169,18 @@ const MatingBoardWrite = (props) => {
                   setPeople_max(e.target.value);}}
                 placeholder="인원"
               />
+              <MaxPeople
+                label="인원"
+                name = "countPeople"
+                id = "countPeople"
+                onChange={selectHandler}
+                placeholder="인원"
+              >
+                <option value="">총 인원 수 선택</option>
+                <option value="2">2명</option>
+                <option value="3">3명</option>
+                <option value="4">4명</option>
+              </MaxPeople>
             <Contents
               label="내용"
               value={contents}
@@ -188,7 +208,7 @@ const MatingBoardWrite = (props) => {
             onClick={() => {
               // setMeetTime(finalMeetTime)
               console.log(meetTime)
-              dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime, people_max))
+              dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime, people_max));
             }}
           >
             작성하기
@@ -199,6 +219,24 @@ const MatingBoardWrite = (props) => {
     );
 }
 
+const Cal = styled(DatePicker)`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px 20px;
+
+  position: absolute;
+  width: 298px;
+  height: 39px;
+  left: 308px;
+  top: 1073px;
+
+  background: #FFFFFF;
+  border: 1px solid #B9B9B9;
+  box-sizing: border-box;
+  border-radius: 20px;
+  // color: #B9B9B9;
+`;
 
 const Test = styled.div`
   display: flex;
@@ -244,7 +282,16 @@ const TextBox2 = styled.div`
   line-height: 150%;
   color: #000000;
 `;
+
 const Icon1 = styled.img`
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  left: 240px;
+  top: 1069px;
+`;
+
+const Icon2 = styled.img`
   position: absolute;
   width: 48px;
   height: 48px;
@@ -252,7 +299,7 @@ const Icon1 = styled.img`
   top: 1127px;
 `;
 
-const Icon2 = styled.img`
+const Icon3 = styled.img`
   position: absolute;
   width: 48px;
   height: 48px;
@@ -300,7 +347,7 @@ box-sizing: border-box;
 border-radius: 20px;
     
 `;
-const MaxPeople = styled.input`
+const MaxPeople = styled.select`
 display: flex;
 flex-direction: row;
 align-items: flex-start;
@@ -360,23 +407,7 @@ const PostButton = styled.button`
   left: 1513px;
   top: 861px;
   cursor: pointer;
-
-  // & text {
-  //   position: absolute;
-  //   width: 67px;
-  //   height: 27px;
-  //   left: 1563px;
-  //   top: 867px;
-
-  //   font-family: Noto Sans KR;
-  //   font-style: normal;
-  //   font-weight: normal;
-  //   font-size: 18px;
-  //   line-height: 150%;
-  //   text-align: center;
-
-  //   color: #000000;
-  // }
+  border: 0;
 `;
 
 const EditButton = styled.button`
@@ -392,3 +423,4 @@ const EditButton = styled.button`
 
 
 export default MatingBoardWrite;
+

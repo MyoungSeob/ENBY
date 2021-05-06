@@ -61,13 +61,42 @@ const cancelApply = (id)=>{
         .catch(err => console.log(err))
     }
 }
-const checkAttendDB =(id)=>{
+const acceptApplyDB =(id, register_id)=>{
     return function(dispatch, getState, {history}){
+        const token = localStorage.getItem("token")
         axios({
-            method : 'get',
-            url : `https://c0caaa87-9c65-464e-b493-a8e2130f8280.mock.pstmn.io/board/mating/` + `${id}`
+            method : 'put',
+            url : `http://3.36.67.251:8080/board/mating/${id}/register/${register_id}`,
+            headers : {
+                authorization: `Bearer ${token}`,
+            },
+            data : {
+                accepted : "true",
+            }
         })
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res)
+            window.alert("신청이 완료되었습니다!")
+            window.location.reload();
+        })
+        .catch(err => console.log(err))
+    }
+}
+const rejectApplyDB =(id, register_id)=>{
+    return function(dispatch, getState, {history}){
+        const token = localStorage.getItem("token")
+        axios({
+            method : 'delete',
+            url : `http://3.36.67.251:8080/board/mating/${id}/register/${register_id}`,
+            headers : {
+                authorization: `Bearer ${token}`,
+            },
+        })
+        .then(res => {
+            window.alert(res.data)
+            window.location.reload();
+        })
+        .catch(err => console.log(err))
     }
 }
 
@@ -82,7 +111,9 @@ export default handleActions (
 
 const actionsCreators = {
     attendApplyDB,
-    cancelApply
+    cancelApply,
+    acceptApplyDB,
+    rejectApplyDB
 }
 
 export {actionsCreators};

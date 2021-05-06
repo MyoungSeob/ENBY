@@ -10,7 +10,7 @@ const Card =(props)=>{
     const post_list = useSelector((store)=> store.post.detail_list)
     console.log(post_list);
     const move_page =()=>{
-        history.push(`/board/${props.id}`)
+        history.push(`/board/mating/${props.id}`)
     }
 
     // isoString to JS date type

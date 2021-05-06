@@ -1,17 +1,22 @@
 import React from 'react'
 import CardList from '../components/CardList'
 import Carousel from '../components/Carousel'
+import styled from 'styled-components'
 import Header from '../components/Header'
 
 
-function Main() {
+const Main =(props)=>{
     return (
-      <div>
-        <Header />
+      <Container>
         <Carousel />
         <CardList></CardList>
-      </div>
+      </Container>
     );
 }
+const Container = styled.div`
+  width : 1440px;
+  margin : auto;
+`
 
-export default Main
+
+export default Main;

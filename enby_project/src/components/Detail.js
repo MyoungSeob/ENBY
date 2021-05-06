@@ -3,9 +3,12 @@ import styled from 'styled-components'
 import date from '../shared/image/date.png'
 import place from '../shared/image/place.png'
 import person from '../shared/image/person.png'
+import { useSelector } from 'react-redux';
 
 const Detail = (props)=>{
-    const gauge = 100*(props.people_count/props.people_max) + "%"
+    const gauge = 100*(props.people_current/props.people_max) + "%"
+    const time = useSelector((store) => store.post.time)
+
     return (
       <Container>
         <TitleBox>
@@ -14,7 +17,7 @@ const Detail = (props)=>{
         <IconBox>
           <DateBox>
             <Icon />
-            <IconContents>{props.meetTime}</IconContents>
+            <IconContents>{time}</IconContents>
           </DateBox>
           <PlaceBox>
             <BigIcon src={place} />
@@ -23,9 +26,9 @@ const Detail = (props)=>{
           <PersonBox>
             <BigIcon src={person} />
             <ProgressBar>
-              <ProgressBar_ style={{ width: gauge }} />
+              <ProgressBar_ style={{ width : gauge }} />
             </ProgressBar>
-            <CheckPeople><Check>{props.people_count} / {props.people_max}</Check></CheckPeople>
+            <CheckPeople><Check>{props.people_current === 0 ? "0" : (props.people_current)} / {props.people_max}</Check></CheckPeople>
           </PersonBox>
         </IconBox>
       </Container>
@@ -82,7 +85,7 @@ const ProgressBar = styled.div`
     margin-top : 22px;
 `
 const ProgressBar_ = styled.div`
-    width : 10%;
+    width : 0;
     height : 100%;
     background-color : #F1B100;
 `

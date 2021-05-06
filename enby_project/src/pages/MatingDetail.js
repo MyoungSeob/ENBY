@@ -13,7 +13,7 @@ import { actionsCreators as postActions} from '../redux/modules/post'
 import { actionsCreators as applyActions} from '../redux/modules/apply'
 import { history } from "../redux/configStore";
 import MemberCardList from '../components/MemberCardList';
-import PermitApply from '../components/PermitApply';
+import PermitApplyList from '../components/PermitApplyList';
 
 
 
@@ -22,14 +22,15 @@ const MatingDetail = (props) => {
 
     const token = localStorage.getItem("token")
     const decode = jwt_decode(token)
-    
+    console.log(decode.nickname)
     const dispatch = useDispatch();
     
     const post_list = useSelector((store)=> store.post.detail_list);
     const apply_list = useSelector((store) => store.post.apply_list);
     const time = useSelector((store) => store.post.time);
-    console.log(apply_list)
+    console.log(post_list)
     const data = post_list
+    const createdBy = post_list.createdBy
 
     useEffect(()=>{
         dispatch(postActions.getPostDetailDB(id))
@@ -68,6 +69,7 @@ const MatingDetail = (props) => {
           <Detail {...post_list} />
           <About {...post_list} />
         </ContentsBox>
+        <ApplicationBox>
         {apply_list.length > 0 ? (
           <MemberBox>
             <MemberCardList />
@@ -75,16 +77,19 @@ const MatingDetail = (props) => {
         ) : (
           ""
         )}
-        <ApplyBox>
-          <Apply {...post_list} />
-        </ApplyBox>
-        {/* <PermitBox>
-        <PermitApply />
-        </PermitBox> */}
-        
+        {decode.nickname === createdBy ? (
+          <PermitBox>
+            <PermitApplyList />
+          </PermitBox>
+        ) : (
+          <ApplyBox>
+            <Apply {...post_list} />
+          </ApplyBox>
+        )}
+
         <button
           onClick={() => {
-            history.push("/board/write/" + id);
+            history.push("/board/mating/write/" + id);
           }}
         >
           수정
@@ -111,6 +116,7 @@ const MatingDetail = (props) => {
             })}
           </div>
         )} */}
+        </ApplicationBox>
       </Container>
     );
 }
@@ -119,7 +125,6 @@ const Container = styled.div`
   width : 100%;
 `
 const DetailBox = styled.div`
-  width : 1440px;
   margin : auto;
 `
 const ContentsBox = styled.div`
@@ -187,6 +192,9 @@ const ApplyBox = styled.div`
 const PermitBox = styled.div`
 max-width : 1440px;
   margin : auto;
+`
+const ApplicationBox = styled.div`
+  margin-bottom : 170px;
 `
 
 export default MatingDetail;

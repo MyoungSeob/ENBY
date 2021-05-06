@@ -49,8 +49,8 @@ const login=()=>{
 }
 
 const Container = styled.div`
-    
-  width: 100%;
+    // 여기 100% 로 고쳐야함?
+  width: 1920px;
   height: 100px;
   background-color: #000000;
   display : flex;

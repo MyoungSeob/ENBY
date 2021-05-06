@@ -32,8 +32,10 @@ const getPostMainDB =()=>{
             }
         })
         .then((response) => {
+            console.log(response);
             const post_list = [...response.data]
             dispatch(getPostMain(post_list))
+            console.log(post_list);
         }
         )
         .catch((err) => console.log(err))
@@ -61,7 +63,7 @@ const getPostDetailDB = (id) =>{
 }
 
 // 모임게시글 추가하기
-const addPostDB = (title, contents, boardImg, location, meetTime) => {
+const addPostDB = (title, contents, boardImg, location, meetTime, people_max) => {
     return function (dispatch, getState, {history}) {
         const token = localStorage.getItem("token")
         let formData = new FormData();
@@ -71,6 +73,7 @@ const addPostDB = (title, contents, boardImg, location, meetTime) => {
         formData.append("boardImg", boardImg);
         formData.append("location", location);
         formData.append("meetTime", meetTime);
+        formData.append("people_max", people_max);
         
 
         const DB = {

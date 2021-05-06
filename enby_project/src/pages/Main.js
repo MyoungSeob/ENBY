@@ -7,6 +7,7 @@ import Header from '../components/Header'
 function Main() {
     return (
       <div>
+        <Header />
         <Carousel />
         <CardList></CardList>
       </div>

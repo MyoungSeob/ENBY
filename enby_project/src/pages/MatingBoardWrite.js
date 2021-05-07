@@ -66,7 +66,7 @@ const MatingBoardWrite = (props) => {
 
     useEffect(() => {
         // setImage(preview);
-        }, [preview]);
+        }, [preview, people_max]);
     // 로그인 되어있을때만 포스트작성 가능하게 해준다
     // const is_login = useSelector((state) => state.user.is_login);
     // // 로그인이 안되어있을때 로그인 페이지로 이동
@@ -99,16 +99,15 @@ const MatingBoardWrite = (props) => {
             dispatch(imgActions.setPreview(reader.result)); // result: 파일의 내용물
         };
     };
-    
     const selectHandler=()=>{
       const countperonSelect = document.getElementById("countPeople");
       const getCount = countperonSelect.options[countperonSelect.selectedIndex].value;
+
       setPeople_max(getCount)
     }
 
     return (
       <React.Fragment>
-       <Header />
        <Image
             onChange={selectFile}
             placeholder="사진을 추가해주세요"
@@ -161,14 +160,6 @@ const MatingBoardWrite = (props) => {
               />
             </Place>
               <Icon3 src={require("../shared/image/person.png").default}/>
-              <MaxPeople
-                label="인원"
-                value={people_max}
-                onChange={(e) => {
-                  console.log(people_max);
-                  setPeople_max(e.target.value);}}
-                placeholder="인원"
-              />
               <MaxPeople
                 label="인원"
                 name = "countPeople"
@@ -351,7 +342,7 @@ const MaxPeople = styled.select`
 display: flex;
 flex-direction: row;
 align-items: flex-start;
-padding: 6px 20px;
+padding: 10px 20px 0 20px;
 
 position: absolute;
 width: 298px;
@@ -363,6 +354,7 @@ background: #FFFFFF;
 border: 1px solid #B9B9B9;
 box-sizing: border-box;
 border-radius: 20px;
+outline : none;
 `;
 
 const Contents = styled.input`

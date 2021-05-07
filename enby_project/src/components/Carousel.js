@@ -15,6 +15,7 @@ function Carousel() {
 
 const Container = styled(AwesomeSlider)`
   width: 1920px;
+  height: 626px;
 `;
 
 export default Carousel;

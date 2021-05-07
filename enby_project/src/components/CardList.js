@@ -30,7 +30,7 @@ const ListBody = styled.div`
     text-align : center;
     max-width: 1920px;
     // max-width: 1200px;
-    margin: 100px;
+    margin: 200px;
     // margin: 0 auto;
     padding: 0;
 `

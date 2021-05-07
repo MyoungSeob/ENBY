@@ -56,13 +56,27 @@ const getPostDetailDB = (id) =>{
         })
         .then((res) => {
             console.log(res)
-            const apply_list = [...res.data.boards]
+            
+            const apply_list = [...res.data.boards];
             const post_list = [...res.data.boards]
-            const time = post_list[0].meetTime.split('T')[0].split('-')
+            const week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
+
+            const today = new Date(post_list[0].meetTime.split("T")[0]).getDay();
+            const todayLabel = week[today];
+            const time =
+              post_list[0].meetTime.split("T")[0].split("-")[0] +
+              "년 " +
+              parseInt(post_list[0].meetTime.split("T")[0].split("-")[1]) +
+              "월 " +
+              parseInt(post_list[0].meetTime.split("T")[0].split("-")[2]) +
+              "일 " + todayLabel +" " +
+              post_list[0].meetTime.split("T")[1].split(":")[0] +
+              ":" +
+              post_list[0].meetTime.split("T")[1].split(":")[1];
+            const day = post_list[0].meetTime.split("T")[0];
             dispatch(getPostDetail(post_list[0]))
             dispatch(getMeetTime(time))
             dispatch(getApplyList(apply_list[0].registrations))
-            
         })
         .catch((err) => console.log(err))
     }
@@ -85,7 +99,7 @@ const addPostDB = (title, contents, boardImg, location, meetTime, people_max, de
 
         const DB = {
             method: "post",
-            url: `http://3.36.67.251:8080/board/mating?`,
+            url: `http://3.36.67.251:8080/board/mating`,
             data: formData,
             headers : {
                 authorization : `Bearer ${token}`
@@ -177,7 +191,7 @@ export default handleActions(
     [GET_MEET_TIME] : (state, action) => 
         produce(state, (draft) => {
             draft.time = action.payload
-        })
+        }),
 }, initialState
 )
 

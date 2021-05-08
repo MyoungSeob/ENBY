@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import {actionsCreators as userActions} from '../redux/modules/user'
+import Loading from '../components/Loading';
+
 
 const KakaoCallBack =()=>{
     const dispatch = useDispatch();
@@ -11,11 +13,7 @@ const KakaoCallBack =()=>{
         console.log(KakaoCode)
     })
 
-    return (
-        <React.Fragment>
-            카카오 로그인 중
-        </React.Fragment>
-    )
+    return <Loading />;
 }
 
 export default KakaoCallBack;

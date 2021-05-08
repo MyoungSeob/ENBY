@@ -17,7 +17,7 @@ const MemberCardList=(props)=>{
     )
 }
 const Container = styled.div`
-    width : 1440px;
+    width : 1200px;
 `
 const Title = styled.div`
     margin-bottom : 34px;

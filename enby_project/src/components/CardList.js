@@ -8,11 +8,15 @@ import {actionsCreators as postActions} from '../redux/modules/post'
 
 const CardList =(props)=>{
     const dispatch = useDispatch();
+
     const post_list = useSelector((store) => store.post.list)
+    const apply_list = useSelector((store) => store.post.apply_list)
     // const post_list = useSelector((store)=> store.post.detail_list)
     console.log(post_list);
+    const id = post_list.id
     useEffect(()=>{
         dispatch(postActions.getPostMainDB())
+        dispatch(postActions.getPostDetailDB(id))
     }, [dispatch])
 
     return (
@@ -28,11 +32,10 @@ const CardList =(props)=>{
 }
 const ListBody = styled.div`
     text-align : center;
-    max-width: 1920px;
+    width: 1200px;
     // max-width: 1200px;
-    margin: 200px;
+    margin: 100px auto 0 auto;
     // margin: 0 auto;
-    padding: 0;
 `
 const PostList = styled.ul`
 

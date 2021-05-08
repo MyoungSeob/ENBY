@@ -10,6 +10,7 @@ const CardList =(props)=>{
     const dispatch = useDispatch();
     const post_list = useSelector((store) => store.post.list)
     // const post_list = useSelector((store)=> store.post.detail_list)
+    console.log(props);
     console.log(post_list);
     useEffect(()=>{
         dispatch(postActions.getPostMainDB())

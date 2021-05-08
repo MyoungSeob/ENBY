@@ -9,7 +9,10 @@ const GET_APPLY_LIST = "GET_APPLY_LIST";
 const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";// 수정
 const GET_MEET_TIME = "GET_MEET_TIME";
-
+const GET_POST_REVIEW = "GET_POST_REVIEW"; // 리뷰 불러오기
+const GET_REVIEW_DETAIL = "GET_REVIEW_DETAIL";
+const ADD_REVIEW = "ADD_REVIEW"; // 리뷰 추가
+const EDIT_REVIEW = "EDIT_REVIEW"; // 리뷰 수정
 
 const getPostMain = createAction(GET_POST_MAIN, (post_list) => post_list);
 const getPostDetail = createAction(GET_POST_DETAIL, (post_list) => post_list);
@@ -17,12 +20,18 @@ const getMeetTime = createAction(GET_MEET_TIME, (post_list) => post_list)
 const getApplyList = createAction(GET_APPLY_LIST, (apply_list) => apply_list);
 const addPost = createAction(ADD_POST, (post_list) => ({ post_list }));
 const editPost = createAction(EDIT_POST, (post_id, post) => ({post_id}))
+const getPostReview = createAction(GET_POST_REVIEW, (review_list) => review_list); // 리뷰리스트
+const getReviewDetail = createAction(GET_REVIEW_DETAIL, (review_list) => review_list)
+const addReview = createAction(ADD_REVIEW, (review_list) => ({review_list}));
+const editReview = createAction(EDIT_REVIEW, (review_id) => review_id);
 
 const initialState = {
     list : [],
     detail_list : [],
     apply_list : [],
     time : [],
+    review_list : [], // 리뷰리스트
+    review_detail : []
 };
 
 const getPostMainDB =()=>{
@@ -152,14 +161,6 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
         method: "put",
         url: `http://3.36.67.251:8080/board/mating/${post_id}`,
         data: formData,
-        // {
-        //     title:title,
-        //     contents:contents,
-        //     boardImg:boardImg,
-        //     location:location,
-        //     meetTime:meetTime
-
-        // },
         headers : {
             authorization : `Bearer ${token}`
         }
@@ -167,12 +168,83 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
         .then((res) => {
             window.alert('게시글이 수정되었습니다.')
             history.push('/')
-          // let post_id = [...res.data];
-          // dispatch(editPost(post_id));
         })
         .catch((e) => console.log(e));
     };
   };
+
+  // 리뷰게시글 불러오기
+  const getPostReviewDB = () => {
+      return function (dispatch, getState, {history}) {
+          const token = localStorage.getItem("token")
+          axios
+          .get(`http://3.36.67.251:8080/board/mating/review?page=1&size=10`, {
+              headers : {
+                  authorization :`Bearer ${token}`
+              }
+          })
+          .then((response) => {
+              console.log(response.data.content);
+              const review_list = [...response.data.content]
+              dispatch(getPostReview(review_list))
+            //   console.log(review_list);
+          })
+          .catch((err) => console.log(err))
+      }
+  }
+
+  // 리뷰 디테일 불러오기
+  const getReviewDetailDB = (id) => {
+    return function (dispatch, getState, {history}){
+        const token = localStorage.getItem("token")
+        axios
+        .get(`http://3.36.67.251:8080/board/mating/review/` + `${id}`, {
+            headers : {
+                authorization: `Bearer ${token}`
+            }
+        })
+        .then((res) => {
+            console.log(res)
+            const review_detail = [...res.data]
+            // const review_detail = review_detail_list[0]
+            // dispatch(getReviewDetail(review_detail))
+            // console.log(review_detail[0]);
+            dispatch(getReviewDetail(review_detail[0]))
+            console.log(review_detail)
+        })
+        .catch((err) => console.log(err))
+    }
+  }
+
+  // 리뷰게시글 등록하기
+  const addReviewDB = (id, title, contents, reviewImg) => {
+      return function (dispatch, getState, {history}) {
+          const token = localStorage.getItem("token")
+          let formData = new FormData();
+
+          formData.append("title", title);
+          formData.append("contents", contents);
+          formData.append("reviewImg", reviewImg);
+
+      const DB = {
+          method: "post",
+          url: `http://3.36.67.251:8080/board/mating/${id}/review`,
+          data: formData,
+          headers: {
+              authorization: `Bearer ${token}`
+          }
+      };
+      axios(DB)
+        .then(() => {
+            // window.alert("등록 완료 되었습니다 :)");
+            history.push("/board/review");
+        })
+        .catch((err) => {
+            console.log(err);
+            window.alert("에러가 발생하였습니다. 다시 시도해주세요😭");
+        });
+  };
+};
 
 export default handleActions(
     {
@@ -192,17 +264,29 @@ export default handleActions(
         produce(state, (draft) => {
             draft.time = action.payload
         }),
+    [GET_POST_REVIEW] : (state, action) =>
+        produce(state, (draft) => {
+            draft.review_list = action.payload
+    }),
+    [GET_REVIEW_DETAIL] : (state, action) =>
+        produce(state, (draft) => {
+            draft.review_detail = action.payload
+        }),
 }, initialState
 )
 
 const actionsCreators = {
     addPost,
     editPost,
+    getPostReview,
     getPostMainDB,
     getPostDetailDB,
     addPostDB,
     deletePostDB,
-    editPostDB
+    editPostDB,
+    getPostReviewDB,
+    getReviewDetailDB,
+    addReviewDB
 };
 
 export {actionsCreators};

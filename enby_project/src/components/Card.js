@@ -8,10 +8,10 @@ import Detail from '../components/Detail';
 
 const Card =(props)=>{
     console.log(props);
-    const post_list = useSelector((store)=> store.post.detail_list)
-    const apply_list = useSelector((store) => store.post.apply_list);
-    console.log(apply_list);
-    console.log(post_list);
+    // const post_list = useSelector((store)=> store.post.detail_list)
+    // const apply_list = useSelector((store) => store.post.apply_list);
+    // console.log(apply_list);
+    // console.log(post_list);
     const move_page =()=>{
         history.push(`/board/mating/${props.id}`)
     }
@@ -31,7 +31,7 @@ const Card =(props)=>{
                 <CardBody>
                     <p><img style={{padding:"0px 24px"}} src={require("../shared/image/place.png").default}/>{props.location}</p>
                     <p><img style={{padding:"0px 24px", width:"40px", height:"32px"}} src={require("../shared/image/date.png").default}/>{meetTime}</p>
-                    <p><img style={{padding:"0px 24px"}} src={require("../shared/image/person.png").default}/>{post_list.people_count} / {post_list.people_max}</p>
+                    {/* <p><img style={{padding:"0px 24px"}} src={require("../shared/image/person.png").default}/>{post_list.people_count} / {post_list.people_max}</p> */}
                     <button>신청하기</button>
                 </CardBody>
             </CardGrid>

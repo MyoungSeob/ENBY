@@ -33,7 +33,7 @@ const MatingBoardWrite = (props) => {
     const [title, setTitle] = useState(_post? _post.title : "");
     const [contents, setContents] = useState(_post? _post.contents : "");
     // const [boardImg, setImage] = useState();
-    const [boardImg, setImage] = useState(_post? post_img : "");
+    const [boardImg, setImage] = useState(_post? post_img : null);
     console.log(boardImg);
     const [location, setLocation] = useState(_post? _post.location : "");
     // const [meetTime, setMeetTime] = useState(_post? _post.meetTime : null);

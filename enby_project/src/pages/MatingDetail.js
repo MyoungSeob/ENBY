@@ -19,7 +19,7 @@ import PermitApplyList from '../components/PermitApplyList';
 
 const MatingDetail = (props) => {
     const id = props.match.params.id;
-
+    console.log(props);
     const token = localStorage.getItem("token")
     const decode = jwt_decode(token)
     console.log(decode.nickname)
@@ -96,6 +96,8 @@ const MatingDetail = (props) => {
           수정
         </button>
         <button onClick={deletePost}>삭제</button>
+        <button onClick={() => {history.push("/review/write/" + id);
+          }}>후기 등록</button>
         {/* {decode.nickname !== apply_list.createdBy ? (
           <div>
             <TextArea

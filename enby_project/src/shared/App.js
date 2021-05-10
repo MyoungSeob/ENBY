@@ -11,6 +11,8 @@ import { history } from '../redux/configStore';
 import KakaoCallBack from '../pages/KakaoCallBack';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Mypage from '../pages/Mypage';
+import OthersMypage from '../pages/OthersMypage';
 import ReviewBoard from '../pages/ReviewBoard';
 import ReviewDetail from '../pages/ReviewDetail';
 import ReviewBoardWrite from '../pages/ReviewBoardWrite';
@@ -28,9 +30,11 @@ function App() {
           <Route path="/board/mating/:id" exact component={MatingDetail} />
           <Route path="/board/mating" exact component={MatingBoard} />
           <Route path="/oauth" exact component={KakaoCallBack} />
+          <Route path="/mypage" exact component={Mypage} />
+          <Route path="/mypage/:name" exact component={OthersMypage} />
           <Route path="/board/review" exact component={ReviewBoard} />
-          <Route path="/board/review/:board_id" exact component={ReviewDetail} />
-          <Route path="/review/write/:id" exact component={ReviewBoardWrite} />
+          <Route path="/board/review/:review_id" exact component={ReviewDetail} />
+          <Route path="/review/write/:id/review" exact component={ReviewBoardWrite} />
           {/* <Footer /> */}
         </ConnectedRouter>
       </BrowserRouter>

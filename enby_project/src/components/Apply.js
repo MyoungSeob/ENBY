@@ -25,10 +25,10 @@ const Apply = (props) => {
   const [applyComment, setApplyComment] = React.useState("");
 
   const applyAttend = () => {
-    if (localStorage.getItem("regist")) {
-      window.alert("신청한 모임이 마감되지 않았다면 신청은 1번만 가능합니다.");
-      return;
-    }
+    // if (localStorage.getItem("regist")) {
+    //   window.alert("신청한 모임이 마감되지 않았다면 신청은 1번만 가능합니다.");
+    //   return;
+    // }
     if (kakaoId === "" || applyComment === "") {
       window.alert(
         "연락가능한 카카오톡 아이디와 신청을 위한 한마디 모두 작성해주세요!"

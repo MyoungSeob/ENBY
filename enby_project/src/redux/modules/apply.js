@@ -99,6 +99,27 @@ const rejectApplyDB =(id, register_id)=>{
         .catch(err => console.log(err))
     }
 }
+const ApplyDeadlineDB =(id)=>{
+    return function (dispatch, getState, {history}){
+        const token = localStorage.getItem('token')
+        axios({
+            method : 'put',
+            url : `http://3.36.67.251:8080/board/mating/${id}/deadline`,
+            headers : {
+                authorization: `Bearer ${token}`,
+            },
+            data : {
+                deadlineStatus : true,
+            }
+        })
+        .then(res => {
+            console.log(res)
+            window.alert(res.data)
+            window.location.href('/')
+        })
+        .catch(err => console.log(err))
+    }
+}
 
 export default handleActions (
     {
@@ -113,7 +134,8 @@ const actionsCreators = {
     attendApplyDB,
     cancelApply,
     acceptApplyDB,
-    rejectApplyDB
+    rejectApplyDB,
+    ApplyDeadlineDB
 }
 
 export {actionsCreators};

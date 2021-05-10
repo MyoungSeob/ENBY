@@ -6,6 +6,7 @@ import { applyMiddleware } from 'redux';
 const GET_POST_MAIN = "GET_POST_MAIN";
 const GET_POST_DETAIL = "GET_POST_DETAIL";
 const GET_APPLY_LIST = "GET_APPLY_LIST";
+const GET_CREATED_AT = "GET_CREATED_AT";
 const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";// 수정
 const GET_MEET_TIME = "GET_MEET_TIME";
@@ -18,10 +19,11 @@ const getPostMain = createAction(GET_POST_MAIN, (post_list) => post_list);
 const getPostDetail = createAction(GET_POST_DETAIL, (post_list) => post_list);
 const getMeetTime = createAction(GET_MEET_TIME, (post_list) => post_list)
 const getApplyList = createAction(GET_APPLY_LIST, (apply_list) => apply_list);
+const getCreatedAt = createAction(GET_CREATED_AT, post_list => post_list)
 const addPost = createAction(ADD_POST, (post_list) => ({ post_list }));
 const editPost = createAction(EDIT_POST, (post_id, post) => ({post_id}))
 const getPostReview = createAction(GET_POST_REVIEW, (review_list) => review_list); // 리뷰리스트
-const getReviewDetail = createAction(GET_REVIEW_DETAIL, (review_list) => review_list)
+const getReviewDetail = createAction(GET_REVIEW_DETAIL, (review_detail) => review_detail)
 const addReview = createAction(ADD_REVIEW, (review_list) => ({review_list}));
 const editReview = createAction(EDIT_REVIEW, (review_id) => review_id);
 
@@ -31,7 +33,8 @@ const initialState = {
     apply_list : [],
     time : [],
     review_list : [], // 리뷰리스트
-    review_detail : []
+    review_detail : [],
+    created_At :[],
 };
 
 const getPostMainDB =()=>{
@@ -72,6 +75,8 @@ const getPostDetailDB = (id) =>{
 
             const today = new Date(post_list[0].meetTime.split("T")[0]).getDay();
             const todayLabel = week[today];
+            const createDay = new Date(post_list[0].createdAt.split("T")[0]).getDay();
+            const createDayLabel = week[createDay];
             const time =
               post_list[0].meetTime.split("T")[0].split("-")[0] +
               "년 " +
@@ -82,10 +87,19 @@ const getPostDetailDB = (id) =>{
               post_list[0].meetTime.split("T")[1].split(":")[0] +
               ":" +
               post_list[0].meetTime.split("T")[1].split(":")[1];
-            const day = post_list[0].meetTime.split("T")[0];
+
+            const createdTime =
+              post_list[0].createdAt.split("T")[0].split("-")[0] +
+              "년 " +
+              parseInt(post_list[0].createdAt.split("T")[0].split("-")[1]) +
+              "월 " +
+              parseInt(post_list[0].createdAt.split("T")[0].split("-")[2]) +
+              "일 " + createDayLabel;
+
             dispatch(getPostDetail(post_list[0]))
             dispatch(getMeetTime(time))
             dispatch(getApplyList(apply_list[0].registrations))
+            dispatch(getCreatedAt(createdTime))
         })
         .catch((err) => console.log(err))
     }
@@ -96,13 +110,21 @@ const addPostDB = (title, contents, boardImg, location, meetTime, people_max, de
     return function (dispatch, getState, {history}) {
         const token = localStorage.getItem("token")
         let formData = new FormData();
-
-        formData.append("title", title);
-        formData.append("contents", contents);
-        formData.append("boardImg", boardImg);
-        formData.append("location", location);
-        formData.append("meetTime", meetTime);
-        formData.append("people_max", people_max);
+        if(boardImg == null) {
+            formData.append("title", title);
+            formData.append("contents", contents);
+            formData.append("location", location);
+            formData.append("meetTime", meetTime);
+            formData.append("people_max", people_max);
+        }else{
+            formData.append("title", title);
+            formData.append("contents", contents);
+            formData.append("boardImg", boardImg);
+            formData.append("location", location);
+            formData.append("meetTime", meetTime);
+            formData.append("people_max", people_max);
+        }
+        
         // formData.append("deadline_status", false);
         
 
@@ -194,11 +216,11 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
   }
 
   // 리뷰 디테일 불러오기
-  const getReviewDetailDB = (id) => {
+  const getReviewDetailDB = (review_id) => {
     return function (dispatch, getState, {history}){
         const token = localStorage.getItem("token")
         axios
-        .get(`http://3.36.67.251:8080/board/mating/review/` + `${id}`, {
+        .get(`http://3.36.67.251:8080/board/mating/review/` + `${review_id}`, {
             headers : {
                 authorization: `Bearer ${token}`
             }
@@ -206,9 +228,6 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
         .then((res) => {
             console.log(res)
             const review_detail = [...res.data]
-            // const review_detail = review_detail_list[0]
-            // dispatch(getReviewDetail(review_detail))
-            // console.log(review_detail[0]);
             dispatch(getReviewDetail(review_detail[0]))
             console.log(review_detail)
         })
@@ -236,7 +255,7 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
       };
       axios(DB)
         .then(() => {
-            // window.alert("등록 완료 되었습니다 :)");
+            window.alert("등록 완료 되었습니다😍");
             history.push("/board/review");
         })
         .catch((err) => {
@@ -271,6 +290,10 @@ export default handleActions(
     [GET_REVIEW_DETAIL] : (state, action) =>
         produce(state, (draft) => {
             draft.review_detail = action.payload
+    }),
+    [GET_CREATED_AT] : (state, action) => 
+        produce(state, (draft) => {
+            draft.created_At = action.payload
         }),
 }, initialState
 )

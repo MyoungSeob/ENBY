@@ -1,6 +1,6 @@
 {
   "name": "enby_project",
-  "version": "0.1.0",
+  "version": "0.23.3",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -12,6 +12,7 @@
     "history": "4.10.1",
     "immer": "^9.0.2",
     "jwt-decode": "^3.1.2",
+    "material-ui": "^0.20.2",
     "react": "^17.0.2",
     "react-awesome-slider": "^4.1.0",
     "react-bootstrap": "^1.5.2",

@@ -14,8 +14,8 @@ const Main =(props)=>{
     );
 }
 const Container = styled.div`
-  width : 1440px;
-  margin : auto;
+  width : 1200px;
+  margin : 0 auto 0 auto;
 `
 
 

@@ -27,9 +27,9 @@ const MatingDetail = (props) => {
     
     const post_list = useSelector((store)=> store.post.detail_list);
     const apply_list = useSelector((store) => store.post.apply_list);
-    console.log(apply_list);
     const time = useSelector((store) => store.post.time);
-    console.log(post_list)
+    const createdAt = useSelector((store) => store.post.created_At)
+    console.log(createdAt)
     const data = post_list
     const createdBy = post_list.createdBy
 
@@ -49,14 +49,15 @@ const MatingDetail = (props) => {
 
     return (
       <Container>
-        <DetailBox>
+        
           <ImageBox>
             <Image src={data.board_imgUrl} />
           </ImageBox>
+          <DetailBox>
           <TitleBox>
             <TitleText>{data.title}</TitleText>
             <TitleDate>
-              {dateTime}
+              {createdAt}
               <TitleSpan>
                 <TitleButton>
                   <TitleBtnName>목록으로</TitleBtnName>
@@ -87,38 +88,14 @@ const MatingDetail = (props) => {
             <Apply {...post_list} />
           </ApplyBox>
         )}
-
-        <button
+        {/* <button
           onClick={() => {
-            history.push("/board/write/" + id);
+            history.push("/board/mating/write/" + id);
           }}
         >
           수정
         </button>
-        <button onClick={deletePost}>삭제</button>
-        <button onClick={() => {history.push("/review/write/" + id);
-          }}>후기 등록</button>
-        {/* {decode.nickname !== apply_list.createdBy ? (
-          <div>
-            <TextArea
-              placeholder="신청멘트"
-              rows="5"
-              onChange={(e) => {
-                setRegistContents(e.target.value);
-              }}
-            />
-            <span>
-              <button onClick={registApply}>신청하기</button>
-              <button onClick={cancelRegistApply}>신청취소하기</button>
-            </span>
-          </div>
-        ) : (
-          <div>
-            {apply_list.map((p) => {
-              return <ApplyList key={p.id} {...p} />;
-            })}
-          </div>
-        )} */}
+        <button onClick={deletePost}>삭제</button> */}
         </ApplicationBox>
       </Container>
     );
@@ -129,9 +106,10 @@ const Container = styled.div`
 `
 const DetailBox = styled.div`
   margin : auto;
+  width : 1200px;
 `
 const ContentsBox = styled.div`
-  width : 1440px;
+  width : 1200px;
   margin : auto auto 70px auto;
   display : flex;
   padding-bottom : 70px;
@@ -142,11 +120,12 @@ max-width : 1920px;
 width : 100%
 height : 100%
 max-height : 720px;
+margin : auto;
 `
 const TitleBox = styled.div`
-  width : 1440px;
+  width : 1200px;
   height : 122px;
-  margin : auto;
+  margin : 0 auto 0 auto;
 `
 const TitleText = styled.h1`
   margin : 0;
@@ -185,15 +164,15 @@ const Hr = styled.hr`
   display : absolute;
 `
 const MemberBox = styled.div`
-  width : 1440px;
+  width : 1200px;
   margin : auto auto 100px auto;
 `
 const ApplyBox = styled.div`
-  max-width : 1440px;
+  width : 1200px;
   margin : auto;
 `
 const PermitBox = styled.div`
-max-width : 1440px;
+max-width : 1200px;
   margin : auto;
 `
 const ApplicationBox = styled.div`

@@ -104,6 +104,7 @@ const MatingBoardWrite = (props) => {
       const getCount = countperonSelect.options[countperonSelect.selectedIndex].value;
 
       setPeople_max(getCount)
+      console.log(people_max)
     }
 
     return (

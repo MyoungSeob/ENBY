@@ -4,14 +4,20 @@ import styled from "styled-components";
 import { history } from "../redux/configStore";
 import "../shared/App.css";
 import { actionsCreators as userActions } from "../redux/modules/user";
+import jwt_decode from 'jwt-decode'
 
 function Header() {
   const dispatch = useDispatch();
+  // const token = localStorage.getItem("token")
+  // const decode = jwt_decode(token)
+  // const name = decode.nickname;
 
   const move_main = () => {
     history.push("/");
   };
-
+  const move_mypage = () => {
+    history.push('/mypage/')
+  }
   const logout = () => {
     dispatch(userActions.LogoutDB());
   };
@@ -30,7 +36,7 @@ function Header() {
           <CategoryBox>
             <Logout onClick={logout}>Log out</Logout>
             <Span>
-              <MyPage>My page</MyPage>
+              <MyPage onClick={move_mypage}>My page</MyPage>
             </Span>
           </CategoryBox>
         ) : (
@@ -44,14 +50,14 @@ function Header() {
 }
 
 const Container = styled.div`
-  width: 1920px;
+  width: 100%;
   height: 100px;
   background-color: #000000;
   display: flex;
   font-family : seravek;
 `;
 const HeaderGrid = styled.div`
-  width: 1440px;
+  width: 1200px;
   margin: 0 auto 0 auto;
 `;
 const LogoBox = styled.div`

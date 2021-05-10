@@ -1,12 +1,24 @@
 import React from'react';
 import styled from 'styled-components';
+import {useDispatch} from 'react-redux';
+import {history} from '../redux/configStore';
+import jwt_decode from 'jwt-decode';
 
 const MemberCard =(props)=>{
-
+    const token = localStorage.getItem('token')
+    const decode = jwt_decode(token);
+    const name = decode.nickname
+    const move_otherpage =()=>{
+        if(props.nickname === name){
+            history.push('/mypage')
+        }else{
+            history.push('/mypage/' + `${props.nickname}`)
+        }
+        
+    }
     return(
         <Container>
-            
-            <Member>
+            <Member onClick={move_otherpage}>
                 <MemberImg src={props.profile_img}/>
                 <MemberNickname>{props.nickname}</MemberNickname>
             </Member>
@@ -21,6 +33,7 @@ margin-right : 30px;
 const Member = styled.div`
     width : 150px;
     height : 185px;
+    cursor : pointer;
 `
 const MemberImg = styled.img`
     width : 150px;

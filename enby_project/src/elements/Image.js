@@ -50,7 +50,6 @@ const ImageRectangle = styled.div`
     background-repeat : no-repeat;
     z-index : -1;
     position : relative;
-    
 `
 
 export default Image;

@@ -6,6 +6,7 @@ const OtherpageProfile=(props)=>{
     
     const other_attend = useSelector((store) => store.user.other_attend);
     console.log(props)
+    
     return(
         <Container>
         <Grid>

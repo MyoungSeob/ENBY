@@ -57,11 +57,12 @@ display : flex;
 margin-top : 34px;
 padding-bottom : 28px;
 border-bottom : 1px solid #C8C8C8;
+width : 1200px;
 `
 const CheckBox = styled.div`
-
+  width : 100%;
     display : flex;    
-    
+    margin : auto;
 `
 const CheckMe = styled.div`
 display : flex;
@@ -83,7 +84,7 @@ const CheckContents = styled.div`
     margin-left : 24px;
 `
 const CheckKakaoID = styled.div`
-width : 1000px;
+width : 817px;
 margin-bottom : 22px;
 `
 const CheckH = styled.h1`
@@ -92,7 +93,7 @@ const CheckH = styled.h1`
     font-family : notosans_regular;
 `
 const CheckComment = styled.div`
-width : 1000px;
+width : 817px;
 `
 const CheckP = styled.p`
     margin : 0;

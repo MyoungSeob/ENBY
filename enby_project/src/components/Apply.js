@@ -11,6 +11,7 @@ const Apply = (props) => {
   const id = post_list.id;
 
   const regist_list = [];
+
   for (let i = 0; i < apply_list.length; i++) {
     if (
       apply_list[i].register_id === parseInt(localStorage.getItem("regist"))
@@ -18,6 +19,7 @@ const Apply = (props) => {
       regist_list.push(apply_list[i]);
     }
   }
+
   const fullPerson = post_list.people_current / post_list.people_max;
   const regist = regist_list[0];
 
@@ -41,16 +43,17 @@ const Apply = (props) => {
   const cancelAttend = () => {
     dispatch(applyActions.cancelApply(id));
   };
+
   const applyLimit = () => {
     if (fullPerson === 1) {
       return <ApplyButton>마감되었습니다.</ApplyButton>;
-    }
+    };
     if (post_list.deadlineStatus === true) {
-      return <ApplyButton>마감되었습니다.</ApplyButton>;
+      ;return <ApplyButton>마감되었습니다.</ApplyButton>;
     }
     if (fullPerson < 1) {
       return <ApplyButton onClick={applyAttend}>신청하기</ApplyButton>;
-    }
+    };
   };
 
   return (
@@ -112,10 +115,6 @@ const ApplyBox = styled.div`
   margin-bottom: 34px;
   width: 1200px;
 `;
-const TitleBox = styled.div`
-  display: flex;
-`;
-const DeadlineButton = styled.button``;
 const Title = styled.div``;
 const ApplySubTit = styled.p`
   margin: 0;

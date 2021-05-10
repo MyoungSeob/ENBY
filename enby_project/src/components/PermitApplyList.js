@@ -22,11 +22,19 @@ const PermitApplyList=(props)=>{
     const apply_deadline =()=>{
       dispatch(applyActions.ApplyDeadlineDB(id))
     }
+
+    const deadline_view =()=>{
+      if(detail_list.deadlineStatus){
+        return <DidDeadLineBtn>이미 마감했습니다</DidDeadLineBtn>
+      }else {
+        <DeadLineBtn onClick={apply_deadline}>신청 마감하기</DeadLineBtn>
+      }
+    }
     return (
       <Container>
         <Title>
           <ApplyTit>Application</ApplyTit>
-          {regist.length >= 1 ? <DeadLineBtn onClick={apply_deadline}>신청 마감하기</DeadLineBtn> : ("")}
+          {regist.length >= 1 ? deadline_view() : ("")}
         </Title>
         {regist.length < 1 ? <Notice><NoticeTit>아직 신청한 사람이 없습니다.</NoticeTit></Notice> : ("")}
        
@@ -51,6 +59,18 @@ outline : none;
 background-color : #F1B100;
 padding-bottom : 2px;
 cursor : pointer;
+margin-left : 80px;
+`
+const DidDeadLineBtn = styled.button`
+width: 167px;
+height: 40px;
+font-size : 18px;
+font-family : notosans_regular;
+border : none;
+border-radius : 20px;
+outline : none;
+background-color : #F1B100;
+padding-bottom : 2px;
 margin-left : 80px;
 `
 const ApplyTit = styled.h2`

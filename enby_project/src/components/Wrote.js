@@ -48,7 +48,9 @@ const Wrote = (props) => {
     "일 " +
     writeDayLabel;
 
-
+    const move_wirte =()=>{
+      history.push('/board/mating/' + `${props.id}`)
+    }
   return (
     <Container>
       <WroteBox>
@@ -64,7 +66,7 @@ const Wrote = (props) => {
         <CreatedAt>
           <CreatedAtContents>작성: {writeDate}</CreatedAtContents>
         </CreatedAt>
-        <Button>작성한 글 확인</Button>
+        <Button onClick={move_wirte}>작성한 글 확인</Button>
         <Button onClick={() => {history.push(`/review/write/${props.id}/review`);
           }}> 모임 후기 남기기</Button>
       </WroteBox>

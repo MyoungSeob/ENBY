@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { history } from '../redux/configStore'
+
 
 const Wrote = (props) => {
-
   const date = props.meetTime.split("T")[0];
   const week = new Array(
     "일요일",
@@ -64,6 +65,8 @@ const Wrote = (props) => {
           <CreatedAtContents>작성: {writeDate}</CreatedAtContents>
         </CreatedAt>
         <Button>작성한 글 확인</Button>
+        <Button onClick={() => {history.push(`/review/write/${props.id}/review`);
+          }}> 모임 후기 남기기</Button>
       </WroteBox>
       <Line />
     </Container>

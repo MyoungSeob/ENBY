@@ -1,9 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect }  from 'react'
 import ReviewCardList from '../components/ReviewCardList'
 import Search from '../components/Search';
 import styled from 'styled-components';
+import Modal from '../components/Modal';
+import Card from '../components/Card';
+
+import { useDispatch, useSelector } from 'react-redux';
+import {actionsCreators as userActions} from '../redux/modules/user'
+import jwt_decode from 'jwt-decode';
 
 function ReviewBoard() {
+
+    const [ modalOpen, setModalOpen ] = useState(false);
+    const openModal = () => {
+        setModalOpen(true);
+    }
+    const closeModal = () => {
+        setModalOpen(false);
+    }
+
+    // 참여했던 모임
+    const dispatch = useDispatch();
+    const token = localStorage.getItem("token");
+    const decode = jwt_decode(token);
+    const name = decode.nickname;
+    console.log(decode)
+    const apply_list = useSelector((store) => store.user.apply_list)
+    console.log(apply_list);
+    const empty_list = apply_list.length === 0? true : false;
+    // if (apply_list=null) {
+    //     let empty_list == true;
+    // } else {let empty_list == false;}
+
+    useEffect(() => {
+        dispatch(userActions.getMyProfileDB(name));
+      }, []);
+
     return (
         <div>
             <Head>
@@ -23,11 +55,32 @@ function ReviewBoard() {
             </Button1> */}
             <Container>
                 <ReviewCardList />
+                <Button
+                    onClick={ openModal }>
+                후기 등록하기!
+                </Button>
+                {empty_list? (
+                    <Modal open={ modalOpen } close={ closeModal } header="후기 등록하기">
+                        현재 후기를 남길 모임이 없어요🥲 <br/>
+                        <button>모임 참여하러 가기!</button>                        
+                    </Modal>
+                ) : (
+                    <Modal open={ modalOpen } close={ closeModal } header="후기 등록하기">
+                        {apply_list.map((p) => {
+                                return <Card_sml key={p.id} {...p}/>
+                            })}
+                    </Modal>
+                )}
             </Container>
         </div>
     )
 }
-
+const Card_sml = styled(Card)`
+    > CardGrid {
+    width: 100px;
+    height: 100px;
+    }
+`;
 const Head = styled.div`
     width: 1200px;
     height: 221px;
@@ -84,7 +137,7 @@ const SubTitle2 = styled.text`
 
 const Container = styled.div`
     position: absolute;
-    width: 1920px;
+    width: 1200px;
     height: auto;
     height: 2803px;
     left: 1px;
@@ -92,4 +145,9 @@ const Container = styled.div`
 
     background: #F8F8F8;
 `;
+
+const Button = styled.button`
+width: 100px;
+`;
+
 export default ReviewBoard

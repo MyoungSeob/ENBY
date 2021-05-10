@@ -53,18 +53,11 @@ const ReviewBoardWrite = (props) => {
     useEffect(() => {
         // setImage(preview);
         }, [preview]);
-    // 로그인 되어있을때만 포스트작성 가능하게 해준다
-    // const is_login = useSelector((state) => state.user.is_login);
-    // // 로그인이 안되어있을때 로그인 페이지로 이동
-    // if(!is_login){
-    //     return (
-    //         <text>로그인이 필요해요! (페이지 또는 모달 생성예정)</text>
-    //     )
-    // }
       
     // useEffect(() => {
     //   dispatch(postActions.addPostDB(boardImg));
     // })
+    
     // 이미지 추가 미리보기
     const selectFile = (e) => {
         const reader = new FileReader();
@@ -126,7 +119,7 @@ const ReviewBoardWrite = (props) => {
           
         </Test>
         {/* {() => setMeetTime(finalMeetTime)} */}
-        {_post ? (
+        {/* {_post ? (
           <EditButton
             onClick={() => {
               // setMeetTime(finalMeetTime)
@@ -136,7 +129,7 @@ const ReviewBoardWrite = (props) => {
           >
             수정하기
           </EditButton>
-        ) : (
+        ) : ( */}
           <PostButton
             onClick={() => {
               dispatch(postActions.addReviewDB(post_id, title, contents, reviewImg));
@@ -144,7 +137,7 @@ const ReviewBoardWrite = (props) => {
           >
             작성하기
           </PostButton>
-         )}
+         {/* )} */}
       </React.Fragment>
       
     );
@@ -280,7 +273,7 @@ outline : none;
 `;
 
 const Contents = styled.input`
-    display: flex;
+    display: block;
     flex-direction: column;
     align-items: flex-start;
     padding: 11px 20px;

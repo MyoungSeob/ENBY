@@ -16,24 +16,26 @@ import { history } from "../redux/configStore";
 
 
 const ReviewDetail = (props) => {
-    const id = props.match.params.board_id;
+  console.log(props);
+    const review_detail = useSelector((store)=> store.post.review_detail);
+    const review_id = props.match.params.review_id;
+    console.log("리뷰디테일:",review_detail);
+    // const review_id = review_detail[0].review_id;
     const token = localStorage.getItem("token")
     const decode = jwt_decode(token)
     const dispatch = useDispatch();
     
-    const review_detail = useSelector((store)=> store.post.review_detail);
-    console.log(review_detail);
     const time = useSelector((store) => store.post.time);
     // const data = review_list.id
     // const createdBy = post_list.createdBy
     // console.log(data);
 
     useEffect(()=>{
-        dispatch(postActions.getReviewDetailDB(id))
-    }, [id]);
+        dispatch(postActions.getReviewDetailDB(review_id))
+    }, [review_id]);
     const deletePost=()=>{
         if(window.confirm("게시글을 삭제하시겠습니까?") === true){
-            dispatch(postActions.deletePostDB(id))
+            dispatch(postActions.deletePostDB(review_id))
         }
     }
 
@@ -79,14 +81,13 @@ const ReviewDetail = (props) => {
 
         <button
           onClick={() => {
-            history.push("/board/write/" + id);
+            history.push("/board/write/" + review_id);
           }}
         >
           수정
         </button>
         <button onClick={deletePost}>삭제</button>
-        <button onClick={() => {history.push("/review/write/" + id);
-          }}>후기 등록</button>
+        
         {/* {decode.nickname !== apply_list.createdBy ? (
           <div>
             <TextArea

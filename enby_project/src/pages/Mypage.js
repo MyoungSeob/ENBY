@@ -19,7 +19,6 @@ const Mypage =(props)=>{
     const decode = jwt_decode(token);
     const name = decode.nickname;
     console.log(decode)
-
     const attend_list = useSelector((store) => store.user.attend_list)
     const apply_list = useSelector((store) => store.user.apply_list)
     const write_list = useSelector((store) => store.user.write_list)

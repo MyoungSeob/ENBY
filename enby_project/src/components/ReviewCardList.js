@@ -9,7 +9,6 @@ const ReviewCardList =(props)=>{
     const dispatch = useDispatch();
     const review_list = useSelector((store) => store.post.review_list)
     console.log(review_list);
-
     useEffect(() => {
         dispatch(postActions.getPostReviewDB())
     }, [dispatch])
@@ -25,7 +24,13 @@ const ReviewCardList =(props)=>{
         </ListBody>
     );
 }
-const ListBody = styled.div``
+const ListBody = styled.div`
+    // text-align : center;
+    width: 1200px;
+    // max-width: 1200px;
+    margin: 100px auto 0 auto;
+    // margin: 0 auto;
+`
 const PostList = styled.div``;
 
 export default ReviewCardList

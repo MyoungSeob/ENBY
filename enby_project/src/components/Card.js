@@ -1,10 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import styled from "styled-components";
-import { actionsCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configStore";
-import { CardImg } from "react-bootstrap";
-import Detail from "../components/Detail";
 import CardDetail from "./CardDetail";
 
 const Card = (props) => {
@@ -125,7 +121,7 @@ const CardBody = styled.div`
 `;
 const CardButton = styled.div`
   float: left;
-  margin: 10px 0 0 27px;
+  margin: 5px 0 0 27px;
 `;
 const ApplyButton = styled.button`
   width: 167px;

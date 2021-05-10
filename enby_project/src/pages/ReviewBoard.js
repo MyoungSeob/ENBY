@@ -136,7 +136,7 @@ const SubTitle2 = styled.text`
 `;
 
 const Container = styled.div`
-    position: absolute;
+    display : block;
     width: 1200px;
     height: auto;
     height: 2803px;

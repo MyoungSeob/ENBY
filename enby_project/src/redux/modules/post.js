@@ -67,9 +67,6 @@ const getPostDetailDB = (id) =>{
             }
         })
         .then((res) => {
-            console.log(res)
-            
-            const apply_list = [...res.data.boards];
             const post_list = [...res.data.boards]
             const week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
 
@@ -98,7 +95,7 @@ const getPostDetailDB = (id) =>{
 
             dispatch(getPostDetail(post_list[0]))
             dispatch(getMeetTime(time))
-            dispatch(getApplyList(apply_list[0].registrations))
+            dispatch(getApplyList(post_list[0].registrations))
             dispatch(getCreatedAt(createdTime))
         })
         .catch((err) => console.log(err))

@@ -62,8 +62,9 @@ const LogoutDB =()=>{
     window.alert("로그아웃 되었습니다.")
     history.push('/')
     window.location.reload()
-  }
-}
+  };
+};
+
 const getMyProfileDB =(name)=>{
   return function (dispatch, getState, {history}) {
     dispatch(loading(true));
@@ -79,7 +80,6 @@ const getMyProfileDB =(name)=>{
     })
     .then(res => {
       const mypage_list = [...res.data]
-      console.log(res)
       const apply_list = [];
       const attend_list = [];
       const write_list = [];
@@ -102,6 +102,7 @@ const getMyProfileDB =(name)=>{
       }
       dispatch(getMyWrite(write_list))
       dispatch(loading(false))
+      console.log(attend_list)
     })
     .catch(err => console.log(err))
   }

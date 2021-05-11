@@ -110,12 +110,12 @@ font-family : notosans_bold;
 font-size : 28px;
 `
 const CardBox = styled.div`
-    display : block;
-    width : 1200px;
-    height : 100%;
-    float : left;
-    margin : 75px auto 158px auto;
-`
+  width: 1200px;
+  height: 100%;
+  float: left;
+  margin: 75px auto 158px auto;
+`;
+
 const AttendBox = styled.div`
     width : 1200px;
     margin : 0 auto 0 auto;

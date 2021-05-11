@@ -41,11 +41,10 @@ const CardGrid = styled.div`
   float: left;
   width: 380px;
   height: 542px;
-  margin: 0 15px 79px auto;
+  margin: 0 10px 79px auto;
   border: 1px solid #eee;
   cursor: pointer;
   background-color: #f3f3f3;
-  justify-content: space-between;
   &:hover {
     transition-property: box-shadow;
     transition-duration: 0.15s;

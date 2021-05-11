@@ -92,7 +92,7 @@ const getPostDetailDB = (id) =>{
               "월 " +
               parseInt(post_list[0].createdAt.split("T")[0].split("-")[2]) +
               "일 " + createDayLabel;
-
+ 
             dispatch(getPostDetail(post_list[0]))
             dispatch(getMeetTime(time))
             dispatch(getApplyList(post_list[0].registrations))
@@ -225,6 +225,21 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
         .then((res) => {
             console.log(res)
             const review_detail = [...res.data]
+            console.log(review_detail)
+            const week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
+
+            const createDay = new Date(review_detail[0].createdAt.split("T")[0]).getDay();
+            const createDayLabel = week[createDay];
+
+            const createdTime =
+            review_detail[0].createdAt.split("T")[0].split("-")[0] +
+              "년 " +
+              parseInt(review_detail[0].createdAt.split("T")[0].split("-")[1]) +
+              "월 " +
+              parseInt(review_detail[0].createdAt.split("T")[0].split("-")[2]) +
+              "일 " + createDayLabel;
+            console.log(createdTime)
+            dispatch(getCreatedAt(createdTime))
             dispatch(getReviewDetail(review_detail[0]))
             console.log(review_detail)
         })
@@ -261,6 +276,30 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
         });
   };
 };
+
+const editReviewDB =(review_id, board_id, title, contents, reviewImg)=>{
+    return function (dispatch, getState, {history}){
+        const token = localStorage.getItem("token")
+        let formData = new FormData();
+
+          formData.append("title", title);
+          formData.append("contents", contents);
+          formData.append("reviewImg", reviewImg);
+        axios({
+            method : 'put',
+            headers : {
+                    authorization: `Bearer ${token}`
+                },
+            url : `http://3.36.67.251:8080/board/mating/${board_id}/review/${review_id}`,
+            data : formData,            
+        })
+        .then(res => {
+            window.alert(res.data)
+            history.replace('/board/review')
+        })
+        .catch(err => console.log(err))
+    }
+}
 
 export default handleActions(
     {
@@ -306,7 +345,8 @@ const actionsCreators = {
     editPostDB,
     getPostReviewDB,
     getReviewDetailDB,
-    addReviewDB
+    addReviewDB,
+    editReviewDB
 };
 
 export {actionsCreators};

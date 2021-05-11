@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ApplyList from '../components/ApplyList'
 import Image from '../elements/Image'
-import Detail from '../components/Detail';
-import About from '../components/About';
-import Apply from '../components/Apply';
 
-import jwt_decode from 'jwt-decode'
+import jwt_decode from "jwt-decode";
 
 import styled from 'styled-components';
 import { actionsCreators as postActions} from '../redux/modules/post'
@@ -16,16 +12,17 @@ import { history } from "../redux/configStore";
 
 
 const ReviewDetail = (props) => {
-  console.log(props);
+  const token = localStorage.getItem('token')
+  const decode = jwt_decode(token)
+  const my_name = decode.nickname
+
     const review_detail = useSelector((store)=> store.post.review_detail);
-    const review_id = props.match.params.review_id;
-    console.log("리뷰디테일:",review_detail);
-    // const review_id = review_detail[0].review_id;
-    const token = localStorage.getItem("token")
-    const decode = jwt_decode(token)
+    const review_createdAt = useSelector((store)=>store.post.time);    
+    const review_id = props.match.params.id;
+
     const dispatch = useDispatch();
     
-    const time = useSelector((store) => store.post.time);
+    const time = useSelector((store) => store.post.created_At);
     // const data = review_list.id
     // const createdBy = post_list.createdBy
     // console.log(data);
@@ -33,6 +30,7 @@ const ReviewDetail = (props) => {
     useEffect(()=>{
         dispatch(postActions.getReviewDetailDB(review_id))
     }, [review_id]);
+
     const deletePost=()=>{
         if(window.confirm("게시글을 삭제하시겠습니까?") === true){
             dispatch(postActions.deletePostDB(review_id))
@@ -41,152 +39,164 @@ const ReviewDetail = (props) => {
 
     const dateTime = parseInt(time[0]) + "년 " + parseInt(time[1]) + "월 " + parseInt(time[2]) + "일"
 
-
+    const move_edit=()=>{
+      if(my_name !== review_detail.nickname){
+        window.alert('게시글 수정은 작성자만 수정할 수 있습니다.')
+        return;
+      }else{
+        history.push("/review/edit/" + review_id )
+      }
+    }
+    const moveReviewBoard=()=>{
+      history.push('/board/review')
+    }
 
     return (
       <Container>
-        <DetailBox>
+        <TopBox>
           <ImageBox>
-            <Image src={review_detail.review_imgUrl} />
+            <ImageBox_>
+              <Image src={review_detail.review_imgUrl} />
+            </ImageBox_>
           </ImageBox>
           <TitleBox>
-            <TitleText>{review_detail.title}</TitleText>
-            <TitleDate>
-              {dateTime}
-              <TitleSpan>
-                <TitleButton>
-                  <TitleBtnName>목록으로</TitleBtnName>
-                </TitleButton>
-              </TitleSpan>
-            </TitleDate>
+            <TitleContents>
+              <TitleDate>{time}</TitleDate>
+              <TitleText>{review_detail.title}</TitleText>
+            </TitleContents>
+            <TitleButton onClick={moveReviewBoard}>
+              <TitleBtnName>목록으로</TitleBtnName>
+            </TitleButton>
           </TitleBox>
-        </DetailBox>
-        <Hr />
-        <ContentsBox>
-            {review_detail.contents}
-        </ContentsBox>
-        {/* {apply_list.length > 0 ? ( */}
-        {/* ) : (
-          "" */}
-        {/* )}
-        {decode.nickname === createdBy ? (
-          <PermitBox>
-            <PermitApplyList />
-          </PermitBox>
-        ) : (
-          <ApplyBox>
-            <Apply {...post_list} />
-          </ApplyBox>
-        )} */}
+        </TopBox>
+        <BottomBox>
+          <ContentImage>
+            <Image shape="contents" src={review_detail.review_imgUrl} />
+          </ContentImage>
 
-        <button
-          onClick={() => {
-            history.push("/board/write/" + review_id);
-          }}
-        >
-          수정
-        </button>
+          <ContentsBox>
+            <ContentsTit>
+              <ContentsH>About</ContentsH>
+            </ContentsTit>
+            <Contents>
+              <ContentsP>{review_detail.contents}</ContentsP>
+            </Contents>
+          </ContentsBox>
+        </BottomBox>
+        <MoveMoimButton>
+          <Moim>원본 게시글 보기</Moim>
+        </MoveMoimButton>
+
+        <button onClick={move_edit}>수정</button>
         <button onClick={deletePost}>삭제</button>
-        
-        {/* {decode.nickname !== apply_list.createdBy ? (
-          <div>
-            <TextArea
-              placeholder="신청멘트"
-              rows="5"
-              onChange={(e) => {
-                setRegistContents(e.target.value);
-              }}
-            />
-            <span>
-              <button onClick={registApply}>신청하기</button>
-              <button onClick={cancelRegistApply}>신청취소하기</button>
-            </span>
-          </div>
-        ) : (
-          <div>
-            {apply_list.map((p) => {
-              return <ApplyList key={p.id} {...p} />;
-            })}
-          </div>
-        )} */}
       </Container>
     );
 }
 
 const Container = styled.div`
+  display : block;
+`
+const TopBox = styled.div`
   width : 100%;
+  margin : auto auto 60px auto;
 `
-const DetailBox = styled.div`
-  margin : auto;
-`
-const ContentsBox = styled.text`
-  width : 1440px;
-  margin : auto auto 70px auto;
-  display : flex;
-  padding-bottom : 70px;
-//   border-bottom : 1px solid #C8C8C8
-`
+
 const ImageBox = styled.div`
-max-width : 1920px;
-width : 100%
-height : 100%
-max-height : 720px;
+width : 100%;
+height : 233px;
+margin : auto;
+overflow : hidden;
+position : absolute;
 `
-const TitleBox = styled.div`
-  width : 1440px;
-  height : 122px;
+const ImageBox_ =styled.div`
+  width : auto;
   margin : auto;
+  overflow : hidden;
+  position : relative;
+`
+
+
+const TitleBox = styled.div`
+  width : 1200px;
+  height : 233px;
+  margin : auto;
+  display : block;
+  position :relative;
+  z-index : 1;
+`
+const TitleContents = styled.div`
+  padding-top : 80px;
 `
 const TitleText = styled.h1`
-  margin : 0;
+  margin : auto;
   font-family : notosans_bold;
   font-size : 32px;
-  padding-top : 38px;
-  float : left
+  float : left;
+  color : #FFFFFF;
 `
 const TitleDate = styled.p`
-  padding-top : 46px;
   font-family : notosans_regular;
-  font-size : 20px;
-  float : right;
+  font-size : 18px;
   margin : 0;
   color : #B9B9B9
 `
-const TitleSpan = styled.span`
-  margin-left : 50px;
-  float : right;
-  padding-bottom : 5px;
-`
+
 const TitleButton = styled.div`
-  border : 1px solid #000000;
+  border : 1px solid #FFFFFF;
   padding : 2px 48px 2px 48px;
   border-radius : 20px;
   float : right;
+  cursor : pointer;
 `
 const TitleBtnName = styled.p`
-  font-size : 14px;
-  color : #000000;
+  font-size : 18px;
+  color : #FFFFFF;
   margin : 0;
 `
-const Hr = styled.hr`
-  width : 100%;
-  margin : 0 0 50px 0;
-  display : absolute;
+const BottomBox = styled.div`
+  width : 1200px;
+  display : flex;
+  margin : auto auto 30px auto;
 `
-const MemberBox = styled.div`
-  width : 1440px;
+const ContentImage = styled.div`
+  width : 718px;
+  margin : 0;
+  display : block;
+`
+const ContentsBox = styled.div`
+  width : 421px;
+  height : 718px;
+  margin : 0 auto auto 61px;
+  display : block;
+`
+const ContentsTit = styled.div`
+  display : block;
+  margin-bottom : 34px;
+`
+const ContentsH = styled.h2`
+  margin : 0;
+  font-family : seravek;
+  font-style : italic;
+  font-size : 28px;
+`
+const Contents = styled.div``
+const ContentsP = styled.p`
+  font-family : notosans_regular;
+  font-size : 18px;
+  margin : 0;
+`
+const MoveMoimButton = styled.div`
+  display : block;
   margin : auto auto 100px auto;
+  width : 1200px;
 `
-const ApplyBox = styled.div`
-  max-width : 1440px;
-  margin : auto;
+const Moim = styled.button`
+  width : 167px;
+  height : 40px;
+  border : 1px solid #000000;
+  border-radius : 20px;
+  font-family : notosans_regular;
+  font-size : 18px;
+  background-color : #FFFFFF;
 `
-const PermitBox = styled.div`
-max-width : 1440px;
-  margin : auto;
-`
-const ApplicationBox = styled.div`
-  margin-bottom : 170px;
-`
-
 export default ReviewDetail;

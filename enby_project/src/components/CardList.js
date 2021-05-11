@@ -38,11 +38,13 @@ const ListBody = styled.div`
     margin: 100px auto 0 auto;
     // margin: 0 auto;
 `
-const PostList = styled.ul`
-
+const PostList = styled.div`
+display : flex;
+flex-wrap: wrap;
+justify-content : center;
 padding: 0;
 margin: 0;
-width: 100%;
+width: 1200px;
 `
 
 export default CardList;

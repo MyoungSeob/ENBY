@@ -37,10 +37,13 @@ const ListBody = styled.div`
     max-width: 1200px;
     margin: 100px auto 0 auto;
 `
-const PostList = styled.ul`
-    padding: 0;
-    margin: 0;
-    width: 100%;
+const PostList = styled.div`
+display : flex;
+flex-wrap: wrap;
+justify-content : center;
+padding: 0;
+margin: 0;
+width: 1200px;
 `
 
 export default CardList;

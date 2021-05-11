@@ -102,7 +102,6 @@ const getMyProfileDB =(name)=>{
       }
       dispatch(getMyWrite(write_list))
       dispatch(loading(false))
-      console.log(attend_list)
     })
     .catch(err => console.log(err))
   }

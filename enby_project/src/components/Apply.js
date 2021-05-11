@@ -46,22 +46,13 @@ const Apply = (props) => {
 
   const applyLimit = () => {
     if (fullPerson === 1) {
-      return <ApplyButton>마감되었습니다.</ApplyButton>;
+      return <NoticeDeadline><NoticeP>죄송합니다. 현재 모집이 마감된 모임이에요.</NoticeP></NoticeDeadline>;
     };
     if (post_list.deadlineStatus === true) {
-      ;return <ApplyButton>마감되었습니다.</ApplyButton>;
-    }
-    if (fullPerson < 1) {
-      return <ApplyButton onClick={applyAttend}>신청하기</ApplyButton>;
+      return <NoticeDeadline><NoticeP>죄송합니다. 현재 모집이 마감된 모임이에요.</NoticeP></NoticeDeadline>;
     };
-  };
-
-  return (
-    <ApplyBox>
-      <Title>
-        <ApplySubTit>이 등산에 함께하고 싶으시다면?</ApplySubTit>
-        <ApplyTit>Application</ApplyTit>
-      </Title>
+    if (fullPerson < 1) {
+      return 
       {regist_list.length < 1 ? (
         <>
           <Contect>
@@ -84,7 +75,7 @@ const Apply = (props) => {
               ></Contents>
             </Comment>
           </Contect>
-          <ButtonBox>{applyLimit()}</ButtonBox>
+          <ButtonBox><ApplyButton onClick={applyAttend}>신청하기</ApplyButton></ButtonBox>
         </>
       ) : (
         <Contect>
@@ -107,6 +98,16 @@ const Apply = (props) => {
           </CheckBox>
         </Contect>
       )}
+    };
+  };
+
+  return (
+    <ApplyBox>
+      <Title>
+        <ApplySubTit>이 등산에 함께하고 싶으시다면?</ApplySubTit>
+        <ApplyTit>Application</ApplyTit>
+      </Title>
+      {applyLimit()}
     </ApplyBox>
   );
 };
@@ -218,4 +219,14 @@ const CheckP = styled.p`
   max-width: 1000px;
 `;
 const CheckButtonBox = styled.div``;
+const NoticeDeadline = styled.div`
+  margin : auto auto 80px auto;
+`;
+const NoticeP = styled.p`
+  margin : 34px 0 0 0;
+  text-align : center;
+  font-size : 18px;
+  font-family : notosans_regular;
+  color : #b9b9b9;
+`
 export default Apply;

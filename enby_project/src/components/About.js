@@ -3,21 +3,23 @@ import styled from 'styled-components';
 
 const About =(props)=>{
 
-    return(
-        <Container>
+    return (
+      <Container>
         <AboutTitle>
-            <Title>About</Title>
+          <Title>About</Title>
         </AboutTitle>
         <AboutContents>
-            <Contents>{props.contents}</Contents>
+          <Contents>{props.contents}</Contents>
         </AboutContents>
-        </Container>
-    )
+      </Container>
+    );
 }
 
 const Container = styled.div`
-  max-width: 700px;
+  width : 717px;
+  height : 570px;
   float: right;
+  margin-left : 73px;
 `;
 const AboutTitle = styled.div`
     

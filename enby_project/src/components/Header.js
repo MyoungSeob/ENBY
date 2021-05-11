@@ -51,6 +51,7 @@ function Header() {
 
 const Container = styled.div`
   width: 100%;
+  min-width : 1200px;
   height: 100px;
   background-color: #000000;
   display: flex;

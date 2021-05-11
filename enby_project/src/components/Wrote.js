@@ -4,6 +4,7 @@ import { history } from '../redux/configStore'
 
 
 const Wrote = (props) => {
+  console.log(props.key)
   const date = props.meetTime.split("T")[0];
   const week = new Array(
     "일요일",
@@ -67,8 +68,6 @@ const Wrote = (props) => {
           <CreatedAtContents>작성: {writeDate}</CreatedAtContents>
         </CreatedAt>
         <Button onClick={move_wirte}>작성한 글 확인</Button>
-        <Button onClick={() => {history.push(`/review/write/${props.id}/review`);
-          }}> 모임 후기 남기기</Button>
       </WroteBox>
       <Line />
     </Container>
@@ -89,7 +88,7 @@ const Number = styled.div`
 `;
 const NumberContents = styled.p`
   font-family: notosans_regular;
-  font-size: 24px;
+  font-size: 21px;
   margin: 0;
   color: #7b7b7b;
 `;
@@ -100,7 +99,7 @@ height : 30px;
 `;
 const TitleContents = styled.p`
   font-family: notosans_regular;
-  font-size: 24px;
+  font-size: 21px;
   margin: 0;
   overflow : hidden;
     text-overflow : ellipsis;
@@ -112,7 +111,7 @@ width : 314px;
 `;
 const MeetTimeContents = styled.p`
   font-family: notosans_regular;
-  font-size: 24px;
+  font-size: 21px;
   margin: 0;
 `;
 const CreatedAt = styled.div`
@@ -120,7 +119,7 @@ width : 314px;
 `;
 const CreatedAtContents = styled.p`
   font-family: notosans_regular;
-  font-size: 24px;
+  font-size: 21px;
   margin: 0;
   color : #737373;
 `;

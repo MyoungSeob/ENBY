@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import date from '../shared/image/date.png'
-import place from '../shared/image/place.png'
-import person from '../shared/image/person.png'
+import date from '../shared/image/whitecalendar.png'
+import place from '../shared/image/whitemountain.png'
+import person from '../shared/image/whitepeople.png'
 import { useSelector } from 'react-redux';
 
 const Detail = (props)=>{
@@ -11,9 +11,6 @@ const Detail = (props)=>{
 
     return (
       <Container>
-        <TitleBox>
-          <Title>Detail</Title>
-        </TitleBox>
         <IconBox>
           <DateBox>
             <Icon />
@@ -36,28 +33,24 @@ const Detail = (props)=>{
 }
 
 const Container = styled.div`
-    width : 465px;
-    height : 240px;
+    width : 1036px;
+    height : 48px;
+    position : relative;
+    float : left;
 `
-const TitleBox = styled.div`
-    margin-bottom : 34px;
+const IconBox = styled.div`
+  display : flex;
 `
-const Title = styled.h2`
-    font-size : 28px;
-    font-family : seravek;
-    font-style : italic;
-    margin : 0;
-`
-const IconBox = styled.div``
 const DateBox = styled.div`
     display : flex;
     margin-bottom : 10px;
 `
 const IconContents = styled.div`
-    margin-left : 20px;
+    margin : 0 60px 0 10px;
     font-family : notosans_regular;
     font-size : 18px;
     padding-top : 12px;
+    color : #ffffff;
 `
 const Icon = styled.div`
     background-image : url(${date});
@@ -94,10 +87,11 @@ const CheckPeople = styled.div`
     margin-left : 12px;
 `
 const Check = styled.h4`
-    color : #7D7D7D;
+    color : #ffffff;
     margin : 0;
     font-size : 18px;
     font-family : notosans_regular;
+
 `
 
 export default Detail;

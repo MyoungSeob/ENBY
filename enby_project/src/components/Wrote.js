@@ -56,7 +56,7 @@ const Wrote = (props) => {
     <Container>
       <WroteBox>
         <Number>
-          <NumberContents>1.</NumberContents>
+          <NumberContents>{props.list_id}.</NumberContents>
         </Number>
         <Title>
           <TitleContents>{props.title}</TitleContents>
@@ -132,6 +132,7 @@ const Button = styled.button`
   border-radius: 20px;
   border: 1px solid #000000;
   background-color: white;
+  cursor : pointer;
 `;
 const Line = styled.hr`
     margin : 0 auto 14px auto;

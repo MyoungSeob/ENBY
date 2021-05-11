@@ -16,12 +16,15 @@ import OthersMypage from '../pages/OthersMypage';
 import ReviewBoard from '../pages/ReviewBoard';
 import ReviewDetail from '../pages/ReviewDetail';
 import ReviewBoardWrite from '../pages/ReviewBoardWrite';
+import ScrollToTop from './ScrollToTop'
 
 function App() {
   return (
     <React.Fragment>
       <BrowserRouter>
+
         <ConnectedRouter history={history}>
+          <ScrollToTop>
           <Header />
           <Route path="/" exact component={Main} />
           <Route path="/board/write" exact component={MatingBoardWrite} />
@@ -33,9 +36,10 @@ function App() {
           <Route path="/mypage" exact component={Mypage} />
           <Route path="/mypage/:name" exact component={OthersMypage} />
           <Route path="/board/review" exact component={ReviewBoard} />
-          <Route path="/board/review/:review_id" exact component={ReviewDetail} />
+          <Route path="/board/review/:id" exact component={ReviewDetail} />
           <Route path="/review/write/:id/review" exact component={ReviewBoardWrite} />
           <Footer />
+          </ScrollToTop>
         </ConnectedRouter>
       </BrowserRouter>
     </React.Fragment>

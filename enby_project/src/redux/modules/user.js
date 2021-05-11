@@ -79,27 +79,44 @@ const getMyProfileDB =(name)=>{
       url : `http://3.36.67.251:8080/mypage/${name}`
     })
     .then(res => {
-      const mypage_list = [...res.data]
+      const mypage_list = [...res.data];
       const apply_list = [];
       const attend_list = [];
       const write_list = [];
-      for(let i = 0; i < mypage_list.length ; i ++){
-        if(mypage_list[i].board_name === "신청한 모임" && mypage_list[i].nickname !== nickname){
-          apply_list.push(mypage_list[i])
+      for (let i = 0; i < mypage_list.length; i++) {
+        if (
+          mypage_list[i].board_name === "신청한 모임" &&
+          mypage_list[i].nickname !== nickname
+        ) {
+          apply_list.push(mypage_list[i]);
+        }
+        if (mypage_list[i].board_name === "참석한 모임") {
+          attend_list.push(mypage_list[i]);
+        }
+        if (mypage_list[i].board_name === "작성한 글") {
+          write_list.push(mypage_list[i]);
         }
       }
+      for (let i = 0; i < write_list.length; i++) {
+        write_list[i].list_id = i + 1;
+      }
+      // for(let i = 0; i < mypage_list.length ; i ++){
+      //   if(mypage_list[i].board_name === "참석한 모임"){
+      //     attend_list.push(mypage_list[i])
+      //   }
+      //   if(mypage_list[i].board_name === "작성한 글"){
+      //     write_list.push(mypage_list[i])
+      //   }
+      // }
+      
+      // for(let i = 0; i < mypage_list.length ; i ++){
+      //   if(mypage_list[i].board_name === "작성한 글"){
+      //     write_list.push(mypage_list[i])
+      //   }
+      // }
+      
       dispatch(getMyApply(apply_list))
-      for(let i = 0; i < mypage_list.length ; i ++){
-        if(mypage_list[i].board_name === "참석한 모임"){
-          attend_list.push(mypage_list[i])
-        }
-      }
       dispatch(getMyAttend(attend_list))
-      for(let i = 0; i < mypage_list.length ; i ++){
-        if(mypage_list[i].board_name === "작성한 글"){
-          write_list.push(mypage_list[i])
-        }
-      }
       dispatch(getMyWrite(write_list))
       dispatch(loading(false))
     })
@@ -128,17 +145,26 @@ const getOtherPageDB =(otherName)=>{
         if(other_list[i].board_name === "작성한 글"){
           other_write.push(other_list[i])
         }
-      };
-      for(let i = 0; i < other_list.length ; i ++){
         if(other_list[i].board_name === "신청한 모임"){
           other_page.push(other_list[i])
         }
-      };
-      for(let i = 0; i < other_list.length ; i ++){
         if(other_list[i].board_name === "참석한 모임"){
           other_attend.push(other_list[i])
         }
       };
+      // for(let i = 0; i < other_list.length ; i ++){
+      //   if(other_list[i].board_name === "신청한 모임"){
+      //     other_page.push(other_list[i])
+      //   }
+      // };
+      // for(let i = 0; i < other_list.length ; i ++){
+      //   if(other_list[i].board_name === "참석한 모임"){
+      //     other_attend.push(other_list[i])
+      //   }
+      // };
+      for(let i = 0; i < other_write.length; i ++){
+        other_write[i].list_id = i+1
+      }
       dispatch(getOtherWrite(other_write));
       dispatch(getOtherPage(other_page));
       dispatch(getOtherAttend(other_attend))

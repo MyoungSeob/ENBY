@@ -58,8 +58,8 @@ const ImageDefault = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(10px) brightness(30%);
-  transform : scale(1.1);
+  filter: blur(10px) brightness(55%);
+  transform : scale(1.2);
 `;
 const ImageRectangle = styled.div`
     width : 100%;

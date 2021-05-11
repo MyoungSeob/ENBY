@@ -88,14 +88,14 @@ const MatingDetail = (props) => {
             <Apply {...post_list} />
           </ApplyBox>
         )}
-        {/* <button
+        <button
           onClick={() => {
             history.push("/board/mating/write/" + id);
           }}
         >
           수정
         </button>
-        <button onClick={deletePost}>삭제</button> */}
+        {/* <button onClick={deletePost}>삭제</button> */}
         </ApplicationBox>
       </Container>
     );

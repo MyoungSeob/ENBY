@@ -4,13 +4,16 @@ import Search from '../components/Search';
 import styled from 'styled-components';
 import Modal from '../components/Modal';
 import Card from '../components/Card';
+import CardForReview from '../components/CardForReview';
+import Pagination from '../components/Pagination';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {actionsCreators as userActions} from '../redux/modules/user'
 import jwt_decode from 'jwt-decode';
 
-function ReviewBoard() {
+function ReviewBoard() {  
 
+    // Modal  
     const [ modalOpen, setModalOpen ] = useState(false);
     const openModal = () => {
         setModalOpen(true);
@@ -24,20 +27,32 @@ function ReviewBoard() {
     const token = localStorage.getItem("token");
     const decode = jwt_decode(token);
     const name = decode.nickname;
-    console.log(decode)
     const apply_list = useSelector((store) => store.user.apply_list)
-    console.log(apply_list);
     const empty_list = apply_list.length === 0? true : false;
-    // if (apply_list=null) {
-    //     let empty_list == true;
-    // } else {let empty_list == false;}
 
     useEffect(() => {
-        dispatch(userActions.getMyProfileDB(name));
+        dispatch(userActions.getMyProfileDB(name))
+        setPosts(review_list); // for pagination
+        ;
       }, []);
 
+    // pagination
+    const [posts, setPosts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(6);
+      console.log(posts);
+    const indexOfLast = currentPage * postsPerPage;
+    const indexOfFirst = indexOfLast - postsPerPage;
+    const review_list = useSelector((store) => store.post.review_list)
+
+    function currentPosts(tmp) {
+        let currentPosts = 0;
+        currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+        return currentPosts;
+    }
+
     return (
-        <div>
+        <Container>
             <Head>
                 <SubTitle1>
                     Share your experience with ENBY!
@@ -49,69 +64,62 @@ function ReviewBoard() {
                     당신의 엔비를 공유해주세요!
                 </SubTitle2>
             </Head>
-            {/* <Search /> */}
-                {/* <Button1>
-                    <text>모든 모임</text>
-            </Button1> */}
-            <Container>
-                <ReviewCardList />
-                <Button
-                    onClick={ openModal }>
-                후기 등록하기!
-                </Button>
+            <Main>
+                <Top>
+                    <Search />
+                    <Button
+                        onClick={ openModal }>
+                    후기글 작성하기
+                    </Button>
+                </Top>
+                <ReviewCardList review_list={currentPosts(posts)}/>
+                <Pagination postsPerPage={postsPerPage} totalPosts={review_list.length} paginate={setCurrentPage} />
                 {empty_list? (
-                    <Modal open={ modalOpen } close={ closeModal } header="후기 등록하기">
+                    <Modal open={ modalOpen } close={ closeModal } header="후기 작성하기">
                         현재 후기를 남길 모임이 없어요🥲 <br/>
                         <button>모임 참여하러 가기!</button>                        
                     </Modal>
                 ) : (
-                    <Modal open={ modalOpen } close={ closeModal } header="후기 등록하기">
+                    <Modal open={ modalOpen } close={ closeModal } header="후기 작성하기">
                         {apply_list.map((p) => {
-                                return <Card_sml key={p.id} {...p}/>
+                                return <CardForReview key={p.id} {...p}/>
                             })}
                     </Modal>
                 )}
-            </Container>
-        </div>
+            </Main>
+        </Container>
     )
 }
-const Card_sml = styled(Card)`
-    > CardGrid {
-    width: 100px;
-    height: 100px;
-    }
+
+const Container = styled.div`
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
 `;
 const Head = styled.div`
-    width: 1200px;
-    height: 221px;
+    height: 264px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction:column;
 `;
-
+const Top = styled.div`
+    display: flex;
+`;
 const SubTitle1 = styled.text`
-    position: absolute;
     width: 282px;
     height: 26px;
-    left: 360px;
-    top: 140px;
-
     font-family: notosans_regular;
-    font-style: normal;
-    font-weight: normal;
+    margin-top: 2px;
     font-size: 18px;
     line-height: 26px;
-    /* identical to box height */
-
     color: #7D7D7D;
 `;
 
 const Title = styled.text`
-    position: absolute;
     width: 132px;
     height: 37px;
-    left: 360px;
-    top: 168px;
 
-    font-family: ;
-    font-style: normal;
+    font-family: seravek;
     font-weight: bold;
     font-size: 32px;
     line-height: 46px;
@@ -120,14 +128,11 @@ const Title = styled.text`
 `;
 
 const SubTitle2 = styled.text`
-    position: absolute;
+    // position: absolute;
     width: 291px;
     height: 28px;
-    left: 360px;
-    top: 234px;
-
+    margin-top: 27px;
     font-family: notosans_regular;
-    font-style: normal;
     font-weight: 500;
     font-size: 24px;
     line-height: 35px;
@@ -135,19 +140,30 @@ const SubTitle2 = styled.text`
     color: #3A3A3A;
 `;
 
-const Container = styled.div`
-    display : block;
-    width: 1200px;
-    height: auto;
-    height: 2803px;
-    left: 1px;
-    top: 321px;
-
+const Main = styled.div`
+    width: 100%;
+    max-width: 1920px;
+    height: 100%;
+    padding: 85px 200px;
     background: #F8F8F8;
+    margin-left: -180px;
+    margin-top: -80px;
+    background-size: cover;
 `;
 
 const Button = styled.button`
-width: 100px;
+    width: 167px;
+    height: 40px;
+    border: none;
+    background: #F1B100;
+    border-radius: 20px;
+    font-family: Noto Sans KR;
+    font-size: 18px;
+    line-height: 150%;
+    text-align: center;
+    color: #392600;
+    margin-top: 30px;
+    margin-left: 540px;
 `;
 
 export default ReviewBoard

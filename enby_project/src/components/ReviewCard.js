@@ -9,15 +9,14 @@ const ReviewCard=(props)=>{
     const move_page =()=>{
         history.push(`/board/review/${props.review_id}`)
     }
-    const review_list = useSelector((store)=> store.post.review_list)
-    console.log(props);
     return(
         <React.Fragment>
             <CardGrid onClick={move_page}>
                 <CardImage src={props.review_imgUrl}/>
                 <CardTit>
-                    {props.title}
+                    <CardTitH>{props.title}</CardTitH>
                 </CardTit>
+                <Arrow src={require("../shared/image/arrow.png").default} />
                 <UserInfo>
                     <UserPic src = {props.profile_Img} />
                     <UserNickname>
@@ -34,8 +33,8 @@ const CardGrid = styled.div`
 
     display: block;
   float: left;
-  width: 380px;
-  height: 542px;
+  width: 378.87px;
+  height: 495px;
   margin: 0 15px 79px auto;
   border: 1px solid #eee;
   cursor: pointer;
@@ -46,7 +45,6 @@ const CardGrid = styled.div`
     transition-duration: 0.15s;
     transition-timing-function: ease-out;
     transition-delay: 0s;
-    // box-sizing: border-box;
     letter-spacing: 0px;
     -webkit-font-smoothing: antialiased;
     overflow-anchor: none;
@@ -56,8 +54,8 @@ const CardGrid = styled.div`
 
 const CardImage = styled.img`
     // position: absolute;
-    width: 380px;
-    height: 400px;
+    width: 378.87px;
+    height: 378.87px;
     // left: 218px;
     // top: 501px;
 
@@ -67,22 +65,36 @@ const CardImage = styled.img`
     objectFit: cover;
 `;
 
-const CardTit = styled.text`
-    font-family: notosans_regular;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 41px;
-    /* identical to box height */
-    color: #000000;
-    margin: 26px;
+const CardTit = styled.div`
+display: block;
+  width: 308px;
+  height: 40px;
+  margin: 21.13px 0 0 0;
 
 `;
+const CardTitH = styled.div`
+color: #000000;
+  width: 100%;
+  font-family: notosans_bold;
+  font-size: 24px;
+  margin: 0 0 0 21px;
+  float: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+`;
+
+const Arrow = styled.img`
+    margin: 0 21.41px 61px 0;
+    float: right;
+`;
+
 const UserInfo = styled.div`
 display: flex;
+margin-top: 9px;
 `;
 const UserNickname = styled.text`
-margin-top: 13px;
 margin-left: 26px;
 font-family: notosans_regular;
 font-style: normal;
@@ -91,7 +103,6 @@ font-size: 18px;
 line-height: 26px;
 `;
 const UserPic = styled.img`
-margin-top: 13px;
 margin-left: 26px;
 border-radius: 30px;
 width: 24px;

@@ -12,11 +12,11 @@ const ReviewCardList =(props)=>{
     useEffect(() => {
         dispatch(postActions.getPostReviewDB())
     }, [dispatch])
-    
+    console.log(props);
     return(
         <ListBody>
             <PostList>
-                {review_list.map((p)=>{
+                {props.review_list.map((p)=>{
                     return <ReviewCard {...p} key={p.id}/>
                 })}
             
@@ -31,6 +31,10 @@ const ListBody = styled.div`
     margin: 100px auto 0 auto;
     // margin: 0 auto;
 `
-const PostList = styled.div``;
+const PostList = styled.div`
+padding: 0;
+margin: 0;
+width: 100%;
+`;
 
 export default ReviewCardList

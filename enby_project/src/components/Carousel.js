@@ -1,14 +1,15 @@
 import AwesomeSlider from 'react-awesome-slider';
-import 'react-awesome-slider/dist/styles.css';
+// import 'react-awesome-slider/dist/styles.css';
+import "../carousel.css";
 import React from 'react'
 import styled from 'styled-components';
 
 function Carousel() {
   return (
     <Container>
-        <div data-src={require("../shared/image/carousel_img_1.png").default} />
-        <div data-src="/path/to/image-1.png" />
-        <div data-src="/path/to/image-2.jpg" />
+        <div data-src={require("../shared/image/main_carousel1.png").default} />
+        <div data-src={require("../shared/image/main_carousel2.png").default} />
+        <div data-src={require("../shared/image/title.png").default} />
     </Container>
   )
 }

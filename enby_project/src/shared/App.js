@@ -35,7 +35,7 @@ function App() {
           <Route path="/board/review" exact component={ReviewBoard} />
           <Route path="/board/review/:review_id" exact component={ReviewDetail} />
           <Route path="/review/write/:id/review" exact component={ReviewBoardWrite} />
-          {/* <Footer /> */}
+          <Footer />
         </ConnectedRouter>
       </BrowserRouter>
     </React.Fragment>

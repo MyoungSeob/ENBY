@@ -1,3 +1,5 @@
+// 후기남기기 모달 카드 -> 사이즈때문에 그냥 컴포넌트 따로 만듦
+
 import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
@@ -5,42 +7,39 @@ import CardDetail from "./CardDetail";
 
 const Card = (props) => {
   const move_page = () => {
-    history.push(`/board/mating/${props.id}`);
+    history.push(`/review/write/${props.id}/review`);
   };
 
-  const view=(board_name)=>{
-    if(board_name === "신청한 모임"){
-      return <ApplyButton>더보기</ApplyButton>
-    }
-    if(board_name === "참석한 모임"){
-      return <ApplyButton>후기 남기기</ApplyButton>
-    }
-    if(!board_name){
-      return <ApplyButton>더보기</ApplyButton>
-    }
-  }
 
   return (
-    <CardGrid onClick={move_page}>
-      <CardImage src={props.board_imgUrl} />
-      <CardTit>
-        <CardTitH>{props.title}</CardTitH>
-      </CardTit>
-      <Line />
-      <CardDetail {...props} />
-      <CardButton>
-        <ApplyButton>
-          {view(props.board_name)}
-        </ApplyButton>
-      </CardButton>
-    </CardGrid>
+      <Container>
+        <CardGrid onClick={move_page}>
+            <CardImage src={props.board_imgUrl} />
+            <CardTit>
+                <CardTitH>{props.title}</CardTitH>
+            </CardTit>
+            <Line />
+            <CardDetail {...props} />
+            <CardButton>
+                <ApplyButton>
+                    후기 남기기
+                </ApplyButton>
+            </CardButton>
+        </CardGrid>
+    </Container>
   );
 };
+
+const Container = styled.div`
+    width: 200px;
+    height: 560px;
+    display: flex;
+`;
 const CardGrid = styled.div`
   display: block;
   float: left;
-  width: 380px;
-  height: 542px;
+//   width: 380px;
+//   height: 542px;
   margin: 0 15px 79px auto;
   border: 1px solid #eee;
   cursor: pointer;
@@ -59,20 +58,19 @@ const CardGrid = styled.div`
   }
 `;
 const CardImage = styled.img`
-  width: 380px;
-  height: 248px;
+  width: 400px;
+  height: 184px;
   objectfit: cover;
   position: relative;
 `;
 
 const CardTit = styled.div`
   display: block;
-  width: 308px;
+  width: 108px;
   height: 40px;
   margin: 19px 0 15px 0;
 `;
 const CardTitH = styled.div`
-  color: #000000;
   width: 100%;
   font-family: notosans_bold;
   font-size: 24px;
@@ -96,7 +94,6 @@ const CardBody = styled.div`
   width: 100%;
   hegith: 90%;
   text-align: left;
-  margin-bottom:
   & button {
     margin: 40px;
     position: absolute;
@@ -126,7 +123,7 @@ const CardButton = styled.div`
   margin: 5px 0 0 27px;
 `;
 const ApplyButton = styled.button`
-  width: 167px;
+  width: 107px;
   height: 40px;
   border-radius: 20px;
   border: 0;

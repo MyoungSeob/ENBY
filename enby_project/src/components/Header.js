@@ -63,8 +63,8 @@ const HeaderGrid = styled.div`
 const LogoBox = styled.div`
   display: flex;
   float : left;
-  width: 350px;
-  height: 40px;
+  width: 289px;
+  height: 39px;
   vertical-align: middle;
   padding-top: 30px;
 `;

@@ -25,7 +25,7 @@ const ReviewBoardWrite = (props) => {
     // const [boardImg, setImage] = useState();
     const [reviewImg, setImage] = useState(_post? post_img : null);
 
-    // 이미지 추가 미리보기`
+    // 이미지 추가 미리보기
     const preview = useSelector((state) => state.image.preview);
     const fileInput = useRef();
     const dispatch = useDispatch();

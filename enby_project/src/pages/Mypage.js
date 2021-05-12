@@ -26,7 +26,6 @@ const Mypage =(props)=>{
 
     const attend = [attend_list]
 
-    console.log(write_list)
 
     useEffect(() => {
       dispatch(userActions.getMyProfileDB(name));
@@ -69,6 +68,9 @@ const Mypage =(props)=>{
               {write_list.map((p)=>{
                   return <Wrote key={p.id} {...p}/>
               })}
+              <PageNation>
+                    1
+              </PageNation>
               
             </Container>
           );
@@ -155,5 +157,10 @@ const Linetwo = styled.hr`
 border-bottom : 2px solid #383838;
 width : 1200px;
 margin : auto auto 64px auto;
+`
+const PageNation = styled.div`
+    width : 1200px;
+    margin : 62px auto 176px auto;
+    text-align : center;
 `
 export default Mypage;

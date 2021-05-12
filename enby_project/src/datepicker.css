@@ -2,7 +2,7 @@
 .react-datepicker__month-read-view--down-arrow,
 .react-datepicker__month-year-read-view--down-arrow {
   margin-left: -8px;
-  position: absolute;
+  /* position: absolute; */
 }
 
 .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow,
@@ -11,7 +11,7 @@
 .react-datepicker__month-read-view--down-arrow::before,
 .react-datepicker__month-year-read-view--down-arrow::before {
   box-sizing: content-box;
-  position: absolute;
+  /* position: absolute; */
   border: 8px solid transparent;
   height: 0;
   width: 1px;
@@ -69,7 +69,6 @@
   display: inline-block;
   padding: 0;
   border: 0;
-  margin: 700px 300px;
 }
 
 .react-datepicker {

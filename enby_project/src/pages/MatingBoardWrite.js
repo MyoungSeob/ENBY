@@ -14,8 +14,6 @@ import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import ko from 'date-fns/locale/ko';
 registerLocale('ko', ko)
 
-// import DateTime from "../components/DateTime";
-
 
 const MatingBoardWrite = (props) => {
     // 수정모드
@@ -67,24 +65,10 @@ const MatingBoardWrite = (props) => {
     useEffect(() => {
         // setImage(preview);
         }, [preview, people_max]);
-    // 로그인 되어있을때만 포스트작성 가능하게 해준다
-    // const is_login = useSelector((state) => state.user.is_login);
-    // // 로그인이 안되어있을때 로그인 페이지로 이동
-    // if(!is_login){
-    //     return (
-    //         <text>로그인이 필요해요! (페이지 또는 모달 생성예정)</text>
-    //     )
-    // }
-      
-    // useEffect(() => {
-    //   dispatch(postActions.addPostDB(boardImg));
-    // })
-    // 이미지 추가 미리보기
+ 
     const selectFile = (e) => {
         const reader = new FileReader();
-        // const file = _post? boardImg : fileInput.current.files[0];
         const file = fileInput.current.files[0];
-        // console.log(file);
         if (!file) {
             return;
         } 
@@ -108,59 +92,64 @@ const MatingBoardWrite = (props) => {
     }
 
     return (
-      <React.Fragment>
-       <Image
-            onChange={selectFile}
-            placeholder="사진을 추가해주세요"
-            name='image' 
-            ref={fileInput}
-            type='file'
-            src={_post? post_img : preview}
-            />
-        <Test>
-          <Container>
-            <InputBox
-                label="제목"
-                value={title}
-                onChange={(e) => {
-                  console.log("제목추가");
-                  console.log(title);
-                  setTitle(e.target.value);}}
-                placeholder="제목을 입력하세요"
-              />
-              <Line />
-              <TextBox1>
-                Detail
-              </TextBox1>
-              <TextBox2>          
-                  About
-              </TextBox2>  
-              <Icon1 src={require("../shared/image/date.png").default}/>
-              <Cal
-                label="날짜시간"
-                value={date}
-                selected={date}
-                onChange={(date) => {setDate(date); console.log(date); }}
-                showTimeSelect
-                timeFormat="HH:mm"
-                timeIntervals={15}
-                timeCaption="time"
-                dateFormat="yyyy/MM/dd h:mm aa"
-                placeholderText="모임 날짜/시간"
-              />
-            <Place>
-              <Icon2 src={require("../shared/image/place.png").default}/>
-              <Location
-                label="장소"
-                value={location}
-                onChange={(e) => {
-                  console.log("장소추가");
-                  console.log(location);
-                  setLocation(e.target.value);}}
-                placeholder="장소"
-              />
-            </Place>
-              <Icon3 src={require("../shared/image/person.png").default}/>
+      <Container>
+          <Test>
+            <TitleBox>
+              <InputGrid>
+                <InputBox
+                  label="제목"
+                  value={title}
+                  onChange={(e) => {
+                    console.log("제목추가");
+                    console.log(title);
+                    setTitle(e.target.value);}}
+                  placeholder="제목을 입력하세요"
+                />
+                {_post ? (
+                  <EditButton
+                    onClick={() => {
+                      dispatch(postActions.editPostDB(post_id, title, contents, boardImg, location, meetTime, people_max));
+                    }}
+                  >
+                    수정하기
+                  </EditButton>
+                ) : (
+                  <PostButton
+                    onClick={() => {
+                      dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime, people_max));
+                    }}
+                  >
+                    작성하기
+                  </PostButton>
+                )}
+              </InputGrid>
+              <DetailGrid>
+                  <Icon src={require("../shared/image/date.png").default}/>
+                  <Cal
+                    label="날짜시간"
+                    value={date}
+                    selected={date}
+                    onChange={(date) => {setDate(date); console.log(date); }}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    timeCaption="time"
+                    dateFormat="yyyy/MM/dd h:mm aa"
+                    placeholderText="모임 날짜/시간"
+                  />
+                <Place>
+                  <Icon src={require("../shared/image/place.png").default}/>
+                  <Location
+                    label="장소"
+                    value={location}
+                    onChange={(e) => {
+                      console.log("장소추가");
+                      console.log(location);
+                      setLocation(e.target.value);}}
+                    placeholder="장소"
+                  />
+                </Place>
+                <Icon src={require("../shared/image/person.png").default}/>
               <MaxPeople
                 label="인원"
                 name = "countPeople"
@@ -173,56 +162,86 @@ const MatingBoardWrite = (props) => {
                 <option value="3">3명</option>
                 <option value="4">4명</option>
               </MaxPeople>
-            <Contents
-              label="내용"
-              value={contents}
-              onChange={(e) => {
-                console.log("내용추가");
-                setContents(e.target.value);}}
-              placeholder="내용을 입력하세요"
-            />
-          </Container>
+              </DetailGrid>
+            </TitleBox>                
+              
+            <ContentsBox>
+              <ImageBox>
+                <Image
+              onChange={selectFile}
+              placeholder="사진을 추가해주세요"
+              name='image' 
+              ref={fileInput}
+              type='file'
+              src={_post? post_img : preview}
+              />
+              </ImageBox>
+              <TextBox>
+                <TextBox2>
+                  <ContentsH>About</ContentsH>
+                </TextBox2>
+              <Contents
+                label="내용"
+                value={contents}
+                onChange={(e) => {
+                  console.log("내용추가");
+                  setContents(e.target.value);}}
+                placeholder="내용을 입력하세요"
+              />
+              </TextBox>
+            </ContentsBox>
           
         </Test>
-        {/* {() => setMeetTime(finalMeetTime)} */}
-        {_post ? (
-          <EditButton
-            onClick={() => {
-              // setMeetTime(finalMeetTime)
-              console.log(meetTime)
-              dispatch(postActions.editPostDB(post_id, title, contents, boardImg, location, meetTime, people_max));
-            }}
-          >
-            수정하기
-          </EditButton>
-        ) : (
-          <PostButton
-            onClick={() => {
-              // setMeetTime(finalMeetTime)
-              console.log(meetTime)
-              dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime, people_max));
-            }}
-          >
-            작성하기
-          </PostButton>
-         )}
-      </React.Fragment>
-      
+      </Container>       
     );
 }
 
-const Cal = styled(DatePicker)`
+const Container = styled.div`
+  display: block;
+  width: 100%;
+`;
+
+const Test = styled.div`
+  width : 100%;
+`;
+const TitleBox = styled.div`
+  width: 100%;
+  height : 320px;
+  margin: auto;
+  background-color : #F8F8F8;
+  display : flex;
+  flex-direction: column;
+
+`;
+const InputGrid = styled.div`
+  width : 1200px;
+  margin : auto;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  margin-top: 95px;
+`
+const InputBox = styled.input`
+  display: flex;
   padding: 6px 20px;
-
-  position: absolute;
-  width: 298px;
+  width: 995px;
   height: 39px;
-  left: 308px;
-  top: 1073px;
+  background: #ffffff;
+  border: 1px solid #b9b9b9;
+  box-sizing: border-box;
+  border-radius: 20px;
+`;
+const DetailGrid = styled.div`
+  width : 1200px;
+  margin : auto;
+  margin-top: 43px;
+  margin-bottom: 94px;
+  display : flex;
+`;
 
+const Cal = styled(DatePicker)`
+  padding: 6px 20px;
+  width: 322px;
+  height: 39px;
   background: #FFFFFF;
   border: 1px solid #B9B9B9;
   box-sizing: border-box;
@@ -230,126 +249,28 @@ const Cal = styled(DatePicker)`
   // color: #B9B9B9;
 `;
 
-const Test = styled.div`
-  display: flex;
-`;
-
-const Line = styled.div`
-  position: absolute;
-  width: 1920px;
-  height: 0px;
-  left: 0px;
-  top: 942px;
-
-  border: 1px solid #000000;
-  box-sizing: border-box;
-`;
-
-const TextBox1 = styled.div`
-  position: absolute;
-  width: 464px;
-  height: 42px;
-  left: 240px;
-  top: 992px;
-
-  font-family: Seravek;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 150%;
-  color: #000000;
-`;
-
-const TextBox2 = styled.div`
-  position: absolute;
-  width: 952px;
-  height: 42px;
-  left: 728px;
-  top: 992px;
-
-  font-family: Seravek;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 150%;
-  color: #000000;
-`;
-
-const Icon1 = styled.img`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 240px;
-  top: 1069px;
-`;
-
-const Icon2 = styled.img`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 240px;
-  top: 1127px;
-`;
-
-const Icon3 = styled.img`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 240px;
-  top: 1186px;
-`;
-const Container = styled.div`
-  margin: 300px 0px;
-`;
 const Place = styled.div`
   display: flex;
+  margin-left: 240px;
 `;
-const InputBox = styled.input`
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 6px 20px;
 
-position: absolute;
-width: 1220px;
-height: 39px;
-left: 240px;
-top: 862px;
-
-background: #FFFFFF;
-border: 1px solid #B9B9B9;
-box-sizing: border-box;
-border-radius: 20px;
-`;
 const Location = styled.input`
-display: flex;
-flex-direction: row;
-align-items: flex-start;
 padding: 6px 20px;
 
-position: absolute;
-width: 298px;
+width: 322px;
 height: 39px;
-left: 308px;
-top: 1132px;
 
 background: #FFFFFF;
 border: 1px solid #B9B9B9;
 box-sizing: border-box;
 border-radius: 20px;
-    
+margin-right: 30px;
 `;
 const MaxPeople = styled.select`
-display: flex;
-flex-direction: row;
-align-items: flex-start;
 padding: 10px 20px 0 20px;
 
-position: absolute;
-width: 298px;
+width: 322px;
 height: 39px;
-left: 308px;
-top: 1191px;
 
 background: #FFFFFF;
 border: 1px solid #B9B9B9;
@@ -358,59 +279,98 @@ border-radius: 20px;
 outline : none;
 `;
 
-const Contents = styled.input`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 11px 20px;
-    
-    position: absolute;
-    width: 952px;
-    height: 319px;
-    left: 728px;
-    top: 1067px;
-    
-    background: #FFFFFF;
-    border: 1px solid #B9B9B9;
-    box-sizing: border-box;
-    border-radius: 20px;
+const TextBox1 = styled.div`
+  width: 464px;
+  height: 42px;
+
+  font-family: Seravek;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 150%;
+  color: #000000;
+`;
+
+const ImageBox = styled.div`
+  width: 718px;
+  margin : auto 61px 170px auto;
 `;
 
 const Image = styled.input`
-position: absolute;
-width: 1920px;
-height: 720px;
-left: 0px;
-top: 100px;
+  display: block;
+  width: 513px;
+  height: 513px;
+  background: #d9d9d9;
+  background-image: url(${(props) => props.src});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
 
-background: #D9D9D9;
-border-radius: 0px;
-    background-image: url(${(props) => props.src});
-    // background-image: url(${(props) => props._post? props.post_img : props.src});
-    background-size: cover;
-    background-repeat: no-repeat;
+const TextBox = styled.div`
+  width : 718px;
+  height : 421px;
+  float : right;
+`
+const ContentsBox = styled.div`
+  display: flex;
+  width: 1200px;
+  margin : 60px auto auto auto;
+`;
+
+const TextBox2 = styled.div`
+  width: 100%;
+  color: #000000;
+  margin: auto;
+`;
+
+
+
+const ContentsH = styled.h2`
+  font-family: Seravek;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 28px;
+  margin: auto;
+`;
+
+const Contents = styled.textarea`
+  display: block;
+  padding: 11px 20px;
+
+  width: 615px;
+  height: 437px;
+  margin: 33px 0 33px 0;
+
+  background: #ffffff;
+  border: 1px solid #b9b9b9;
+  box-sizing: border-box;
+  border-radius: 20px;
+  resize : none;
+`;
+
+const Icon = styled.img`
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
 `;
 
 const PostButton = styled.button`
-  background: #F1B100;
+  background: #f1b100;
   border-radius: 20px;
-  position: absolute;
+  margin-left : 38px;
+
   width: 167px;
   height: 40px;
-  left: 1513px;
-  top: 861px;
+
   cursor: pointer;
   border: 0;
 `;
-
 const EditButton = styled.button`
   background: #F1B100;
   border-radius: 20px;
-  position: absolute;
   width: 167px;
   height: 40px;
-  left: 1513px;
-  top: 861px;
   cursor: pointer;
 `;
 

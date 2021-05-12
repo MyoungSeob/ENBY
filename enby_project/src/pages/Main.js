@@ -41,7 +41,7 @@ const Main =(props)=>{
                 })}
           </PostList>
           <ReviewText>
-            <ReviewSubTitle>메이트들의 ENBY 경험을 알고싶다면?</ReviewSubTitle>
+            <ReviewSubTitle>메이트들의 ENBY 경험을 알고싶다면? </ReviewSubTitle>
             <span>
               <ReviewTitle>모임 후기글</ReviewTitle>
               <ReviewButton onClick={() => {
@@ -56,7 +56,6 @@ const Main =(props)=>{
                       return <ReviewCard {...p} key={p.id}/>
                   })}
           </ReviewList>
-        {/* </CardList> */}
       </Container>
     );
 }
@@ -67,11 +66,10 @@ const Container = styled.div`
 const PostList = styled.ul`
   margin-top: 77px;
   padding: 0;
-  // margin: 0;
   width: 100%;
+  margin-left: 10px;
 `
 const PostText = styled.div`
-// margin-left: 360px;
 & span {
   display: flex;
 }
@@ -83,7 +81,6 @@ const PostSubTitle = styled.div`
     font-weight: normal;
     font-size: 18px;
     line-height: 150%;
-    /* or 27px */
     color: #474747;
 `;
 const PostTitle = styled.div`
@@ -93,13 +90,11 @@ const PostTitle = styled.div`
     font-weight: bold;
     font-size: 28px;
     line-height: 150%;
-    /* or 42px */
     color: #000000;
 `;
 
 const PostButton = styled.button`
-  // position: absolute;
-  // margin: 177px 0px 0px 0px;
+
   margin-left: 877px;
   width: 167px;
   height: 40px;
@@ -117,15 +112,11 @@ const ReviewText = styled.div`
 `;
 const ReviewSubTitle =styled.text`
   margin: 225px 0px 0px 0px;
-  width: 290px;
+  // width: 290px;
   height: 23px;
   font-family: notosans_regular;
-  font-style: normal;
-  font-weight: normal;
   font-size: 18px;
   line-height: 150%;
-  /* or 27px */
-
   color: #474747;
 `;
 const ReviewTitle = styled.text`

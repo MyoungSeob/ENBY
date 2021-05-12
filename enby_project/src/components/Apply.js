@@ -52,8 +52,7 @@ const Apply = (props) => {
       return <NoticeDeadline><NoticeP>죄송합니다. 현재 모집이 마감된 모임이에요.</NoticeP></NoticeDeadline>;
     };
     if (fullPerson < 1) {
-      return 
-      {regist_list.length < 1 ? (
+      return regist_list.length < 1 ? (
         <>
           <Contect>
             <KakaoId>
@@ -75,7 +74,9 @@ const Apply = (props) => {
               ></Contents>
             </Comment>
           </Contect>
-          <ButtonBox><ApplyButton onClick={applyAttend}>신청하기</ApplyButton></ButtonBox>
+          <ButtonBox>
+            <ApplyButton onClick={applyAttend}>신청하기</ApplyButton>
+          </ButtonBox>
         </>
       ) : (
         <Contect>
@@ -97,10 +98,10 @@ const Apply = (props) => {
             </CheckButtonBox>
           </CheckBox>
         </Contect>
-      )}
+      );
     };
   };
-
+  
   return (
     <ApplyBox>
       <Title>

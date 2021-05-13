@@ -169,14 +169,16 @@ const Button = styled.button`
     border: none;
     background: #F1B100;
     border-radius: 20px;
-    font-family: Noto Sans KR;
+    font-family: notosans_regular;
     font-size: 18px;
     line-height: 150%;
     text-align: center;
     color: #392600;
     margin-top: 80px;
-    margin-left: 540px;
+    // margin-left: 540px;
     cursor: pointer;
+    margin-right: 30px;
+    float: right;
 `;
 const Paging = styled.div`
     position: fixed;

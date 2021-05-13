@@ -8,8 +8,8 @@ function Carousel() {
   return (
     <Container>
         <div data-src={require("../shared/image/main_carousel1.png").default} />
-        <div data-src={require("../shared/image/main_carousel2.png").default} />
-        <div data-src={require("../shared/image/title.png").default} />
+        <div data-src={require("../shared/image/main_carousel3.png").default} />
+        <div data-src={require("../shared/image/main_carousel4.png").default} />
     </Container>
   )
 }

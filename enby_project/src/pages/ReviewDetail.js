@@ -15,7 +15,6 @@ const ReviewDetail = (props) => {
   const token = localStorage.getItem('token')
   const decode = jwt_decode(token)
   const my_name = decode.nickname
-
     const review_detail = useSelector((store)=> store.post.review_detail);
     const review_createdAt = useSelector((store)=>store.post.time);    
     const review_id = props.match.params.id;
@@ -24,7 +23,8 @@ const ReviewDetail = (props) => {
     
     const time = useSelector((store) => store.post.created_At);
     // const data = review_list.id
-    // const createdBy = post_list.createdBy
+    const createdBy = review_detail.nickname
+    console.log(review_detail);
     // console.log(data);
 
     useEffect(()=>{
@@ -64,10 +64,26 @@ const ReviewDetail = (props) => {
               <TitleDate>{time}</TitleDate>
               <TitleText>{review_detail.title}</TitleText>
             </TitleContents>
+            </TitleBox>
+          <ButtonBox>  
             <TitleButton onClick={moveReviewBoard}>
               <TitleBtnName>목록으로</TitleBtnName>
             </TitleButton>
-          </TitleBox>
+            {createdBy === decode.nickname ? (
+            <EditButton>
+              <EditBtn
+                onClick={move_edit}>
+                  수정하기
+              </EditBtn>
+              <DeleteBtn
+                    onClick={deletePost}>삭제하기
+              </DeleteBtn>
+            </EditButton>
+          ) : (
+            ""
+          )}
+            </ButtonBox>
+          
         </TopBox>
         <BottomBox>
           <ContentImage>
@@ -87,8 +103,7 @@ const ReviewDetail = (props) => {
           <Moim>원본 게시글 보기</Moim>
         </MoveMoimButton>
 
-        <button onClick={move_edit}>수정</button>
-        <button onClick={deletePost}>삭제</button>
+        
       </Container>
     );
 }
@@ -140,18 +155,32 @@ const TitleDate = styled.p`
   margin : 0;
   color : #B9B9B9
 `
-
+const ButtonBox = styled.div`
+  display: flex;
+  width: 1200px;
+  margin: 40px auto 40px auto;
+`;
 const TitleButton = styled.div`
-  border : 1px solid #FFFFFF;
-  padding : 2px 48px 2px 48px;
-  border-radius : 20px;
-  float : right;
-  cursor : pointer;
+  // border : 1px solid #FFFFFF;
+  // padding-top : 12px;
+  // border-radius : 20px;
+  // float : right;
+  // cursor : pointer;
+  cursor: pointer;
+  display: block;
 `
-const TitleBtnName = styled.p`
-  font-size : 18px;
-  color : #FFFFFF;
-  margin : 0;
+const TitleBtnName = styled.button`
+  border: 1px solid #000000;
+  border-radius: 20px;
+  width: 167px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-family: notosans_regular;
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0;
+  cursor: pointer;
 `
 const BottomBox = styled.div`
   width : 1200px;
@@ -185,6 +214,36 @@ const ContentsP = styled.p`
   font-size : 18px;
   margin : 0;
 `
+const EditButton = styled.div`
+  float: right;
+  margin: auto 0px auto auto;
+`;
+const EditBtn = styled.button`
+  border: none;
+  border-radius: 20px;
+  width: 167px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-family: notosans_regular;
+  background-color: #f1b100;
+  color: #000000;
+  margin-right: 12px;
+  cursor: pointer;
+`;
+const DeleteBtn = styled.button`
+  border: 1px solid #f1b100;
+  border-radius: 20px;
+  width: 167px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-family: notosans_regular;
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0;
+  cursor: pointer;
+`;
 const MoveMoimButton = styled.div`
   display : block;
   margin : auto auto 100px auto;

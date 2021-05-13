@@ -148,6 +148,8 @@ const ReviewList =styled.ul`
   padding: 0;
   margin-top: 83px;
   width: 100%;
+  margin-left: 10px;
+
 `;
 
 export default Main;

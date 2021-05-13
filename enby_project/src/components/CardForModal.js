@@ -36,7 +36,7 @@ const Container = styled.div`
     width: 320px;
     height: 440px;
     display: flex;
-    margin: 30px;
+    margin: 20px;
     margin-bottom: 50px;
 `;
 const CardGrid = styled.div`
@@ -46,6 +46,7 @@ const CardGrid = styled.div`
 //   height: 542px;
   // margin: 0 15px 79px auto;
   border: 1px solid #eee;
+  border-radius: 10px;
   cursor: pointer;
   background-color: #f3f3f3;
   justify-content: space-between;
@@ -62,6 +63,7 @@ const CardGrid = styled.div`
   }
 `;
 const CardImage = styled.img`
+  border-radius: 10px 10px 0 0;
   width: 320px;
   height: 184px;
   objectfit: cover;

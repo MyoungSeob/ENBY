@@ -10,23 +10,34 @@ const CardList =(props)=>{
     const dispatch = useDispatch();
 
     const post_list = useSelector((store) => store.post.list)
-    const apply_list = useSelector((store) => store.post.apply_list)
 
-    console.log(props);
-    console.log(post_list);
+    console.log(props)
     const id = post_list.id
     useEffect(()=>{
         dispatch(postActions.getPostMainDB(post_list))
         dispatch(postActions.getPostDetailDB(id))
     }, [dispatch])
-
+    const showReviewCard=()=>{
+        if(props.allMoim){
+            return (props.all_post_list.map((p)=>{
+                return <Card {...p} key={p.id}/>
+            }))
+        }
+        if(props.isDeadline){
+            return (props.dead_post_list.map((p)=>{
+                return <Card {...p} key={p.id}/>
+            }))
+        }
+        if(props.isNotDeadline){
+            return (props.not_dead_post_list.map((p)=>{
+                return <Card {...p} key={p.id}/>
+            }))
+        }
+    }
     return (
       <ListBody>
         <PostList>
-            {props.post_list.map((p)=>{
-                return <Card {...p} key={p.id}/>
-            })}
-          
+        {showReviewCard()}
         </PostList>
       </ListBody>
     );
@@ -38,9 +49,6 @@ const ListBody = styled.div`
     margin: 100px auto 0 auto;
 `
 const PostList = styled.div`
-display : flex;
-flex-wrap: wrap;
-justify-content : center;
 padding: 0;
 margin: 0;
 width: 1200px;

@@ -7,7 +7,7 @@ import CardDetail from "./CardDetail";
 
 const Card = (props) => {
   const move_page = () => {
-    history.push(`/review/write/${props.id}/review`);
+    history.push(`/review/write/${props.id}`);
   };
 
 

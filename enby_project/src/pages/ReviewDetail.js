@@ -44,7 +44,7 @@ const ReviewDetail = (props) => {
         window.alert('게시글 수정은 작성자만 수정할 수 있습니다.')
         return;
       }else{
-        history.push("/review/edit/" + review_id )
+        history.push("/review/write/" + review_id )
       }
     }
     const moveReviewBoard=()=>{

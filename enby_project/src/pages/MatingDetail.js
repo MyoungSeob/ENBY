@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ApplyList from "../components/ApplyList";
 import Image from "../elements/Image";
@@ -14,9 +14,14 @@ import { actionsCreators as applyActions } from "../redux/modules/apply";
 import { history } from "../redux/configStore";
 import MemberCardList from "../components/MemberCardList";
 import PermitApplyList from "../components/PermitApplyList";
+import ReviewBox from "../components/ReviewBox";
+import Loading from "../components/Loading";
 
 const MatingDetail = (props) => {
   const id = props.match.params.id;
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const token = localStorage.getItem("token");
   const decode = jwt_decode(token);
@@ -24,14 +29,13 @@ const MatingDetail = (props) => {
 
   const post_list = useSelector((store) => store.post.detail_list);
   const apply_list = useSelector((store) => store.post.apply_list);
-  const time = useSelector((store) => store.post.time);
   const createdAt = useSelector((store) => store.post.created_At);
-  console.log(post_list);
+
   const data = post_list;
   const createdBy = post_list.createdBy;
 
   useEffect(() => {
-    dispatch(postActions.getPostDetailDB(id));
+    dispatch(postActions.getPostDetailDB(id))
   }, [id]);
 
   const deletePost = () => {
@@ -40,13 +44,18 @@ const MatingDetail = (props) => {
     }
   };
 
-  return (
+  if(loading){
+    return <Loading />
+  }else{return (
     <Container>
       <ImageBox>
         <ImageGrid>
           <ImageGrid_>
-            {data.deadlineStatus ? (<Image shape="moimcontentsdeadline" src={data.board_imgUrl} />) : (<Image shape="moimcontents" src={data.board_imgUrl} />)}
-            
+            {data.deadlineStatus ? (
+              <Image shape="moimcontentsdeadline" src={data.board_imgUrl} />
+            ) : (
+              <Image shape="moimcontents" src={data.board_imgUrl} />
+            )}
           </ImageGrid_>
         </ImageGrid>
       </ImageBox>
@@ -55,15 +64,35 @@ const MatingDetail = (props) => {
           <TitleDate>{createdAt}</TitleDate>
           <TitleText>{data.title}</TitleText>
         </TitleBox>
-        <TitleButton>
-          <TitleBtnName>목록으로</TitleBtnName>
-        </TitleButton>
         <IconBox>
           <Detail {...post_list} />
         </IconBox>
       </DetailBox>
+      <ButtonBox>
+        <ToListButton>
+          <ToListBtn onClick={()=>{history.push('/board/mating')}}>목록으로</ToListBtn>
+        </ToListButton>
+        {createdBy === decode.nickname ? (
+          <EditButton>
+            <EditBtn
+              onClick={() => {
+                history.push("/board/write/" + id);
+              }}
+            >
+              수정하기
+            </EditBtn>
+            <DeleteBtn onClick={deletePost}>삭제하기</DeleteBtn>
+          </EditButton>
+        ) : (
+          ""
+        )}
+      </ButtonBox>
       <ContentsBox>
-      {data.deadlineStatus ? (<Image shape="minicontentsdeadline" src={data.board_imgUrl} />) : (<Image shape="minicontents" src={data.board_imgUrl} />)}
+        {data.deadlineStatus ? (
+          <Image shape="minicontentsdeadline" src={data.board_imgUrl} />
+        ) : (
+          <Image shape="minicontents" src={data.board_imgUrl} />
+        )}
         <About {...post_list} />
       </ContentsBox>
       <ApplicationBox>
@@ -83,59 +112,54 @@ const MatingDetail = (props) => {
             <Apply {...post_list} />
           </ApplyBox>
         )}
-        <button
-          onClick={() => {
-            history.push("/board/write/" + id);
-          }}
-        >
-          수정
-        </button>
-        <button onClick={deletePost}>삭제</button>
       </ApplicationBox>
+      <ReviewContainer>
+          <ReviewBox {...post_list}/>
+      </ReviewContainer>
     </Container>
   );
-};
+};}
+
+  
 
 const Container = styled.div`
-  display : block;
+  display: block;
 `;
 const ImageBox = styled.div`
-width : 100%;
-margin : auto;
-
+  width: 100%;
+  margin: auto;
 `;
 const ImageGrid = styled.div`
-width : 100%;
-height : 320px;
-overflow : hidden;
-position : absolute;
-margin : auto;
-`
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  position: absolute;
+  margin: auto;
+`;
 const ImageGrid_ = styled.div`
-width : auto;
-margin : auto;
-overflow : hidden;
-position : relative;
-`
+  width: auto;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+`;
 const DetailBox = styled.div`
   margin: auto;
   width: 1200px;
-  height : 320px;
+  height: 320px;
 `;
-
 
 const TitleBox = styled.div`
   margin: 0 auto 0 auto;
-  padding-top : 80px;
-  position : relative;
-  display : block;
+  padding-top: 80px;
+  position: relative;
+  display: block;
 `;
 const TitleText = styled.h1`
   margin: 0;
   font-family: notosans_bold;
   font-size: 32px;
   float: left;
-  color : #ffffff;
+  color: #ffffff;
 `;
 const TitleDate = styled.p`
   font-family: notosans_regular;
@@ -143,30 +167,67 @@ const TitleDate = styled.p`
   margin: 0;
   color: #b9b9b9;
 `;
-const TitleButton = styled.div`
-border : 1px solid #FFFFFF;
-padding : 2px 48px 2px 48px;
-border-radius : 20px;
-float : right;
-margin : auto;
-cursor : pointer;
-position : relative;
+const ButtonBox = styled.div`
+  display: flex;
+  width: 1200px;
+  margin: 40px auto 40px auto;
 `;
-const TitleBtnName = styled.p`
-  text-align : center;
+const ToListButton = styled.div`
+  cursor: pointer;
+  display: block;
+`;
+const ToListBtn = styled.button`
+  border: 1px solid #000000;
+  border-radius: 20px;
+  width: 167px;
+  height: 40px;
+  text-align: center;
   font-size: 18px;
-  color: #ffffff;
+  font-family: notosans_regular;
+  background-color: #ffffff;
+  color: #000000;
   margin: 0;
+  cursor: pointer;
+`;
+const EditButton = styled.div`
+  float: right;
+  margin: auto 0px auto auto;
+`;
+const EditBtn = styled.button`
+  border: none;
+  border-radius: 20px;
+  width: 167px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-family: notosans_regular;
+  background-color: #f1b100;
+  color: #000000;
+  margin-right: 12px;
+  cursor: pointer;
+`;
+const DeleteBtn = styled.button`
+  border: 1px solid #f1b100;
+  border-radius: 20px;
+  width: 167px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-family: notosans_regular;
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0;
+  cursor: pointer;
 `;
 const IconBox = styled.div`
-  width : 1200px;
-  margin : 40px auto auto auto;
-  display : block;
-  float : left;
-` 
+  width: 1200px;
+  margin: 40px auto auto auto;
+  display: block;
+  float: left;
+`;
 const ContentsBox = styled.div`
   width: 1200px;
-  margin: 60px auto 108px auto;
+  margin: 0 auto 108px auto;
   display: flex;
 `;
 const MemberBox = styled.div`
@@ -182,9 +243,11 @@ const PermitBox = styled.div`
   margin: auto;
 `;
 const ApplicationBox = styled.div`
-  margin-bottom: 170px;
-  padding-top : 120px;
-  background-color : #f8f8f8;
+  padding: 120px 0 80px 0;
+  background-color: #f8f8f8;
 `;
+const ReviewContainer = styled.div`
+  margin-top : 80px;
+`
 
 export default MatingDetail;

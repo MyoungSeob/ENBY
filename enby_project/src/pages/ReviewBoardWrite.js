@@ -15,9 +15,8 @@ const ReviewBoardWrite = (props) => {
   const my_name = decode.nickname
 
   const review_list = useSelector((store) => store.post.review_list);
-  console.log(review_list)
-
-  const review_id = Number(props.match.params.id);
+  console.log(props)
+  const id = Number(props.match.params.id);
   
   const is_edit = my_name ? true : false;
 
@@ -27,14 +26,13 @@ const ReviewBoardWrite = (props) => {
     (store) => store.post.review_detail.review_imgUrl
   );
   let _review = is_edit
-    ? review_list.find((p) => p.nickname === my_name)
+    ? review_list.find((p) => p.review_id === id)
     : "";
-
-  const board_id = _review.board_id
+  const board_id = _review ? _review.board_id : Number(props.match.params.id);
   console.log(_review);
   const [title, setTitle] = useState(_review ? _review.title : "");
   const [contents, setContents] = useState(_review ? _review.contents : "");
-  const [reviewImg, setImage] = useState(_review ? (_review.review_imgUrl) : "");
+  const [reviewImg, setImage] = useState(_review ? _review.review_imgUrl : "");
     console.log(reviewImg)
   // 이미지 추가 미리보기`
   const preview = useSelector((state) => state.image.preview);
@@ -42,39 +40,65 @@ const ReviewBoardWrite = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(my_name !== _review.nickname){
-      window.alert("게시글 수정은 작성자 본인만 가능합니다.")
-      history.goBack();
-    }
+    // if (_review) {
+    //   const reader = new FileReader();
+    //   const file = _review ? _review.review_imgUrl : fileInput.current.files[0];
+    //   console.log(file);
+    //   if (!file) {
+    //     return;
+    //   }
+
+    //   reader.readAsDataURL(file);
+    //   // 파일 읽기가 끝났을때의 이벤트 받아옴
+    //   reader.onloadend = () => {
+    //     // setPreviewimg(file)
+    //     setImage(file);
+    //     console.log(reader.result);
+    //     dispatch(imgActions.setPreview(reader.result)); // result: 파일의 내용물
+    //   };
+    // }
   }, [preview]);
 
   // 이미지 추가 미리보기
   const selectFile = () => {
-    const reader = new FileReader();
-    // const file = _post? boardImg : fileInput.current.files[0];
-    const file = fileInput.current.files[0];
-    console.log(file);
-    if (!file) {
-      return;
-    }
-
-    reader.readAsDataURL(file);
-    // 파일 읽기가 끝났을때의 이벤트 받아옴
-    reader.onloadend = () => {
-      // setPreviewimg(file)
-      setImage(file);
-      console.log(reader.result);
-      dispatch(imgActions.setPreview(reader.result)); // result: 파일의 내용물
-    };
+      const reader = new FileReader();
+      const file = fileInput.current.files[0];
+      console.log(file);
+      if (!file) {
+          return;
+      }
+      
+      reader.readAsDataURL(file);
+      // 파일 읽기가 끝났을때의 이벤트 받아옴
+      reader.onloadend = () => {
+        // setPreviewimg(file)
+        setImage(file);
+        console.log(reader.result);
+        dispatch(imgActions.setPreview(reader.result)); // result: 파일의 내용물
+      };
   };
-  
-
+  const reviewEditPreview=()=>{
+    if(reviewImg === _review.review_imgUrl){
+      return reviewImg
+    }else{
+      return preview
+    }
+  }
+  const editReviewImage=()=>{
+    if(reviewImg === _review.review_imgUrl){
+      return null
+    }else{
+      return reviewImg
+    }
+  }
+  console.log(reviewImg)
   const addReview = () => {
-    dispatch(postActions.addReviewDB(review_id, title, contents, reviewImg));
+    dispatch(postActions.addReviewDB(board_id, title, contents, reviewImg));
   };
   const editReview = () => {
-    dispatch(postActions.editReviewDB(review_id, board_id, title, contents, reviewImg));
+    dispatch(postActions.editReviewDB(id, board_id, title, contents, editReviewImage()));
   };
+
   return (
     <Container>
       <Test>
@@ -89,7 +113,7 @@ const ReviewBoardWrite = (props) => {
               placeholder="제목을 입력하세요"
             />
 
-            {is_edit ? (
+            {_review ? (
               <PostButton onClick={editReview}>수정하기</PostButton>
             ) : (
               <PostButton onClick={addReview}>작성하기</PostButton>
@@ -102,10 +126,10 @@ const ReviewBoardWrite = (props) => {
             <Image
               onChange={selectFile}
               placeholder="사진을 추가해주세요"
-              name="reviewImg"
               ref={fileInput}
+              id="reviewImage"
               type="file"
-              src={_review ? reviewImg : preview}
+              src={_review ? reviewEditPreview : preview}
             />
           </ImageBox>
           <TextBox>

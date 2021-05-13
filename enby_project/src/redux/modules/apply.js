@@ -76,7 +76,7 @@ const acceptApplyDB =(id, register_id)=>{
         })
         .then(res => {
             console.log(res)
-            window.alert("신청이 완료되었습니다!")
+            window.alert("신청을 수락하셨습니다👍")
             window.location.reload();
         })
         .catch(err => console.log(err))
@@ -115,7 +115,7 @@ const ApplyDeadlineDB =(id)=>{
         .then(res => {
             console.log(res)
             window.alert(res.data)
-            window.location.href('/')
+            window.location.reload()
         })
         .catch(err => console.log(err))
     }

@@ -17,6 +17,7 @@ import ReviewBoard from '../pages/ReviewBoard';
 import ReviewDetail from '../pages/ReviewDetail';
 import ReviewBoardWrite from '../pages/ReviewBoardWrite';
 import ScrollToTop from './ScrollToTop'
+import MatingBoardSearch from '../pages/MatingBoardSearch';
 
 function App() {
   return (
@@ -37,7 +38,8 @@ function App() {
           <Route path="/mypage/:name" exact component={OthersMypage} />
           <Route path="/board/review" exact component={ReviewBoard} />
           <Route path="/board/review/:id" exact component={ReviewDetail} />
-          <Route path="/review/write/:id/review" exact component={ReviewBoardWrite} />
+          <Route path="/review/write/:id" exact component={ReviewBoardWrite} />
+          <Route path="/mating/search/:id" exact component={MatingBoardSearch} />
           <Footer />
           </ScrollToTop>
         </ConnectedRouter>

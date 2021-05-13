@@ -1,23 +1,44 @@
 // 검색 기능 구현 시 사용 할 컴포넌트!
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { history } from '../redux/configStore';
+import serachicon from '../shared/image/searchicon.png'
 
 function Search() {
+    const [text, setText] = useState("");
+
+    const search =()=>{
+        if(text === ""){
+            window.alert("검색어를 입력해주세요!")
+        }else{
+            history.push(`/mating/search/${text}`)
+        }
+    }
     return (
-        <Container>
-            <text>검색하기</text>
-            <SearchBox
+      <Container>
+        <Subtitle>
+          <text>검색하기</text>
+        </Subtitle>
+        <SearchGrid>
+          <SearchBox
             placeholder="찾으시는 모임이 있으신가요?"
-            >
-            </SearchBox>
-        </Container>
-    )
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+            value={text}
+          />
+          <Icon onClick={search}/>
+        </SearchGrid>
+      </Container>
+    );
 }
 
 const Container = styled.div`
-    display: flex;
-    flex-direction:column;
+width : 100%;
+    display: block;
+    margin : auto;
+    float : left;
     & text {
         margin-left: 17px;
         width: 67px;
@@ -33,7 +54,7 @@ const Container = styled.div`
 
 const SearchBox = styled.input`
     padding: 0px 20px;
-
+    padding-right : 45px;
     width: 467px;
     height: 40px;
     // margin: 7px auto 0 0;
@@ -41,6 +62,25 @@ const SearchBox = styled.input`
     border: 1px solid #B9B9B9;
     box-sizing: border-box;
     border-radius: 30px;
-`;
+    position : absolute;
+    outline : none;
 
+`;
+const Icon = styled.div`
+position : relative;
+width : 40px;
+height : 40px;
+background-image : url(${serachicon});
+background-repeat : no-repeat;
+float : right;
+margin : 5px 5px 0 0;
+cursor : pointer;
+`
+const Subtitle = styled.div`
+    margin-bottom : 10px;
+`
+const SearchGrid = styled.div`
+width : 467px;
+display : block;
+`
 export default Search

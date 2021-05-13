@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import {produce} from 'immer';
 import axios from 'axios';
 import { applyMiddleware } from 'redux';
+import ReviewBoardWrite from '../../pages/ReviewBoardWrite';
 
 const GET_POST_MAIN = "GET_POST_MAIN";
 const GET_POST_DETAIL = "GET_POST_DETAIL";
@@ -14,7 +15,10 @@ const GET_POST_REVIEW = "GET_POST_REVIEW"; // 리뷰 불러오기
 const GET_REVIEW_DETAIL = "GET_REVIEW_DETAIL";
 const ADD_REVIEW = "ADD_REVIEW"; // 리뷰 추가
 const EDIT_REVIEW = "EDIT_REVIEW"; // 리뷰 수정
+const LOADING = "LOADING";
+const GET_REVIEW_CARD = "GET_REVIEW_CARD"
 
+const loading = createAction(LOADING, (loading) => (loading));
 const getPostMain = createAction(GET_POST_MAIN, (post_list) => post_list);
 const getPostDetail = createAction(GET_POST_DETAIL, (post_list) => post_list);
 const getMeetTime = createAction(GET_MEET_TIME, (post_list) => post_list)
@@ -26,6 +30,8 @@ const getPostReview = createAction(GET_POST_REVIEW, (review_list) => review_list
 const getReviewDetail = createAction(GET_REVIEW_DETAIL, (review_detail) => review_detail)
 const addReview = createAction(ADD_REVIEW, (review_list) => ({review_list}));
 const editReview = createAction(EDIT_REVIEW, (review_id) => review_id);
+const getReviewCard = createAction(GET_REVIEW_CARD, (review_card) => review_card)
+
 
 const initialState = {
     list : [],
@@ -35,6 +41,8 @@ const initialState = {
     review_list : [], // 리뷰리스트
     review_detail : [],
     created_At :[],
+    loading : false,
+    review_card : [],
 };
 
 const getPostMainDB =()=>{
@@ -47,10 +55,8 @@ const getPostMainDB =()=>{
             }
         })
         .then((response) => {
-            console.log(response);
             const post_list = [...response.data]
             dispatch(getPostMain(post_list))
-            console.log(post_list);
         }
         )
         .catch((err) => console.log(err))
@@ -59,6 +65,7 @@ const getPostMainDB =()=>{
 
 const getPostDetailDB = (id) =>{
     return function (dispatch, getState, {history}){
+        dispatch(loading(true))
         const token = localStorage.getItem("token")
         axios
         .get(`http://3.36.67.251:8080/board/mating/` + `${id}`, {
@@ -97,6 +104,8 @@ const getPostDetailDB = (id) =>{
             dispatch(getMeetTime(time))
             dispatch(getApplyList(post_list[0].registrations))
             dispatch(getCreatedAt(createdTime))
+            dispatch(getReviewCard(post_list[0].reviews))
+            dispatch(loading(false))
         })
         .catch((err) => console.log(err))
     }
@@ -203,7 +212,6 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
               }
           })
           .then((response) => {
-              console.log(response.data.content);
               const review_list = [...response.data.content]
               dispatch(getPostReview(review_list))
             //   console.log(review_list);
@@ -215,6 +223,7 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
   // 리뷰 디테일 불러오기
   const getReviewDetailDB = (review_id) => {
     return function (dispatch, getState, {history}){
+        dispatch(loading(true))
         const token = localStorage.getItem("token")
         axios
         .get(`http://3.36.67.251:8080/board/mating/review/` + `${review_id}`, {
@@ -223,9 +232,9 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
             }
         })
         .then((res) => {
-            console.log(res)
+            
             const review_detail = [...res.data]
-            console.log(review_detail)
+
             const week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
 
             const createDay = new Date(review_detail[0].createdAt.split("T")[0]).getDay();
@@ -238,17 +247,16 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
               "월 " +
               parseInt(review_detail[0].createdAt.split("T")[0].split("-")[2]) +
               "일 " + createDayLabel;
-            console.log(createdTime)
             dispatch(getCreatedAt(createdTime))
             dispatch(getReviewDetail(review_detail[0]))
-            console.log(review_detail)
+            dispatch(loading(false))
         })
         .catch((err) => console.log(err))
     }
   }
 
   // 리뷰게시글 등록하기
-  const addReviewDB = (id, title, contents, reviewImg) => {
+  const addReviewDB = (board_id, title, contents, reviewImg) => {
       return function (dispatch, getState, {history}) {
           const token = localStorage.getItem("token")
           let formData = new FormData();
@@ -259,7 +267,7 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
 
       const DB = {
           method: "post",
-          url: `http://3.36.67.251:8080/board/mating/${id}/review`,
+          url: `http://3.36.67.251:8080/board/mating/${board_id}/review`,
           data: formData,
           headers: {
               authorization: `Bearer ${token}`
@@ -280,11 +288,18 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
 const editReviewDB =(review_id, board_id, title, contents, reviewImg)=>{
     return function (dispatch, getState, {history}){
         const token = localStorage.getItem("token")
+       
         let formData = new FormData();
-
-          formData.append("title", title);
-          formData.append("contents", contents);
-          formData.append("reviewImg", reviewImg);
+        if(reviewImg === null){
+            formData.append("title", title);
+            formData.append("contents", contents);
+        }else{
+            formData.append("title", title);
+            formData.append("contents", contents);
+            formData.append("reviewImg", reviewImg);
+        }
+          
+          
         axios({
             method : 'put',
             headers : {
@@ -302,37 +317,46 @@ const editReviewDB =(review_id, board_id, title, contents, reviewImg)=>{
 }
 
 export default handleActions(
-    {
-    [GET_POST_MAIN] : (state, action) =>
-        produce(state, (draft) => {
-            draft.list = action.payload
-        }),
-    [GET_POST_DETAIL] : (state, action) => 
-        produce(state, (draft) => {
-            draft.detail_list = action.payload
-        }),
-    [GET_APPLY_LIST] : (state, action) => 
-        produce(state, (draft) => {
-            draft.apply_list = action.payload
-        }),
-    [GET_MEET_TIME] : (state, action) => 
-        produce(state, (draft) => {
-            draft.time = action.payload
-        }),
-    [GET_POST_REVIEW] : (state, action) =>
-        produce(state, (draft) => {
-            draft.review_list = action.payload
-    }),
-    [GET_REVIEW_DETAIL] : (state, action) =>
-        produce(state, (draft) => {
-            draft.review_detail = action.payload
-    }),
-    [GET_CREATED_AT] : (state, action) => 
-        produce(state, (draft) => {
-            draft.created_At = action.payload
-        }),
-}, initialState
-)
+  {
+    [GET_POST_MAIN]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload;
+      }),
+    [GET_POST_DETAIL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.detail_list = action.payload;
+      }),
+    [GET_APPLY_LIST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.apply_list = action.payload;
+      }),
+    [GET_MEET_TIME]: (state, action) =>
+      produce(state, (draft) => {
+        draft.time = action.payload;
+      }),
+    [GET_POST_REVIEW]: (state, action) =>
+      produce(state, (draft) => {
+        draft.review_list = action.payload;
+      }),
+    [GET_REVIEW_DETAIL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.review_detail = action.payload;
+      }),
+    [GET_CREATED_AT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.created_At = action.payload;
+      }),
+    [LOADING]: (state, action) =>
+      produce(state, (draft) => {
+        draft.loading = action.payload.loading;
+      }),
+    [GET_REVIEW_CARD] : (state, action) => 
+      produce(state, (draft) => {
+          draft.review_card = action.payload;
+      })
+  },
+  initialState
+);
 
 const actionsCreators = {
     addPost,
@@ -340,6 +364,7 @@ const actionsCreators = {
     getPostReview,
     getPostMainDB,
     getPostDetailDB,
+    getPostDetail,
     addPostDB,
     deletePostDB,
     editPostDB,

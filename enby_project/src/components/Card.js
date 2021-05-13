@@ -5,7 +5,18 @@ import CardDetail from "./CardDetail";
 
 const Card = (props) => {
   const move_page = () => {
-    history.push(`/board/mating/${props.id}`);
+    if(props.board_name === "신청한 모임"){
+      history.push(`/board/mating/${props.id}`);
+      return
+    }
+    if(props.board_name === "참석한 모임"){
+      history.push('/review/write/' + `${props.id}`);
+      return
+    }
+    if(!props.board_name){
+      history.push(`/board/mating/${props.id}`)
+    }
+    
   };
 
   const view=(board_name)=>{
@@ -41,7 +52,7 @@ const CardGrid = styled.div`
   float: left;
   width: 380px;
   height: 542px;
-  margin: 0 10px 79px auto;
+  margin: 0 15px 79px 3px;
   border: 1px solid #eee;
   cursor: pointer;
   background-color: #f3f3f3;

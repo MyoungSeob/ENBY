@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import home from "../shared/image/home.png";
 import question from "../shared/image/question.png";
-import mail from "../shared/image/mail.png";
+import insta from "../shared/image/insta.png";
 import { history } from "../redux/configStore";
 
 const Footer = (props) => {
@@ -23,7 +23,7 @@ const Footer = (props) => {
         <IconBox>
           <Icon src={home} onClick={moveHome}/>
           <Icon src={question} />
-          <Icon_ src={mail} onClick={googleForms} />
+          <Icon_ src={insta} onClick={googleForms} />
         </IconBox>
       </FooterTitle>
     </Container>
@@ -68,14 +68,14 @@ const IconBox = styled.div`
 const Icon = styled.img`
   margin-right: 50px;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   z-index: 1;
 `;
 const Icon_ = styled.img`
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
 `;
 
 export default Footer;

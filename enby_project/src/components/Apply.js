@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { actionsCreators as applyActions } from "../redux/modules/apply";
+import jwt_decode from 'jwt-decode';
 
 const Apply = (props) => {
   const dispatch = useDispatch();
+  const token = localStorage.getItem('token');
+  const nickname = jwt_decode(token).nickname
 
   const post_list = useSelector((store) => store.post.detail_list);
   const apply_list = useSelector((store) => store.post.apply_list);
   const id = post_list.id;
-
+  console.log(apply_list)
   const regist_list = [];
 
   for (let i = 0; i < apply_list.length; i++) {
@@ -203,10 +206,10 @@ const CheckId = styled.p`
   font-family: notosans_regular;
 `;
 const CheckContents = styled.div`
-  margin-left: 24px;
+margin-left: 24px;
 `;
 const CheckKakaoID = styled.div`
-  width: 1000px;
+width: 1000px;
 `;
 const CheckH = styled.h1`
   margin: 0px;
@@ -216,9 +219,9 @@ const CheckH = styled.h1`
 const CheckComment = styled.div``;
 const CheckP = styled.p`
   font-size: 18px;
-  font-family: notosans_regular;
+  font-family: notosans_regular;  
   max-width: 1000px;
-`;
+  `;
 const CheckButtonBox = styled.div``;
 const NoticeDeadline = styled.div`
   margin : auto auto 80px auto;

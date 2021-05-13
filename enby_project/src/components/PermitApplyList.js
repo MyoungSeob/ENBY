@@ -8,7 +8,6 @@ import {actionsCreators as applyActions} from '../redux/modules/apply'
 const PermitApplyList=(props)=>{
     const dispatch = useDispatch();
     const detail_list = useSelector((store) => store.post.detail_list)
-    console.log(detail_list)
     const regist_list = useSelector((store) => store.post.apply_list)
     const token = localStorage.getItem("token")
     const decode = jwt_decode(token)
@@ -28,7 +27,7 @@ const PermitApplyList=(props)=>{
       if(detail_list.deadlineStatus){
         return <DidDeadLineBtn>이미 마감했습니다</DidDeadLineBtn>
       }else {
-        return <DeadLineBtn onClick={apply_deadline}>신청 마감하기</DeadLineBtn>
+        return <DeadLineBtn onClick={apply_deadline}>모집 마감하기</DeadLineBtn>
       }
     }
     return (
@@ -63,19 +62,21 @@ outline : none;
 background-color : #F1B100;
 padding-bottom : 2px;
 cursor : pointer;
-margin-left : 80px;
+margin : auto 0px auto auto;
+float : right;
 `
 const DidDeadLineBtn = styled.button`
 width: 167px;
 height: 40px;
 font-size : 18px;
 font-family : notosans_regular;
-border : none;
+border : 1px solid #F1B100;
 border-radius : 20px;
 outline : none;
-background-color : #F1B100;
+background-color : #f8f8f8;
 padding-bottom : 2px;
-margin-left : 80px;
+margin : auto 0px auto auto;
+float : right;
 `
 const ApplyTit = styled.h2`
     margin-top : 5px;

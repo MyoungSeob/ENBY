@@ -46,7 +46,7 @@ const DateBox = styled.div`
     margin-bottom : 10px;
 `
 const IconContents = styled.div`
-    margin : 0 60px 0 10px;
+    margin : 0 131px 0 10px;
     font-family : notosans_regular;
     font-size : 18px;
     padding-top : 12px;

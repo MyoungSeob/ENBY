@@ -84,7 +84,7 @@ const CheckContents = styled.div`
     margin-left : 24px;
 `
 const CheckKakaoID = styled.div`
-width : 817px;
+width : 100%;
 margin-bottom : 22px;
 `
 const CheckH = styled.h1`
@@ -93,7 +93,7 @@ const CheckH = styled.h1`
     font-family : notosans_regular;
 `
 const CheckComment = styled.div`
-width : 817px;
+width : 100%;
 `
 const CheckP = styled.p`
     margin : 0;
@@ -132,8 +132,9 @@ const RejectButton = styled.button`
   height: 40px;
   font-size : 18px;
   font-family : notosans_regular;
+  border : 1px solid #f1b100;
   border-radius : 20px;
-  background-color : white;
+  background-color : #f8f8f8;
   padding-bottom : 2px;
   cursor : pointer;
 `;

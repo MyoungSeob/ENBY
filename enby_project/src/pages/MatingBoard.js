@@ -15,7 +15,7 @@ import {actionsCreators as postActions} from '../redux/modules/post'
 function MatingBoard(props) {
     const dispatch = useDispatch();
     // pagination
-    const [allposts, setAllPosts] = useState([]);
+    // const [allposts, setAllPosts] = useState([]);
     const [deadlinePosts, setDeadlinePosts] = useState([]);
     const [isNotDeadlinePosts, setIsNotDeadlinePosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -27,9 +27,11 @@ function MatingBoard(props) {
 
     const selectButton={allMoim, isDeadline, isNotDeadline}
 
-    const indexOfLast = currentPage * postsPerPage; // 6
-    const indexOfFirst = indexOfLast - postsPerPage; // 6-6=0
+    const indexOfLast = currentPage * postsPerPage;
+    const indexOfFirst = indexOfLast - postsPerPage;
     const post_list = useSelector((store) => store.post.list)
+    
+    const allposts = post_list // useState대신 바로 값에 넣어주니 새로고침해도 안사라지더라구요..!
 
     function currentPosts(tmp) {
         let currentPosts = 0;
@@ -48,7 +50,7 @@ function MatingBoard(props) {
           deadRecruitment.push(post_list[i]);
         }
       }
-      setAllPosts(post_list);
+      // setAllPosts(post_list);
       setDeadlinePosts(deadRecruitment);
       setIsNotDeadlinePosts(isRecruitment)
     }, [dispatch]);

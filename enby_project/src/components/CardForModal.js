@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { history } from "../redux/configStore";
 import CardDetail from "./CardDetail";
 
-const Card = (props) => {
+const CardForModal = (props) => {
   const move_page = () => {
     history.push(`/review/write/${props.id}`);
   };
@@ -19,7 +19,9 @@ const Card = (props) => {
                 <CardTitH>{props.title}</CardTitH>
             </CardTit>
             <Line />
-            <CardDetail {...props} />
+            <Body>
+              <CardDetail {...props} />
+            </Body>
             <CardButton>
                 <ApplyButton>
                     후기 남기기
@@ -31,16 +33,18 @@ const Card = (props) => {
 };
 
 const Container = styled.div`
-    width: 200px;
-    height: 560px;
+    width: 320px;
+    height: 440px;
     display: flex;
+    margin: 30px;
+    margin-bottom: 50px;
 `;
 const CardGrid = styled.div`
-  display: block;
-  float: left;
-//   width: 380px;
+  // display: block;
+  
+  width: 320px;
 //   height: 542px;
-  margin: 0 15px 79px auto;
+  // margin: 0 15px 79px auto;
   border: 1px solid #eee;
   cursor: pointer;
   background-color: #f3f3f3;
@@ -58,7 +62,7 @@ const CardGrid = styled.div`
   }
 `;
 const CardImage = styled.img`
-  width: 400px;
+  width: 320px;
   height: 184px;
   objectfit: cover;
   position: relative;
@@ -73,8 +77,8 @@ const CardTit = styled.div`
 const CardTitH = styled.div`
   width: 100%;
   font-family: notosans_bold;
-  font-size: 24px;
-  margin: 0 0 0 26px;
+  font-size: 22px;
+  margin: -10px 0 0 26px;
   float: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -84,52 +88,27 @@ const CardTitH = styled.div`
 
 const Line = styled.div`
   border-bottom: 1px solid #c4c4c4;
-  width: 308px;
+  width: 320px;
   height: 1px;
-  display: absolute;
-  margin: auto auto auto 27px;
+  margin: -20px auto;
 `;
-
-const CardBody = styled.div`
-  width: 100%;
-  hegith: 90%;
-  text-align: left;
-  & button {
-    margin: 40px;
-    position: absolute;
-    width: 167px;
-    height: 40px;
-
-    background: #f1b100;
-    border-radius: 20px;
-    border: 0;
-
-    position: absolute;
-    cursor: pointer;
-
-    font-family: notosans_regular;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 150%;
-    /* identical to box height, or 27px */
-    text-align: center;
-
-    color: #392600;
-  }
+const Body = styled.div`
+  margin-left: -10px;
+  // margin-top: 20px;
+  margin-top: 40px;
 `;
 const CardButton = styled.div`
   float: left;
-  margin: 5px 0 0 27px;
+  margin: 0 0 0 27px;
 `;
 const ApplyButton = styled.button`
-  width: 107px;
-  height: 40px;
+  width: 88px;
+  height: 30px;
   border-radius: 20px;
   border: 0;
   background-color: #f1b100;
   font-family: notosans_regular;
-  font-size: 16px;
+  font-size: 13px;
   cursor: pointer;
 `;
-export default Card;
+export default CardForModal;

@@ -4,7 +4,7 @@ import Search from '../components/Search';
 import styled from 'styled-components';
 import Modal from '../components/Modal';
 import Card from '../components/Card';
-import CardForReview from '../components/CardForReview';
+import CardListForModal from '../components/CardListForModal';
 import Pagination from '../components/Pagination';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,26 +29,38 @@ function ReviewBoard() {
     const name = decode.nickname;
     const apply_list = useSelector((store) => store.user.apply_list)
     const empty_list = apply_list.length === 0? true : false;
-
+    console.log(apply_list);
     useEffect(() => {
         dispatch(userActions.getMyProfileDB(name))
-        setPosts(review_list); // for pagination
-        ;
+        setModalPosts(apply_list); // for Modal pagination
       }, []);
 
-    // pagination
-    const [posts, setPosts] = useState([]);
+    //  리뷰페이지 pagination
+    // const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(6);
-      console.log(posts);
     const indexOfLast = currentPage * postsPerPage;
     const indexOfFirst = indexOfLast - postsPerPage;
     const review_list = useSelector((store) => store.post.review_list)
-
+    const posts = review_list
     function currentPosts(tmp) {
         let currentPosts = 0;
         currentPosts = tmp.slice(indexOfFirst, indexOfLast);
         return currentPosts;
+    }
+
+    // 모달 페이지네이션
+    const [modalPosts, setModalPosts] = useState([]);
+    const [currentModalPage, setCurrentModalPage] = useState(1);
+    const [modalPostsPerPage, setModalPostsPerPage] = useState(3);
+      console.log(modalPosts);
+    const indexOfLastModal = currentModalPage * modalPostsPerPage;
+    const indexOfFirstModal = indexOfLastModal - modalPostsPerPage;
+    
+    function currentModalPosts(tmp) {
+        let currentModalPosts = 0;
+        currentModalPosts = tmp.slice(indexOfFirstModal, indexOfLastModal);
+        return currentModalPosts;
     }
 
     return (
@@ -81,9 +93,10 @@ function ReviewBoard() {
                     </Modal>
                 ) : (
                     <Modal open={ modalOpen } close={ closeModal } header="후기 작성하기">
-                        {apply_list.map((p) => {
-                                return <CardForReview key={p.id} {...p}/>
-                            })}
+                        <CardListForModal apply_list={currentModalPosts(modalPosts)}/>
+                        <Paging>
+                            <Pagination postsPerPage={modalPostsPerPage} totalPosts={apply_list.length} paginate={setCurrentModalPage} />
+                        </Paging>
                     </Modal>
                 )}
             </Main>
@@ -106,7 +119,7 @@ const Top = styled.div`
     display: flex;
 `;
 const SubTitle1 = styled.text`
-    width: 282px;
+    // width: 282px;
     height: 26px;
     font-family: notosans_regular;
     margin-top: 2px;
@@ -128,7 +141,6 @@ const Title = styled.text`
 `;
 
 const SubTitle2 = styled.text`
-    // position: absolute;
     width: 291px;
     height: 28px;
     margin-top: 27px;
@@ -142,7 +154,7 @@ const SubTitle2 = styled.text`
 
 const Main = styled.div`
     width: 100%;
-    max-width: 1920px;
+    // max-width: 1920px;
     height: 100%;
     padding: 85px 200px;
     background: #F8F8F8;
@@ -162,8 +174,13 @@ const Button = styled.button`
     line-height: 150%;
     text-align: center;
     color: #392600;
-    margin-top: 30px;
+    margin-top: 80px;
     margin-left: 540px;
+    cursor: pointer;
+`;
+const Paging = styled.div`
+    position: fixed;
+    margin-top: 455px;
 `;
 
 export default ReviewBoard

@@ -39,23 +39,23 @@ const Card = (props) => {
       </CardTit>
       <Line />
       <CardDetail {...props} />
-      <CardButton>
+      {/* <CardButton>
         <ApplyButton>
           {view(props.board_name)}
         </ApplyButton>
-      </CardButton>
+      </CardButton> */}
     </CardGrid>
   );
 };
 const CardGrid = styled.div`
   display: block;
   float: left;
-  width: 380px;
-  height: 542px;
-  margin: 0 15px 79px 3px;
-  border: 1px solid #eee;
+  width: 282px;
+  height: 408px;
+  margin: 0 12px 79px 3px; // 피그마 마진 24인데 좀 큰듯?
+  // border: 1px solid #eee;
   cursor: pointer;
-  background-color: #f3f3f3;
+  // background-color: #f3f3f3;
   &:hover {
     transition-property: box-shadow;
     transition-duration: 0.15s;
@@ -69,24 +69,24 @@ const CardGrid = styled.div`
   }
 `;
 const CardImage = styled.img`
-  width: 380px;
-  height: 248px;
+  width: 282px;
+  height: 282px;
   objectfit: cover;
   position: relative;
+  border-radius: 20px;
 `;
 
 const CardTit = styled.div`
   display: block;
-  width: 308px;
-  height: 40px;
-  margin: 19px 0 15px 0;
+  width: 205px;
+  height: 27px;
+  margin: 16px 0 0 0;
 `;
 const CardTitH = styled.div`
   color: #000000;
   width: 100%;
   font-family: notosans_bold;
-  font-size: 24px;
-  margin: 0 0 0 26px;
+  font-size: 18px;
   float: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -95,11 +95,11 @@ const CardTitH = styled.div`
 `;
 
 const Line = styled.div`
-  border-bottom: 1px solid #c4c4c4;
-  width: 308px;
-  height: 1px;
-  display: absolute;
-  margin: auto auto auto 27px;
+  // border-bottom: 1px solid #c4c4c4;
+  // width: 308px;
+  // height: 1px;
+  // display: absolute;
+  // margin: auto auto auto 27px;
 `;
 
 const CardBody = styled.div`

@@ -14,8 +14,8 @@ const Main =(props)=>{
   const dispatch = useDispatch();
   const post_list = useSelector((store) => store.post.list)
   const review_list = useSelector((store) => store.post.review_list)
-  const review_lst = review_list.slice(0,3)
-  const post_lst = post_list.slice(0,3)
+  const review_lst = review_list.slice(0,4)
+  const post_lst = post_list.slice(0,4)
   const id = post_list.id
 
   useEffect(()=>{
@@ -67,7 +67,7 @@ const PostList = styled.ul`
   margin-top: 77px;
   padding: 0;
   width: 100%;
-  margin-left: 10px;
+  // margin-left: 10px;
 `
 const PostText = styled.div`
 & span {
@@ -149,7 +149,6 @@ const ReviewList =styled.ul`
   margin-top: 83px;
   width: 100%;
   margin-left: 10px;
-
 `;
 
 export default Main;

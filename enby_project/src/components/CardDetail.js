@@ -61,22 +61,21 @@ const CardDetail =(props)=>{
 const Container = styled.div`
     width : 300px;
     height : 130px;
-    margin : 21px auto auto 26px;
+    margin : 8px 0 0 0;
 `
 const IconBox = styled.div``
 const DateBox = styled.div`
     display : flex;
-    margin-bottom : 21px;
+    margin-bottom : 6px;
 `
 const IconContents = styled.div`
     margin-left : 20px;
     font-family : notosans_regular;
-    font-size : 16px;
+    font-size : 14px;
 `
 const Icon = styled.div`
 font-family : notosans_regular;
-font-size : 16px;
-
+font-size : 14px;
 `
 const BigIcon = styled.div`
     width : 48px;
@@ -84,7 +83,7 @@ const BigIcon = styled.div`
 `
 const PlaceBox = styled.div`
     display : flex;
-    margin-bottom : 21px;
+    margin-bottom : 6px;
 `
 const PersonBox = styled.div`
     display : flex;

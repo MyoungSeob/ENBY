@@ -30,6 +30,7 @@ margin: 0 500px;
 // padding-top: 88px;
 // 카드아래 79마진 되어있는것 적용되서 이부분 주석
 padding-bottom: 170px;
+// position: absolute;
 
 @media (min-width: 600px) and (max-width: 1170px) {
 }

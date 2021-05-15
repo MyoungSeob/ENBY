@@ -16,7 +16,7 @@ const ReviewCard=(props)=>{
                 <CardTit>
                     <CardTitH>{props.title}</CardTitH>
                 </CardTit>
-                <Arrow src={require("../shared/image/arrow.png").default} />
+                {/* <Arrow src={require("../shared/image/arrow.png").default} /> */}
                 <UserInfo>
                     <UserPic src = {props.profile_Img} />
                     <UserNickname>
@@ -28,13 +28,10 @@ const ReviewCard=(props)=>{
     )
 }
 const CardGrid = styled.div`
-    // width: 460px;
-    // height: 601px;
-
     display: block;
   float: left;
-  width: 378.87px;
-  height: 495px;
+  width: 282px;
+  height: 330px;
   margin: 0 15px 79px auto;
   border: 1px solid #eee;
   cursor: pointer;
@@ -50,34 +47,30 @@ const CardGrid = styled.div`
     overflow-anchor: none;
     box-shadow: inset 0 0 0 1px rgb(0 0 0 / 16%);
   }
+  border-radius: 20px;
 `;
 
 const CardImage = styled.img`
     // position: absolute;
-    width: 378.87px;
-    height: 378.87px;
-    // left: 218px;
-    // top: 501px;
-
-    // border-radius: 0px;
-    // width: 338px;
-    // height: 221.49px;
+    width: 282px;
+    height: 242px;
     objectFit: cover;
+    border-radius: 20px 20px 0 0;
 `;
 
 const CardTit = styled.div`
 display: block;
-  width: 308px;
-  height: 40px;
-  margin: 21.13px 0 0 0;
+  width: 242px;
+  height: 27px;
+  margin: 20px 0 0 0;
 
 `;
 const CardTitH = styled.div`
 color: #000000;
   width: 100%;
   font-family: notosans_bold;
-  font-size: 24px;
-  margin: 0 0 0 21px;
+  font-size: 18px;
+  margin: 0 0 0 20px;
   float: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -86,27 +79,30 @@ color: #000000;
 `;
 
 const Arrow = styled.img`
-    margin: 0 21.41px 61px 0;
-    float: right;
+    // margin: 0 21.41px 61px 0;
+    // float: right;
 `;
 
 const UserInfo = styled.div`
+position: absolute;
 display: flex;
-margin-top: 9px;
+margin-top: 2px;
+margin-left: 20px;
 `;
 const UserNickname = styled.text`
-margin-left: 26px;
+margin-left: 5.37px;
 font-family: notosans_regular;
 font-style: normal;
 font-weight: normal;
-font-size: 18px;
-line-height: 26px;
+font-size: 12px;
+line-height: 150%;
 `;
+
 const UserPic = styled.img`
-margin-left: 26px;
+// margin-left: 26px;
 border-radius: 30px;
-width: 24px;
-height: 24px;
+width: 17.61px;
+height: 17.62px;
 `;
 
 export default ReviewCard;

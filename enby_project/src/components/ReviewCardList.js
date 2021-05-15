@@ -25,16 +25,12 @@ const ReviewCardList =(props)=>{
     );
 }
 const ListBody = styled.div`
-    // text-align : center;
-    width: 1200px;
-    // max-width: 1200px;
-    margin: 100px auto 0 auto;
-    // margin: 0 auto;
+    
 `
 const PostList = styled.div`
 padding: 0;
 margin: 0;
-width: 100%;
+width: 1200px;
 `;
 
 export default ReviewCardList

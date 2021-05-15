@@ -165,11 +165,11 @@ const deletePostDB = (id) => {
 
 // 모임게시글 수정하기
 const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
-    console.log('수정')
+
     return function (dispatch, getState, {history}) {
       const token = localStorage.getItem("token")
-
       let formData = new FormData();
+      console.log(boardImg)
       formData.append("title", title);
       formData.append("contents", contents);
       formData.append("boardImg", boardImg);

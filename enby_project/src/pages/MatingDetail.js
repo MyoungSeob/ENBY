@@ -236,7 +236,7 @@ const EditBtn = styled.button`
   font-size: 18px;
   font-family: notosans_regular;
   background-color: #168ED9;
-  color: #000000;
+  color: #ffffff;
   margin-right: 12px;
   cursor: pointer;
 `;

@@ -7,6 +7,7 @@ import { actionsCreators as imgActions } from "../redux/modules/image";
 import { actionsCreators as postActions } from "../redux/modules/post";
 import jwt_decode from "jwt-decode";
 import { history } from "../redux/configStore";
+import upload from '../shared/image/upload.png'
 
 const ReviewBoardWrite = (props) => {
   // 수정모드
@@ -91,14 +92,39 @@ const ReviewBoardWrite = (props) => {
       return reviewImg
     }
   }
-  console.log(reviewImg)
   const addReview = () => {
     dispatch(postActions.addReviewDB(board_id, title, contents, reviewImg));
   };
   const editReview = () => {
     dispatch(postActions.editReviewDB(id, board_id, title, contents, editReviewImage()));
   };
-
+  const is_upload =()=>{
+    if( reviewImg === ""){
+      return (
+        <Label for="reviewImage">
+              <span>
+                <LabelBox>
+                  <LabelImage src={upload} />
+                  <Label_ for="reviewImage">이미지 불러오기</Label_>
+                </LabelBox>
+              </span>
+            </Label>
+      )
+    }else{
+      return (
+        _review ? (<>
+          <LabelUpload for="reviewImage" />
+          <PreviewImage src={reviewEditPreview()}/>
+        </>) : (
+          <>
+          <LabelUpload for="reviewImage" />
+          <PreviewImage src={preview}/>
+        </>
+        )
+        
+      );
+    }
+  }
   return (
     <Container>
       <Test>
@@ -123,6 +149,7 @@ const ReviewBoardWrite = (props) => {
 
         <ContentsBox>
           <ImageBox>
+            {is_upload()}
             <Image
               onChange={selectFile}
               placeholder="사진을 추가해주세요"
@@ -161,17 +188,61 @@ const Test = styled.div`
 const ImageBox = styled.div`
   width: 718px;
   margin : auto 61px 170px auto;
+  display : block;
 `;
 const Image = styled.input`
-  display: block;
-  width: 718px;
-  height: 718px;
-  background: #d9d9d9;
+  display : none;
+`;
+const Label = styled.label`
+  display : inline-block;
+  width: 513px;
+  height: 513px;
+  background: #f8f8f8;
   background-image: url(${(props) => props.src});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-`;
+  `
+const ImageUpload = styled.input`
+display : none;
+width: 513px;
+height: 513px;
+background: #f8f8f8;
+background-image: url(${(props) => props.src});
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+`
+const LabelUpload = styled.label`
+position : absolute;
+width: 513px;
+height: 513px;
+`
+const PreviewImage = styled.img`
+  width  : 513px;
+  height : 513px;
+`
+const Label_ = styled.label`
+  background-color : #168ed9;
+  width : 167px;
+  height : 30px;
+  color : #ffffff;
+  text-align : center;
+  border-radius : 20px;
+  margin-top : 20px;
+  padding-top : 10px;
+  cursor : pointer;
+`
+const LabelBox = styled.div`
+  display : flex;
+  flex-direction : column;
+  margin : 210px 173px;
+`
+const LabelImage = styled.img`
+  width : 24px;
+  height : 34px;
+  margin : auto;
+`
 const TitleBox = styled.div`
   width: 100%;
   height : 233px;
@@ -197,9 +268,10 @@ const InputBox = styled.input`
   border-radius: 20px;
 `;
 const TextBox = styled.div`
-  width : 718px;
-  height : 421px;
+  width : 615px;
+  height : 511px;
   float : right;
+
 `
 const ContentsBox = styled.div`
   display: flex;
@@ -224,9 +296,9 @@ const Contents = styled.textarea`
   display: block;
   padding: 11px 20px;
 
-  width: 421px;
-  height: 642px;
-  margin: 33px 0 33px 0;
+  width: 615px;
+  height: 437px;
+  margin-top: 43px;
 
   background: #ffffff;
   border: 1px solid #b9b9b9;
@@ -236,9 +308,12 @@ const Contents = styled.textarea`
 `;
 
 const PostButton = styled.button`
-  background: #f1b100;
+  background: #168ed9;
   border-radius: 20px;
   margin : auto;
+  color : #ffffff;
+  font-family : notosans_regular;
+  font-size : 18px;
 
   width: 167px;
   height: 40px;

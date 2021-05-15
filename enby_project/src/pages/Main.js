@@ -72,14 +72,13 @@ const Main =(props)=>{
 }
 const Container = styled.div`
 display : block;
-  margin : 0 auto 0 auto;
 `
 const Box = styled.div`
-  width : auto;
+  width : 100%;
   margin : auto;
 `
 const CarouselBox = styled.div`
-  width : 100%;
+  width : auto;
   height : 520px;
   margin : auto;
 `
@@ -87,7 +86,6 @@ const PostList = styled.div`
   display : flex;
   justify-content : space-between;
   margin: 34px auto auto auto;
-
   width: 1200px;
 
 `

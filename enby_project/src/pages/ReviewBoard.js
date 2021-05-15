@@ -12,11 +12,15 @@ import {actionsCreators as userActions} from '../redux/modules/user'
 import jwt_decode from 'jwt-decode';
 
 function ReviewBoard() {  
-
+     // 참여했던 모임
+     const dispatch = useDispatch();
+     const apply_list = useSelector((store) => store.user.apply_list)
+     const empty_list = apply_list.length === 0? true : false;
     // Modal  
     const [ modalOpen, setModalOpen ] = useState(false);
     const openModal = () => {
         if(localStorage.getItem('token') !== null){
+            setModalPosts(apply_list);
             setModalOpen(true);
         }else{
             window.alert('후기글 작성은 로그인이 후 이용 가능합니다.')
@@ -27,21 +31,12 @@ function ReviewBoard() {
         setModalOpen(false);
     }
 
-    // 참여했던 모임
-    const dispatch = useDispatch();
-    const apply_list = useSelector((store) => store.user.apply_list)
-    const empty_list = apply_list.length === 0? true : false;
-
-    
-
-
     useEffect(() => {
         if (localStorage.getItem("token") !== null) {
           const token = localStorage.getItem("token");
           const decode = jwt_decode(token);
           const name = decode.nickname;
           dispatch(userActions.getMyProfileDB(name));
-          setModalPosts(apply_list);
         }
         // for Modal pagination
       }, []);
@@ -49,7 +44,7 @@ function ReviewBoard() {
     //  리뷰페이지 pagination
     // const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(6);
+    const [postsPerPage, setPostsPerPage] = useState(12);
     const indexOfLast = currentPage * postsPerPage;
     const indexOfFirst = indexOfLast - postsPerPage;
     const review_list = useSelector((store) => store.post.review_list)
@@ -59,6 +54,18 @@ function ReviewBoard() {
         currentPosts = tmp.slice(indexOfFirst, indexOfLast);
         return currentPosts;
     }
+
+    // const writereviewBefore = [];
+    // const is_write_review =()=>{
+    //     if(localStorage.getItem('token') !== null){
+    //         for(let i = 0 ; i < review_list.length; i ++){
+    //             if(localStorage.getItem('token') === review_list[i].nickname){
+
+    //             }
+    //         }
+    //     }
+    // }
+
 
     // 모달 페이지네이션
     const [modalPosts, setModalPosts] = useState([]);
@@ -74,61 +81,61 @@ function ReviewBoard() {
     }
 
     return (
-        <Container>
-            <Head>
-                <SubTitle1>
-                    Share your experience with ENBY!
-                </SubTitle1>
-                <Title>
-                    Reviews
-                </Title>
-                <SubTitle2>
-                    당신의 엔비를 공유해주세요!
-                </SubTitle2>
-            </Head>
-            <Main>
-                <Top>
-                    <Search />
-                    <Button
-                        onClick={ openModal }>
-                    후기글 작성하기
-                    </Button>
-                </Top>
-                <ReviewCardList review_list={currentPosts(posts)}/>
-                <Pagination postsPerPage={postsPerPage} totalPosts={review_list.length} paginate={setCurrentPage} />
-                {empty_list? (
-                    <Modal open={ modalOpen } close={ closeModal } header="후기 작성하기">
-                        현재 후기를 남길 모임이 없어요🥲 <br/>
-                        <button>모임 참여하러 가기!</button>                        
-                    </Modal>
-                ) : (
-                    <Modal open={ modalOpen } close={ closeModal } header="후기 작성하기">
-                        <CardListForModal apply_list={currentModalPosts(modalPosts)}/>
-                        <Paging>
-                            <Pagination postsPerPage={modalPostsPerPage} totalPosts={apply_list.length} paginate={setCurrentModalPage} />
-                        </Paging>
-                    </Modal>
-                )}
-            </Main>
-        </Container>
-    )
+      <Container>
+        <Head>
+          <SubTitle1>Share your experience with ENBY!</SubTitle1>
+          <Title>Reviews</Title>
+          <SubTitle2>당신의 엔비를 공유해주세요!</SubTitle2>
+        </Head>
+        <Main>
+          <Top>
+            <Search />
+            <ButtonBox>
+              <Button onClick={openModal}>후기글 작성하기</Button>
+            </ButtonBox>
+          </Top>
+          <ReviewCardList review_list={currentPosts(posts)} />
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={review_list.length}
+            paginate={setCurrentPage}
+          />
+          {empty_list ? (
+            <Modal open={modalOpen} close={closeModal} header="후기 작성하기">
+              현재 후기를 남길 모임이 없어요🥲 <br />
+              <button>모임 참여하러 가기!</button>
+            </Modal>
+          ) : (
+            <Modal open={modalOpen} close={closeModal} header="후기 작성하기">
+              <CardListForModal apply_list={currentModalPosts(modalPosts)} />
+              <Paging>
+                <Pagination
+                  postsPerPage={modalPostsPerPage}
+                  totalPosts={apply_list.length}
+                  paginate={setCurrentModalPage}
+                />
+              </Paging>
+            </Modal>
+          )}
+        </Main>
+      </Container>
+    );
 }
 
 const Container = styled.div`
-    width: 100%;
-    max-width: 1200px;
+    width: 1200px;
     margin: auto;
 `;
 const Head = styled.div`
-    height: 264px;
-    margin-top: 68px;
-    display: flex;
-    flex-direction:column;
+    height: 130px;
+    margin: 37px 0 54px 0;
 `;
 const Top = styled.div`
     display: flex;
+    justify-content : space-between;
+    margin-bottom : 54px;
 `;
-const SubTitle1 = styled.text`
+const SubTitle1 = styled.div`
     // width: 282px;
     height: 26px;
     font-family: notosans_regular;
@@ -138,7 +145,7 @@ const SubTitle1 = styled.text`
     color: #7D7D7D;
 `;
 
-const Title = styled.text`
+const Title = styled.div`
     width: 132px;
     height: 37px;
 
@@ -150,7 +157,7 @@ const Title = styled.text`
     color: #000000;
 `;
 
-const SubTitle2 = styled.text`
+const SubTitle2 = styled.div`
     width: 291px;
     height: 28px;
     margin-top: 27px;
@@ -163,32 +170,32 @@ const SubTitle2 = styled.text`
 `;
 
 const Main = styled.div`
-    width: 100%;
-    // max-width: 1920px;
+    width: 1200px;
     height: 100%;
-    padding: 85px 200px;
-    background: #F8F8F8;
-    margin-left: -180px;
-    margin-top: -80px;
+    margin : auto;
+    background: #ffffff;
+
     background-size: cover;
 `;
+const ButtonBox = styled.div`
+    display : inline-block;
+    float : right;
+    padding-top: 46px;
+`
 
 const Button = styled.button`
     width: 167px;
     height: 40px;
     border: none;
-    background: #F1B100;
+    background: #168ed9;
     border-radius: 20px;
     font-family: notosans_regular;
     font-size: 18px;
     line-height: 150%;
     text-align: center;
-    color: #392600;
-    margin-top: 80px;
+    color: #ffffff;
     // margin-left: 540px;
     cursor: pointer;
-    margin-right: 30px;
-    float: right;
 `;
 const Paging = styled.div`
     position: fixed;

@@ -79,10 +79,11 @@ const ImageRectangle = styled.div`
     position : relative;
 `
 const ContentsImage = styled.div`
-  width: 718px;
-  height: 718px;
+  width: 513px;
+  height: 513px;
+  border-radius : 20px;
   background-image: url("${(props) => props.src}");
-  background-size: cover;
+  background-size: 513px 513px;
   background-position: center;
   background-repeat: no-repeat;
 `;
@@ -134,7 +135,9 @@ const MainTitle = styled.div`
   height: 520px;
   background-image: url("${(props) => props.src}");
   background-position: center;
+  background-size : inherit;
   background-repeat: no-repeat;
+  margin : auto;
 
 `;
 export default Image;

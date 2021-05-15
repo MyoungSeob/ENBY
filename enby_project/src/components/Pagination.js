@@ -6,9 +6,9 @@ const PagingMating = ({ postsPerPage, totalPosts, paginate }) => {
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
       pageNumbers.push(i);
     }
+
     return (
         <Container>
-          <nav>
               <PageUl className="pagination">
               {pageNumbers.map(number => (
                   <PageLi key={number} className="page-item">
@@ -18,19 +18,17 @@ const PagingMating = ({ postsPerPage, totalPosts, paginate }) => {
                   </PageLi>
               ))}
               </PageUl>
-          </nav>
         </Container>
       );
       };
 
 const Container = styled.div`
-width: 100%
-float: center;
-margin: 0 500px;
+display : flex;
+width: 1200px;
+margin : auto;
 // padding-top: 88px;
 // 카드아래 79마진 되어있는것 적용되서 이부분 주석
-padding-bottom: 170px;
-// position: absolute;
+padding-bottom: 120px;
 
 @media (min-width: 600px) and (max-width: 1170px) {
 }
@@ -40,9 +38,9 @@ padding-bottom: 170px;
 
 }
 `;
-const PageUl = styled.ul`
+const PageUl = styled.div`
+  margin  :auto;
   list-style: none;
-  text-align:center;
   border-radius:3px;
   color: #8F8F8F;
   font-family: notosans_regular;

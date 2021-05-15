@@ -72,7 +72,9 @@ const ReviewDetail = (props) => {
       return "";
     }
   };
-
+  const moveMatingDetailBoard = ()=>{
+    history.push('/board/mating/' + review_detail.board_id)
+  }
   return (
     <Container>
       <TopBox>
@@ -109,7 +111,7 @@ const ReviewDetail = (props) => {
         </ContentsBox>
       </BottomBox>
       <MoveMoimButton>
-        <Moim>원본 게시글 보기</Moim>
+        <Moim onClick={moveMatingDetailBoard}>원본 모집글 보기</Moim>
       </MoveMoimButton>
     </Container>
   );
@@ -191,17 +193,17 @@ const TitleBtnName = styled.button`
 const BottomBox = styled.div`
   width: 1200px;
   display: flex;
-  margin: auto auto 30px auto;
+  margin: auto auto 40px auto;
 `;
 const ContentImage = styled.div`
-  width: 718px;
-  margin: 0;
+  width: 513px;
+  margin: 0 48px 0 0;
   display: block;
 `;
 const ContentsBox = styled.div`
-  width: 421px;
-  height: 718px;
-  margin: 0 auto auto 61px;
+  width: 639px;
+  height: 407px;
+  margin: 0 auto auto 0;
   display: block;
 `;
 const ContentsTit = styled.div`
@@ -232,13 +234,13 @@ const EditBtn = styled.button`
   text-align: center;
   font-size: 18px;
   font-family: notosans_regular;
-  background-color: #f1b100;
-  color: #000000;
+  background-color: #168ed9;
+  color: #ffffff;
   margin-right: 12px;
   cursor: pointer;
 `;
 const DeleteBtn = styled.button`
-  border: 1px solid #f1b100;
+  border: 1px solid #168ed9;
   border-radius: 20px;
   width: 167px;
   height: 40px;
@@ -252,7 +254,7 @@ const DeleteBtn = styled.button`
 `;
 const MoveMoimButton = styled.div`
   display: block;
-  margin: auto auto 100px auto;
+  margin: auto auto 90px auto;
   width: 1200px;
 `;
 const Moim = styled.button`
@@ -263,5 +265,6 @@ const Moim = styled.button`
   font-family: notosans_regular;
   font-size: 18px;
   background-color: #ffffff;
+  cursor : pointer;
 `;
 export default ReviewDetail;

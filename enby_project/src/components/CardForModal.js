@@ -12,75 +12,58 @@ const CardForModal = (props) => {
 
 
   return (
-      <Container>
-        <CardGrid onClick={move_page}>
-            <CardImage src={props.board_imgUrl} />
-            <CardTit>
-                <CardTitH>{props.title}</CardTitH>
-            </CardTit>
-            <Line />
-            <Body>
-              <CardDetail {...props} />
-            </Body>
-            <CardButton>
-                <ApplyButton>
-                    후기 남기기
-                </ApplyButton>
-            </CardButton>
-        </CardGrid>
+    <Container>
+      <CardGrid onClick={move_page}>
+        <CardImage src={props.board_imgUrl} />
+        <CardTit>
+          <CardTitH>{props.title}</CardTitH>
+        </CardTit>
+        <CardDetail {...props} />
+      </CardGrid>
     </Container>
   );
 };
 
 const Container = styled.div`
-    width: 320px;
-    height: 440px;
-    display: flex;
-    margin: 20px;
-    margin-bottom: 50px;
 `;
 const CardGrid = styled.div`
-  // display: block;
-  
-  width: 320px;
-//   height: 542px;
-  // margin: 0 15px 79px auto;
-  border: 1px solid #eee;
-  border-radius: 10px;
+  float: left;
+  width: 282px;
+  height: 408px;
+  margin: 0 52px 79px 52px;
+  border-radius : 20px;
   cursor: pointer;
-  background-color: #f3f3f3;
-  justify-content: space-between;
+  background-color: #ffffff;
   &:hover {
     transition-property: box-shadow;
     transition-duration: 0.15s;
     transition-timing-function: ease-out;
     transition-delay: 0s;
-    // box-sizing: border-box;
     letter-spacing: 0px;
     -webkit-font-smoothing: antialiased;
     overflow-anchor: none;
-    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 16%);
+    box-shadow: 3px 1px 0 0 rgb(0 0 0 / 10%);
   }
 `;
 const CardImage = styled.img`
-  border-radius: 10px 10px 0 0;
-  width: 320px;
-  height: 184px;
-  objectfit: cover;
+  width: 282px;
+  height: 282px;
+  border-radius : 20px;
+  objectfit: inherit;
   position: relative;
 `;
 
 const CardTit = styled.div`
   display: block;
-  width: 108px;
-  height: 40px;
-  margin: 19px 0 15px 0;
+  width: 282px;
+  height: 27px;
+  margin: 14px 0 8px 1px;
 `;
 const CardTitH = styled.div`
+  color: #000000;
   width: 100%;
   font-family: notosans_bold;
-  font-size: 22px;
-  margin: -10px 0 0 26px;
+  font-size: 18px;
   float: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -90,27 +73,53 @@ const CardTitH = styled.div`
 
 const Line = styled.div`
   border-bottom: 1px solid #c4c4c4;
-  width: 320px;
+  width: 308px;
   height: 1px;
-  margin: -20px auto;
+  display: absolute;
+  margin: auto auto auto 27px;
 `;
-const Body = styled.div`
-  margin-left: -10px;
-  // margin-top: 20px;
-  margin-top: 40px;
+
+const CardBody = styled.div`
+  width: 100%;
+  hegith: 90%;
+  text-align: left;
+  margin-bottom:
+  & button {
+    margin: 40px;
+    position: absolute;
+    width: 167px;
+    height: 40px;
+
+    background: #f1b100;
+    border-radius: 20px;
+    border: 0;
+
+    position: absolute;
+    cursor: pointer;
+
+    font-family: notosans_regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 150%;
+    /* identical to box height, or 27px */
+    text-align: center;
+
+    color: #392600;
+  }
 `;
 const CardButton = styled.div`
   float: left;
-  margin: 0 0 0 27px;
+  margin: 5px 0 0 27px;
 `;
 const ApplyButton = styled.button`
-  width: 88px;
-  height: 30px;
+  width: 167px;
+  height: 40px;
   border-radius: 20px;
   border: 0;
   background-color: #f1b100;
   font-family: notosans_regular;
-  font-size: 13px;
+  font-size: 16px;
   cursor: pointer;
 `;
 export default CardForModal;

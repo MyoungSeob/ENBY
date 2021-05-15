@@ -30,7 +30,7 @@ import santa from '../shared/image/santatit.png'
 
 const Container = styled.div`
   position : absolute;
-  width: 1920px;
+  width: 100%;
   height: 520px;
   margin : 0px auto 0px auto;
   z-index : -1;

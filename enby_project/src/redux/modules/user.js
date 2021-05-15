@@ -73,9 +73,6 @@ const getMyProfileDB =(name)=>{
     const nickname = decode.nickname;
     axios({
       method: "get",
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
       url : `http://3.36.67.251:8080/mypage/${name}`
     })
     .then(res => {
@@ -131,9 +128,6 @@ const getOtherPageDB =(otherName)=>{
     axios({
       method : 'get',
       url : `http://3.36.67.251:8080/mypage/${otherName}`,
-      headers : {
-        authorization: `Bearer ${token}`,
-      },
     })
     .then(res => {
       console.log(res)

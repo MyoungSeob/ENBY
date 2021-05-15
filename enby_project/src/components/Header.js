@@ -29,8 +29,7 @@ function Header() {
     <Container>
       <HeaderGrid>
         <LogoBox>
-          <Logo onClick={move_main}>ENBY</Logo>
-          <LogoSmall onClick={move_main}>exercise mate near by you</LogoSmall>
+          <Logo onClick={move_main}>SANTA</Logo>
         </LogoBox>
         {localStorage.getItem("token") ? (
           <CategoryBox>
@@ -52,9 +51,9 @@ function Header() {
 const Container = styled.div`
   width: 100%;
   min-width : 1200px;
-  height: 100px;
-  background-color: #000000;
-  display: flex;
+  height: 80px;
+  background-color: #ffffff;
+  display: inline-block;
   font-family : seravek;
 `;
 const HeaderGrid = styled.div`
@@ -62,34 +61,28 @@ const HeaderGrid = styled.div`
   margin: 0 auto 0 auto;
 `;
 const LogoBox = styled.div`
-  display: flex;
+  display: inline-block;
   float : left;
   width: 289px;
   height: 39px;
-  vertical-align: middle;
-  padding-top: 30px;
+  margin-top : 20px;
+
 `;
 const Logo = styled.h1`
   font-size: 32px;
   margin: 0;
-  color: #ffffff;
+  color: #168ed9;
   font-style: italic;
   font-weight: bold;
   cursor: pointer;
 `;
-const LogoSmall = styled.p`
-  color: #ffffff;
-  font-size: 18px;
-  margin: 0 0 0 17px;
-  padding-top: 9px;
-  cursor: pointer;
-`;
+
 const CategoryBox = styled.div`
   text-align: right;
   float: right;
   margin: auto 0 auto auto;
   display: flex;
-  padding-top : 20px;
+  padding-top: 10px;
 `;
 const Logout = styled.p`
   color: gray;
@@ -99,12 +92,12 @@ const Logout = styled.p`
 `;
 
 const MyPage = styled.p`
-  color: #ffffff;
+  color: #168ed9;
   cursor: pointer;
   font-size: 18px;
 `;
 const LogIn = styled.p`
-  color: #ffffff;
+  color: #168ed9;
   cursor: pointer;
   font-size: 18px;
 `;

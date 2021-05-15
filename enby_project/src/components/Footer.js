@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import home from "../shared/image/home.png";
-import question from "../shared/image/question.png";
-import insta from "../shared/image/insta.png";
+import home from "../shared/image/bluehouse.png";
+import question from "../shared/image/bluequestion.png";
+import insta from "../shared/image/blueinsta.png";
 import { history } from "../redux/configStore";
 
 const Footer = (props) => {
@@ -16,14 +16,14 @@ const Footer = (props) => {
   return (
     <Container>
       <FooterTitle>
-        <TitleBox onClick={moveHome}>
-          <Title>ENBY</Title>
-          <SubTitle>exercise mate near by you</SubTitle>
+        <TitleBox>
+          <Title onClick={moveHome}>SANTA</Title>
         </TitleBox>
         <IconBox>
+        <Icon_ src={insta}  />
           <Icon src={home} onClick={moveHome}/>
-          <Icon src={question} />
-          <Icon_ src={insta} onClick={googleForms} />
+          <Icon src={question} onClick={googleForms}/>
+         
         </IconBox>
       </FooterTitle>
     </Container>
@@ -31,8 +31,8 @@ const Footer = (props) => {
 };
 const Container = styled.div`
   width: 100%;
-  height: 298px;
-  background-color: #333333;
+  height: 300px;
+  background-color: #f6fbff;
   display: flex;
 `;
 const FooterTitle = styled.div`
@@ -42,7 +42,6 @@ const FooterTitle = styled.div`
 `;
 const TitleBox = styled.div`
   display: flex;
-  cursor: pointer;
   width: 289px;
   height: 39px;
 `;
@@ -50,15 +49,9 @@ const Title = styled.h1`
   font-family: seravek;
   font-size: 32px;
   font-style: italic;
-  color: #ffffff;
+  color: #168ed9;
   margin: 0;
-`;
-
-const SubTitle = styled.p`
-  font-family: seravek;
-  font-size: 18px;
-  color: #ffffff;
-  margin: 10px 0 0 17px;
+  cursor : pointer;
 `;
 const IconBox = styled.div`
   float: right;
@@ -66,7 +59,7 @@ const IconBox = styled.div`
   margin: 0 0 0 auto;
 `;
 const Icon = styled.img`
-  margin-right: 50px;
+  margin-left: 50px;
   cursor: pointer;
   width: 40px;
   height: 40px;

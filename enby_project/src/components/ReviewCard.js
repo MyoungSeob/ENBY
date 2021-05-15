@@ -16,7 +16,6 @@ const ReviewCard=(props)=>{
                 <CardTit>
                     <CardTitH>{props.title}</CardTitH>
                 </CardTit>
-                <Arrow src={require("../shared/image/arrow.png").default} />
                 <UserInfo>
                     <UserPic src = {props.profile_Img} />
                     <UserNickname>
@@ -33,10 +32,11 @@ const CardGrid = styled.div`
 
     display: block;
   float: left;
-  width: 378.87px;
-  height: 495px;
-  margin: 0 15px 79px auto;
+  width: 282px;
+  height: 330px;
+//   margin: 0 15px 79px auto;
   border: 1px solid #eee;
+  border-radius : 20px;
   cursor: pointer;
   background: #FFFFFF;
   justify-content: space-between;
@@ -54,11 +54,11 @@ const CardGrid = styled.div`
 
 const CardImage = styled.img`
     // position: absolute;
-    width: 378.87px;
-    height: 378.87px;
+    width: 282px;
+    height: 242px;
     // left: 218px;
     // top: 501px;
-
+    border-radius : 20px 20px 0 0;
     // border-radius: 0px;
     // width: 338px;
     // height: 221.49px;
@@ -67,17 +67,16 @@ const CardImage = styled.img`
 
 const CardTit = styled.div`
 display: block;
-  width: 308px;
-  height: 40px;
-  margin: 21.13px 0 0 0;
+  width: 242px;
+  height: 27px;
+  margin: 17px 20px 2px 20px;
 
 `;
 const CardTitH = styled.div`
 color: #000000;
   width: 100%;
   font-family: notosans_bold;
-  font-size: 24px;
-  margin: 0 0 0 21px;
+  font-size: 18px;
   float: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -95,18 +94,17 @@ display: flex;
 margin-top: 9px;
 `;
 const UserNickname = styled.text`
-margin-left: 26px;
+margin-left: 5.3px;
 font-family: notosans_regular;
 font-style: normal;
 font-weight: normal;
-font-size: 18px;
-line-height: 26px;
+font-size: 12px;
 `;
 const UserPic = styled.img`
-margin-left: 26px;
-border-radius: 30px;
-width: 24px;
-height: 24px;
+margin-left: 20px;
+border-radius: 10px;
+width: 17.6px;
+height: 17.6px;
 `;
 
 export default ReviewCard;

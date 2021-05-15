@@ -16,7 +16,12 @@ function ReviewBoard() {
     // Modal  
     const [ modalOpen, setModalOpen ] = useState(false);
     const openModal = () => {
-        setModalOpen(true);
+        if(localStorage.getItem('token') !== null){
+            setModalOpen(true);
+        }else{
+            window.alert('후기글 작성은 로그인이 후 이용 가능합니다.')
+        }
+        
     }
     const closeModal = () => {
         setModalOpen(false);
@@ -24,15 +29,21 @@ function ReviewBoard() {
 
     // 참여했던 모임
     const dispatch = useDispatch();
-    const token = localStorage.getItem("token");
-    const decode = jwt_decode(token);
-    const name = decode.nickname;
     const apply_list = useSelector((store) => store.user.apply_list)
     const empty_list = apply_list.length === 0? true : false;
-    console.log(apply_list);
+
+    
+
+
     useEffect(() => {
-        dispatch(userActions.getMyProfileDB(name))
-        setModalPosts(apply_list); // for Modal pagination
+        if (localStorage.getItem("token") !== null) {
+          const token = localStorage.getItem("token");
+          const decode = jwt_decode(token);
+          const name = decode.nickname;
+          dispatch(userActions.getMyProfileDB(name));
+          setModalPosts(apply_list);
+        }
+        // for Modal pagination
       }, []);
 
     //  리뷰페이지 pagination
@@ -53,7 +64,6 @@ function ReviewBoard() {
     const [modalPosts, setModalPosts] = useState([]);
     const [currentModalPage, setCurrentModalPage] = useState(1);
     const [modalPostsPerPage, setModalPostsPerPage] = useState(3);
-      console.log(modalPosts);
     const indexOfLastModal = currentModalPage * modalPostsPerPage;
     const indexOfFirstModal = indexOfLastModal - modalPostsPerPage;
     

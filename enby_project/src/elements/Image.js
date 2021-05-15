@@ -39,6 +39,11 @@ const Image =(props)=>{
             <Moimcontents {...styles} />
         )
     }
+    if(shape === "maintitle"){
+        return(
+            <MainTitle {...styles}/>
+        )
+    }
     return(
         <ImageDefault {...styles} />
     )
@@ -122,5 +127,14 @@ const MoimcontentsDeadline = styled.div`
   background-repeat: no-repeat;
   filter: blur(10px) brightness(50%) grayscale(100%);
   transform : scale(1.2);
+`;
+const MainTitle = styled.div`
+  width: 1920px;
+  min-width: 1200px;
+  height: 520px;
+  background-image: url("${(props) => props.src}");
+  background-position: center;
+  background-repeat: no-repeat;
+
 `;
 export default Image;

@@ -42,6 +42,7 @@ const MatingDetail = (props) => {
       dispatch(postActions.deletePostDB(id));
     }
   };
+  
   const none_login_editButton=()=>{
     if(localStorage.getItem("token") !== null){
       const token = localStorage.getItem("token");
@@ -49,13 +50,16 @@ const MatingDetail = (props) => {
       return (
         createdBy === decode.nickname ? (
           <EditButton>
-            <EditBtn
+            {!data.deadlineStatus ? (
+              <EditBtn
               onClick={() => {
                 history.push("/board/write/" + id);
               }}
             >
               수정하기
             </EditBtn>
+            ) : ("")}
+     
             <DeleteBtn onClick={deletePost}>삭제하기</DeleteBtn>
           </EditButton>
         ) : (
@@ -207,7 +211,7 @@ const ToListButton = styled.div`
   display: block;
 `;
 const ToListBtn = styled.button`
-  border: 1px solid #000000;
+  border: 1px solid #808080;
   border-radius: 20px;
   width: 167px;
   height: 40px;
@@ -231,13 +235,13 @@ const EditBtn = styled.button`
   text-align: center;
   font-size: 18px;
   font-family: notosans_regular;
-  background-color: #f1b100;
+  background-color: #168ED9;
   color: #000000;
   margin-right: 12px;
   cursor: pointer;
 `;
 const DeleteBtn = styled.button`
-  border: 1px solid #f1b100;
+  border: 1px solid #168ED9;
   border-radius: 20px;
   width: 167px;
   height: 40px;
@@ -278,6 +282,7 @@ const ApplicationBox = styled.div`
 `;
 const ReviewContainer = styled.div`
   margin-top : 80px;
+  // margin: 34px auto 150px auto;
 `
 
 export default MatingDetail;

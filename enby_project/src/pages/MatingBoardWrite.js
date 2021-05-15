@@ -356,7 +356,7 @@ const Icon = styled.img`
 `;
 
 const PostButton = styled.button`
-  background: #f1b100;
+  background: #168ED9;
   border-radius: 20px;
   margin-left : 38px;
 
@@ -365,13 +365,22 @@ const PostButton = styled.button`
 
   cursor: pointer;
   border: 0;
-`;
+  font-family: notosans_regular;
+  font-size: 18px;
+  line-height: 150%;
+  color: #FFFFFF;
+  `;
 const EditButton = styled.button`
-  background: #F1B100;
+  background: #168ED9;
   border-radius: 20px;
   width: 167px;
   height: 40px;
   cursor: pointer;
+
+  font-family: notosans_regular;
+  font-size: 18px;
+  line-height: 150%;
+  color: #FFFFFF;
 `;
 
 

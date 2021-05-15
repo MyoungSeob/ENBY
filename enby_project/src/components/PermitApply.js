@@ -108,10 +108,11 @@ const CheckAccept = styled.button`
     height: 40px;
     font-size : 18px;
     font-family : notosans_regular;
+    color: #FFFFFF;
     border : none;
     border-radius : 20px;
     outline : none;
-    background-color : #F1B100;
+    background-color : #168ED9;
 `
 const AcceptButton = styled.button`
   width: 167px;
@@ -121,7 +122,7 @@ const AcceptButton = styled.button`
   border : none;
   border-radius : 20px;
   outline : none;
-  background-color : #F1B100;
+  background-color : #168ED9;
   padding-bottom : 2px;
   cursor : pointer;
   margin-bottom : 10px;
@@ -132,7 +133,7 @@ const RejectButton = styled.button`
   height: 40px;
   font-size : 18px;
   font-family : notosans_regular;
-  border : 1px solid #f1b100;
+  border : 1px solid #168ED9;
   border-radius : 20px;
   background-color : #f8f8f8;
   padding-bottom : 2px;

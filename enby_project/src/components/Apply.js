@@ -224,10 +224,11 @@ const ApplyButton = styled.button`
   height: 40px;
   font-size: 18px;
   font-family: notosans_regular;
+  color: #ffffff;
   border: none;
   border-radius: 20px;
   outline: none;
-  background-color: #f1b100;
+  background-color: #168ED9;
   padding-bottom: 2px;
   cursor: pointer;
 `;

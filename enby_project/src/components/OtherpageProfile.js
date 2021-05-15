@@ -31,7 +31,7 @@ const Container = styled.div`
     width : 1200px;
     height : 310px;
     margin : auto;
-    padding-top : 190px;
+    padding-top : 121px;
 `
 const Grid = styled.div`
 width : 424px;

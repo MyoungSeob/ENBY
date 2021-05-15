@@ -50,10 +50,9 @@ const ListBody = styled.div`
 `
 const PostList = styled.div`
 display : flex;
-justify-content : space-between;
+// justify-content : space-between;
 flex-wrap : wrap;
 padding: 0;
-margin: 0;
 width: 1200px;
 `
 

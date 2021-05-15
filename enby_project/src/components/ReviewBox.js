@@ -71,7 +71,7 @@ const MoreReviewBtn = styled.div`
 `
 const MoveReviewBoard = styled.button`
     margin-top : 20px;
-    border : 1px solid #000000;
+    border : 1px solid #808080;
     width : 167px;
     height : 40px;
     border-radius : 20px;
@@ -83,7 +83,7 @@ const CardListBox = styled.div`
 width : 1200px;
 margin : auto;
 display : block;
-
+margin-bottom: 350px;
 `
 const Notice = styled.p`
     text-align : center;

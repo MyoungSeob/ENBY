@@ -130,7 +130,7 @@ const Button = styled.button`
   width: 167px;
   height: 40px;
   border-radius: 20px;
-  border: 1px solid #000000;
+  border: 1px solid #808080;
   background-color: white;
   cursor : pointer;
 `;

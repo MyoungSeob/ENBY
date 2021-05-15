@@ -66,10 +66,10 @@ const DeadLineBtn = styled.button`
   height: 40px;
   font-size: 18px;
   font-family: notosans_regular;
-  border: none;
+  border: 1px solid #168ED9;
   border-radius: 20px;
   outline: none;
-  background-color: #f1b100;
+  // background-color: #f1b100;
   padding-bottom: 2px;
   cursor: pointer;
   margin: auto 0px auto auto;
@@ -80,7 +80,7 @@ const DidDeadLineBtn = styled.button`
   height: 40px;
   font-size: 18px;
   font-family: notosans_regular;
-  border: 1px solid #f1b100;
+  border: 1px solid #168ED9;
   border-radius: 20px;
   outline: none;
   background-color: #f8f8f8;

@@ -73,14 +73,16 @@ const PersonBox = styled.div`
 const ProgressBar = styled.div`
     width : 150px;
     height : 6px;
-    background-color : #B9B9B9;
+    background-color : #D9D9D9;
     margin-left : 20px;
     margin-top : 22px;
+    border-radius: 9px;
 `
 const ProgressBar_ = styled.div`
     width : 0;
     height : 100%;
-    background-color : #F1B100;
+    background-color : #168ED9;
+    border-radius: 9px
 `
 const CheckPeople = styled.div`
     margin-top : 10px;

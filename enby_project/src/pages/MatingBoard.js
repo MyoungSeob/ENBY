@@ -5,7 +5,7 @@ import CardList from '../components/CardList'
 import Card from '../components/Card'
 import Search from '../components/Search';
 import styled from 'styled-components';
-import main_carousel2 from '../shared/image/main_carousel2.png';
+import MatingBanner from '../shared/image/MatingBanner.png';
 import Pagination from '../components/MatingBoardPagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from "../redux/configStore";
@@ -19,7 +19,7 @@ function MatingBoard(props) {
     const [deadlinePosts, setDeadlinePosts] = useState([]);
     const [isNotDeadlinePosts, setIsNotDeadlinePosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(6);
+    const [postsPerPage, setPostsPerPage] = useState(8);
 
     const [allMoim, setAllMoim] = useState(true);
     const [isDeadline, setIsDeadline] = useState(false);
@@ -144,7 +144,15 @@ function MatingBoard(props) {
     
     return (
       <div>
-        <Image shape="rectangle" src={main_carousel2} />
+        <ImageContainer>
+          <Image shape="rectangle" src={MatingBanner} />
+        </ImageContainer>
+        <Title>
+          <TitleBox>
+          <TitleLogo>New</TitleLogo>
+          <SubTitle>메이트의 새로운 모임을 찾아보세요!</SubTitle>
+          </TitleBox>
+        </Title>
         <Container>
           <TopButton>
             <Search />
@@ -181,12 +189,52 @@ function MatingBoard(props) {
       </div>
     );
 }
+const ImageContainer = styled.div`
+position : absolute;
+width: 1920px;
+height: 520px;
+margin : 0px auto 0px auto;
+z-index : -1;
+`;
 const Image = styled.img`
 width : 100%;
-min-width : 1200px;
-// max-height : 720px;
+max-width : 1920px;
+height: 520px;
+object-fit: cover;
 `;
+const Title = styled.div`
+  position : relative;
+  margin : 0px auto 0px auto;
+  width : 1200px;
+  height : 520px;
 
+`
+const TitleBox = styled.div`
+  width : 747px;
+  height : 144px;
+  margin : auto;
+  padding-top : 188px;
+`
+const TitleLogo = styled.h1`
+text-align : center;
+  width : auto;
+  margin : 0;
+  font-family : seravek;
+  color: #FFFFFF;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 74px;
+`
+const SubTitle = styled.p`
+text-align : center;
+font-family : notosans_regular;
+font-size : 32px;
+margin : 0px;
+color : #ffffff;
+font-weight: bold;
+line-height: 150%;
+`
 const Container = styled.div`
     width: 100%;
     margin: auto;
@@ -210,7 +258,7 @@ const Button1 = styled.button`
   height: 40px;
 
   background-color: #ffffff;
-  border: 1px solid #000000;
+  border: 1px solid #BBCFDC;
   border-radius: 20px;
   cursor: pointer;
   margin-right : 30px;
@@ -220,14 +268,14 @@ const Button1 = styled.button`
     font-size: 18px;
     line-height: 150%;
     text-align: center;
-    color: #000000;
+    color: #343434;
   }
 `;
 const Button1True = styled.button`
   width: 167px;
   height: 40px;
 
-  background-color: #000000;
+  background-color: #BBCFDC;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -253,7 +301,7 @@ const Button2 = styled.button`
 
   box-sizing: border-box;
   background-color: #ffffff;
-  border: 1px solid #000000;
+  border: 1px solid #BBCFDC;
   border-radius: 20px;
   cursor: pointer;
   & text {
@@ -275,7 +323,7 @@ const Button2True = styled.button`
 
   border: none;
   box-sizing: border-box;
-  background-color: #000000;
+  background-color: #BBCFDC;
   border-radius: 20px;
   cursor: pointer;
   & text {
@@ -292,7 +340,7 @@ const Button3 = styled.button`
   width: 167px;
   height: 40px;
 
-  border: 1px solid #000000;
+  border: 1px solid #BBCFDC;
   background-color: #ffffff;
   box-sizing: border-box;
   border-radius: 20px;
@@ -313,9 +361,10 @@ const Button3True = styled.button`
   width: 167px;
   height: 40px;
 
-  border: 1px solid #000000;
+  // border: 1px solid #000000;
+  border: none;
   box-sizing: border-box;
-  background-color: #000000;
+  background-color: #BBCFDC;
   border-radius: 20px;
   cursor: pointer;
 
@@ -334,7 +383,7 @@ const Button4 = styled.div`
   float: right;
   margin-top: 34px;
   & button {
-    background: #f1b100;
+    background: #168ED9;
     border-radius: 20px;
     border: none;
     cursor: pointer;
@@ -344,6 +393,7 @@ const Button4 = styled.div`
     font-size: 18px;
     line-height: 150%;
     text-align: center;
+    color: #FFFFFF;
   }
 `;
 const CardBox = styled.div`

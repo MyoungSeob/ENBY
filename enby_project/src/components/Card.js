@@ -53,7 +53,8 @@ const CardGrid = styled.div`
   float: left;
   width: 282px;
   height: 408px;
-  margin: 0 0 79px 0;
+  margin: 0 0 79px 16px;
+  // margin-left: 16px;
   border-radius : 20px;
   cursor: pointer;
   background-color: #ffffff;

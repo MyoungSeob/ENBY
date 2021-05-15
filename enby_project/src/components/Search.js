@@ -54,8 +54,8 @@ width : 100%;
 
 const SearchBox = styled.input`
     padding: 0px 20px;
-    padding-right : 45px;
-    width: 467px;
+    // padding-right : 45px;
+    width: 350px;
     height: 40px;
     // margin: 7px auto 0 0;
     background: #FFFFFF;
@@ -68,19 +68,19 @@ const SearchBox = styled.input`
 `;
 const Icon = styled.div`
 position : relative;
-width : 40px;
-height : 40px;
+width : 23px;
+height : 23px;
 background-image : url(${serachicon});
 background-repeat : no-repeat;
 float : right;
-margin : 5px 5px 0 0;
+margin : 8px 16px 0 0;
 cursor : pointer;
 `
 const Subtitle = styled.div`
     margin-bottom : 10px;
 `
 const SearchGrid = styled.div`
-width : 467px;
+width : 350px;
 display : block;
 `
 export default Search

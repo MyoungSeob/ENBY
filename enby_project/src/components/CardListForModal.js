@@ -14,25 +14,29 @@ const ReviewCardList =(props)=>{
     console.log(props);
     // 참여했던 모임
     const dispatch = useDispatch();
-    const token = localStorage.getItem("token");
-    const decode = jwt_decode(token);
-    const name = decode.nickname;
     const apply_list = useSelector((store) => store.user.apply_list)
-    const empty_list = apply_list.length === 0? true : false;
-    console.log(apply_list);
+    
     useEffect(() => {
-        dispatch(userActions.getMyProfileDB(name))
+        if(localStorage.getItem("token") !== null){
+            const token = localStorage.getItem("token");
+            const decode = jwt_decode(token);
+            const name = decode.nickname;
+            dispatch(userActions.getMyProfileDB(name));
+        }
+        
         // setPosts(review_list); // for pagination
-        ;
       }, []);
+    
+    
+    
+    console.log(apply_list);
+   
 
     return(
         <ListBody>
             <PostList>
                 {props.apply_list.map((p)=>{
-                    return <CardForModal {...p} key={p.id}/>
-                })}
-            
+                return <CardForModal {...p} key={p.id}/>})}          
             </PostList>
         </ListBody>
     );

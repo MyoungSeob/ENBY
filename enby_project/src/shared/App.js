@@ -23,7 +23,6 @@ function App() {
   return (
     <React.Fragment>
       <BrowserRouter>
-
         <ConnectedRouter history={history}>
           <ScrollToTop>
           <Header />

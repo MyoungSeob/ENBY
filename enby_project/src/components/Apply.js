@@ -1,61 +1,99 @@
+// MatingDetail의 신청 & 신청 취소하기 컴포넌트입니다.
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { actionsCreators as applyActions } from "../redux/modules/apply";
-import jwt_decode from 'jwt-decode';
+// import jwt_decode from 'jwt-decode';
 
 const Apply = (props) => {
   const dispatch = useDispatch();
-  const token = localStorage.getItem('token');
-  const nickname = jwt_decode(token).nickname
+  // const token = localStorage.getItem('token');
+  // const nickname = jwt_decode(token).nickname
 
+  // 리덕스에 저장되어 있는 게시글 상세 정보입니다.
   const post_list = useSelector((store) => store.post.detail_list);
+  // 리덕스에 저장되어 있는 게시글 신청 정보입니다.
   const apply_list = useSelector((store) => store.post.apply_list);
   const id = post_list.id;
-  console.log(apply_list)
-  const regist_list = [];
+  // 게시글 신청 정보와 게시글 신청 시 얻는 토큰 값이 같은지 판별 후 regist_list에 넣어주는 코드입니다.
+  const is_login = () => {
+    if (localStorage.getItem("regist") !== null) {
+      const regist_list = [];
+      for (let i = 0; i < apply_list.length; i++) {
+        if (
+          apply_list[i].register_id === parseInt(localStorage.getItem("regist"))
+        ) {
+          regist_list.push(apply_list[i]);
+        }
+      }
+      // regist_list에는 값이 하나만 들어갈 수 있기에 첫번째를 regist로 설정하였습니다.
+      const regist = regist_list[0];
 
-  for (let i = 0; i < apply_list.length; i++) {
-    if (
-      apply_list[i].register_id === parseInt(localStorage.getItem("regist"))
-    ) {
-      regist_list.push(apply_list[i]);
-    }
-  }
-
-  const fullPerson = post_list.people_current / post_list.people_max;
-  const regist = regist_list[0];
-
-  const [kakaoId, setKakaoId] = React.useState("");
-  const [applyComment, setApplyComment] = React.useState("");
-
-  const applyAttend = () => {
-    // if (localStorage.getItem("regist")) {
-    //   window.alert("신청한 모임이 마감되지 않았다면 신청은 1번만 가능합니다.");
-    //   return;
-    // }
-    if (kakaoId === "" || applyComment === "") {
-      window.alert(
-        "연락가능한 카카오톡 아이디와 신청을 위한 한마디 모두 작성해주세요!"
-      );
+      if (fullPerson === 1) {
+        return (
+          <NoticeDeadline>
+            <NoticeP>죄송합니다. 현재 모집이 마감된 모임이에요.</NoticeP>
+          </NoticeDeadline>
+        );
+      }
+      if (post_list.deadlineStatus === true) {
+        return (
+          <NoticeDeadline>
+            <NoticeP>죄송합니다. 현재 모집이 마감된 모임이에요.</NoticeP>
+          </NoticeDeadline>
+        );
+      }
+      if (fullPerson < 1) {
+        return regist_list.length < 1 ? (
+          <>
+            <Contect>
+              <KakaoId>
+                <Id>Kakao ID</Id>
+                <IdInput
+                  placeholder="연락 가능한 카카오톡 ID를 작성해 주세요."
+                  onChange={(e) => {
+                    setKakaoId(e.target.value);
+                  }}
+                />
+              </KakaoId>
+              <Comment>
+                <CommentTit>한마디</CommentTit>
+                <Contents
+                  placeholder="신청을 위해 간단한 한마디를 작성해 주세요."
+                  onChange={(e) => {
+                    setApplyComment(e.target.value);
+                  }}
+                ></Contents>
+              </Comment>
+            </Contect>
+            <ButtonBox>
+              <ApplyButton onClick={applyAttend}>신청하기</ApplyButton>
+            </ButtonBox>
+          </>
+        ) : (
+          <Contect>
+            <CheckBox>
+              <CheckMe>
+                <CheckImg src={regist.profile_img} />
+                <CheckId>{regist.nickname}</CheckId>
+              </CheckMe>
+              <CheckContents>
+                <CheckKakaoID>
+                  <CheckH>Kakao ID : {regist.kakao_id}</CheckH>
+                </CheckKakaoID>
+                <CheckComment>
+                  <CheckP>{regist.contents}</CheckP>
+                </CheckComment>
+              </CheckContents>
+              <CheckButtonBox>
+                <ApplyButton onClick={cancelAttend}>취소하기</ApplyButton>
+              </CheckButtonBox>
+            </CheckBox>
+          </Contect>
+        );
+      }
     } else {
-      dispatch(applyActions.attendApplyDB(id, kakaoId, applyComment));
-    }
-  };
-
-  const cancelAttend = () => {
-    dispatch(applyActions.cancelApply(id));
-  };
-
-  const applyLimit = () => {
-    if (fullPerson === 1) {
-      return <NoticeDeadline><NoticeP>죄송합니다. 현재 모집이 마감된 모임이에요.</NoticeP></NoticeDeadline>;
-    };
-    if (post_list.deadlineStatus === true) {
-      return <NoticeDeadline><NoticeP>죄송합니다. 현재 모집이 마감된 모임이에요.</NoticeP></NoticeDeadline>;
-    };
-    if (fullPerson < 1) {
-      return regist_list.length < 1 ? (
+      return (
         <>
           <Contect>
             <KakaoId>
@@ -81,37 +119,45 @@ const Apply = (props) => {
             <ApplyButton onClick={applyAttend}>신청하기</ApplyButton>
           </ButtonBox>
         </>
-      ) : (
-        <Contect>
-          <CheckBox>
-            <CheckMe>
-              <CheckImg src={regist.profile_img} />
-              <CheckId>{regist.nickname}</CheckId>
-            </CheckMe>
-            <CheckContents>
-              <CheckKakaoID>
-                <CheckH>Kakao ID : {regist.kakao_id}</CheckH>
-              </CheckKakaoID>
-              <CheckComment>
-                <CheckP>{regist.contents}</CheckP>
-              </CheckComment>
-            </CheckContents>
-            <CheckButtonBox>
-              <ApplyButton onClick={cancelAttend}>취소하기</ApplyButton>
-            </CheckButtonBox>
-          </CheckBox>
-        </Contect>
       );
-    };
+    }
   };
-  
+
+  // 신청한 사람들과 총 모임인원을 기반으로 한 프로그레스 바를 위한 수식입니다.
+  const fullPerson = post_list.people_current / post_list.people_max;
+
+  // 신청자가 작성하는 카카오 아이디와 한마디 작성 시 필요한 useState입니다.
+  const [kakaoId, setKakaoId] = React.useState("");
+  const [applyComment, setApplyComment] = React.useState("");
+  // 신청을 할 때, 해당 사항을 검사 후 신청을 합니다.
+  const applyAttend = () => {
+    if (localStorage.getItem("regist") !== null) {
+      window.alert("신청한 모임이 마감되지 않았다면 신청은 1번만 가능합니다.");
+      return;
+    } else {
+      window.alert("🤖신청하기는 로그인이 필요한 기능입니다.");
+    }
+    if (kakaoId === "" || applyComment === "") {
+      window.alert(
+        "연락가능한 카카오톡 아이디와 신청을 위한 한마디 모두 작성해주세요!"
+      );
+    } else {
+      dispatch(applyActions.attendApplyDB(id, kakaoId, applyComment));
+    }
+  };
+  //  신청 취소 버튼입니다.
+  const cancelAttend = () => {
+    dispatch(applyActions.cancelApply(id));
+  };
+  // 현재 이 모임이 마감되었을 때와 모집 중일 때의 뷰를 조건문을 이용하여 나타내었습니다. (모집 인원이 모두 모였을 때, 주최자가 마감버튼을 눌렀을 때)
+
   return (
     <ApplyBox>
       <Title>
         <ApplySubTit>이 등산에 함께하고 싶으시다면?</ApplySubTit>
         <ApplyTit>Application</ApplyTit>
       </Title>
-      {applyLimit()}
+      {is_login()}
     </ApplyBox>
   );
 };
@@ -206,10 +252,10 @@ const CheckId = styled.p`
   font-family: notosans_regular;
 `;
 const CheckContents = styled.div`
-margin-left: 24px;
+  margin-left: 24px;
 `;
 const CheckKakaoID = styled.div`
-width: 1000px;
+  width: 1000px;
 `;
 const CheckH = styled.h1`
   margin: 0px;
@@ -219,18 +265,18 @@ const CheckH = styled.h1`
 const CheckComment = styled.div``;
 const CheckP = styled.p`
   font-size: 18px;
-  font-family: notosans_regular;  
+  font-family: notosans_regular;
   max-width: 1000px;
-  `;
+`;
 const CheckButtonBox = styled.div``;
 const NoticeDeadline = styled.div`
-  margin : auto auto 80px auto;
+  margin: auto auto 80px auto;
 `;
 const NoticeP = styled.p`
-  margin : 34px 0 0 0;
-  text-align : center;
-  font-size : 18px;
-  font-family : notosans_regular;
-  color : #b9b9b9;
-`
+  margin: 34px 0 0 0;
+  text-align: center;
+  font-size: 18px;
+  font-family: notosans_regular;
+  color: #b9b9b9;
+`;
 export default Apply;

@@ -6,7 +6,7 @@ import Card from '../components/Card'
 import Search from '../components/Search';
 import styled from 'styled-components';
 import main_carousel2 from '../shared/image/main_carousel2.png';
-import Pagination from '../components/Pagination';
+import Pagination from '../components/MatingBoardPagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from "../redux/configStore";
 import {actionsCreators as postActions} from '../redux/modules/post'
@@ -32,7 +32,7 @@ function MatingBoard(props) {
     const post_list = useSelector((store) => store.post.list)
     
     const allposts = post_list // useState대신 바로 값에 넣어주니 새로고침해도 안사라지더라구요..!
-
+    console.log(isNotDeadlinePosts)
     function currentPosts(tmp) {
         let currentPosts = 0;
         currentPosts = tmp.slice(indexOfFirst, indexOfLast);
@@ -53,7 +53,7 @@ function MatingBoard(props) {
       // setAllPosts(post_list);
       setDeadlinePosts(deadRecruitment);
       setIsNotDeadlinePosts(isRecruitment)
-    }, [dispatch]);
+    }, []);
 
     const allMoimTrueFalse=()=>{
         if(!allMoim){
@@ -132,6 +132,15 @@ function MatingBoard(props) {
             )
         }
     }
+
+    const moveWrite =()=>{
+      if(localStorage.getItem('token') !== null){
+        history.push(`/board/write`)
+      }else{
+        window.alert('모임게시글 작성은 로그인 후 가능합니다.')
+        return
+      }
+    }
     
     return (
       <div>
@@ -140,9 +149,7 @@ function MatingBoard(props) {
           <TopButton>
             <Search />
             <Button4
-              onClick={() => {
-                history.push(`/board/write`);
-              }}
+              onClick={moveWrite}
             >
               <button>모임 만들기</button>
             </Button4>
@@ -164,7 +171,10 @@ function MatingBoard(props) {
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={post_list.length}
+            deadline_Posts={deadlinePosts.length}
+            isNotDeadline_Posts={isNotDeadlinePosts.length}
             paginate={setCurrentPage}
+            {...selectButton}
           />
           </PageBox>
         </Container>
@@ -342,7 +352,7 @@ const CardBox = styled.div`
   margin : auto;
 `
 const PageBox = styled.div`
-  display : block;
+  display : inline;
   width : 1200px;
   margin : auto;
 `

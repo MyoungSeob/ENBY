@@ -47,13 +47,9 @@ const initialState = {
 
 const getPostMainDB =()=>{
     return function (dispatch, getState, {history}) {
-        const token = localStorage.getItem("token")
+
         axios
-        .get(`http://3.36.67.251:8080/main/board`, {
-            headers :{
-                authorization : `Bearer ${token}`
-            }
-        })
+        .get(`http://3.36.67.251:8080/main/board`)
         .then((response) => {
             const post_list = [...response.data]
             dispatch(getPostMain(post_list))
@@ -66,13 +62,8 @@ const getPostMainDB =()=>{
 const getPostDetailDB = (id) =>{
     return function (dispatch, getState, {history}){
         dispatch(loading(true))
-        const token = localStorage.getItem("token")
         axios
-        .get(`http://3.36.67.251:8080/board/mating/` + `${id}`, {
-            headers :{
-                authorization : `Bearer ${token}`
-            }
-        })
+        .get(`http://3.36.67.251:8080/board/mating/` + `${id}`)
         .then((res) => {
             const post_list = [...res.data.boards]
             const week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
@@ -206,11 +197,7 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
       return function (dispatch, getState, {history}) {
           const token = localStorage.getItem("token")
           axios
-          .get(`http://3.36.67.251:8080/board/mating/review?page=1&size=10`, {
-              headers : {
-                  authorization :`Bearer ${token}`
-              }
-          })
+          .get(`http://3.36.67.251:8080/board/mating/review?page=1&size=10`)
           .then((response) => {
               const review_list = [...response.data.content]
               dispatch(getPostReview(review_list))
@@ -226,11 +213,7 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
         dispatch(loading(true))
         const token = localStorage.getItem("token")
         axios
-        .get(`http://3.36.67.251:8080/board/mating/review/` + `${review_id}`, {
-            headers : {
-                authorization: `Bearer ${token}`
-            }
-        })
+        .get(`http://3.36.67.251:8080/board/mating/review/` + `${review_id}`)
         .then((res) => {
             
             const review_detail = [...res.data]

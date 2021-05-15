@@ -29,6 +29,18 @@
   font-family: "notosans_regular";
   src: url("./font/NotoSansKR-Regular.otf");
 }
+@font-face {
+  font-family: "gmarketsans_bold";
+  src: url("./font/GmarketSansBold.otf");
+}
+@font-face {
+  font-family: "gmarketsans_medium";
+  src: url("./font/GmarketSansMedium.otf");
+}
+@font-face {
+  font-family: "gmarketsans_light";
+  src: url("./font/GmarketSansLight.otf");
+}
 
 .App-header {
   background-color: #282c34;

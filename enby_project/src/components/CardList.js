@@ -49,6 +49,9 @@ const ListBody = styled.div`
     margin: 100px auto 0 auto;
 `
 const PostList = styled.div`
+display : flex;
+justify-content : space-between;
+flex-wrap : wrap;
 padding: 0;
 margin: 0;
 width: 1200px;

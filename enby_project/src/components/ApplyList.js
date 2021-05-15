@@ -1,3 +1,5 @@
+// 주최자가 보는 시점의 신청하기 뷰 입니다. 신청자들을 
+
 import React from 'react';
 import styled from 'styled-components';
 

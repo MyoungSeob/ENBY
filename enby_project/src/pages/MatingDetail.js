@@ -23,8 +23,7 @@ const MatingDetail = (props) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const token = localStorage.getItem("token");
-  const decode = jwt_decode(token);
+  
   const dispatch = useDispatch();
 
   const post_list = useSelector((store) => store.post.detail_list);
@@ -43,6 +42,52 @@ const MatingDetail = (props) => {
       dispatch(postActions.deletePostDB(id));
     }
   };
+  const none_login_editButton=()=>{
+    if(localStorage.getItem("token") !== null){
+      const token = localStorage.getItem("token");
+      const decode = jwt_decode(token);
+      return (
+        createdBy === decode.nickname ? (
+          <EditButton>
+            <EditBtn
+              onClick={() => {
+                history.push("/board/write/" + id);
+              }}
+            >
+              수정하기
+            </EditBtn>
+            <DeleteBtn onClick={deletePost}>삭제하기</DeleteBtn>
+          </EditButton>
+        ) : (
+          ""
+        )
+      )
+    }else{
+      return "";
+    }
+  }
+
+  const none_login_apply=()=>{
+    if(localStorage.getItem("token")!== null){
+      const token = localStorage.getItem("token");
+      const decode = jwt_decode(token);
+      return (
+        decode.nickname === createdBy ? (
+          <PermitBox>
+            <PermitApplyList />
+          </PermitBox>
+        ) : (
+          ""
+        )
+      )
+    }else{
+      return (
+        <ApplyBox>
+          <Apply {...post_list} />
+        </ApplyBox>
+      );
+    }
+  }
 
   if(loading){
     return <Loading />
@@ -70,22 +115,15 @@ const MatingDetail = (props) => {
       </DetailBox>
       <ButtonBox>
         <ToListButton>
-          <ToListBtn onClick={()=>{history.push('/board/mating')}}>목록으로</ToListBtn>
+          <ToListBtn
+            onClick={() => {
+              history.push("/board/mating");
+            }}
+          >
+            목록으로
+          </ToListBtn>
         </ToListButton>
-        {createdBy === decode.nickname ? (
-          <EditButton>
-            <EditBtn
-              onClick={() => {
-                history.push("/board/write/" + id);
-              }}
-            >
-              수정하기
-            </EditBtn>
-            <DeleteBtn onClick={deletePost}>삭제하기</DeleteBtn>
-          </EditButton>
-        ) : (
-          ""
-        )}
+        {none_login_editButton()}
       </ButtonBox>
       <ContentsBox>
         {data.deadlineStatus ? (
@@ -103,18 +141,10 @@ const MatingDetail = (props) => {
         ) : (
           ""
         )}
-        {decode.nickname === createdBy ? (
-          <PermitBox>
-            <PermitApplyList />
-          </PermitBox>
-        ) : (
-          <ApplyBox>
-            <Apply {...post_list} />
-          </ApplyBox>
-        )}
+        {none_login_apply()}
       </ApplicationBox>
       <ReviewContainer>
-          <ReviewBox {...post_list}/>
+        <ReviewBox {...post_list} />
       </ReviewContainer>
     </Container>
   );

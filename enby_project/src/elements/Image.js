@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import image from '../redux/modules/image';
 import profile from '../shared/image/profile.png'
+import { generateMedia } from 'styled-media-query';
 
 const Image =(props)=>{
     const {shape, src, size} = props;
@@ -77,6 +78,18 @@ const ImageRectangle = styled.div`
     background-repeat : no-repeat;
     z-index : -1;
     position : relative;
+    @media (min-width: 600px) and (max-width: 1170px) {
+        // width: 320px;
+        // height: 235.73px;
+        }
+      
+      @media (max-width: 600px) {
+        width: 100%;
+        min-width: 375px;
+        // background-size : cover;
+        background-position: center;
+    
+      }
 `
 const ContentsImage = styled.div`
   width: 513px;
@@ -94,6 +107,8 @@ const MiniContentsImage = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 20px;
+
 `;
 const MiniContentsImageDeadline = styled.div`
   width: 410px;
@@ -103,6 +118,8 @@ const MiniContentsImageDeadline = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   filter : grayscale(100%);
+  border-radius: 20px;
+
 `;
 
 const Moimcontents = styled.div`
@@ -138,6 +155,19 @@ const MainTitle = styled.div`
   background-size : inherit;
   background-repeat: no-repeat;
   margin : auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    width: 100%;
+    min-width: 375px;
+    height: 320px;
+    background-size : cover;
+    background-position: center;
+
+  }
 
 `;
 export default Image;

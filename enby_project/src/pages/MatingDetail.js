@@ -162,6 +162,7 @@ const Container = styled.div`
 const ImageBox = styled.div`
   width: 100%;
   margin: auto;
+  
 `;
 const ImageGrid = styled.div`
   width: 100%;
@@ -169,12 +170,14 @@ const ImageGrid = styled.div`
   overflow: hidden;
   position: absolute;
   margin: auto;
+  
 `;
 const ImageGrid_ = styled.div`
   width: auto;
   margin: auto;
   overflow: hidden;
   position: relative;
+  
 `;
 const DetailBox = styled.div`
   margin: auto;
@@ -261,7 +264,7 @@ const IconBox = styled.div`
 `;
 const ContentsBox = styled.div`
   width: 1200px;
-  margin: 0 auto 108px auto;
+  margin: 0 auto 0 auto;
   display: flex;
 `;
 const MemberBox = styled.div`

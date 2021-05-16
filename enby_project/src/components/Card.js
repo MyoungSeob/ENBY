@@ -3,6 +3,8 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
 import CardDetail from "./CardDetail";
+import { generateMedia } from 'styled-media-query';
+import { useMediaQuery } from "react-responsive";
 
 const Card = (props) => {
   // 이 카드의 정보들을 이용하여 카드를 눌렀을 때 게시글 상세, 후기글 작성으로 이동할 수 있도록 해주는 코드입니다.
@@ -59,23 +61,67 @@ const CardGrid = styled.div`
   cursor: pointer;
   background-color: #ffffff;
   &:hover {
-    transition-property: box-shadow;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-out;
-    transition-delay: 0s;
+    // transition-property: box-shadow;
+    // transition-duration: 0.15s;
+    // transition-timing-function: ease-out;
+    // transition-delay: 0s;
+    // letter-spacing: 0px;
+    // -webkit-font-smoothing: antialiased;
+    // overflow-anchor: none;
+    // box-shadow: 3px 1px 0 0 rgb(0 0 0 / 10%);
+
+    // box-shadow: 2px 2px 4px rgb(0 0 0 / 16%);
+    transition: box-shadow .15s ease-out;
+    // height: 100%;
+    // left: 0;
+    // top: 0;
+    // width: 100%;
+    padding-bottom: 5px;
+    box-sizing: border-box;
     letter-spacing: 0px;
     -webkit-font-smoothing: antialiased;
     overflow-anchor: none;
-    box-shadow: 3px 1px 0 0 rgb(0 0 0 / 10%);
+    // transition: box-shadow .3s;
+
+  // border: 1px solid #ccc;
+  // background: #fff;
+  // float: left;
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  }
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 320px;
+    height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    width: 165px;
+    height: 210px;
+    margin: 6px;
+    border-radius: 10px;
+    margin-bottom: 35px;
   }
 `;
 const CardImage = styled.img`
-  width: 282px;
+  // width: 282px;
+  width: 100%;
   height: 282px;
   border-radius : 20px;
   objectfit: inherit;
   position: relative;
   border-radius: 20px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 320px;
+    height: 210px;
+  }
+  
+  @media (max-width: 600px) {
+    width: 165px;
+    height: 105px;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 10px 10px 0 0;
+
+  }
 `;
 
 const CardTit = styled.div`
@@ -83,6 +129,16 @@ const CardTit = styled.div`
   width: 282px;
   height: 27px;
   margin: 14px 0 8px 1px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 320px;
+    height: 210px;
+  }
+  
+  @media (max-width: 600px) {
+    width: 108px;
+    // height: 18px;
+    margin: 4px;
+  }
 `;
 const CardTitH = styled.div`
   color: #000000;
@@ -94,45 +150,11 @@ const CardTitH = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: left;
-`;
-
-const Line = styled.div`
-  // border-bottom: 1px solid #c4c4c4;
-  // width: 308px;
-  // height: 1px;
-  // display: absolute;
-  // margin: auto auto auto 27px;
-`;
-
-const CardBody = styled.div`
-  width: 100%;
-  hegith: 90%;
-  text-align: left;
-  margin-bottom:
-  & button {
-    margin: 40px;
-    position: absolute;
-    width: 167px;
-    height: 40px;
-
-    background: #f1b100;
-    border-radius: 20px;
-    border: 0;
-
-    position: absolute;
-    cursor: pointer;
-
-    font-family: notosans_regular;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 150%;
-    /* identical to box height, or 27px */
-    text-align: center;
-
-    color: #392600;
+  @media (max-width: 600px) {
+    font-size: 14px;
   }
 `;
+
 const CardButton = styled.div`
   float: left;
   margin: 5px 0 0 27px;

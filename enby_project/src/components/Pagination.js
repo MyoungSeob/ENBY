@@ -34,8 +34,8 @@ padding-bottom: 120px;
 }
 
 @media (max-width: 600px) {
-    margin: 0;
-
+    margin: -1000px;
+    width: 320px;
 }
 `;
 const PageUl = styled.div`
@@ -51,6 +51,10 @@ const PageUl = styled.div`
     color: #3A3A3A;
     font-size: 100px;
   }
+  @media (max-width: 600px) {
+    margin: -1000px;
+    width: 320px;
+}
 `;
 
 const PageLi = styled.li`

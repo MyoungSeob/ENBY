@@ -5,6 +5,7 @@ import React from 'react'
 import styled from 'styled-components';
 import Image from '../elements/Image'
 import santa from '../shared/image/santatit.png'
+import { generateMedia } from 'styled-media-query';
 
 // function Carousel() {
   const Carousel=(props)=>{
@@ -34,19 +35,43 @@ const Container = styled.div`
   height: 520px;
   margin : 0px auto 0px auto;
   z-index : -1;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+    @media (max-width: 600px) {
+      height: 320px;
+    }
 `;
 const Title = styled.div`
   position : relative;
   margin : 0px auto 0px auto;
   width : 1200px;
   height : 520px;
-
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 320px;
+  }
 `
 const TitleBox = styled.div`
   width : 747px;
   height : 144px;
   margin : auto;
   padding-top : 188px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    width: 100%;
+    padding-top: 120px;
+  }
 `
 const TitleLogo = styled.h1`
 text-align : center;
@@ -55,6 +80,14 @@ text-align : center;
   font-family : seravek;
   font-size : 80px;
   color : #ffffff;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    font-size : 30px;
+  }
 `
 const SubTitle = styled.p`
 text-align : center;
@@ -62,11 +95,26 @@ font-family : notosans_regular;
 font-size : 32px;
 margin : 0px;
 color : #ffffff;
+@media (min-width: 600px) and (max-width: 1170px) {
+  // width: 320px;
+  // height: 235.73px;
+  }
+
+@media (max-width: 600px) {
+  font-size: 13px;
+}
 `
 const Span = styled.span`
 font-family : notosans_bold;
 font-size : 32px;
 color : #ffffff;
+@media (min-width: 600px) and (max-width: 1170px) {
+  // width: 320px;
+  // height: 235.73px;
+  }
+
+@media (max-width: 600px) {
+  font-size: 13px;
 `
 
 export default Carousel;

@@ -50,6 +50,13 @@ width : 100%;
         color: #7B7B7B;
         margin-bottom: 7px;
     }
+    @media (max-width: 600px) {
+      & text {
+          font-size: 16px;
+      }
+      margin-left: 50px;
+      margin-top: -10px;
+    }
 `;
 
 const SearchBox = styled.input`
@@ -64,7 +71,15 @@ const SearchBox = styled.input`
     border-radius: 30px;
     position : absolute;
     outline : none;
-
+    @media (min-width: 600px) and (max-width: 1170px) {
+      // width: 320px;
+      // height: 235.73px;
+      }
+    
+    @media (max-width: 600px) {
+      width: 280px;
+      height: 35px;
+    }
 `;
 const Icon = styled.div`
 position : relative;
@@ -75,6 +90,9 @@ background-repeat : no-repeat;
 float : right;
 margin : 8px 16px 0 0;
 cursor : pointer;
+@media (max-width: 600px) {
+  margin-right: 80px; 
+}
 `
 const Subtitle = styled.div`
     margin-bottom : 10px;

@@ -34,11 +34,22 @@ const Container = styled.div`
   height: 300px;
   background-color: #f6fbff;
   display: flex;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    
+  }
+  
+  @media (max-width: 600px) {
+    height: 200px;
+  }
 `;
 const FooterTitle = styled.div`
   width: 1200px;
   display: flex;
   margin: auto;
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 const TitleBox = styled.div`
   display: flex;
@@ -52,11 +63,23 @@ const Title = styled.h1`
   color: #168ed9;
   margin: 0;
   cursor : pointer;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 28px;
+    margin: auto 50px;
+  }
 `;
 const IconBox = styled.div`
   float: right;
   text-align: right;
   margin: 0 0 0 auto;
+  @media (max-width: 600px) {
+    display: flex;
+    margin: auto 50px;
+  }
 `;
 const Icon = styled.img`
   margin-left: 50px;
@@ -64,11 +87,25 @@ const Icon = styled.img`
   width: 40px;
   height: 40px;
   z-index: 1;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    
+  }
+  
+  @media (max-width: 600px) {
+    width: 28px;
+    height: 28px;
+    margin-left: 4px;
+    }
 `;
 const Icon_ = styled.img`
   cursor: pointer;
   width: 40px;
   height: 40px;
+  @media (max-width: 600px) {
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+  }
 `;
 
 export default Footer;

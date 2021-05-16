@@ -5,6 +5,7 @@ import { history } from "../redux/configStore";
 import "../shared/App.css";
 import { actionsCreators as userActions } from "../redux/modules/user";
 import jwt_decode from 'jwt-decode'
+import { generateMedia } from 'styled-media-query';
 
 function Header() {
   const dispatch = useDispatch();
@@ -23,8 +24,9 @@ function Header() {
   };
   const login = () => {
     window.location.href =
-      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://enby.s3-website.ap-northeast-2.amazonaws.com/oauth";
-  };
+      // "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://enby.s3-website.ap-northeast-2.amazonaws.com/oauth";
+      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://localhost:3000/oauth"
+    };
   return (
     <Container>
       <HeaderGrid>
@@ -55,10 +57,32 @@ const Container = styled.div`
   background-color: #ffffff;
   display: inline-block;
   font-family : seravek;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    width: 50%;
+    min-width: 320px;
+    height: 80px;
+
+  }
 `;
 const HeaderGrid = styled.div`
   width: 1200px;
   margin: 0 auto 0 auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    width: 100%;
+    min-width: 320px;
+    height: 80px;
+    margin: auto;
+  }
 `;
 const LogoBox = styled.div`
   display: inline-block;
@@ -66,6 +90,16 @@ const LogoBox = styled.div`
   width: 289px;
   height: 39px;
   margin-top : 20px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    width: 40%;
+    min-width: 120px;
+    margin-left: 30px;
+  }
 
 `;
 const Logo = styled.h1`
@@ -83,23 +117,36 @@ const CategoryBox = styled.div`
   margin: auto 0 auto auto;
   display: flex;
   padding-top: 10px;
+  @media (max-width: 600px) {
+    margin-top:7px;
+  }
 `;
 const Logout = styled.p`
   color: gray;
   float: right;
   cursor: pointer;
   font-size: 18px;
+  
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 const MyPage = styled.p`
   color: #168ed9;
   cursor: pointer;
   font-size: 18px;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 const LogIn = styled.p`
   color: #168ed9;
   cursor: pointer;
   font-size: 18px;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 const Span = styled.span`
   margin-left: 28px;

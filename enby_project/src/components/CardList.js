@@ -47,6 +47,7 @@ const ListBody = styled.div`
     width: 100%;
     max-width: 1200px;
     margin: 100px auto 0 auto;
+    
 `
 const PostList = styled.div`
 display : flex;
@@ -54,6 +55,10 @@ display : flex;
 flex-wrap : wrap;
 padding: 0;
 width: 1200px;
+@media (max-width: 600px) {
+    margin-left: 10px;
+    width: 400px;
+  }
 `
 
 export default CardList;

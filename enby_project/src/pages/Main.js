@@ -9,6 +9,7 @@ import Card from '../components/Card';
 import ReviewCard from '../components/ReviewCard';
 import { history } from "../redux/configStore";
 import jwt_decode from "jwt-decode";
+import { generateMedia } from 'styled-media-query';
 
 
 
@@ -81,13 +82,15 @@ const CarouselBox = styled.div`
   width : auto;
   height : 520px;
   margin : auto;
+  @media (max-width: 600px) {
+    height: 320px;
+  }
 `
 const PostList = styled.div`
   display : flex;
-  justify-content : space-between;
-  margin: 34px auto auto auto;
+  // justify-content : space-between;
+  margin: 34px auto -35px auto;
   width: 1200px;
-
 `
 const PostText = styled.div`
 width : 1200px;
@@ -95,24 +98,34 @@ margin : 100px auto auto auto;
 & span {
   display: flex;
 }
+@media (max-width: 600px) {
+  margin-top: -60px;
+  margin-left: 12px;
+  margin-bottom: -20px;
+}
 `;
 const PostSubTitle = styled.div`
     margin: 132px 0px 0px 0px;
     font-family: notosans_regular;
     font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 150%;
     color: #474747;
+    @media (max-width: 600px) {
+      font-size: 8px;
+      margin-bottom: -8px;
+    }
 `;
 const PostTitle = styled.div`
     margin-top: 13px;
     font-family: gmarketsans_medium;
     font-style: normal;
-    font-weight: bold;
     font-size: 30px;
     line-height: 150%;
     color: #168ed9;
+    @media (max-width: 600px) {
+      font-size: 18px;
+    }
 `;
 
 const PostButton = styled.button`
@@ -126,6 +139,13 @@ font-size : 18px;
   box-sizing: border-box;
   border-radius: 20px;
   cursor: pointer;
+  @media (max-width: 600px) {
+    margin-left: 180px;
+    margin-top: 10px;
+      width: 52px;
+      height: 26px;
+      font-size: 10px;
+  }
 `;
 
 const ReviewText = styled.div`
@@ -133,6 +153,11 @@ const ReviewText = styled.div`
   margin : 100px auto auto auto;
   & span {
     display: flex;
+  }
+  @media (max-width: 600px) {
+    margin-top: 50px auto auto;
+    margin-left: 12px;
+    margin-bottom: -20px;
   }
 `;
 const ReviewSubTitle =styled.text`
@@ -143,18 +168,26 @@ const ReviewSubTitle =styled.text`
   font-size: 18px;
   line-height: 150%;
   color: #474747;
+
+  @media (max-width: 600px) {
+    font-size: 8px;
+    margin-bottom: -8px;
+  }
 `;
 const ReviewTitle = styled.text`
   margin-top: 12px; 
-  width: 161px;
+  // width: 161px;
   height: 35px;
   font-family: gmarketsans_medium;
   color: #168ed9;
   font-style: normal;
-  font-weight: bold;
   font-size: 28px;
   line-height: 150%;
-  /* or 42px */
+
+  @media (max-width: 600px) {
+    font-size: 18px;
+    margin-top: 7px;
+  }
 `;
 
 const ReviewButton = styled.button`
@@ -168,11 +201,18 @@ const ReviewButton = styled.button`
   margin-left: 850px;
   background-color: #FFFFFF;
   cursor: pointer;
+  @media (max-width: 600px) {
+    margin-left: 180px;
+    margin-top: 10px;
+      width: 52px;
+      height: 26px;
+      font-size: 10px;
+  }
 `;
 const ReviewList =styled.div`
   display : flex;
-  justify-content : space-between;
-  margin: 34px auto 150px auto;
+  // justify-content : space-between;
+  margin: 34px auto 100px auto;
   width: 1200px;
 
 `;

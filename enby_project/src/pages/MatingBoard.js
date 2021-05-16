@@ -10,16 +10,29 @@ import Pagination from '../components/MatingBoardPagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from "../redux/configStore";
 import {actionsCreators as postActions} from '../redux/modules/post'
+import { useMediaQuery } from "react-responsive";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
+import {MDCRipple} from '@material/ripple';
 
 function MatingBoard(props) {
+
+  //반응형
+  const isTablet = useMediaQuery({
+    query: "(min-width: 600px) and (max-width: 1170px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 600px)"
+  });
+
+
     const dispatch = useDispatch();
     // pagination
     // const [allposts, setAllPosts] = useState([]);
     const [deadlinePosts, setDeadlinePosts] = useState([]);
     const [isNotDeadlinePosts, setIsNotDeadlinePosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(8);
+    const [postsPerPage, setPostsPerPage] = useState(12);
 
     const [allMoim, setAllMoim] = useState(true);
     const [isDeadline, setIsDeadline] = useState(false);
@@ -140,8 +153,11 @@ function MatingBoard(props) {
         window.alert('모임게시글 작성은 로그인 후 가능합니다.')
         return
       }
-    }
+    } 
     
+    // 모바일 add버튼
+    // const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
+
     return (
       <div>
         <ImageContainer>
@@ -149,19 +165,31 @@ function MatingBoard(props) {
         </ImageContainer>
         <Title>
           <TitleBox>
-          <TitleLogo>New</TitleLogo>
-          <SubTitle>메이트의 새로운 모임을 찾아보세요!</SubTitle>
+            <TitleLogo>New</TitleLogo>
+            <SubTitle>메이트의 새로운 모임을 찾아보세요!</SubTitle>
           </TitleBox>
         </Title>
         <Container>
+        {!isMobile ? (
           <TopButton>
-            <Search />
-            <Button4
-              onClick={moveWrite}
-            >
-              <button>모임 만들기</button>
-            </Button4>
-          </TopButton>
+              <Search />
+              <Button4
+                onClick={moveWrite}
+              >
+                <button>모임 만들기</button>
+              </Button4>
+            </TopButton>)
+            : (
+              <TopBtnMobile>
+              <Search />
+              <Button5 fontSize='large'/>
+              
+              <button class="mdc-fab" aria-label="Favorite">
+                <div class="mdc-fab__ripple"></div>
+                <span class="mdc-fab__icon material-icons">favorite</span>
+              </button>
+              </TopBtnMobile>)}
+          
           <ButtonBox>
             {allMoimTrueFalse()}
             {isNotDeadlineTrueFalse()}
@@ -195,25 +223,59 @@ width: 1920px;
 height: 520px;
 margin : 0px auto 0px auto;
 z-index : -1;
+@media (min-width: 600px) and (max-width: 1170px) {
+  // width: 320px;
+  // height: 235.73px;
+  }
+
+@media (max-width: 600px) {
+  width: 100%;
+  height: 320px;
+}
 `;
 const Image = styled.img`
 width : 100%;
 max-width : 1920px;
 height: 520px;
 object-fit: cover;
+@media (min-width: 600px) and (max-width: 1170px) {
+  // width: 320px;
+  // height: 235.73px;
+  }
+
+@media (max-width: 600px) {
+  width: 100%;
+  height: 320px;
+}
 `;
 const Title = styled.div`
   position : relative;
   margin : 0px auto 0px auto;
   width : 1200px;
   height : 520px;
-
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `
 const TitleBox = styled.div`
   width : 747px;
   height : 144px;
   margin : auto;
   padding-top : 188px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    width: 100%;
+    padding-top: 100px;
+  }
 `
 const TitleLogo = styled.h1`
 text-align : center;
@@ -225,6 +287,14 @@ text-align : center;
   font-weight: bold;
   font-size: 60px;
   line-height: 74px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+    }
+  
+  @media (max-width: 600px) {
+    font-size : 30px;
+  }
 `
 const SubTitle = styled.p`
 text-align : center;
@@ -234,6 +304,15 @@ margin : 0px;
 color : #ffffff;
 font-weight: bold;
 line-height: 150%;
+@media (min-width: 600px) and (max-width: 1170px) {
+  // width: 320px;
+  // height: 235.73px;
+  }
+
+@media (max-width: 600px) {
+  font-size: 13px;
+  margin: -15px;
+}
 `
 const Container = styled.div`
     width: 100%;
@@ -246,12 +325,22 @@ const TopButton =styled.div`
     flex-direction: row;
     align-items: center;
     margin: 98px auto 92px auto;
+    @media (max-width: 600px) {
+      margin-top: -120px;
+      width: 320px;
+    }
 `;
 const ButtonBox = styled.div`
     display : flex;
     justify-content : center;
     margin : auto;
     width : 1200px;
+    margin-bottom: -30px;
+    @media (max-width: 600px) {
+      width: 280px;
+      justify-content: center;
+      margin: -60px auto;
+    }
 `
 const Button1 = styled.button`
   width: 167px;
@@ -269,6 +358,12 @@ const Button1 = styled.button`
     line-height: 150%;
     text-align: center;
     color: #343434;
+  }
+  @media (max-width: 600px) {
+    width: 80px;
+    & text {
+      font-size: 11px;
+    }
   }
 `;
 const Button1True = styled.button`
@@ -290,6 +385,12 @@ const Button1True = styled.button`
     flex: none;
     order: 0;
     flex-grow: 0;
+  }
+  @media (max-width: 600px) {
+    width: 80px;
+    & text {
+      font-size: 11px;
+    }
   }
 `;
 
@@ -314,6 +415,12 @@ const Button2 = styled.button`
     order: 0;
     flex-grow: 0;
   }
+  @media (max-width: 600px) {
+    width: 80px;
+    & text {
+      font-size: 11px;
+    }
+  }
 `;
 const Button2True = styled.button`
 
@@ -333,6 +440,12 @@ const Button2True = styled.button`
     text-align: center;
     color: #ffffff;
     flex: none;
+  }
+  @media (max-width: 600px) {
+    width: 80px;
+    & text {
+      font-size: 11px;
+    }
   }
 `;
 
@@ -356,6 +469,12 @@ const Button3 = styled.button`
     order: 0;
     flex-grow: 0;
   }
+  @media (max-width: 600px) {
+    width: 80px;
+    & text {
+      font-size: 11px;
+    }
+  }
 `;
 const Button3True = styled.button`
   width: 167px;
@@ -378,6 +497,12 @@ const Button3True = styled.button`
     order: 0;
     flex-grow: 0;
   }
+  @media (max-width: 600px) {
+    width: 80px;
+    & text {
+      font-size: 11px;
+    }
+  }
 `;
 const Button4 = styled.div`
   float: right;
@@ -395,16 +520,37 @@ const Button4 = styled.div`
     text-align: center;
     color: #FFFFFF;
   }
+  @media (max-width: 600px) {
+    width: 80px;
+    & text {
+      font-size: 11px;
+    }
+  }
 `;
+const TopBtnMobile = styled.div`
+  margin-top: -100px;
+  margin-bottom: 80px;
+`;
+const Button5 = styled(AddCircleIcon)`
+  
+`;
+
 const CardBox = styled.div`
   display : block;
   width : 1200px;
   margin : auto;
+  @media (max-width: 600px) {
+    min-width: 320px;
+  }
 `
 const PageBox = styled.div`
   display : inline;
   width : 1200px;
   margin : auto;
+  @media (max-width: 600px) {
+    // width: 320px;
+    // margin-right: -1000px;
+  }
 `
 
 export default MatingBoard

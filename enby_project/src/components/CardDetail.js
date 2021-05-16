@@ -1,9 +1,18 @@
 // 카드에 들어가는 디테일 내용들입니다. 제목, 장소, 일시 등을 나타냅니다.
 import React from 'react';
 import styled from 'styled-components';
-
+import { generateMedia } from 'styled-media-query';
+import { useMediaQuery } from "react-responsive";
 
 const CardDetail =(props)=>{
+  // 반응형 구현
+  const isTablet = useMediaQuery({
+    query: "(min-width: 600px) and (max-width: 1170px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 600px)"
+  });
+
   // 프로그레스 바에 필요한 코드입니다.
   const gauge = 100 * (props.people_current / props.people_max) + "%";
   // 내려오는 정보를 저희의 양식에 맞추어 나타나게 해주는 코드입니다. ex) 2021-05-14T12:00:00 -> 2021년 5월 14일 금요일 12시 
@@ -36,6 +45,15 @@ const CardDetail =(props)=>{
     "시 " +
     (parseInt(minit) === 0 ? "" : parseInt(time.split(":")[1]) + "분");
 
+    const meetdate_mobile = 
+    parseInt(date.split("-")[1]) +
+    "월 " +
+    parseInt(date.split("-")[2]) +
+    "일 " +
+    parseInt(time.split(":")[0]) +
+    "시 " +
+    (parseInt(minit) === 0 ? "" : parseInt(time.split(":")[1]) + "분"); 
+
   return (
     <Container>
       <IconBox>
@@ -45,7 +63,9 @@ const CardDetail =(props)=>{
         </DateBox>
         <PlaceBox>
           <Icon>시간</Icon>
-          <IconContents>{meetdate_}</IconContents>
+          {!isMobile ? (<IconContents>{meetdate_}</IconContents>)
+            :
+            (<IconContents>{meetdate_mobile}</IconContents>)}
         </PlaceBox>
         <PersonBox>
           <Icon>인원</Icon>
@@ -68,26 +88,61 @@ const Container = styled.div`
     width : 282px;
     height : 75px;
     margin : 8px auto auto auto;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      margin: 18px;
+    }
+    
+    @media (max-width: 600px) {
+      margin-left: 5px;
+    }
 `
 const IconBox = styled.div``
 const DateBox = styled.div`
     display : flex;
     margin-bottom : 6px;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      
+    }
+    
+    @media (max-width: 600px) {
+      margin-bottom: 3px;
+    }
 `
 const IconContents = styled.div`
     margin-left : 12px;
     font-family : notosans_regular;
     font-size : 14px;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      
+    }
+    
+    @media (max-width: 600px) {
+      font-size: 11px;
+    }
 `
 const Icon = styled.div`
 font-family : notosans_regular;
 font-size : 14px;
 float : left;
+@media (min-width: 600px) and (max-width: 1170px) {
+      
+}
+
+@media (max-width: 600px) {
+  font-size: 11px;
+}
 `
 
 const PlaceBox = styled.div`
     display : flex;
     margin-bottom : 8px;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      
+    }
+    
+    @media (max-width: 600px) {
+      margin-bottom: 3px;
+    }
 `
 const PersonBox = styled.div`
     display : flex;
@@ -99,6 +154,15 @@ const ProgressBar = styled.div`
     margin-left : 12px;
     margin-top : 8px;
     border-radius : 20px;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      
+    }
+    
+    @media (max-width: 600px) {
+      width: 60px;
+      margin-left: 5px;
+      margin-top: 7px;
+    }
 `
 const ProgressBar_ = styled.div`
     width : 0;
@@ -106,6 +170,7 @@ const ProgressBar_ = styled.div`
     background-color : #168ed9;
     margin : 0;
     border-radius : 20px;
+    
 `
 const CheckPeople = styled.div`
     margin-left : 12px;
@@ -116,6 +181,13 @@ const Check = styled.h4`
     margin : 0;
     font-size : 14px;
     font-family : notosans_regular;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      
+    }
+    
+    @media (max-width: 600px) {
+      font-size : 11px;
+    }
 `
 
 export default CardDetail;

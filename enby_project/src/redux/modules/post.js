@@ -164,17 +164,26 @@ const deletePostDB = (id) => {
 }
 
 // 모임게시글 수정하기
-const editPostDB = (post_id, title, contents, boardImg, location, meetTime) => {
+const editPostDB = (post_id, title, contents, boardImg, location, meetTime, people_max) => {
 
     return function (dispatch, getState, {history}) {
       const token = localStorage.getItem("token")
       let formData = new FormData();
-      console.log(boardImg)
-      formData.append("title", title);
-      formData.append("contents", contents);
-      formData.append("boardImg", boardImg);
-      formData.append("location", location);
-      formData.append("meetTime", meetTime);
+      if(boardImg === null){
+        formData.append("title", title);
+        formData.append("contents", contents);
+        formData.append("location", location);
+        formData.append("meetTime", meetTime);
+        formData.append("people_max", people_max);
+      }else{
+        formData.append("title", title);
+        formData.append("contents", contents);
+        formData.append("boardImg", boardImg);
+        formData.append("location", location);
+        formData.append("meetTime", meetTime);
+        formData.append("people_max", people_max);
+      }
+      
 
       axios({
         method: "put",

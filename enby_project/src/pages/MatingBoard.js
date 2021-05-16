@@ -11,9 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { history } from "../redux/configStore";
 import {actionsCreators as postActions} from '../redux/modules/post'
 import { useMediaQuery } from "react-responsive";
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-import {MDCRipple} from '@material/ripple';
 
 function MatingBoard(props) {
 
@@ -155,9 +153,6 @@ function MatingBoard(props) {
       }
     } 
     
-    // 모바일 add버튼
-    // const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
-
     return (
       <div>
         <ImageContainer>
@@ -170,26 +165,19 @@ function MatingBoard(props) {
           </TitleBox>
         </Title>
         <Container>
-        {!isMobile ? (
+          {isMobile ? (
+              <Button5>모임<br/> 만들기</Button5>
+            ) : ("")}
           <TopButton>
               <Search />
+              {!isMobile ? (
               <Button4
                 onClick={moveWrite}
               >
                 <button>모임 만들기</button>
-              </Button4>
-            </TopButton>)
-            : (
-              <TopBtnMobile>
-              <Search />
-              <Button5 fontSize='large'/>
+              </Button4>) : ("")}
+            </TopButton>
               
-              <button class="mdc-fab" aria-label="Favorite">
-                <div class="mdc-fab__ripple"></div>
-                <span class="mdc-fab__icon material-icons">favorite</span>
-              </button>
-              </TopBtnMobile>)}
-          
           <ButtonBox>
             {allMoimTrueFalse()}
             {isNotDeadlineTrueFalse()}
@@ -527,12 +515,25 @@ const Button4 = styled.div`
     }
   }
 `;
-const TopBtnMobile = styled.div`
-  margin-top: -100px;
-  margin-bottom: 80px;
-`;
-const Button5 = styled(AddCircleIcon)`
-  
+
+const Button5 = styled.button`
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  font-family: notosans_regular;
+  font-size: 11px;
+  color: #000;
+  background-color: #BBCFDC;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  z-index: 1;
+  bottom: 50px;
+  right: 30px;
+  }
 `;
 
 const CardBox = styled.div`

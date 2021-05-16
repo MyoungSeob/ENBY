@@ -54,7 +54,7 @@ width : 100%;
       & text {
           font-size: 16px;
       }
-      margin-left: 50px;
+      margin-left: 20px;
       margin-top: -10px;
     }
 `;

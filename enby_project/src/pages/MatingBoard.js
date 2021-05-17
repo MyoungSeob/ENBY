@@ -29,6 +29,9 @@ function MatingBoard(props) {
     const [deadlinePosts, setDeadlinePosts] = useState([]);
     const [isNotDeadlinePosts, setIsNotDeadlinePosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [deadCurrentPage, setDeadCurrentPage] = useState(1);
+    const [notDeadCurrentPage, setNotDeadCurrentPage] = useState(1);
+    
     const [postsPerPage, setPostsPerPage] = useState(12);
 
     const [allMoim, setAllMoim] = useState(true);
@@ -202,6 +205,8 @@ function MatingBoard(props) {
             deadline_Posts={deadlinePosts.length}
             isNotDeadline_Posts={isNotDeadlinePosts.length}
             paginate={setCurrentPage}
+            deadPaginate={setDeadCurrentPage}
+            notDeadPaginate={setNotDeadCurrentPage}
             {...selectButton}
           />
           </PageBox>

@@ -22,6 +22,7 @@ const ReviewCardList =(props)=>{
             const decode = jwt_decode(token);
             const name = decode.nickname;
             dispatch(userActions.getMyProfileDB(name));
+            dispatch(postActions.getNeedWriteRiviewAPI());
         }
         
         // setPosts(review_list); // for pagination

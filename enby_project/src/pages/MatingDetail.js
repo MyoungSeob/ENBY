@@ -79,7 +79,7 @@ const MatingDetail = (props) => {
       return "";
     }
   }
-
+  console.log(post_list)
   const none_login_apply=()=>{
     if(localStorage.getItem("token")!== null){
       const token = localStorage.getItem("token");

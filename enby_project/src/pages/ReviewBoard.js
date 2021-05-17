@@ -9,19 +9,10 @@ import Pagination from '../components/ReviewBoardPagination';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {actionsCreators as userActions} from '../redux/modules/user'
+import {actionsCreators as postActions} from '../redux/modules/post'
 import jwt_decode from 'jwt-decode';
-import { useMediaQuery } from "react-responsive";
 
-  
 function ReviewBoard() {  
-    // 반응형 구현
-    const isTablet = useMediaQuery({
-      query: "(min-width: 600px) and (max-width: 1170px)"
-    });
-    const isMobile = useMediaQuery({
-      query: "(max-width: 600px)"
-    });
-
      // 참여했던 모임
      const dispatch = useDispatch();
      const apply_list = useSelector((store) => store.user.apply_list)
@@ -49,7 +40,6 @@ function ReviewBoard() {
           const name = decode.nickname;
           dispatch(userActions.getMyProfileDB(name));
         }
-        // for Modal pagination
       }, []);
 
     //  리뷰페이지 pagination
@@ -84,32 +74,17 @@ function ReviewBoard() {
     }
     return (
       <Container>
-        {isMobile? 
-        (<HeadContainer>
-          <Head>
-            <SubTitle1>Share your experience with ENBY!</SubTitle1>
-            <Title>Reviews</Title>
-            <SubTitle2>당신의 엔비를 공유해주세요!</SubTitle2>
-          </Head>
-        </HeadContainer>)
-          : 
-        (<Head>
+        <Head>
           <SubTitle1>Share your experience with ENBY!</SubTitle1>
           <Title>Reviews</Title>
           <SubTitle2>당신의 엔비를 공유해주세요!</SubTitle2>
         </Head>
-        )}
-        
         <Main>
           <Top>
             <Search {...searchWhere}/>
-            {isMobile ? (
-              <FloatingBtn>후기글<br/>작성하기</FloatingBtn>
-            ) : (
             <ButtonBox>
               <Button onClick={openModal}>후기글 작성하기</Button>
-            </ButtonBox>)}
-            
+            </ButtonBox>
           </Top>
           <ReviewCardList review_list={currentPosts(posts)} />
           <Pagination id ="move"
@@ -140,39 +115,17 @@ function ReviewBoard() {
 }
 
 const Container = styled.div`
-    max-width: 1200px;
-    width: 100%;
+    width: 1200px;
     margin: auto;
-    @media (max-width: 600px) {
-      width: 100%
-      min-width: 320px;
-      // margin-top: -30px;
-    }
-`;
-const HeadContainer = styled.div`
-  background-color: #BBCFDC;
-  height: 160px;
-  width: 100%;
-  min-width: 320px;
-  padding: 10px;
 `;
 const Head = styled.div`
     height: 130px;
     margin: 37px 0 54px 0;
-    @media (max-width: 600px) {
-      margin-left: 30px;
-      margin-top: 20px;
-    }
 `;
 const Top = styled.div`
     display: flex;
     justify-content : space-between;
     margin-bottom : 54px;
-    @media (max-width: 600px) {
-      width: 320px;
-      z-index: 1;
-      margin: 40px 20px;
-    }
 `;
 const SubTitle1 = styled.div`
     // width: 282px;
@@ -182,9 +135,6 @@ const SubTitle1 = styled.div`
     font-size: 18px;
     line-height: 26px;
     color: #7D7D7D;
-    @media (max-width: 600px) {
-      font-size: 13px;
-    }
 `;
 
 const Title = styled.div`
@@ -197,9 +147,6 @@ const Title = styled.div`
     line-height: 46px;
 
     color: #000000;
-    @media (max-width: 600px) {
-      font-size: 28px;
-    }
 `;
 
 const SubTitle2 = styled.div`
@@ -212,9 +159,6 @@ const SubTitle2 = styled.div`
     line-height: 35px;
 
     color: #3A3A3A;
-    @media (max-width: 600px) {
-      font-size: 13px;
-    }
 `;
 
 const Main = styled.div`
@@ -224,10 +168,6 @@ const Main = styled.div`
     background: #ffffff;
 
     background-size: cover;
-    @media (max-width: 600px) {
-      width: 100%;
-      min-width: 320px;
-    }
 `;
 const ButtonBox = styled.div`
     display : inline-block;
@@ -250,37 +190,10 @@ const Button = styled.button`
     cursor: pointer;
 `;
 const Paging = styled.div`
-    max-width : 1064px;
-    width: 100%;
+    width : auto;
     overflow : hidden;
     position: fixed;
     margin-top: 435px;
-    @media (max-width: 600px) {
-      width: 320px;
-      // min-width: 320px;
-      // position: flex;
-      // margin: -100px;
-    }
-`;
-
-const FloatingBtn = styled.button`
-  position: fixed;
-  width: 70px;
-  height: 70px;
-  font-family: notosans_regular;
-  font-size: 11px;
-  color: #000;
-  background-color: #BBCFDC;
-  border: none;
-  border-radius: 45px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  outline: none;
-  z-index: 1;
-  bottom: 50px;
-  right: 30px;
-  }
 `;
 
 export default ReviewBoard

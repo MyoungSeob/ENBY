@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {useSelector} from 'react-redux';
 import styled from 'styled-components';
+import { history } from '../redux/configStore';
 import Loading from './Loading';
 import ReviewCard from './ReviewCard';
 
@@ -19,6 +19,10 @@ const ReviewBox = (props) => {
         }
     }
 
+    const moveReview=()=>{
+      history.push('/board/review')
+    }
+
     if(loading){
         <Loading />
     }{
@@ -30,7 +34,7 @@ const ReviewBox = (props) => {
             <Title>Reviews</Title>
           </TitleContents>
           <MoreReviewBtn>
-            <MoveReviewBoard>더보기</MoveReviewBoard>
+            <MoveReviewBoard onClick={moveReview}>더보기</MoveReviewBoard>
           </MoreReviewBtn>
         </TitleBox>
         <CardListBox>

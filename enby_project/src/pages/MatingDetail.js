@@ -16,8 +16,17 @@ import MemberCardList from "../components/MemberCardList";
 import PermitApplyList from "../components/PermitApplyList";
 import ReviewBox from "../components/ReviewBox";
 import Loading from "../components/Loading";
+import { useMediaQuery } from "react-responsive";
 
 const MatingDetail = (props) => {
+  //반응형
+  const isTablet = useMediaQuery({
+    query: "(min-width: 600px) and (max-width: 1170px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 600px)"
+  });
+
   const id = props.match.params.id;
 
   const [loading, setLoading] = useState(false);
@@ -120,7 +129,7 @@ const MatingDetail = (props) => {
         </IconBox>
       </DetailBox>
       <ButtonBox>
-        <ToListButton>
+        {!isMobile ? (<ToListButton>
           <ToListBtn
             onClick={() => {
               history.push("/board/mating");
@@ -128,7 +137,12 @@ const MatingDetail = (props) => {
           >
             목록으로
           </ToListBtn>
-        </ToListButton>
+        </ToListButton>) :
+        (<FloatingBtn
+          onClick={() => {
+            history.push("/board/mating");
+          }}>목록으로</FloatingBtn>)}
+        
         {none_login_editButton()}
       </ButtonBox>
       <ContentsBox>
@@ -172,19 +186,25 @@ const ImageGrid = styled.div`
   overflow: hidden;
   position: absolute;
   margin: auto;
-  
+  @media (max-width: 600px) {
+    height: 280px;
+   }
 `;
 const ImageGrid_ = styled.div`
-  width: 1920px;
+  width: 100%;
+  max-width: 1920px;
   margin: auto;
   overflow: hidden;
   position: relative;
-  
 `;
 const DetailBox = styled.div`
   margin: auto;
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   height: 320px;
+  @media (max-width: 600px) {
+    margin-left: 15px;
+  }
 `;
 
 const TitleBox = styled.div`
@@ -192,6 +212,9 @@ const TitleBox = styled.div`
   padding-top: 80px;
   position: relative;
   display: block;
+  @media (max-width: 600px) {
+    padding-top: 50px;
+   }
 `;
 const TitleText = styled.h1`
   margin: 0;
@@ -199,16 +222,23 @@ const TitleText = styled.h1`
   font-size: 32px;
   float: left;
   color: #ffffff;
+  @media (max-width: 600px) {
+   font-size: 21px; 
+  }
 `;
 const TitleDate = styled.p`
   font-family: notosans_regular;
   font-size: 20px;
   margin: 0;
   color: #b9b9b9;
+  @media (max-width: 600px) {
+    font-size: 14px; 
+   }
 `;
 const ButtonBox = styled.div`
   display: flex;
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   margin: 40px auto 40px auto;
 `;
 const ToListButton = styled.div`
@@ -259,35 +289,76 @@ const DeleteBtn = styled.button`
   cursor: pointer;
 `;
 const IconBox = styled.div`
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   margin: 40px auto auto auto;
   display: block;
   float: left;
+  // @media (max-width: 600px) {
+  //   display:flex;
+  //   flex-direction: column; 
+  //  }
 `;
 const ContentsBox = styled.div`
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto 0 auto;
   display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    margin-left: 30px; 
+   }
 `;
 const MemberBox = styled.div`
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   margin: auto auto 100px auto;
 `;
 const ApplyBox = styled.div`
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   margin: auto;
+  @media (max-width: 600px) {
+    // width:
+       }
 `;
 const PermitBox = styled.div`
   max-width: 1200px;
   margin: auto;
+  @media (max-width: 600px) {
+       }
 `;
 const ApplicationBox = styled.div`
-  padding: 120px 0 80px 0;
+  // padding: 120px 0 80px 0;
   background-color: #f8f8f8;
+  @media (max-width: 600px) {
+    padding-top:30px;
+    padding-bottom: 20px;
+       }
 `;
 const ReviewContainer = styled.div`
   margin-top : 80px;
   // margin: 34px auto 150px auto;
+  @media (max-width: 600px) {
+       }
 `
+const FloatingBtn = styled.button`
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  font-family: notosans_regular;
+  font-size: 11px;
+  color: #000;
+  background-color: #BBCFDC;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  z-index: 1;
+  bottom: 50px;
+  right: 30px;
+`;
 
 export default MatingDetail;

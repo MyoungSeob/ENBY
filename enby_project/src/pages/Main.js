@@ -94,6 +94,10 @@ const PostList = styled.div`
   justify-content : space-around;
   // margin: 34px auto auto auto;
   width: 1200px;
+  @media (max-width: 600px) {
+    justify-content: left;
+    margin-left: 10px;
+  }
 `
 const PostText = styled.div`
 width : 1200px;
@@ -206,7 +210,7 @@ const ReviewButton = styled.button`
   cursor: pointer;
   float : right;
   @media (max-width: 600px) {
-    margin-left: 180px;
+    margin-left: 220px;
     margin-top: 10px;
       width: 52px;
       height: 26px;
@@ -216,20 +220,20 @@ const ReviewButton = styled.button`
 const Span = styled.span`
   display : flex;
   justify-content : space-between;
+  @media (max-width: 600px) {
+    justify-content: left;
+  }
 `
-// const ReviewList =styled.div`
-//   display : flex;
-//   // justify-content : space-between;
-//   margin: 34px auto 100px auto;
-//   float : right;
-//   margin-left : 872px;
-// `;
+
 const ReviewList =styled.div`
   display : flex;
   justify-content : space-around;
   margin: 34px auto 71px auto;
   width: 1200px;
-
+  @media (max-width: 600px) {
+    justify-content: left;
+    margin-left: 10px;
+  }
 `;
 
 export default Main;

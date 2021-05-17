@@ -6,6 +6,7 @@ import {actionsCreators as imgActions} from "../redux/modules/image"
 import {actionsCreators as postActions} from "../redux/modules/post"
 import Header from '../components/Header'
 import upload from '../shared/image/upload.png'
+import { useMediaQuery } from "react-responsive";
 
 // DatePicker
 import DatePicker from "react-datepicker";
@@ -17,6 +18,14 @@ registerLocale('ko', ko)
 
 
 const MatingBoardWrite = (props) => {
+  // 반응형 구현
+  const isTablet = useMediaQuery({
+    query: "(min-width: 600px) and (max-width: 1170px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 600px)"
+  });
+
     // 수정모드
     const post_id = Number(props.match.params.id);
     console.log(post_id);
@@ -145,9 +154,18 @@ const MatingBoardWrite = (props) => {
     
     return (
       <Container>
+        {isMobile? 
+        (<HeadContainer>
+          <Head>
+            <SubTitle1>Be Connected with ENBY!</SubTitle1>
+            <Title>모임글 작성하기</Title>
+          </Head>
+        </HeadContainer>)
+          : ("")}
           <Test>
             <TitleBox>
-              <InputGrid>
+              {!isMobile?
+              (<InputGrid>
                 <InputBox
                   label="제목"
                   value={title}
@@ -170,37 +188,49 @@ const MatingBoardWrite = (props) => {
                     작성하기
                   </PostButton>
                 )}
-              </InputGrid>
+              </InputGrid>):(
+                <InputBox
+                  label="제목"
+                  value={title}
+                  onChange={(e) => {
+                    console.log("제목추가");
+                    console.log(title);
+                    setTitle(e.target.value);}}
+                  placeholder="제목을 입력하세요"
+                />
+              )}
+              
               <DetailGrid>
-                  <Icon src={require("../shared/image/date.png").default}/>
-                  {_post ? (
-                    <Cal
-                    label="날짜시간"
-                    value={_post.meetTime}
-                    selected={date}
-                    onChange={(date) => {setDate(date)}}
-                    showTimeSelect
-                    timeFormat="HH:mm"
-                    timeIntervals={15}
-                    timeCaption="time"
-                    dateFormat="yyyy/MM/dd h:mm aa"
-                    placeholderText="모임 날짜/시간"
-                  />
-                  ) : (
-                    <Cal
-                    label="날짜시간"
-                    value={date}
-                    selected={date}
-                    onChange={(date) => {setDate(date); console.log(date); }}
-                    showTimeSelect
-                    timeFormat="HH:mm"
-                    timeIntervals={15}
-                    timeCaption="time"
-                    dateFormat="yyyy/MM/dd h:mm aa"
-                    placeholderText="모임 날짜/시간"
-                  />
-                  )}
-                  
+                <DateContainer>
+                    <Icon src={require("../shared/image/date.png").default}/>
+                    {_post ? (
+                      <Cal
+                      label="날짜시간"
+                      value={_post.meetTime}
+                      selected={date}
+                      onChange={(date) => {setDate(date)}}
+                      showTimeSelect
+                      timeFormat="HH:mm"
+                      timeIntervals={15}
+                      timeCaption="time"
+                      dateFormat="yyyy/MM/dd h:mm aa"
+                      placeholderText="모임 날짜/시간"
+                    />
+                    ) : (
+                      <Cal
+                      label="날짜시간"
+                      value={date}
+                      selected={date}
+                      onChange={(date) => {setDate(date); console.log(date); }}
+                      showTimeSelect
+                      timeFormat="HH:mm"
+                      timeIntervals={15}
+                      timeCaption="time"
+                      dateFormat="yyyy/MM/dd h:mm aa"
+                      placeholderText="모임 날짜/시간"
+                    />
+                    )}
+                  </DateContainer>
                 <Place>
                   <Icon src={require("../shared/image/place.png").default}/>
                   <Location
@@ -213,19 +243,21 @@ const MatingBoardWrite = (props) => {
                     placeholder="장소"
                   />
                 </Place>
+                <People>
                 <Icon src={require("../shared/image/person.png").default}/>
-              <MaxPeople
-                label="인원"
-                name = "countPeople"
-                id = "countPeople"
-                onChange={selectHandler}
-                placeholder="인원"
-              >
-                <option value="">총 인원 수 선택</option>
-                <option value="2">2명</option>
-                <option value="3">3명</option>
-                <option value="4">4명</option>
-              </MaxPeople>
+                  <MaxPeople
+                    label="인원"
+                    name = "countPeople"
+                    id = "countPeople"
+                    onChange={selectHandler}
+                    placeholder="인원"
+                  >
+                    <option value="">총 인원 수 선택</option>
+                    <option value="2">2명</option>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                  </MaxPeople>
+              </People>
               </DetailGrid>
             </TitleBox>                
               
@@ -255,7 +287,20 @@ const MatingBoardWrite = (props) => {
               />
               </TextBox>
             </ContentsBox>
-          
+          {isMobile?
+          (_post ? (
+            <EditButton
+              onClick={editPost}
+            >
+              수정하기
+            </EditButton>
+          ) : (
+            <PostButton
+              onClick={addPost}
+            >
+              작성하기
+            </PostButton>
+          )) : ("") }
         </Test>
       </Container>       
     );
@@ -264,26 +309,75 @@ const MatingBoardWrite = (props) => {
 const Container = styled.div`
   display: block;
   width: 100%;
+  @media (max-width: 600px) {
+    margin-top: 20px;
+    background-color : #F8F8F8;
+    height: 1300px;
+  }
+`;
+const HeadContainer = styled.div`
+  background-color: #BBCFDC;
+  height: 160px;
+  width: 100%;
+  // min-width: 320px;
+  padding-top: 10px;
+`;
+const Head = styled.div`
+    @media (max-width: 600px) {
+      margin-left: 30px;
+      margin-top: 20px;
+    }
+`;
+const SubTitle1 = styled.div`
+    height: 26px;
+    font-family: notosans_regular;
+    margin-top: 2px;
+    font-size: 18px;
+    line-height: 26px;
+    color: #7D7D7D;
+    @media (max-width: 600px) {
+      font-size: 13px;
+    }
 `;
 
+const Title = styled.div`
+    height: 37px;
+
+    font-family: seravek;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 46px;
+
+    color: #000000;
+    @media (max-width: 600px) {
+      font-size: 28px;
+    }
+`;
 const Test = styled.div`
   width : 100%;
+  // @media (max-width: 600px) {
+  //   height:100%;
+  // }
 `;
 const TitleBox = styled.div`
   width: 100%;
   height : 320px;
   margin: auto;
-  background-color : #F8F8F8;
+  // background-color : #F8F8F8;
   display : flex;
   flex-direction: column;
-
+  margin-bottom: -100px;
 `;
 const InputGrid = styled.div`
-  width : 1200px;
+  width : 100%;
+  max-width: 1200px;
   margin : auto;
   display: flex;
   flex-direction: row;
   margin-top: 95px;
+  @media (max-width: 600px) {
+    font-size: 28px;
+  }
 `
 const InputBox = styled.input`
   display: flex;
@@ -294,6 +388,12 @@ const InputBox = styled.input`
   border: 1px solid #b9b9b9;
   box-sizing: border-box;
   border-radius: 20px;
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 30px;
+    margin: 50px auto 30px auto;
+    // margin-bottom: 30px;
+  }
 `;
 const LabelUpload = styled.label`
 position : absolute;
@@ -304,15 +404,27 @@ const PreviewImage = styled.img`
   width  : 513px;
   height : 513px;
   border-radius: 20px;
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 300px;
+  }
 `
 const DetailGrid = styled.div`
-  width : 1200px;
+  width: 100%;
+  max-width : 1200px;
   margin : auto;
   margin-top: 43px;
   margin-bottom: 94px;
   display : flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    margin: 0 0 0 40px;
+  }
 `;
-
+const DateContainer = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+`;
 const Cal = styled(DatePicker)`
   padding: 6px 20px;
   width: 322px;
@@ -322,11 +434,21 @@ const Cal = styled(DatePicker)`
   box-sizing: border-box;
   border-radius: 20px;
   // color: #B9B9B9;
+  @media (max-width: 600px) {
+    width: 160px;
+    height: 30px;
+  }
 `;
 
 const Place = styled.div`
   display: flex;
   margin-left: 240px;
+  @media (max-width: 600px) {
+    width: 160px;
+    height: 30px;
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
 `;
 
 const Location = styled.input`
@@ -340,6 +462,13 @@ border: 1px solid #B9B9B9;
 box-sizing: border-box;
 border-radius: 20px;
 margin-right: 30px;
+@media (max-width: 600px) {
+  width: 160px;
+  height: 30px;
+}
+`;
+const People = styled.div`
+  display: flex;
 `;
 const MaxPeople = styled.select`
 // padding: 10px 20px 0 20px;
@@ -352,24 +481,20 @@ border: 1px solid #B9B9B9;
 box-sizing: border-box;
 border-radius: 20px;
 outline : none;
-`;
-
-const TextBox1 = styled.div`
-  width: 464px;
-  height: 42px;
-
-  font-family: Seravek;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 150%;
-  color: #000000;
+@media (max-width: 600px) {
+  width: 160px;
+  height: 30px;
+}
 `;
 
 const ImageBox = styled.div`
   width: 718px;
   margin : auto 61px 170px auto;
   display : block;
+  @media (max-width: 600px) {
+    width:300px;
+    margin: 0;
+  }
 `;
 
 const Image = styled.input`
@@ -381,17 +506,30 @@ const TextBox = styled.div`
   width : 718px;
   height : 421px;
   float : right;
+  @media (max-width: 600px) {
+    width:300px;
+    height: 300px;
+    margin-top: 30px;
+  }
 `
 const ContentsBox = styled.div`
   display: flex;
   width: 1200px;
   margin : 60px auto auto auto;
+  @media (max-width: 600px) {
+    width:300px;
+    flex-direction: column;
+  }
 `;
 
 const TextBox2 = styled.div`
   width: 100%;
   color: #000000;
   margin: auto;
+  @media (max-width: 600px) {
+    // width:300px;
+
+  }
 `;
 
 const Label = styled.label`
@@ -404,19 +542,28 @@ const Label = styled.label`
   background-repeat: no-repeat;
   background-position: center;
   // margin : -513px 0;
+  @media (max-width: 600px) {
+    width:300px;
+    height:300px;
+  }
   `
   const LabelBox = styled.div`
   display : flex;
   flex-direction : column;
   // margin-top: -37px;
   margin: 210px 173px;
+  @media (max-width: 600px) {
+    margin: 100px auto;
+
+  }
 `
 const LabelImage = styled.img`
   width : 24px;
   height : 34px;
   margin : auto;
   // padding-top : -100px;
-
+  @media (max-width: 600px) {
+  }
 `
 const Label_ = styled.label`
   background-color : #168ed9;
@@ -429,7 +576,13 @@ const Label_ = styled.label`
   padding-top : 10px;
   cursor : pointer;
   // margin : 210px 173px;
-
+  @media (max-width: 600px) {
+    margin: auto;
+    margin-top: 20px;
+    font-size: 11px;
+    width: 100px;
+    height: 20px;
+  }
 `
 
 const ContentsH = styled.h2`
@@ -453,12 +606,20 @@ const Contents = styled.textarea`
   box-sizing: border-box;
   border-radius: 20px;
   resize : none;
+  @media (max-width: 600px) {
+    width:300px;
+    height:300px;
+  }
 `;
 
 const Icon = styled.img`
   width: 48px;
   height: 48px;
   margin-right: 10px;
+  @media (max-width: 600px) {
+    width:30px;
+    height:30px;
+  }
 `;
 
 const PostButton = styled.button`
@@ -473,6 +634,12 @@ const PostButton = styled.button`
   font-size: 18px;
   line-height: 150%;
   color: #FFFFFF;
+  @media (max-width: 600px) {
+    width:80px;
+    height:30px;
+    font-size: 11px;
+    margin: 100px 140px;
+  }
   `;
 const EditButton = styled.button`
   background: #168ED9;

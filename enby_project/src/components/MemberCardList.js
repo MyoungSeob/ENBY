@@ -17,15 +17,26 @@ const MemberCardList=(props)=>{
     )
 }
 const Container = styled.div`
-    width : 1200px;
+    max-width : 1200px;
+    width: 100%;
+    @media (max-width: 600px) {
+        margin-left : 32px;
+    }
+
 `
 const Title = styled.div`
     margin-bottom : 34px;
+    @media (max-width: 600px) {
+        margin: auto;
+       }
 `
 const Tit = styled.h2`
     font-size : 28px;
     font-family : seravek;
     font-style : italic;
+    @media (max-width: 600px) {
+    font-size: 21px;
+   }
 `
 const CardBox = styled.div`
     display : flex;

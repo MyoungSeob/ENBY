@@ -40,10 +40,17 @@ const Container = styled.div`
 `
 const IconBox = styled.div`
   display : flex;
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+   }
 `
 const DateBox = styled.div`
     display : flex;
     margin-bottom : 10px;
+    @media (max-width: 600px) {
+      margin-bottom: 0;
+     }
 `
 const IconContents = styled.div`
     margin : 0 131px 0 10px;
@@ -51,6 +58,9 @@ const IconContents = styled.div`
     font-size : 18px;
     padding-top : 12px;
     color : #ffffff;
+    @media (max-width: 600px) {
+      font-size: 12px; 
+     }
 `
 const Icon = styled.div`
     background-image : url(${date});
@@ -58,14 +68,25 @@ const Icon = styled.div`
     background-position : center;
     width : 48px;
     height : 48px;
+    @media (max-width: 600px) {
+      width: 28px;
+      height:28px; 
+     }
 `
 const BigIcon = styled.img`
     width : 48px;
     height : 48px;
+    @media (max-width: 600px) {
+      width: 32px;
+      height:32px; 
+     }
 `
 const PlaceBox = styled.div`
     display : flex;
     margin-bottom : 10px;
+    @media (max-width: 600px) {
+      margin-bottom: 0;
+     }
 `
 const PersonBox = styled.div`
     display : flex;
@@ -77,6 +98,10 @@ const ProgressBar = styled.div`
     margin-left : 20px;
     margin-top : 22px;
     border-radius: 9px;
+    @media (max-width: 600px) {
+      width: 80px;
+      height:6px;
+     }
 `
 const ProgressBar_ = styled.div`
     width : 0;
@@ -93,7 +118,9 @@ const Check = styled.h4`
     margin : 0;
     font-size : 18px;
     font-family : notosans_regular;
-
+    @media (max-width: 600px) {
+      font-size: 12px;
+     }
 `
 
 export default Detail;

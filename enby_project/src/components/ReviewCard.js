@@ -67,6 +67,7 @@ const CardGrid = styled.div`
     height: 210px;
     margin: 6px;
     border-radius: 10px;
+    margin-bottom: 18px;
   }
 `;
 

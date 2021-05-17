@@ -31,6 +31,10 @@ const PostList = styled.div`
 padding: 0;
 margin: 0;
 width: 1200px;
+@media (max-width: 600px) {
+    margin-left: 5px;
+    width: 400px;
+  }
 `;
 
 export default ReviewCardList

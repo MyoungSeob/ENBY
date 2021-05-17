@@ -42,22 +42,36 @@ const MemberCard = (props) => {
 
 const Container = styled.div`
   margin-right: 30px;
+  @media (max-width: 600px) {
+    margin: 0;
+   }
 `;
 
 const Member = styled.div`
   width: 150px;
   height: 185px;
   cursor: pointer;
+  @media (max-width: 600px) {
+    width: 80px;
+    height: 120px;
+   }
 `;
 const MemberImg = styled.img`
   width: 150px;
   height: 150px;
   border-radius: 150px;
+  @media (max-width: 600px) {
+    width: 70px;
+    height: 70px;
+   }
 `;
 const MemberNickname = styled.p`
   font-size: 18px;
   font-family: notosans_regular;
   text-align: center;
+  @media (max-width: 600px) {
+    font-size: 8px;
+   }
 `;
 
 export default MemberCard;

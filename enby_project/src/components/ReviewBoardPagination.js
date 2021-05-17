@@ -2,8 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from '@material-ui/core/styles'
+import { useMediaQuery } from "react-responsive";
 
 const ReviewBoardPagination = ({ postsPerPage, totalPosts, paginate }) => {
+
+  // 반응형 구현
+  const isTablet = useMediaQuery({
+    query: "(min-width: 600px) and (max-width: 1170px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 600px)"
+  });
+
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);
@@ -14,6 +24,17 @@ const ReviewBoardPagination = ({ postsPerPage, totalPosts, paginate }) => {
     totalPosts % postsPerPage > 0
       ? Math.ceil(totalPosts / postsPerPage)
       : totalPosts / postsPerPage;
+
+      // 모바일 사이즈 변경
+  const useStyles_Mbl = makeStyles((theme) =>({
+    root: {
+      width : "320px",
+        display : 'flex',
+        justifyContent: "center",
+        margin : 'auto auto 121px auto',
+      '& > * + *': {},
+    },
+  }));
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,7 +53,7 @@ const ReviewBoardPagination = ({ postsPerPage, totalPosts, paginate }) => {
   const location = window.pageYOffset;
   console.log(location)
 
-  const classes = useStyles()
+  const classes = !isMobile? useStyles() : useStyles_Mbl()
   return (
     <div className={classes.root}>
         <Pagination page={page} count={countPage} onChange={handleChange} />

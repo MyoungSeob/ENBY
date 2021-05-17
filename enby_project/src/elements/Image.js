@@ -108,7 +108,11 @@ const MiniContentsImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 20px;
-
+  @media (max-width: 600px) {
+    width: 240px;
+    height: 240px;
+    margin-left: 25px;
+   }
 `;
 const MiniContentsImageDeadline = styled.div`
   width: 410px;
@@ -119,7 +123,11 @@ const MiniContentsImageDeadline = styled.div`
   background-repeat: no-repeat;
   filter : grayscale(100%);
   border-radius: 20px;
-
+  @media (max-width: 600px) {
+    width: 240px;
+    height: 240px;
+    margin-left: 25px;
+   }
 `;
 
 const Moimcontents = styled.div`

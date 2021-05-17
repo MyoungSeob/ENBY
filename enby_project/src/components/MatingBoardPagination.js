@@ -2,8 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from "@material-ui/core/styles";
+import { useMediaQuery } from "react-responsive";
 
 const MatingBoardPagination = (props) => {
+ 
+    // 반응형 구현
+  const isTablet = useMediaQuery({
+    query: "(min-width: 600px) and (max-width: 1170px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 600px)"
+  });
 
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
@@ -36,6 +45,17 @@ props.isNotDeadline_Posts % props.postsPerPage > 0
     ? Math.ceil(props.isNotDeadline_Posts / props.postsPerPage)
     : props.isNotDeadline_Posts / props.postsPerPage;
 
+    // 모바일 스타일 주기
+  const useStyles_Mbl = makeStyles((theme) =>({
+    root: {
+      width : "320px",
+        display : 'flex',
+        justifyContent: "center",
+        margin : 'auto auto 121px auto',
+      '& > * + *': {},
+    },
+  }));
+
     const useStyles = makeStyles((theme) => ({
       root: {
         width : "1200px",
@@ -45,7 +65,9 @@ props.isNotDeadline_Posts % props.postsPerPage > 0
         '& > * + *': {},
       },
     }));
-    const classes = useStyles()
+
+    const classes = !isMobile? useStyles() : useStyles_Mbl()
+    // const classes = useStyles()
 
 const viewPagination = () => {
   if (props.allMoim) {

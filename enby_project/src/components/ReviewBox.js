@@ -42,15 +42,20 @@ const ReviewBox = (props) => {
 }
 const Container = styled.div`
     width : 100%;
+    @media (max-width: 600px) {
+      margin-left: 30px;
+         }
 `
 const TitleBox = styled.div`
-    width : 1200px;
+    width: 100%;
+    max-width : 1200px;
     display : flex;
     margin : auto auto 40px auto;
 
 `
 const TitleContents = styled.div`
-width : 1200px;
+width: 100%;
+max-width : 1200px;
 margin : auto;
 float: left;
 
@@ -60,12 +65,18 @@ const SubTitle = styled.p`
     font-family : notosans_regular;
     font-size : 18px;
     color : #474747;
+    @media (max-width: 600px) {
+      font-size: 11px;
+         }
 `
 const Title = styled.h2`
     margin : 5px 0px;
     font-family : seravek;
     font-size : 28px;
     font-style : italic;
+    @media (max-width: 600px) {
+      font-size: 21px;
+         }
 `
 const MoreReviewBtn = styled.div`
 `
@@ -78,12 +89,19 @@ const MoveReviewBoard = styled.button`
     font-family : notosans_regular;
     font-size : 18px;
     background-color : #ffffff;
+    @media (max-width: 600px) {
+      width: 60px;
+      height: 30px;
+      font-size: 11px;
+      margin-right: 50px;
+         }
 `
 const CardListBox = styled.div`
-width : 1200px;
+width: 100%;
+max-width : 1200px;
 margin : auto;
 display : block;
-margin-bottom: 350px;
+margin-bottom: 150px;
 `
 const Notice = styled.p`
     text-align : center;
@@ -91,6 +109,9 @@ const Notice = styled.p`
     font-size : 18px;
     color : #b9b9b9;
     margin-bottom : 150px;
+    @media (max-width: 600px) {
+      margin-right: 55px;
+         }
 `
 const BottomGrid = styled.div`
     width : 100%;

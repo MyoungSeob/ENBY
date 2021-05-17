@@ -171,7 +171,7 @@ function MatingBoard(props) {
         </Title>
         <Container>
           {isMobile ? (
-              <Button5>모임<br/> 만들기</Button5>
+              <Button5 onClick={moveWrite}>모임<br/> 만들기</Button5>
             ) : ("")}
           <TopButton>
               <Search {...searchWhere}/>
@@ -246,7 +246,8 @@ const ImageBox = styled.div`
 const Title = styled.div`
   position : relative;
   margin : 0px auto 0px auto;
-  width : 1200px;
+  width: 100%;
+  max-width : 1200px;
   height : 520px;
   @media (min-width: 600px) and (max-width: 1170px) {
     // width: 320px;
@@ -260,7 +261,8 @@ const Title = styled.div`
   cursor: default;
 `
 const TitleBox = styled.div`
-  width : 747px;
+  width: 100%;
+  max-width : 747px;
   height : 144px;
   margin : auto;
   padding-top : 188px;
@@ -322,7 +324,8 @@ const Container = styled.div`
 `;
 
 const TopButton =styled.div`
-    width : 1200px;
+width: 100%;
+    max-width : 1200px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -334,10 +337,11 @@ const TopButton =styled.div`
     }
 `;
 const ButtonBox = styled.div`
+    width: 100%;
     display : flex;
     justify-content : center;
     margin : auto;
-    width : 1200px;
+    max-width : 1200px;
     margin-bottom: -30px;
     @media (max-width: 600px) {
       width: 280px;
@@ -535,8 +539,8 @@ const Button4 = styled.div`
 
 const Button5 = styled.button`
   position: fixed;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   font-family: notosans_regular;
   font-size: 11px;
   color: #000;
@@ -550,12 +554,12 @@ const Button5 = styled.button`
   z-index: 1;
   bottom: 50px;
   right: 30px;
-  }
 `;
 
 const CardBox = styled.div`
   display : block;
-  width : 1200px;
+  width: 100%;
+  max-width : 1200px;
   margin : auto;
   @media (max-width: 600px) {
     min-width: 320px;
@@ -563,11 +567,12 @@ const CardBox = styled.div`
 `
 const PageBox = styled.div`
   display : inline;
-  width : 1200px;
+  width: 100%;
+  max-width : 1200px;
   margin : auto;
   @media (max-width: 600px) {
-    width: 320px;
-    // margin-right: -1000px;
+    width: 100%
+    max-width: 320px;
   }
 `
 

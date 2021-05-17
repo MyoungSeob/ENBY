@@ -162,7 +162,12 @@ const Apply = (props) => {
 
 const ApplyBox = styled.div`
   margin-bottom: 34px;
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
+  @media (max-width: 600px) {
+    margin-left: 32px;
+    margin-top: -90px;
+       }
 `;
 const Title = styled.div``;
 const ApplySubTit = styled.p`
@@ -170,23 +175,37 @@ const ApplySubTit = styled.p`
   font-family: notosans_regular;
   font-size: 18px;
   color: #474747;
+  @media (max-width: 600px) {
+    font-size: 8px;
+       }
 `;
 const ApplyTit = styled.h2`
   margin-top: 5px;
   font-family: seravek;
   font-size: 28px;
   font-style: italic;
+  @media (max-width: 600px) {
+    font-size: 21px;
+       }
 `;
 const Contect = styled.div`
   display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    margin-top: -15px;
+       }
 `;
 const KakaoId = styled.div`
   margin-right: 24px;
+  
 `;
 const Id = styled.p`
   font-size: 18px;
   color: #000000;
   font-family: notosans_medium;
+  @media (max-width: 600px) {
+    font-size: 12px;
+       }
 `;
 const IdInput = styled.input`
   width: 320px;
@@ -196,6 +215,11 @@ const IdInput = styled.input`
   font-size: 18px;
   padding-left: 20px;
   outline: none;
+  @media (max-width: 600px) {
+    width: 140px;
+    height: 24px;
+    font-size: 7px;
+       }
 `;
 const Comment = styled.div`
   margin-bottom: 20px;
@@ -204,6 +228,9 @@ const CommentTit = styled.p`
   font-size: 18px;
   color: #000000;
   font-family: notosans_medium;
+  @media (max-width: 600px) {
+    font-size: 12px;
+       }
 `;
 const Contents = styled.input`
   width: 810px;
@@ -213,9 +240,18 @@ const Contents = styled.input`
   font-size: 18px;
   padding-left: 20px;
   outline: none;
+  @media (max-width: 600px) {
+    width: 240px;
+    height: 70px;
+    font-size: 9px;
+       }
 `;
 const ButtonBox = styled.div`
   float: right;
+  @media (max-width: 600px) {
+    float: left;
+    margin-top: -10px;
+       }
 `;
 const ApplyButton = styled.button`
   width: 167px;
@@ -229,6 +265,10 @@ const ApplyButton = styled.button`
   background-color: #168ED9;
   padding-bottom: 2px;
   cursor: pointer;
+  @media (max-width: 600px) {
+    width: 60px;
+    height:30px;
+    font-size: 9px;
 `;
 const CheckBox = styled.div`
   margin-top: 34px;

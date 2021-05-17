@@ -137,7 +137,7 @@ const addPostDB = (title, contents, boardImg, location, meetTime, people_max, de
         axios(DB)
             .then(() => {
                 window.alert("등록완료 되었습니다 :)");
-                history.push("/");
+                history.push("/board/mating");
             })
             .catch((err) => {
                 window.alert("에러가 발생했습니다. 다시 시도해주세요!");
@@ -169,13 +169,14 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime, peop
     return function (dispatch, getState, {history}) {
       const token = localStorage.getItem("token")
       let formData = new FormData();
-      if(boardImg === null){
+      if (boardImg === null) {
         formData.append("title", title);
         formData.append("contents", contents);
         formData.append("location", location);
         formData.append("meetTime", meetTime);
         formData.append("people_max", people_max);
-      }else{
+
+      } else {
         formData.append("title", title);
         formData.append("contents", contents);
         formData.append("boardImg", boardImg);
@@ -194,6 +195,7 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime, peop
         }
       })
         .then((res) => {
+            console.log(res)
             window.alert('게시글이 수정되었습니다.')
             history.push('/')
         })

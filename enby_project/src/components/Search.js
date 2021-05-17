@@ -1,37 +1,50 @@
 // 검색 기능 구현 시 사용 할 컴포넌트!
 
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { history } from '../redux/configStore';
-import serachicon from '../shared/image/searchicon.png'
+import React, { useState } from "react";
+import styled from "styled-components";
+import { history } from "../redux/configStore";
+import serachicon from "../shared/image/searchicon.png";
 
-function Search() {
-    const [text, setText] = useState("");
-
-    const search =()=>{
-        if(text === ""){
-            window.alert("검색어를 입력해주세요!")
-        }else{
-            history.push(`/mating/search/${text}`)
-        }
+const Search=(props)=> {
+  console.log(props)
+  const [text, setText] = useState("");
+  const search = () => {
+    if (text === "") {
+      window.alert("검색어를 입력해주세요!");
+    } else {
+      if (props.where === "mating") {
+        history.push(`/mating/search/${text}`);
+      } 
+      if(props.where === "review"){
+        history.replace(`/board/review/search/${text}`);
+      }
     }
-    return (
-      <Container>
-        <Subtitle>
-          <text>검색하기</text>
-        </Subtitle>
-        <SearchGrid>
-          <SearchBox
-            placeholder="찾으시는 모임이 있으신가요?"
-            onChange={(e) => {
-              setText(e.target.value);
-            }}
-            value={text}
-          />
-          <Icon onClick={search}/>
-        </SearchGrid>
-      </Container>
-    );
+  };
+
+  return (
+    <Container>
+      <Subtitle>
+        <text>검색하기</text>
+      </Subtitle>
+      <SearchGrid>
+        <SearchBox
+          placeholder="찾으시는 모임이 있으신가요?"
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
+          value={text}
+          onKeyPress ={
+            (e) => {
+              if(e.key === 'Enter'){
+                search()
+              }
+            }
+          }
+        />
+        <Icon onClick={search} />
+      </SearchGrid>
+    </Container>
+  );
 }
 
 const Container = styled.div`
@@ -95,10 +108,10 @@ cursor : pointer;
 }
 `
 const Subtitle = styled.div`
-    margin-bottom : 10px;
-`
+  margin-bottom: 10px;
+`;
 const SearchGrid = styled.div`
-width : 350px;
-display : block;
-`
-export default Search
+  width: 350px;
+  display: block;
+`;
+export default Search;

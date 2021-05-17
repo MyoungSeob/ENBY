@@ -81,7 +81,9 @@ const MatingDetail = (props) => {
             <PermitApplyList />
           </PermitBox>
         ) : (
-          ""
+          <ApplyBox>
+          <Apply {...post_list} />
+        </ApplyBox>
         )
       )
     }else{
@@ -173,7 +175,7 @@ const ImageGrid = styled.div`
   
 `;
 const ImageGrid_ = styled.div`
-  width: auto;
+  width: 1920px;
   margin: auto;
   overflow: hidden;
   position: relative;

@@ -13,7 +13,7 @@ const OthersMypage = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const otherName = window.location.href.split("/")[4];
+    const otherName = props.match.params.name;
     dispatch(userActions.getOtherPageDB(otherName));
   }, []);
 

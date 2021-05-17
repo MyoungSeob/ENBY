@@ -57,7 +57,7 @@ image.defaultProps = {
 
 const ImageDefault = styled.div`
   width: 1920px;
-  min-width: 1200px;
+  max-width : 100%;
   max-height: 233px;
   height: 233px;
   background-image: url("${(props) => props.src}");
@@ -124,7 +124,7 @@ const MiniContentsImageDeadline = styled.div`
 
 const Moimcontents = styled.div`
   width: 1920px;
-  min-width: 1200px;
+max-width : 100%;
   max-height: 320px;
   height: 320px;
   background-image: url("${(props) => props.src}");
@@ -133,10 +133,11 @@ const Moimcontents = styled.div`
   background-repeat: no-repeat;
   filter: blur(10px) brightness(55%);
   transform : scale(1.2);
+
 `;
 const MoimcontentsDeadline = styled.div`
   width: 1920px;
-  min-width: 1200px;
+  max-width: 100%;
   max-height: 320px;
   height: 320px;
   background-image: url("${(props) => props.src}");
@@ -145,10 +146,11 @@ const MoimcontentsDeadline = styled.div`
   background-repeat: no-repeat;
   filter: blur(10px) brightness(50%) grayscale(100%);
   transform : scale(1.2);
+
 `;
 const MainTitle = styled.div`
   width: 1920px;
-  min-width: 1200px;
+  max-width : 100%;
   height: 520px;
   background-image: url("${(props) => props.src}");
   background-position: center;

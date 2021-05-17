@@ -52,8 +52,9 @@ const Main =(props)=>{
         </PostList>
         <ReviewText>
           <ReviewSubTitle>메이트들의 ENBY 경험을 알고싶다면? </ReviewSubTitle>
-          <span>
-            <ReviewTitle>모임 후기글</ReviewTitle>
+          
+          <Span>
+          <ReviewTitle>후기글</ReviewTitle>
             <ReviewButton
               onClick={() => {
                 history.push("/board/review");
@@ -61,7 +62,7 @@ const Main =(props)=>{
             >
               더보기
             </ReviewButton>
-          </span>
+          </Span>
         </ReviewText>
         <ReviewList>
           {review_lst.map((p) => {
@@ -90,6 +91,8 @@ const PostList = styled.div`
   display : flex;
   // justify-content : space-between;
   margin: 34px auto -35px auto;
+  justify-content : space-around;
+  // margin: 34px auto auto auto;
   width: 1200px;
 `
 const PostText = styled.div`
@@ -120,6 +123,7 @@ const PostTitle = styled.div`
     margin-top: 13px;
     font-family: gmarketsans_medium;
     font-style: normal;
+    float : left;
     font-size: 30px;
     line-height: 150%;
     color: #168ed9;
@@ -129,9 +133,9 @@ const PostTitle = styled.div`
 `;
 
 const PostButton = styled.button`
-font-size : 18px;
+  font-size : 18px;
   font-family : notosans_regular;
-  margin-left: 877px;
+  margin-left: 880px;
   width: 167px;
   height: 40px;
   border: 1px solid #000000;
@@ -150,7 +154,7 @@ font-size : 18px;
 
 const ReviewText = styled.div`
   width : 1200px;
-  margin : 100px auto auto auto;
+  margin : 21px auto auto auto;
   & span {
     display: flex;
   }
@@ -161,7 +165,7 @@ const ReviewText = styled.div`
   }
 `;
 const ReviewSubTitle =styled.text`
-  margin: 225px 0px 0px 0px;
+  margin: 21px 0px 0px 0px;
   // width: 290px;
   height: 23px;
   font-family: notosans_regular;
@@ -198,9 +202,9 @@ const ReviewButton = styled.button`
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 20px;
-  margin-left: 850px;
   background-color: #FFFFFF;
   cursor: pointer;
+  float : right;
   @media (max-width: 600px) {
     margin-left: 180px;
     margin-top: 10px;
@@ -209,10 +213,21 @@ const ReviewButton = styled.button`
       font-size: 10px;
   }
 `;
+const Span = styled.span`
+  display : flex;
+  justify-content : space-between;
+`
+// const ReviewList =styled.div`
+//   display : flex;
+//   // justify-content : space-between;
+//   margin: 34px auto 100px auto;
+//   float : right;
+//   margin-left : 872px;
+// `;
 const ReviewList =styled.div`
   display : flex;
-  // justify-content : space-between;
-  margin: 34px auto 100px auto;
+  justify-content : space-around;
+  margin: 34px auto 71px auto;
   width: 1200px;
 
 `;

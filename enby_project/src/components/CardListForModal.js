@@ -47,7 +47,7 @@ padding: 5px;
 `
 const PostList = styled.div`
 display: flex;
-justify-content : space-between;
+justify-content : space-around;
 `;
 
 export default ReviewCardList

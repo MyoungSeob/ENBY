@@ -29,7 +29,7 @@ const CardGrid = styled.div`
   float: left;
   width: 282px;
   height: 330px;
-  margin: 0 auto 79px 14px;
+  margin: 0 8px 79px 8px;
   border: 1px solid #eee;
   border-radius: 20px;
   cursor: pointer;
@@ -51,6 +51,10 @@ const CardGrid = styled.div`
     letter-spacing: 0px;
     -webkit-font-smoothing: antialiased;
     overflow-anchor: none;
+    // filter: drop-shadow(-0.3px 0 0.2rem gray);
+    // transition-duration: 0.15s;
+    // transition-timing-function: ease-out;
+    // transition-delay: 0s;
   }
   border-radius: 20px;
   @media (min-width: 600px) and (max-width: 1170px) {

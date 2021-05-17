@@ -33,7 +33,7 @@ const Mypage =(props)=>{
     // 작성한 글 pagination(Apply)
     // const [applyPosts, setApplyPosts] = useState([]);
     const [currentApplyPage, setCurrentApplyPage] = useState(1);
-    const [postsPerApplyPage, setPostsPerApplyPage] = useState(3);
+    const [postsPerApplyPage, setPostsPerApplyPage] = useState(4);
     const indexOfApplyLast = currentApplyPage * postsPerApplyPage;
     const indexOfApplyFirst = indexOfApplyLast - postsPerApplyPage;
     const applyPosts = apply_list
@@ -45,7 +45,7 @@ const Mypage =(props)=>{
 
     // 참여했던 모임 pagination(Attend)
     const [currentAttendPage, setCurrentAttendPage] = useState(1);
-    const [postsPerAttendPage, setPostsPerAttendPage] = useState(3);
+    const [postsPerAttendPage, setPostsPerAttendPage] = useState(4);
     const indexOfAttendLast = currentAttendPage * postsPerAttendPage;
     const indexOfAttendFirst = indexOfAttendLast - postsPerAttendPage;
     const attendPosts = attend_list
@@ -104,6 +104,7 @@ const Mypage =(props)=>{
 }
 const Container = styled.div`
     width : 100%;
+
 `
 const ProfileBox = styled.div`
 `
@@ -138,7 +139,7 @@ font-size : 28px;
 `
 const AttendBox = styled.div`
     width : 1200px;
-    margin : 0 auto 0 auto;
+    margin : 127px auto 0 auto;
 `
 const AttendSubTit = styled.p`
     margin : 0;
@@ -155,7 +156,7 @@ const AttendTit = styled.h2`
 const WriteBox = styled.div`
     display : block;
     width : 1200px;
-    margin : auto auto 43px auto;
+    margin : 127px auto 43px auto;
     
 `
 const WriteSub = styled.p`
@@ -174,6 +175,6 @@ const WriteTit = styled.h2`
 const Linetwo = styled.hr`
 border-bottom : 2px solid #383838;
 width : 1200px;
-margin : auto auto 64px auto;
+margin : auto auto 57px auto;
 `
 export default Mypage;

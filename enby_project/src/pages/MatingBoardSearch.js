@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import main_carousel2 from "../shared/image/main_carousel2.png";
 import Search from "../components/Search";
 import { history } from "../redux/configStore";
 import axios from "axios";
 import Loading from "../components/Loading";
+import santa from '../shared/image/MatingBanner.png'
 import Card from "../components/Card";
 
 const MatingBoardSearch = (props) => {
   const id = props.match.params.id;
+  console.log(props.match.path)
 
   const [api, setApi] = useState(null);
   const [error, setError] = useState(null);
@@ -17,18 +18,10 @@ const MatingBoardSearch = (props) => {
   useEffect(() => {
     const search = async (param) => {
       try {
-        const formdata = new FormData();
-        formdata.append("Keyword", id);
-
-        const token = localStorage.getItem("token");
         setLoading(true);
         const response = await axios({
-          method: "post",
-          url: `http://3.36.67.251:8080/board/search`,
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-          data: formdata,
+          method: "get",
+          url: `http://3.36.67.251:8080/board/search?Keyword=` + `${id}`,
         });
         setApi(response.data.board);
       } catch (e) {
@@ -50,16 +43,18 @@ const MatingBoardSearch = (props) => {
         
     }
   }
-  
+  const searchWhere = {
+    where : "mating"
+  }  
 
   if(loading){
     return  <Loading />
   }else{
     return (
         <Container>
-          <Image shape="rectangle" src={main_carousel2} />
+          <Image src={santa} />
           <TopButton>
-            <Search value={id}/>
+            <Search {...searchWhere}/>
             <Button4
               onClick={() => {
                 history.push(`/board/write`);
@@ -102,8 +97,9 @@ const Button4 = styled.div`
   float: right;
   margin-top: 34px;
   & button {
-    background: #f1b100;
+    background: #168ed9;
     border-radius: 20px;
+    color : #ffffff;
     border: none;
     cursor: pointer;
     width: 167px;

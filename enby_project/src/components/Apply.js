@@ -131,11 +131,9 @@ const Apply = (props) => {
   const [applyComment, setApplyComment] = React.useState("");
   // 신청을 할 때, 해당 사항을 검사 후 신청을 합니다.
   const applyAttend = () => {
-    if (localStorage.getItem("regist") !== null) {
-      window.alert("신청한 모임이 마감되지 않았다면 신청은 1번만 가능합니다.");
-      return;
-    } else {
+    if (localStorage.getItem("token") === null) {
       window.alert("🤖신청하기는 로그인이 필요한 기능입니다.");
+      return;
     }
     if (kakaoId === "" || applyComment === "") {
       window.alert(

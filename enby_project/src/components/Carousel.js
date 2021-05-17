@@ -1,5 +1,3 @@
-// import AwesomeSlider from 'react-awesome-slider';
-// import 'react-awesome-slider/dist/styles.css';
 import "../carousel.css";
 import React from 'react'
 import styled from 'styled-components';
@@ -57,6 +55,7 @@ const Title = styled.div`
     width: 100%;
     height: 320px;
   }
+  cursor : default;
 `
 const TitleBox = styled.div`
   width : 747px;

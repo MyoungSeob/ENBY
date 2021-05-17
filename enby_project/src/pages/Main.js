@@ -33,7 +33,6 @@ const Main =(props)=>{
         </CarouselBox>
         </Box>
         <PostText>
-          <PostSubTitle>새로운 모임을 확인하고 싶다면</PostSubTitle>
           <span>
             <PostTitle>새로운 모임</PostTitle>
             <PostButton
@@ -51,7 +50,6 @@ const Main =(props)=>{
           })}
         </PostList>
         <ReviewText>
-          <ReviewSubTitle>메이트들의 ENBY 경험을 알고싶다면? </ReviewSubTitle>
           
           <Span>
           <ReviewTitle>후기글</ReviewTitle>
@@ -124,7 +122,7 @@ const PostSubTitle = styled.div`
     }
 `;
 const PostTitle = styled.div`
-    margin-top: 13px;
+    // margin-top: 13px;
     font-family: gmarketsans_medium;
     font-style: normal;
     float : left;
@@ -183,7 +181,7 @@ const ReviewSubTitle =styled.text`
   }
 `;
 const ReviewTitle = styled.text`
-  margin-top: 12px; 
+  // margin-top: 12px; 
   // width: 161px;
   height: 35px;
   font-family: gmarketsans_medium;

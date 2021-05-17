@@ -45,7 +45,7 @@ props.isNotDeadline_Posts % props.postsPerPage > 0
     ? Math.ceil(props.isNotDeadline_Posts / props.postsPerPage)
     : props.isNotDeadline_Posts / props.postsPerPage;
 
-    // 모바일 스타일 주기
+    // 모바일 사이즈 변경
   const useStyles_Mbl = makeStyles((theme) =>({
     root: {
       width : "320px",

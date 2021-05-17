@@ -63,7 +63,7 @@ const Container = styled.div`
     }
   
   @media (max-width: 600px) {
-    width: 50%;
+    width: 100%;
     min-width: 320px;
     height: 80px;
 
@@ -119,6 +119,7 @@ const CategoryBox = styled.div`
   padding-top: 10px;
   @media (max-width: 600px) {
     margin-top:7px;
+    margin-right:30px;
   }
 `;
 const Logout = styled.p`

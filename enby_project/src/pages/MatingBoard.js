@@ -248,6 +248,7 @@ const Title = styled.div`
   
   @media (max-width: 600px) {
     width: 100%;
+    height: 320px;
   }
 `
 const TitleBox = styled.div`
@@ -305,6 +306,11 @@ line-height: 150%;
 const Container = styled.div`
     width: 100%;
     margin: auto;
+    // width: 320;
+    @media (max-width: 600px) {
+      margin-top: 180px;
+      z-index: 1;
+    }
 `;
 
 const TopButton =styled.div`
@@ -316,6 +322,7 @@ const TopButton =styled.div`
     @media (max-width: 600px) {
       margin-top: -120px;
       width: 320px;
+      z-index: 1;
     }
 `;
 const ButtonBox = styled.div`
@@ -328,6 +335,8 @@ const ButtonBox = styled.div`
       width: 280px;
       justify-content: center;
       margin: -60px auto;
+      z-index: 1;
+
     }
 `
 const Button1 = styled.button`
@@ -549,7 +558,7 @@ const PageBox = styled.div`
   width : 1200px;
   margin : auto;
   @media (max-width: 600px) {
-    // width: 320px;
+    width: 320px;
     // margin-right: -1000px;
   }
 `

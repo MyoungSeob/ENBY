@@ -34,7 +34,7 @@ padding-bottom: 120px;
 }
 
 @media (max-width: 600px) {
-    margin: -1000px;
+    // margin: 100px;
     width: 320px;
 }
 `;

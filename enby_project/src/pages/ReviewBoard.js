@@ -143,6 +143,9 @@ const SubTitle1 = styled.div`
     font-size: 18px;
     line-height: 26px;
     color: #7D7D7D;
+    @media (max-width: 600px) {
+      font-size: 13px;
+    }
 `;
 
 const Title = styled.div`
@@ -155,6 +158,9 @@ const Title = styled.div`
     line-height: 46px;
 
     color: #000000;
+    @media (max-width: 600px) {
+      font-size: 28px;
+    }
 `;
 
 const SubTitle2 = styled.div`
@@ -167,6 +173,9 @@ const SubTitle2 = styled.div`
     line-height: 35px;
 
     color: #3A3A3A;
+    @media (max-width: 600px) {
+      font-size: 18px;
+    }
 `;
 
 const Main = styled.div`
@@ -176,6 +185,10 @@ const Main = styled.div`
     background: #ffffff;
 
     background-size: cover;
+    @media (max-width: 600px) {
+      width: 100%;
+      min-width: 320px;
+    }
 `;
 const ButtonBox = styled.div`
     display : inline-block;

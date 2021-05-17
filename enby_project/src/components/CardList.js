@@ -14,7 +14,7 @@ const CardList =(props)=>{
     console.log(props)
     const id = post_list.id
     useEffect(()=>{
-        dispatch(postActions.getPostMainDB(post_list))
+        dispatch(postActions.getPostMainDB())
         dispatch(postActions.getPostDetailDB(id))
     }, [dispatch])
     const showReviewCard=()=>{

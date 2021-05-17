@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Carousel from '../components/Carousel'
-import Header from '../components/Header'
+import Image from '../elements/Image'
 import CardList from '../components/CardList'
-import Card from '../components/Card'
+
 import Search from '../components/Search';
 import styled from 'styled-components';
 import MatingBanner from '../shared/image/MatingBanner.png';
@@ -151,12 +150,18 @@ function MatingBoard(props) {
         window.alert('모임게시글 작성은 로그인 후 가능합니다.')
         return
       }
-    } 
+    }
+
+    const searchWhere={
+      where : "mating"
+    }
     
     return (
-      <div>
+      <>
         <ImageContainer>
-          <Image shape="rectangle" src={MatingBanner} />
+          <ImageBox>
+          <Image shape="maintitle" src={MatingBanner} />
+          </ImageBox>
         </ImageContainer>
         <Title>
           <TitleBox>
@@ -169,7 +174,7 @@ function MatingBoard(props) {
               <Button5>모임<br/> 만들기</Button5>
             ) : ("")}
           <TopButton>
-              <Search />
+              <Search {...searchWhere}/>
               {!isMobile ? (
               <Button4
                 onClick={moveWrite}
@@ -177,7 +182,6 @@ function MatingBoard(props) {
                 <button>모임 만들기</button>
               </Button4>) : ("")}
             </TopButton>
-              
           <ButtonBox>
             {allMoimTrueFalse()}
             {isNotDeadlineTrueFalse()}
@@ -202,14 +206,14 @@ function MatingBoard(props) {
           />
           </PageBox>
         </Container>
-      </div>
+  </>
     );
 }
 const ImageContainer = styled.div`
 position : absolute;
-width: 1920px;
+width: 100%;
 height: 520px;
-margin : 0px auto 0px auto;
+margin : auto;
 z-index : -1;
 @media (min-width: 600px) and (max-width: 1170px) {
   // width: 320px;
@@ -221,21 +225,24 @@ z-index : -1;
   height: 320px;
 }
 `;
-const Image = styled.img`
-width : 100%;
-max-width : 1920px;
-height: 520px;
-object-fit: cover;
-@media (min-width: 600px) and (max-width: 1170px) {
-  // width: 320px;
-  // height: 235.73px;
-  }
+// const Image = styled.img`
+// width : 100%;
+// max-width : 1920px;
+// height: 520px;
+// object-fit: cover;
+// @media (min-width: 600px) and (max-width: 1170px) {
+//   // width: 320px;
+//   // height: 235.73px;
+//   }
 
-@media (max-width: 600px) {
-  width: 100%;
-  height: 320px;
-}
-`;
+// @media (max-width: 600px) {
+//   width: 100%;
+//   height: 320px;
+// }
+// `;
+const ImageBox = styled.div`
+  margin : auto;
+`
 const Title = styled.div`
   position : relative;
   margin : 0px auto 0px auto;
@@ -249,6 +256,7 @@ const Title = styled.div`
   @media (max-width: 600px) {
     width: 100%;
   }
+  cursor: default;
 `
 const TitleBox = styled.div`
   width : 747px;

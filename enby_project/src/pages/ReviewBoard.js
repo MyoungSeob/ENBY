@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Modal from '../components/Modal';
 import Card from '../components/Card';
 import CardListForModal from '../components/CardListForModal';
-import Pagination from '../components/Pagination';
+import Pagination from '../components/ReviewBoardPagination';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {actionsCreators as userActions} from '../redux/modules/user'
@@ -30,6 +30,7 @@ function ReviewBoard() {
     const closeModal = () => {
         setModalOpen(false);
     }
+    
 
     useEffect(() => {
         if (localStorage.getItem("token") !== null) {
@@ -55,18 +56,6 @@ function ReviewBoard() {
         return currentPosts;
     }
 
-    // const writereviewBefore = [];
-    // const is_write_review =()=>{
-    //     if(localStorage.getItem('token') !== null){
-    //         for(let i = 0 ; i < review_list.length; i ++){
-    //             if(localStorage.getItem('token') === review_list[i].nickname){
-
-    //             }
-    //         }
-    //     }
-    // }
-
-
     // 모달 페이지네이션
     const [modalPosts, setModalPosts] = useState([]);
     const [currentModalPage, setCurrentModalPage] = useState(1);
@@ -80,6 +69,9 @@ function ReviewBoard() {
         return currentModalPosts;
     }
 
+    const searchWhere={
+        where : "review"
+    }
     return (
       <Container>
         <Head>
@@ -89,13 +81,13 @@ function ReviewBoard() {
         </Head>
         <Main>
           <Top>
-            <Search />
+            <Search {...searchWhere}/>
             <ButtonBox>
               <Button onClick={openModal}>후기글 작성하기</Button>
             </ButtonBox>
           </Top>
           <ReviewCardList review_list={currentPosts(posts)} />
-          <Pagination
+          <Pagination id ="move"
             postsPerPage={postsPerPage}
             totalPosts={review_list.length}
             paginate={setCurrentPage}
@@ -198,8 +190,10 @@ const Button = styled.button`
     cursor: pointer;
 `;
 const Paging = styled.div`
+    width : 1064px;
+    overflow : hidden;
     position: fixed;
-    margin-top: 455px;
+    margin-top: 435px;
 `;
 
 export default ReviewBoard

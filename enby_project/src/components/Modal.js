@@ -17,7 +17,7 @@ const Modal = (props) => {
                         {props.children}
                     </main>
                     <footer>
-                        <button className="close" onClick={close}> close </button>
+                        <Button className="close" onClick={close}> close </Button>
                     </footer>
                 </section>
             ): null}
@@ -25,5 +25,10 @@ const Modal = (props) => {
         </div>
     )
 }
+const Button = styled.button`
+    z-index : 1px;
+`
+
+
 
 export default Modal;

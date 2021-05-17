@@ -3,11 +3,12 @@ import styled from "styled-components";
 import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from '@material-ui/core/styles'
 
-const PagingMating = ({ postsPerPage, totalPosts, paginate }) => {
+const ReviewBoardPagination = ({ postsPerPage, totalPosts, paginate }) => {
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);
     paginate(value);
+    window.scrollTo({top:400, left:0, behavior:'smooth'});
   };
   const countPage =
     totalPosts % postsPerPage > 0
@@ -50,10 +51,9 @@ const Container = styled.div`
   @media (min-width: 600px) and (max-width: 1170px) {
   }
 
-@media (max-width: 600px) {
-    margin: -1000px;
-    width: 320px;
-}
+  @media (max-width: 600px) {
+    margin: 0;
+  }
 `;
 const PageUl = styled.div`
   margin: auto;
@@ -68,10 +68,6 @@ const PageUl = styled.div`
     color: #3a3a3a;
     font-size: 100px;
   }
-  @media (max-width: 600px) {
-    margin: -1000px;
-    width: 320px;
-}
 `;
 
 const PageLi = styled.li`
@@ -108,4 +104,4 @@ const Click = styled.span`
   color: #3a3a3a; ;
 `;
 
-export default PagingMating;
+export default ReviewBoardPagination;

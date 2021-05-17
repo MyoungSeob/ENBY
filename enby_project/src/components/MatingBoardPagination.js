@@ -1,122 +1,91 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import Pagination from "@material-ui/lab/Pagination";
+import { makeStyles } from "@material-ui/core/styles";
 
 const MatingBoardPagination = (props) => {
-  console.log(props);
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(props.totalPosts / props.postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-  const deadlinePageNumbers = [];
-  for (
-    let i = 1;
-    i <= Math.ceil(props.deadline_Posts / props.postsPerPage);
-    i++
-  ) {
-    deadlinePageNumbers.push(i);
-  }
-  const isNotDeadlinePageNumbers = [];
-  for (
-    let i = 1;
-    i <= Math.ceil(props.isNotDeadline_Posts / props.postsPerPage);
-    i++
-  ) {
-    isNotDeadlinePageNumbers.push(i);
-  }
-  console.log(deadlinePageNumbers);
-  console.log(isNotDeadlinePageNumbers);
-  const viewPagination = () => {
-    if (props.allMoim) {
-      return pageNumbers.map((number) => (
-        <PageLi key={number} className="page-item">
-          <PageSpan
-            onClick={() => props.paginate(number)}
-            className="page-link"
-          >
-            {number}
-          </PageSpan>
-        </PageLi>
-      ));
-    }
-    if (props.isNotDeadline) {
-      return isNotDeadlinePageNumbers.map((number) => (
-        <PageLi key={number} className="page-item">
-          <PageSpan
-            onClick={() => props.paginate(number)}
-            className="page-link"
-          >
-            {number}
-          </PageSpan>
-        </PageLi>
-      ));
-    }
-    if (props.isDeadline) {
-      return deadlinePageNumbers.map((number) => (
-        <PageLi
-          key={number}
-          className="page-item"
-          onClick={() => props.paginate(number)}
-        >
-          <PageSpan className="page-link">{number}</PageSpan>
-        </PageLi>
-      ));
-    }
+
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+    props.paginate(value);
+    window.scrollTo({top:850, left:0, behavior:'smooth'});
   };
-  return (
-    <Container>
-      <PageUl className="pagination">{viewPagination()}</PageUl>
-    </Container>
-  );
+  const [deadlinepage, setDeadlinePage] = React.useState(1);
+  const isHandleChange = (event, value) => {
+  setDeadlinePage(value);
+  props.paginate(value);
+  window.scrollTo({top:850, left:0, behavior:'smooth'});
+};
+const [notDeadlinepage, setNotDeadlinePage] = React.useState(1);
+const isNotHandleChange = (event, value) => {
+  setNotDeadlinePage(value);
+  props.paginate(value);
+  window.scrollTo({top:850, left:0, behavior:'smooth'});
+};
+const countPage =
+props.totalPosts % props.postsPerPage > 0
+    ? Math.ceil(props.totalPosts / props.postsPerPage)
+    : props.totalPosts / props.postsPerPage;
+const deadline_countPage =
+props.deadline_Posts % props.postsPerPage > 0
+    ? Math.ceil(props.deadline_Posts / props.postsPerPage)
+    : props.deadline_Posts / props.postsPerPage;
+const notDeadline_countPage =
+props.isNotDeadline_Posts % props.postsPerPage > 0
+    ? Math.ceil(props.isNotDeadline_Posts / props.postsPerPage)
+    : props.isNotDeadline_Posts / props.postsPerPage;
+
+    const useStyles = makeStyles((theme) => ({
+      root: {
+        width : "1200px",
+          display : 'flex',
+          justifyContent: "center",
+          margin : 'auto auto 121px auto',
+        '& > * + *': {},
+      },
+    }));
+    const classes = useStyles()
+
+const viewPagination = () => {
+  if (props.allMoim) {
+    return (
+      <div className={classes.root}>
+        <Pagination page={page} count={countPage} onChange={handleChange} />
+      </div>
+    );
+  }
+  if (props.isNotDeadline) {
+    return (
+      <div className={classes.root}>
+        <Pagination
+          page={notDeadlinepage}
+          count={notDeadline_countPage}
+          onChange={isNotHandleChange}
+        />
+      </div>
+    );
+  }
+  if (props.isDeadline) {
+    return (
+      <div className={classes.root}>
+        <Pagination
+          page={deadlinepage}
+          count={deadline_countPage}
+          onChange={isHandleChange}
+        />
+      </div>
+    );
+  }
+}
+
+  return <Container>{viewPagination()}</Container>;
 };
 
 const Container = styled.div`
-width : 100%px;
-display : block;
-padding-bottom: 80px;
-margin : auto;
-`;
-const PageUl = styled.ul`
+  width: 100%px;
+  display: block;
   margin: auto;
-  width: 1200px;
-  list-style: none;
-  text-align: center;
-  border-radius: 3px;
-  color: #8f8f8f;
-  font-family: notosans_regular;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 19px;
-  line-height: 28px;
-  padding: 1px;
-  &:focus {
-    color: #3a3a3a;
-    font-size: 100px;
-  }
 `;
-
-const PageLi = styled.li`
-  display : inline-block;
-  margin : auto;
-  font-size:17px;
-  font-weight:600;
-  padding:5px;
-  border-radius:5px;
-  width:32px;
-  height: 30px;
-  &:hover, &:focus{
-    cursor:pointer;
-    color: #3A3A3A;
-  }
-`;
-
-const PageSpan = styled.span`
-  &:hover::after,
-  &:focus::after{
-    border-radius:100%;
-    color: #3A3A3A;;
-  }
-`;
-
-
 
 export default MatingBoardPagination;

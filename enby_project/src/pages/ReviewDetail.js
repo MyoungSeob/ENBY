@@ -9,7 +9,6 @@ import { actionsCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configStore";
 
 const ReviewDetail = (props) => {
-  
   const review_detail = useSelector((store) => store.post.review_detail);
   const review_createdAt = useSelector((store) => store.post.time);
   const review_id = props.match.params.id;
@@ -133,7 +132,7 @@ const ImageBox = styled.div`
   position: absolute;
 `;
 const ImageBox_ = styled.div`
-  width: auto;
+  width: 1920px;
   margin: auto;
   overflow: hidden;
   position: relative;

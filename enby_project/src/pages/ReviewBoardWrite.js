@@ -26,9 +26,12 @@ const ReviewBoardWrite = (props) => {
   let review_img = useSelector(
     (store) => store.post.review_detail.review_imgUrl
   );
+
   let _review = is_edit
     ? review_list.find((p) => p.review_id === id)
     : "";
+
+  
   const board_id = _review ? _review.board_id : Number(props.match.params.id);
   console.log(_review);
   const [title, setTitle] = useState(_review ? _review.title : "");
@@ -41,24 +44,7 @@ const ReviewBoardWrite = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (_review) {
-    //   const reader = new FileReader();
-    //   const file = _review ? _review.review_imgUrl : fileInput.current.files[0];
-    //   console.log(file);
-    //   if (!file) {
-    //     return;
-    //   }
-
-    //   reader.readAsDataURL(file);
-    //   // 파일 읽기가 끝났을때의 이벤트 받아옴
-    //   reader.onloadend = () => {
-    //     // setPreviewimg(file)
-    //     setImage(file);
-    //     console.log(reader.result);
-    //     dispatch(imgActions.setPreview(reader.result)); // result: 파일의 내용물
-    //   };
-    // }
-  }, [preview]);
+  }, [preview, reviewImg]);
 
   // 이미지 추가 미리보기
   const selectFile = () => {
@@ -93,23 +79,36 @@ const ReviewBoardWrite = (props) => {
     }
   }
   const addReview = () => {
+    if( title === "" || contents === ""){
+      window.alert("제목과 내용을 적어주세요!")
+      return;
+    }
+    if(reviewImg === ""){
+      window.alert('이미지를 선택해주세요!')
+      return;
+    }
     dispatch(postActions.addReviewDB(board_id, title, contents, reviewImg));
   };
   const editReview = () => {
-    dispatch(postActions.editReviewDB(id, board_id, title, contents, editReviewImage()));
+    if( title === "" || contents === ""){
+      window.alert("제목과 내용을 적어주세요!")
+      return;
+    }else{
+      dispatch(postActions.editReviewDB(id, board_id, title, contents, editReviewImage()));
+    }
   };
   const is_upload =()=>{
     if( reviewImg === ""){
       return (
         <Label for="reviewImage">
-              <span>
-                <LabelBox>
-                  <LabelImage src={upload} />
-                  <Label_ for="reviewImage">이미지 불러오기</Label_>
-                </LabelBox>
-              </span>
-            </Label>
-      )
+          <span>
+            <LabelBox>
+              <LabelImage src={upload} />
+              <Label_ for="reviewImage">이미지 불러오기</Label_>
+            </LabelBox>
+          </span>
+        </Label>
+      );
     }else{
       return (
         _review ? (<>

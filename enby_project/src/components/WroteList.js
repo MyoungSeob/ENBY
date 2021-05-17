@@ -1,5 +1,4 @@
 // OhtersMyPage페이지네이션에서 필요한 wrote리스트
-
 import React, { useEffect } from "react";
 import Wrote from "../components/Wrote";
 import { useDispatch, useSelector } from "react-redux";

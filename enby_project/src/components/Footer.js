@@ -39,7 +39,7 @@ const Container = styled.div`
   }
   
   @media (max-width: 600px) {
-    height: 200px;
+    height: 170px;
   }
 `;
 const FooterTitle = styled.div`

@@ -6,8 +6,17 @@ import axios from "axios";
 import Loading from "../components/Loading";
 import santa from '../shared/image/MatingBanner.png'
 import Card from "../components/Card";
+import { useMediaQuery } from "react-responsive";
 
 const MatingBoardSearch = (props) => {
+  //반응형
+  const isTablet = useMediaQuery({
+    query: "(min-width: 600px) and (max-width: 1170px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 600px)"
+  });
+
   const id = props.match.params.id;
 
   const [api, setApi] = useState(null);
@@ -53,13 +62,18 @@ const MatingBoardSearch = (props) => {
           <Image src={santa} />
           <TopButton>
             <Search {...searchWhere}/>
-            <Button4
+            {!isMobile? (
+              <Button4
               onClick={() => {
                 history.push(`/board/write`);
               }}
             >
               <button>모임 만들기</button>
             </Button4>
+            ) : (<FloatingBtn onClick={() => {
+              history.push(`/board/write`);
+            }}>모임 만들기</FloatingBtn>)}
+            
           </TopButton>
           <ResultBox>
               <ResultContents>
@@ -77,19 +91,31 @@ const Image = styled.img`
   width: 100%;
   min-width: 1200px;
   // max-height : 720px;
+  @media (max-width: 600px) {
+    width: 100%;
+    min-width: 220px;
+    height: 200px;
+    object-fit: cover;
+  }
 `;
 
 const Container = styled.div`
   width: 100%;
   margin: auto;
+  overflow: hidden;
 `;
 
 const TopButton = styled.div`
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 98px auto 92px auto;
+  @media (max-width: 600px) {
+    margin-top: 36px;
+    margin-bottom: 36px;
+  }
 `;
 const Button4 = styled.div`
   float: right;
@@ -111,6 +137,10 @@ const Button4 = styled.div`
 const ResultBox = styled.div`
   width : 1200px;
   margin : auto auto 80px auto;
+  @media (max-width: 600px) {
+    width: 365px;
+    margin: auto;
+  }
 `
 const NonResult = styled.p`
 font-family: notosans_regular;
@@ -119,9 +149,34 @@ font-family: notosans_regular;
 `
 const ResultContents = styled.div`
   margin-bottom : 80px;
+  @media (max-width: 600px) {
+    margin-bottom: 36px;
+  }
 `
 const Contents = styled.p`
     font-family: notosans_regular;
     font-size: 18px;
+    @media (max-width: 600px) {
+      margin-left: 10px;
+      font-size: 16px;
+    }
 `
+const FloatingBtn = styled.button`
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  font-family: notosans_regular;
+  font-size: 11px;
+  color: #000;
+  background-color: #BBCFDC;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  z-index: 2;
+  bottom: 50px;
+  right: 30px;
+`;
 export default MatingBoardSearch;

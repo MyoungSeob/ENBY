@@ -39,10 +39,11 @@ const ReviewCardList =(props)=>{
 const ListBody = styled.div`
 padding: 5px;
 
-`
+;`
 const PostList = styled.div`
 display: flex;
 justify-content : space-around;
+
 `;
 
 export default ReviewCardList

@@ -65,7 +65,7 @@ const CardGrid = styled.div`
     height: 210px;
     margin: 6px;
     border-radius: 10px;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
   }
 `;
 
@@ -107,7 +107,7 @@ const CardTit = styled.div`
   }
   
   @media (max-width: 600px) {
-    width: 108px;
+    width: 156px;
     // height: 18px;
     margin: 4px;
   }

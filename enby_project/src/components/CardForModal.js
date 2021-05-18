@@ -25,6 +25,10 @@ const CardForModal = (props) => {
 };
 
 const Container = styled.div`
+  @media (max-width: 600px) {
+    // width:120px; 
+    // height: 240px;
+  }
 `;
 const CardGrid = styled.div`
   float: left;
@@ -34,7 +38,11 @@ const CardGrid = styled.div`
   border-radius : 20px;
   cursor: pointer;
   background-color: #ffffff;
-
+  @media (max-width: 600px) {
+    width: 120px;
+    margin: 14px; 
+    height: 280px;
+  }
 `;
 const CardImage = styled.img`
   width: 282px;
@@ -48,6 +56,10 @@ const CardImage = styled.img`
     transition-timing-function: ease-out;
     transition-delay: 0s;
   }
+  @media (max-width: 600px) {
+    width: 120px;
+    height: 120px;
+  }
 `;
 
 const CardTit = styled.div`
@@ -55,6 +67,10 @@ const CardTit = styled.div`
   width: 282px;
   height: 27px;
   margin: 14px 0 8px 1px;
+  @media (max-width: 600px) {
+    margin: 0px;
+    width: 130px;
+  }
 `;
 const CardTitH = styled.div`
   color: #000000;
@@ -66,6 +82,9 @@ const CardTitH = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: left;
+  @media (max-width: 600px) {
+    font-size:12px;
+  }
 `;
 
 export default CardForModal;

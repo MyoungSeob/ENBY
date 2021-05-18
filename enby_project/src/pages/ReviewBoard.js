@@ -69,7 +69,7 @@ function ReviewBoard() {
     // 모달 페이지네이션
     const [modalPosts, setModalPosts] = useState([]);
     const [currentModalPage, setCurrentModalPage] = useState(1);
-    const [modalPostsPerPage, setModalPostsPerPage] = useState(3);
+    const [modalPostsPerPage, setModalPostsPerPage] = useState(2);
     const indexOfLastModal = currentModalPage * modalPostsPerPage;
     const indexOfFirstModal = indexOfLastModal - modalPostsPerPage;
     
@@ -259,9 +259,8 @@ const Paging = styled.div`
     margin-top: 435px;
     @media (max-width: 600px) {
       width: 320px;
-      // min-width: 320px;
-      // position: flex;
-      // margin: -100px;
+      margin-top: 280px;
+      margin-left: -35px;
     }
 `;
 

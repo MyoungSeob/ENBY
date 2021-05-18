@@ -39,6 +39,7 @@ const Tit = styled.h2`
     font-style : italic;
     @media (max-width: 600px) {
     font-size: 21px;
+    margin-bottom: 20px;
    }
 `
 const CardBox = styled.div`

@@ -171,7 +171,7 @@ const MatingDetail = (props) => {
 const Container = styled.div`
   display: block;
   @media (max-width: 600px) {
-    overflow-y: hidden;
+    overflow: hidden;
   }
 `;
 const ImageBox = styled.div`
@@ -240,7 +240,7 @@ const ButtonBox = styled.div`
   display: flex;
   max-width: 1200px;
   width: 100%;
-  margin: 40px auto 40px auto;
+  margin: 60px auto auto auto;
 `;
 const ToListButton = styled.div`
   cursor: pointer;

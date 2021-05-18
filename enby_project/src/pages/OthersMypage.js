@@ -57,6 +57,7 @@ const OthersMypage = (props) => {
 
 const Container = styled.div`
   width: 100%;
+  overflow: hidden;
 `;
 const Image = styled.div`
   width: 100%;

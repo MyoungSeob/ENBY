@@ -215,6 +215,9 @@ const ReviewBoardWrite = (props) => {
 const Container = styled.div`
   display: block;
   width: 100%;
+  @media (max-width: 600px) {
+    overflow: hidden;
+  }
 `;
 const HeadContainer = styled.div`
   background-color: #BBCFDC;
@@ -457,7 +460,7 @@ const PostButton = styled.button`
     width:80px;
     height:30px;
     font-size: 11px;
-    margin: 80px 140px;
+    margin: 160px 140px;
   }
 `;
 

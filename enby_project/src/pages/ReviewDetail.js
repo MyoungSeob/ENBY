@@ -135,7 +135,7 @@ const ReviewDetail = (props) => {
 const Container = styled.div`
   display: block;
   @media (max-width: 600px) {
-      overflow-y: hidden;
+      overflow: hidden;
       margin-bottom: -200px;
     }
 `;

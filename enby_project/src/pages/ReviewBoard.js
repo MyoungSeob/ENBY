@@ -104,7 +104,8 @@ function ReviewBoard() {
           <Top>
             <Search {...searchWhere}/>
             {isMobile ? (
-              <FloatingBtn>후기글<br/>작성하기</FloatingBtn>
+              <FloatingBtn
+              onClick={openModal}>후기글<br/>작성하기</FloatingBtn>
             ) : (
             <ButtonBox>
               <Button onClick={openModal}>후기글 작성하기</Button>
@@ -280,7 +281,7 @@ const FloatingBtn = styled.button`
   outline: none;
   z-index: 1;
   bottom: 50px;
-  right: 70px;
+  right: 30px;
   
 `;
 

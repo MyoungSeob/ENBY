@@ -72,6 +72,9 @@ const Main =(props)=>{
 }
 const Container = styled.div`
 display : block;
+@media (max-width: 600px) {
+  overflow: hidden;
+}
 `
 const Box = styled.div`
   width : 100%;
@@ -218,7 +221,7 @@ const ReviewButton = styled.button`
   cursor: pointer;
   float : right;
   @media (max-width: 600px) {
-    margin-left: 250px;
+    margin-left: 245px;
     margin-top: 5px;
       width: 52px;
       height: 26px;

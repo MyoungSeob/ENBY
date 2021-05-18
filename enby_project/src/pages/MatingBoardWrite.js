@@ -308,7 +308,7 @@ const Container = styled.div`
     margin-top: 20px;
     background-color : #F8F8F8;
     height: 1300px;
-    overflow-y: hidden;
+    overflow: hidden;
   }
 `;
 const HeadContainer = styled.div`
@@ -509,7 +509,7 @@ const ContentsBox = styled.div`
   display: flex;
   width: 1200px;
   height: 511px;
-  margin : 150px auto 30px auto;
+  margin : 180px auto 30px auto;
   @media (max-width: 600px) {
     width:300px;
     flex-direction: column;
@@ -625,12 +625,14 @@ const PostButton = styled.button`
   line-height: 150%;
   color: #FFFFFF;
   float: right;
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
+  margin-right: 120px;
+
   @media (max-width: 600px) {
     width:80px;
     height:30px;
     font-size: 11px;
-    margin: 100px 140px;
+    margin: 180px 140px;
   }
   `;
 const EditButton = styled.button`
@@ -652,7 +654,7 @@ const EditButton = styled.button`
     width:80px;
     height:30px;
     font-size: 11px;
-    margin: 100px 140px;
+    margin: 180px 140px;
   }
 `;
 

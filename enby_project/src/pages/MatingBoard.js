@@ -325,7 +325,7 @@ const Container = styled.div`
     @media (max-width: 600px) {
       // margin-top: 180px;
       // z-index: 1;
-      overflow-y: hidden;
+      overflow: hidden;
     }
 `;
 

@@ -33,7 +33,7 @@ const Main =(props)=>{
         </CarouselBox>
         </Box>
         <PostText>
-          <span>
+          <Span>
             <PostTitle>새로운 모임</PostTitle>
             <PostButton
               onClick={() => {
@@ -42,7 +42,7 @@ const Main =(props)=>{
             >
               더보기
             </PostButton>
-          </span>
+          </Span>
         </PostText>
         <PostList>
           {post_lst.map((p) => {
@@ -101,7 +101,10 @@ const PostList = styled.div`
   width: 1200px;
   @media (max-width: 600px) {
     justify-content: left;
+    width : 350px;
     margin-left: 10px;
+    white-space : nowrap;
+    overflow : auto;
   }
 `
 const PostText = styled.div`
@@ -142,22 +145,22 @@ const PostTitle = styled.div`
 `;
 
 const PostButton = styled.button`
-  font-size : 18px;
-  font-family : notosans_regular;
+  font-size: 18px;
+  font-family: notosans_regular;
   margin-left: 880px;
   width: 167px;
   height: 40px;
   border: 1px solid #000000;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   box-sizing: border-box;
   border-radius: 20px;
   cursor: pointer;
   @media (max-width: 600px) {
-    margin-left: 180px;
-    margin-top: 10px;
-      width: 52px;
-      height: 26px;
-      font-size: 10px;
+    margin-left: 205px;
+    margin-bottom : 2px;
+    width: 52px;
+    height: 26px;
+    font-size: 10px;
   }
 `;
 
@@ -215,8 +218,8 @@ const ReviewButton = styled.button`
   cursor: pointer;
   float : right;
   @media (max-width: 600px) {
-    margin-left: 220px;
-    margin-top: 10px;
+    margin-left: 250px;
+    margin-top: 5px;
       width: 52px;
       height: 26px;
       font-size: 10px;
@@ -227,17 +230,22 @@ const Span = styled.span`
   justify-content : space-between;
   @media (max-width: 600px) {
     justify-content: left;
+    width : 375px;
   }
 `
 
-const ReviewList =styled.div`
-  display : flex;
-  justify-content : space-around;
+const ReviewList = styled.div`
+  display: flex;
+  justify-content: space-around;
   margin: 34px auto 71px auto;
   width: 1200px;
+
   @media (max-width: 600px) {
     justify-content: left;
+    width: 350px;
     margin-left: 10px;
+    white-space: nowrap;
+    overflow: auto;
   }
 `;
 

@@ -47,8 +47,9 @@ const FooterTitle = styled.div`
   display: flex;
   margin: auto;
   @media (max-width: 600px) {
+    width : 375px;
     display: flex;
-    flex-direction: column;
+    margin : auto;
   }
 `;
 const TitleBox = styled.div`

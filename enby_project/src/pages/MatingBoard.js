@@ -66,7 +66,7 @@ function MatingBoard(props) {
       // setAllPosts(post_list);
       setDeadlinePosts(deadRecruitment);
       setIsNotDeadlinePosts(isRecruitment)
-    }, []);
+    }, [isDeadline, isNotDeadline]);
 
     const allMoimTrueFalse=()=>{
         if(!allMoim){
@@ -373,6 +373,23 @@ const Button1 = styled.button`
     text-align: center;
     color: #343434;
   }
+  &: hover {
+    & text {
+      font-family: notosans_regular;
+      font-size: 18px;
+      line-height: 150%;
+      text-align: center;
+      color: #ffffff;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+    background-color: #BBCFDC;
+    color : #ffffff;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+  }
   @media (max-width: 600px) {
     width: 80px;
     & text {
@@ -429,6 +446,23 @@ const Button2 = styled.button`
     order: 0;
     flex-grow: 0;
   }
+  &: hover {
+    & text {
+      font-family: notosans_regular;
+      font-size: 18px;
+      line-height: 150%;
+      text-align: center;
+      color: #ffffff;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+    background-color: #BBCFDC;
+    color : #ffffff;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+  }
   @media (max-width: 600px) {
     width: 80px;
     & text {
@@ -482,6 +516,23 @@ const Button3 = styled.button`
     flex: none;
     order: 0;
     flex-grow: 0;
+  }
+  &: hover {
+    & text {
+      font-family: notosans_regular;
+      font-size: 18px;
+      line-height: 150%;
+      text-align: center;
+      color: #ffffff;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+    background-color: #BBCFDC;
+    color : #ffffff;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
   }
   @media (max-width: 600px) {
     width: 80px;

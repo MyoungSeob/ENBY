@@ -112,8 +112,8 @@ const ContentsImage = styled.div`
   background-repeat: no-repeat;
 `;
 const MiniContentsImage = styled.div`
-  width: 410px;
-  height: 421px;
+  width: 513px;
+  height: 513px;
   background-image: url("${(props) => props.src}");
   background-size: cover;
   background-position: center;
@@ -143,7 +143,6 @@ const MiniContentsImageDeadline = styled.div`
 const Moimcontents = styled.div`
   width: 1920px;
   max-width : 100%;
-  max-height: 320px;
   height: 260px;
   background-image: url("${(props) => props.src}");
   background-size: cover;

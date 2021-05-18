@@ -146,11 +146,7 @@ const MatingDetail = (props) => {
         {none_login_editButton()}
       </ButtonBox>
       <ContentsBox>
-        {data.deadlineStatus ? (
-          <Image shape="minicontentsdeadline" src={data.board_imgUrl} />
-        ) : (
           <Image shape="minicontents" src={data.board_imgUrl} />
-        )}
         <About {...post_list} />
       </ContentsBox>
       <ApplicationBox>
@@ -185,7 +181,7 @@ const ImageBox = styled.div`
 `;
 const ImageGrid = styled.div`
   width: 100%;
-  height: 320px;
+  height: 260px;
   overflow: hidden;
   position: absolute;
   margin: auto;
@@ -206,7 +202,7 @@ const DetailBox = styled.div`
   margin: auto;
   max-width: 1200px;
   width: 100%;
-  height: 320px;
+  height: 260px;
   @media (max-width: 600px) {
     margin-left: 15px;
   }
@@ -312,7 +308,7 @@ const DeleteBtn = styled.button`
 const IconBox = styled.div`
   max-width: 1200px;
   width: 100%;
-  margin: 40px auto auto auto;
+  margin: 28px auto auto auto;
   display: block;
   float: left;
   // @media (max-width: 600px) {
@@ -323,7 +319,8 @@ const IconBox = styled.div`
 const ContentsBox = styled.div`
   max-width: 1200px;
   width: 100%;
-  margin: 0 auto 0 auto;
+  height : 513px;
+  margin: 0 auto 50px auto;
   display: flex;
   @media (max-width: 600px) {
     flex-direction: column;
@@ -332,8 +329,9 @@ const ContentsBox = styled.div`
 `;
 const MemberBox = styled.div`
   max-width: 1200px;
+  height : 288px;
   width: 100%;
-  margin: auto auto 100px auto;
+  margin: auto auto 80px auto;
 `;
 const ApplyBox = styled.div`
   max-width: 1200px;
@@ -350,7 +348,7 @@ const PermitBox = styled.div`
        }
 `;
 const ApplicationBox = styled.div`
-  // padding: 120px 0 80px 0;
+  padding: 0 0 50px 0;
   background-color: #f8f8f8;
   @media (max-width: 600px) {
     padding-top:30px;
@@ -358,8 +356,8 @@ const ApplicationBox = styled.div`
        }
 `;
 const ReviewContainer = styled.div`
-  margin-top : 80px;
-  // margin: 34px auto 150px auto;
+  margin-top : 50px;
+  // margin: 34px auto 80px auto;
   @media (max-width: 600px) {
        }
 `

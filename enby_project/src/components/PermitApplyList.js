@@ -74,6 +74,11 @@ const DeadLineBtn = styled.button`
   cursor: pointer;
   margin: auto 0px auto auto;
   float: right;
+  @media (max-width: 600px) {
+    width: 110px;
+    font-size: 11px;
+    margin-right: 16px;
+       }
 `;
 const DidDeadLineBtn = styled.button`
   width: 167px;
@@ -87,6 +92,11 @@ const DidDeadLineBtn = styled.button`
   padding-bottom: 2px;
   margin: auto 0px auto auto;
   float: right;
+  @media (max-width: 600px) {
+    width: 110px;
+    font-size: 11px;
+    margin-right: 16px;
+       }
 `;
 const ApplyTit = styled.h2`
   margin-top: 5px;

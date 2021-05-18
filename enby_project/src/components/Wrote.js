@@ -74,32 +74,30 @@ const Wrote = (props) => {
     }
   return (
     <Container>
-      <WroteBox>
-        {isMobile ? ("") : (
-        <Number>
-          <NumberContents>{props.list_id}.</NumberContents>
-        </Number>)}
-        <Title>
-          <TitleContents>{props.title}</TitleContents>
-        </Title>
-        <MeetTime>
-        {isMobile ? (
-          <MeetTimeContents>날짜: {meetdateMobile}</MeetTimeContents>
-        ) : (
-          <MeetTimeContents>날짜: {meetdate}</MeetTimeContents>
-        )}
-        </MeetTime>
-        <CreatedAt>
+        <WroteBox>
+          <Number>
+            <NumberContents>{props.list_id}.</NumberContents>
+          </Number>
+          <Title>
+            <TitleContents>{props.title}</TitleContents>
+          </Title>
+          <MeetTime>
           {isMobile ? (
-          <CreatedAtContents>작성: {writeDateMobile}</CreatedAtContents>
+            <MeetTimeContents>날짜: {meetdateMobile}</MeetTimeContents>
           ) : (
-          <CreatedAtContents>작성: {writeDate}</CreatedAtContents>
+            <MeetTimeContents>날짜: {meetdate}</MeetTimeContents>
           )}
-          
-        </CreatedAt>
-        {isMobile ? ("") : (<Button onClick={move_wirte}>작성한 글 확인</Button>)}
-      </WroteBox>
-      {isMobile ? (<Button onClick={move_wirte}>작성한 글 확인</Button>) : ("")}
+          </MeetTime>
+          <CreatedAt>
+            {isMobile ? (
+            <CreatedAtContents>작성: {writeDateMobile}</CreatedAtContents>
+            ) : (
+            <CreatedAtContents>작성: {writeDate}</CreatedAtContents>
+            )}
+            
+          </CreatedAt>
+          <Button onClick={move_wirte}>작성한 글 확인</Button>
+        </WroteBox>
       <Line />
     </Container>
   );
@@ -116,15 +114,18 @@ const WroteBox = styled.div`
   height: 55.08px;
   margin: auto;
   @media (max-width: 600px) {
-    flex-direction: column;
-    height: 90px;
-    padding-left: 12px;
-    width: 100px;
-    margin-left: 300px;
+    // flex-direction: column;
+    width: 340px;
+    height: 30px;
+    // padding-left: 12px;
+    margin-left: 10px;
   }
 `;
 const Number = styled.div`
     margin-right : 19px;
+    @media (max-width: 600px) {
+      margin-right: 1;
+    }
 `;
 const NumberContents = styled.p`
   font-family: notosans_regular;
@@ -132,7 +133,7 @@ const NumberContents = styled.p`
   margin: 0;
   color: #7b7b7b;
   @media (max-width: 600px) {
-    font-size: 16px;
+    font-size: 12px;
   }
 `;
 const Title = styled.div`
@@ -140,7 +141,7 @@ margin-right : 21px;
 width : 290px;
 height : 30px;
 @media (max-width: 600px) {
-  width: 200px;
+  width: 80px;
   margin-right: 14px;
 }
 `;
@@ -159,8 +160,8 @@ const MeetTime = styled.div`
 margin-right : 21px;
 width : 314px;
 @media (max-width: 600px) {
-  width: 180px;
-  margin-right: 14;
+  width: 140px;
+  margin-right: 6;
 }
 `;
 const MeetTimeContents = styled.p`
@@ -174,7 +175,7 @@ const MeetTimeContents = styled.p`
 const CreatedAt = styled.div`
 width : 314px;
 @media (max-width: 600px) {
-  width: 180px;
+  width: 140px;
 }
 `;
 const CreatedAtContents = styled.p`
@@ -184,6 +185,7 @@ const CreatedAtContents = styled.p`
   color : #737373;
   @media (max-width: 600px) {
     font-size: 12px;
+    margin-left: -10px;
   }
 `;
 const Button = styled.button`
@@ -198,9 +200,10 @@ const Button = styled.button`
   cursor : pointer;
   @media (max-width: 600px) {
     width: 80px;
-    font-size: 9px;
-    margin-left: 200px;
-    margin-bottom: 100px;
+    font-size: 8px;
+    z-index: 1;
+    margin-left: -10px;
+    margin-top: -15px;
   }
 `;
 
@@ -209,7 +212,9 @@ const Line = styled.hr`
     max-width : 1200px;
     width: 100%;
     border-bottom : 1px solid #C4C4C4;
-    
+    @media (max-width: 600px) {
+      margin: 0 auto 24px auto;
+    }
 `
 
 export default Wrote;

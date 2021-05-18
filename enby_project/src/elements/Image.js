@@ -99,7 +99,6 @@ const ImageRectangle = styled.div`
         min-width: 375px;
         // background-size : cover;
         background-position: center;
-    
       }
 `
 const ContentsImage = styled.div`
@@ -110,6 +109,12 @@ const ContentsImage = styled.div`
   background-size: 513px 513px;
   background-position: center;
   background-repeat: no-repeat;
+  @media (max-width: 600px) {
+    width: 240px;
+    background-size: cover;
+    height: 240px;
+    margin-left: 30px;
+  }
 `;
 const MiniContentsImage = styled.div`
   width: 410px;

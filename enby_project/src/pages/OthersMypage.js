@@ -69,8 +69,16 @@ const Image = styled.div`
   background-repeat: no-repeat;
   position: absolute;
   opacity: 56%;
+  @media (max-width: 600px) {
+    min-width: 320px;
+    width: 100%;
+    height: 320px;
+  }
 `;
 const ProfileBox = styled.div`
+@media (max-width: 600px) {
+  margin-left: 10px ;
+}
 `;
 const WriteBox = styled.div`
   display: block;
@@ -89,15 +97,21 @@ const WriteTit = styled.h2`
   font-family: notosans_bold;
   font-size: 28px;
   color: #000000;
+  @media (max-width: 600px) {
+    font-size: 21px;
+    margin-left: 20px ;
+  }
 `;
 const Linetwo = styled.hr`
   border-bottom: 2px solid #383838;
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   margin: auto auto 21px auto;
 `;
 const PageBox = styled.div`
   // display : flex;
-  width : 1200px;
+  max-width : 1200px;
+  width: 100%;
   margin : auto;
 `
 export default OthersMypage;

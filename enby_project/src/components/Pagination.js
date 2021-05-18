@@ -25,20 +25,25 @@ const PagingMating = ({ postsPerPage, totalPosts, paginate }) => {
       : totalPosts / postsPerPage;
 
 
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((theme) => (
+    !isMobile ? {
     root: {
         width : "1200px",
         display : 'flex',
         justifyContent: "center",
         margin : 'auto auto 121px auto',
-      '& > * + *': {
-        // width : "1200px",
-        // display : 'flex',
-        // justifyContent: "center",
-        // margin : 'auto'
-      },
+      '& > * + *': {},
+    },
+    } : {
+      root: {
+        width : "320px",
+        display : 'flex',
+        justifyContent: "center",
+        margin : 'auto auto 121px auto',
+      '& > * + *': {},
     },
   }));
+
   const classes = useStyles()
   return (
     <div className={classes.root}>

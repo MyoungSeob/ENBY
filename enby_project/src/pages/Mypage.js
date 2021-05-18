@@ -104,7 +104,7 @@ const Mypage =(props)=>{
 }
 const Container = styled.div`
     width : 100%;
-
+    overflow: hidden;
 `
 const ProfileBox = styled.div`
 `
@@ -122,7 +122,7 @@ opacity : 56%;
 @media (max-width: 600px) {
     min-width: 320px;
     width: 100%;
-    height: 520px;
+    height: 320px;
   }
 `
 const ApplyBox = styled.div`
@@ -160,7 +160,7 @@ const AttendBox = styled.div`
     max-width : 1200px;
     margin : 127px auto 0 auto;
     @media (max-width: 600px) {
-        margin-top: -100px;
+        margin-top: -60px;
       }
 `
 const AttendSubTit = styled.p`
@@ -190,7 +190,7 @@ const WriteBox = styled.div`
     max-width : 1200px;
     margin : 127px auto 43px auto;
     @media (max-width: 600px) {
-        margin-top: -127px;
+        margin-top: -60px;
       }
 `
 const WriteSub = styled.p`

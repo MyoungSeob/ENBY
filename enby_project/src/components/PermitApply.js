@@ -57,7 +57,8 @@ display : flex;
 margin-top : 34px;
 padding-bottom : 28px;
 border-bottom : 1px solid #C8C8C8;
-width : 1200px;
+max-width : 1200px;
+width:100%;
 `
 const CheckBox = styled.div`
   width : 100%;
@@ -67,6 +68,10 @@ const CheckBox = styled.div`
 const CheckMe = styled.div`
 display : flex;
 width : 196px;
+@media (max-width: 600px) {
+  margin-left: 30px;
+  width: 120px;
+     }
 `
 const CheckImg = styled.img`
     width : 24px;
@@ -79,9 +84,15 @@ const CheckId = styled.p`
     margin : 0;
     font-size : 18px;
     font-family : notosans_regular;
+    @media (max-width: 600px) {
+      font-size: 11px;
+         }
 `
 const CheckContents = styled.div`
     margin-left : 24px;
+    @media (max-width: 600px) {
+      margin-left: 0;
+         }
 `
 const CheckKakaoID = styled.div`
 width : 100%;
@@ -91,6 +102,9 @@ const CheckH = styled.h1`
     margin : 0px;
     font-size : 18px;
     font-family : notosans_regular;
+    @media (max-width: 600px) {
+      font-size: 11px;;
+         }
 `
 const CheckComment = styled.div`
 width : 100%;
@@ -100,8 +114,12 @@ const CheckP = styled.p`
     font-size : 18px;
     font-family : notosans_regular;
     max-width : 1000px;
+    @media (max-width: 600px) {
+      font-size: 11px;;
+         }
 `
 const CheckButtonBox = styled.div`
+  width: 167px;
 `
 const CheckAccept = styled.button`
     width: 167px;
@@ -113,6 +131,10 @@ const CheckAccept = styled.button`
     border-radius : 20px;
     outline : none;
     background-color : #168ED9;
+    @media (max-width: 600px) {
+      width: 110px;
+      font-size: 11px;
+         }
 `
 const AcceptButton = styled.button`
   width: 167px;
@@ -126,6 +148,11 @@ const AcceptButton = styled.button`
   padding-bottom : 2px;
   cursor : pointer;
   margin-bottom : 10px;
+  @media (max-width: 600px) {
+    width: 90px;
+    font-size: 11px;
+    margin-right: 8px;
+       }
 `;
 
 const RejectButton = styled.button`
@@ -138,6 +165,11 @@ const RejectButton = styled.button`
   background-color : #f8f8f8;
   padding-bottom : 2px;
   cursor : pointer;
+  @media (max-width: 600px) {
+    width: 90px;
+    font-size: 11px;
+    margin-right: 8px;
+       }
 `;
 
 export default PermitApply;

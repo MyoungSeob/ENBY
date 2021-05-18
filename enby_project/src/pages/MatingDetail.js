@@ -287,7 +287,7 @@ const EditBtn = styled.button`
     margin-left: 30px;
     width: 60px;
     margin-bottom: 30px;
-    font-size: 11px;
+    font-size: 9px;
    }
 `;
 const DeleteBtn = styled.button`
@@ -304,7 +304,7 @@ const DeleteBtn = styled.button`
   cursor: pointer;
   @media (max-width: 600px) {
     width: 60px;
-    font-size: 11px;
+    font-size: 9px;
     margin-top: -20px;
     margin-bottom: 30px;
    }

@@ -146,7 +146,7 @@ const Container = styled.div`
     @media (max-width: 600px) {
       width: 100%;
       max-width: 375px;
-      overflow-y: hidden;
+      overflow: hidden;
     }
 `;
 const HeadContainer = styled.div`

@@ -10,8 +10,6 @@ const CardList =(props)=>{
     const dispatch = useDispatch();
 
     const post_list = useSelector((store) => store.post.list)
-
-    console.log(props)
     const id = post_list.id
     useEffect(()=>{
         dispatch(postActions.getPostMainDB())

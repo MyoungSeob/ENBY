@@ -156,7 +156,7 @@ const MatingBoardWrite = (props) => {
           : ("")}
           <Test>
             <TitleBox>
-              {!isMobile?
+              {/* {!isMobile?
               (<InputGrid>
                 <InputBox
                   label="제목"
@@ -178,8 +178,8 @@ const MatingBoardWrite = (props) => {
                   >
                     작성하기
                   </PostButton>
-                )}
-              </InputGrid>):(
+                )} */}
+              {/* </InputGrid>):(
                 <InputBox
                   label="제목"
                   value={title}
@@ -187,8 +187,16 @@ const MatingBoardWrite = (props) => {
                     setTitle(e.target.value);}}
                   placeholder="제목을 입력하세요"
                 />
-              )}
-              
+              )} */}
+              <InputGrid>
+                <InputBox
+                  label="제목"
+                  value={title}
+                  onChange={(e) => {
+                    setTitle(e.target.value);}}
+                  placeholder="제목을 입력하세요"
+                />
+              </InputGrid>
               <DetailGrid>
                 <DateContainer>
                     <Icon src={require("../shared/image/date.png").default}/>
@@ -273,8 +281,9 @@ const MatingBoardWrite = (props) => {
               />
               </TextBox>
             </ContentsBox>
-          {isMobile?
-          (_post ? (
+          {/* {isMobile? */}
+           {/* ( */}
+            {_post ? (
             <EditButton
               onClick={editPost}
             >
@@ -285,8 +294,8 @@ const MatingBoardWrite = (props) => {
               onClick={addPost}
             >
               작성하기
-            </PostButton>
-          )) : ("") }
+            </PostButton>)}
+           {/* )) : ("") } */}
         </Test>
       </Container>       
     );
@@ -345,7 +354,7 @@ const Test = styled.div`
 `;
 const TitleBox = styled.div`
   width: 100%;
-  height : 320px;
+  height : 200px;
   margin: auto;
   background-color : #F8F8F8;
   display : flex;
@@ -358,7 +367,7 @@ const InputGrid = styled.div`
   margin : auto;
   display: flex;
   flex-direction: row;
-  margin-top: 95px;
+  margin-top: 46px;
   @media (max-width: 600px) {
     font-size: 28px;
   }
@@ -366,7 +375,7 @@ const InputGrid = styled.div`
 const InputBox = styled.input`
   display: flex;
   padding: 6px 20px;
-  width: 995px;
+  width: 1200px;
   height: 39px;
   background: #ffffff;
   border: 1px solid #b9b9b9;
@@ -397,8 +406,8 @@ const DetailGrid = styled.div`
   width: 100%;
   max-width : 1200px;
   margin : auto;
-  margin-top: 43px;
-  margin-bottom: 94px;
+  margin-top: 30px;
+  margin-bottom: 46px;
   display : flex;
   @media (max-width: 600px) {
     flex-direction: column;
@@ -499,7 +508,8 @@ const TextBox = styled.div`
 const ContentsBox = styled.div`
   display: flex;
   width: 1200px;
-  margin : 150px auto auto auto;
+  height: 511px;
+  margin : 150px auto 30px auto;
   @media (max-width: 600px) {
     width:300px;
     flex-direction: column;
@@ -525,7 +535,7 @@ const Label = styled.label`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  // margin : -513px 0;
+  border-radius: 20px;
   @media (max-width: 600px) {
     width:300px;
     height:300px;
@@ -614,6 +624,8 @@ const PostButton = styled.button`
   font-size: 18px;
   line-height: 150%;
   color: #FFFFFF;
+  float: right;
+  margin-bottom: 40px;
   @media (max-width: 600px) {
     width:80px;
     height:30px;
@@ -634,6 +646,8 @@ const EditButton = styled.button`
   line-height: 150%;
   color: #FFFFFF;
   border: none;
+  margin-bottom: 40px;
+
   @media (max-width: 600px) {
     width:80px;
     height:30px;

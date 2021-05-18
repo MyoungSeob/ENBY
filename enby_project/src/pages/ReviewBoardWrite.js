@@ -145,7 +145,7 @@ const ReviewBoardWrite = (props) => {
           : ("")}
       <Test>
         <TitleBox>
-          {!isMobile ? (<InputGrid>
+          {/* {!isMobile ? (<InputGrid>
             <InputBox
               label="제목"
               value={title}
@@ -160,14 +160,18 @@ const ReviewBoardWrite = (props) => {
             ) : (
               <PostButton onClick={addReview}>작성하기</PostButton>
             )}
-          </InputGrid>) : (<InputBox
+          </InputGrid>) : ( */}
+          <InputGrid>
+          <InputBox
               label="제목"
               value={title}
               onChange={(e) => {
                 setTitle(e.target.value);
               }}
               placeholder="제목을 입력하세요"
-            />)}
+            />
+            </InputGrid>
+            {/* )} */}
           
         </TitleBox>
 
@@ -197,11 +201,12 @@ const ReviewBoardWrite = (props) => {
             />
           </TextBox>
         </ContentsBox>
-        {isMobile? (_review ? (
+        {/* {isMobile? ( */}
+          {_review ? (
               <PostButton onClick={editReview}>수정하기</PostButton>
             ) : (
               <PostButton onClick={addReview}>작성하기</PostButton>
-            )) : ("")}
+            )}
       </Test>
     </Container>
   );
@@ -269,6 +274,7 @@ const Label = styled.label`
   width: 513px;
   height: 513px;
   background: #f8f8f8;
+  border-radius : 20px;
   background-image: url(${(props) => props.src});
   background-size: cover;
   background-repeat: no-repeat;
@@ -296,6 +302,7 @@ height: 513px;
 const PreviewImage = styled.img`
   width  : 513px;
   height : 513px;
+  border-radius : 20px;
   @media (max-width: 600px) {
     width: 300px;
     height: 300px;
@@ -334,7 +341,7 @@ const LabelImage = styled.img`
 `
 const TitleBox = styled.div`
   width: 100%;
-  height : 233px;
+  height : 150px;
   margin: auto;
   background-color : #F8F8F8;
   display : flex;
@@ -356,9 +363,9 @@ const InputBox = styled.input`
   display: flex;
   flex-direction: row;
   padding: 6px 20px;
-  width: 995px;
+  width: 1200px;
   height: 39px;
-  margin-right : 61px;
+  // margin-right : 61px;
   background: #ffffff;
   border: 1px solid #b9b9b9;
   box-sizing: border-box;
@@ -383,7 +390,8 @@ const TextBox = styled.div`
 const ContentsBox = styled.div`
   display: flex;
   width: 1200px;
-  margin : 60px auto auto auto;
+  height: 511px;
+  margin : 40px auto 30px auto;
   @media (max-width: 600px) {
     width:300px;
     flex-direction: column;
@@ -419,6 +427,8 @@ const Contents = styled.textarea`
   box-sizing: border-box;
   border-radius: 20px;
   resize : none;
+  margin-right: 120px;
+
   @media (max-width: 600px) {
     width:300px;
     height:300px;
@@ -439,6 +449,10 @@ const PostButton = styled.button`
 
   cursor: pointer;
   border: 0;
+  float: right;
+  margin-bottom: 40px;
+  margin-right: 120px;
+
   @media (max-width: 600px) {
     width:80px;
     height:30px;

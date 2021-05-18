@@ -163,7 +163,7 @@ function MatingBoard(props) {
       <>
         <ImageContainer>
           <ImageBox>
-          <Image shape="maintitle" src={MatingBanner} />
+          <Image shape="title" src={MatingBanner} />
           </ImageBox>
         </ImageContainer>
         <Title>

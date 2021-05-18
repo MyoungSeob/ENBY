@@ -51,7 +51,6 @@ const initialState = {
 
 const getPostMainDB =()=>{
     return function (dispatch, getState, {history}) {
-
         axios
         .get(`http://3.36.67.251:8080/main/board`)
         .then((response) => {
@@ -59,7 +58,13 @@ const getPostMainDB =()=>{
             dispatch(getPostMain(post_list))
         }
         )
-        .catch((err) => console.log(err))
+        .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        }
+      })
     }
 }
 
@@ -144,8 +149,12 @@ const addPostDB = (title, contents, boardImg, location, meetTime, people_max, de
                 history.push("/board/mating");
             })
             .catch((err) => {
-                window.alert("에러가 발생했습니다. 다시 시도해주세요!");
-                console.log(err);
+              {
+                if (err.response.status === 403) {
+                  window.alert("로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏");
+                  history.replace('/')
+                }
+              }
             });
     };
 };
@@ -154,16 +163,23 @@ const deletePostDB = (id) => {
     return function(dispatch, getState, {history}){
         const token = localStorage.getItem("token")
         axios
-        .delete(`http://3.36.67.251:8080/board/mating/` +`${id}`, {
-            headers : {
-                authorization : `Bearer ${token}`
+          .delete(`http://3.36.67.251:8080/board/mating/` + `${id}`, {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => {
+            window.alert("게시글이 삭제되었습니다.");
+            history.push("/");
+          })
+          .catch((err) => {
+            if (err.response.status === 403) {
+              window.alert(
+                "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
+              );
+              history.replace("/");
             }
-        })
-        .then(()=>{
-            window.alert('게시글이 삭제되었습니다.')
-            history.push('/')
-        })
-        .catch(err => console.log(err))
+          });
     }
 }
 
@@ -203,7 +219,14 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime, peop
             window.alert('게시글이 수정되었습니다.')
             history.push('/')
         })
-        .catch((e) => console.log(e));
+        .catch((err) => {
+          if (err.response.status === 403) {
+            window.alert(
+              "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
+            );
+            history.replace("/");
+          }
+        });
     };
   };
 
@@ -277,8 +300,12 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime, peop
             history.push("/board/review");
         })
         .catch((err) => {
-            console.log(err);
-            window.alert("에러가 발생하였습니다. 다시 시도해주세요😭");
+          if (err.response.status === 403) {
+            window.alert(
+              "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
+            );
+            history.replace("/");
+          }
         });
   };
 };
@@ -310,7 +337,14 @@ const editReviewDB =(review_id, board_id, title, contents, reviewImg)=>{
             window.alert(res.data)
             history.replace('/board/review')
         })
-        .catch(err => console.log(err))
+        .catch((err) => {
+          if (err.response.status === 403) {
+            window.alert(
+              "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
+            );
+            history.replace("/");
+          }
+        })
     }
 }
 const getNeedWriteRiviewAPI = ()=>{

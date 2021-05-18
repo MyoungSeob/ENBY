@@ -45,6 +45,17 @@ const Image =(props)=>{
             <MainTitle {...styles}/>
         )
     }
+    if(shape === "deadlinecard"){
+      return(
+          <Deadlinecard {...styles}/>
+      )
+      
+  }
+  if(shape === "title"){
+    return(
+        <Title {...styles}/>
+    )
+  }
     return(
         <ImageDefault {...styles} />
     )
@@ -99,13 +110,6 @@ const ContentsImage = styled.div`
   background-size: 513px 513px;
   background-position: center;
   background-repeat: no-repeat;
-  @media (max-width: 600px) {
-    width: 280px;
-    height: 280px;
-    margin-left: 25px;
-    background-size: cover;
-  background-position: center;
-   }
 `;
 const MiniContentsImage = styled.div`
   width: 410px;
@@ -128,7 +132,6 @@ const MiniContentsImageDeadline = styled.div`
   background-size: 410px 421px;
   background-position: center;
   background-repeat: no-repeat;
-  filter : grayscale(100%);
   border-radius: 20px;
   @media (max-width: 600px) {
     width: 240px;
@@ -139,7 +142,7 @@ const MiniContentsImageDeadline = styled.div`
 
 const Moimcontents = styled.div`
   width: 1920px;
-max-width : 100%;
+  max-width : 100%;
   max-height: 320px;
   height: 320px;
   background-image: url("${(props) => props.src}");
@@ -166,17 +169,58 @@ const MoimcontentsDeadline = styled.div`
 const MainTitle = styled.div`
   width: 1920px;
   max-width : 100%;
+  height: 1000px;
+  background-image: url("${(props) => props.src}");
+  background-position: center;
+  background-size : 1920px 1000px;
+  background-repeat: no-repeat;
+  margin : auto;
+
+    @media (max-width : 1440px) {
+      width: 1440px;
+      max-width: 100%;
+      height: 750px;
+      background-size : 1440px 750px;
+      background-position: center;
+  
+    }
+    @media (max-width : 1200px) {
+      height: 625px;
+  
+    }
+    @media (max-width: 600px) {
+      width: 100%;
+      min-width: 375px;
+      height: 320px;
+      background-size : cover;
+      background-position: center;
+    }
+
+`;
+const Title = styled.div`
+  width: 1920px;
+  max-width : 100%;
   height: 520px;
   background-image: url("${(props) => props.src}");
   background-position: center;
-  background-size : inherit;
+  background-size : 1920px 520px;
   background-repeat: no-repeat;
   margin : auto;
+  @media (max-width : 1440px;) {
+    width: 1440px;
+    max-width: 100%;
+    height: 750px;
+    background-size : 1920px 1000px;
+    background-position: center;
+
+  }
   @media (min-width: 600px) and (max-width: 1170px) {
     // width: 320px;
     // height: 235.73px;
     }
   
+  
+
   @media (max-width: 600px) {
     width: 100%;
     min-width: 375px;
@@ -187,4 +231,24 @@ const MainTitle = styled.div`
   }
 
 `;
+const Deadlinecard = styled.div`
+  position : absolute;  
+width: 282px;
+  height: 282px;
+  background-image: url("${(props) => props.src}");
+  border-radius: 20px;
+  opacity : 40%;
+  filter : grayscale(100%);
+  background-position: center;
+  background-size : 282px 282px;
+  background-repeat: no-repeat;
+  margin : auto;
+  @media (max-width: 600px) {
+    width: 165px;
+    height: 105px;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 10px 10px 0 0;
+  }
+`
 export default Image;

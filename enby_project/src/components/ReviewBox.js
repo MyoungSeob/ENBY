@@ -93,6 +93,7 @@ const MoveReviewBoard = styled.button`
     font-family : notosans_regular;
     font-size : 18px;
     background-color : #ffffff;
+    cursor : pointer;
     @media (max-width: 600px) {
       width: 60px;
       height: 30px;

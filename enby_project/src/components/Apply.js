@@ -294,7 +294,7 @@ const CheckContents = styled.div`
   margin-left: 24px;
 `;
 const CheckKakaoID = styled.div`
-  width: 1000px;
+  width: 813px;
 `;
 const CheckH = styled.h1`
   margin: 0px;

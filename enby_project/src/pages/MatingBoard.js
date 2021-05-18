@@ -556,7 +556,7 @@ const Button5 = styled.button`
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  z-index: 1;
+  z-index: 2;
   bottom: 50px;
   right: 30px;
 `;

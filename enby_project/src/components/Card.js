@@ -5,10 +5,14 @@ import { history } from "../redux/configStore";
 import CardDetail from "./CardDetail";
 import { generateMedia } from "styled-media-query";
 import { useMediaQuery } from "react-responsive";
+import Image from "../elements/Image";
 
 const Card = (props) => {
   // 이 카드의 정보들을 이용하여 카드를 눌렀을 때 게시글 상세, 후기글 작성으로 이동할 수 있도록 해주는 코드입니다.
   const move_page = () => {
+    if(props.deadlineStatus === true){
+      window.alert("이미 모집이 마감된 게시글입니다.")
+    }
     if (props.board_name === "신청한 모임") {
       history.push(`/board/mating/${props.id}`);
       return;
@@ -18,6 +22,7 @@ const Card = (props) => {
       return;
     }
     if (!props.board_name) {
+      
       history.push(`/board/mating/${props.id}`);
     }
   };
@@ -33,10 +38,21 @@ const Card = (props) => {
       return <ApplyButton>더보기</ApplyButton>;
     }
   };
+  console.log(props.deadlineStatus)
 
   return (
     <CardGrid onClick={move_page}>
-      <CardImage src={props.board_imgUrl} />
+      {props.deadlineStatus === true ? (
+        <>
+          <Image shape="deadlinecard" src={props.board_imgUrl} />
+          <DeadlineCardTitle>
+            <TitleH>마감되었습니다.</TitleH>
+          </DeadlineCardTitle>
+        </>
+      ) : (
+        <CardImage src={props.board_imgUrl} />
+      )}
+
       <CardTit>
         <CardTitH>{props.title}</CardTitH>
       </CardTit>
@@ -132,6 +148,68 @@ const CardImage = styled.img`
     transition-delay: 0s;
   }
 `;
+const DeadlineCardImage = styled.img`
+  // width: 282px;
+  width: 282px;
+  height: 282px;
+  border-radius: 20px;
+  position: absolute;
+  border-radius: 20px;
+  opacity : 40%;
+  filter : grayscale(100%);
+  z-index : 0
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 320px;
+    height: 210px;
+  }
+
+  @media (max-width: 600px) {
+    width: 165px;
+    height: 105px;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 10px 10px 0 0;
+  }
+  &: hover {
+    // box-shadow: 0px 10px 30px rgba(00,00,00, 0.5); 
+    // transition: box-shadow .15s ease-out;
+    // letter-spacing: 0px;
+    // -webkit-font-smoothing: antialiased;
+    // overflow-anchor: none;
+    filter: drop-shadow(0 0.4rem 0.3rem rgba(33,33,33,.3)) grayscale(100%);
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+  }
+`;
+const DeadlineCardTitle = styled.div`
+width: 282px;
+height: 282px;
+position : relative;
+z-index : 1;
+text-align : center;
+@media (max-width: 600px) {
+  width: 165px;
+  height: 105px;
+  max-width: 100%;
+  margin: auto;
+  border-radius: 10px 10px 0 0;
+}
+`
+const TitleH = styled.p`
+  margin : 0;
+  padding-top : 40px;
+  font-size : 18px;
+  font-family : notosans_regular;
+  text-align : cneter;
+  @media (max-width: 600px) {
+    width: 165px;
+    height: 105px;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 10px 10px 0 0;
+  }
+`
 
 const CardTit = styled.div`
   display: block;

@@ -2,7 +2,7 @@ import "../carousel.css";
 import React from 'react'
 import styled from 'styled-components';
 import Image from '../elements/Image'
-import santa from '../shared/image/santatit.png'
+import santa from '../shared/image/MaskGroup.png'
 import { generateMedia } from 'styled-media-query';
 
 // function Carousel() {
@@ -30,12 +30,21 @@ import { generateMedia } from 'styled-media-query';
 const Container = styled.div`
   position : absolute;
   width: 100%;
-  height: 520px;
+  height: 100%;
   margin : 0px auto 0px auto;
   z-index : -1;
-  @media (min-width: 600px) and (max-width: 1170px) {
-    // width: 320px;
-    // height: 235.73px;
+
+    @media (max-width: 1440px) {
+      width : 1440px;
+      height: 750px;
+    }
+    @media (max-width : 1200px) {
+      width: 1200px;
+      max-width: 100%;
+      height: 625px;
+      background-size : 1200px 625px;
+      background-position: center;
+  
     }
     @media (max-width: 600px) {
       height: 320px;
@@ -50,10 +59,24 @@ const Title = styled.div`
     // width: 320px;
     // height: 235.73px;
     }
+    @media (max-width: 1440px) {
+      width : 1440px;
+      height: 750px;
+    }
+    @media (max-width : 1200px) {
+      width: 1200px;
+      max-width: 100%;
+      height: 625px;
+      background-size : 1200px 625px;
+      background-position: center;
+  
+    }
   
   @media (max-width: 600px) {
     width: 100%;
     height: 320px;
+    background-size : 100% 320px;
+    background-position : center;
   }
   cursor : default;
 `
@@ -61,10 +84,17 @@ const TitleBox = styled.div`
   width : 747px;
   height : 144px;
   margin : auto;
-  padding-top : 188px;
+  padding-top : 418px;
   @media (min-width: 600px) and (max-width: 1170px) {
     // width: 320px;
     // height: 235.73px;
+    }
+    @media (max-width: 1440px) {
+      padding-top : 318px;
+    }
+    @media (max-width : 1200px) {
+      padding-top : 248px;
+  
     }
   
   @media (max-width: 600px) {

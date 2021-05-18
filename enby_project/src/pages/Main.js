@@ -79,8 +79,15 @@ const Box = styled.div`
 `
 const CarouselBox = styled.div`
   width : auto;
-  height : 520px;
+  height : 1000px;
   margin : auto;
+  @media (max-width: 1440px) {
+    height: 750px;
+  }
+  @media (max-width : 1200px) {
+    height: 625px;
+
+  }
   @media (max-width: 600px) {
     height: 320px;
   }
@@ -99,7 +106,7 @@ const PostList = styled.div`
 `
 const PostText = styled.div`
 width : 1200px;
-margin : 100px auto auto auto;
+margin : 79px auto auto auto;
 & span {
   display: flex;
 }

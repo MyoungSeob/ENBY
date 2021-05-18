@@ -189,20 +189,30 @@ const WriteBox = styled.div`
     display : block;
     max-width : 1200px;
     margin : 127px auto 43px auto;
-    
+    @media (max-width: 600px) {
+        margin-top: -127px;
+      }
 `
 const WriteSub = styled.p`
   margin: 0;
   font-family: notosans_regular;
   font-size: 18px;
   color: #474747;
+  @media (max-width: 600px) {
+    font-size: 11px;
+    margin-left: 20px ;
+    margin-bottom: -10px;
+  }
 `;
 const WriteTit = styled.h2`
   margin: 12px 0 0 0;
   font-family: notosans_bold;
   font-size: 28px;
   color: #000000;
-  
+  @media (max-width: 600px) {
+    font-size: 21px;
+    margin-left: 20px ;
+  }
 `;
 const Linetwo = styled.hr`
 border-bottom : 2px solid #383838;

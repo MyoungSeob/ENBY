@@ -10,7 +10,6 @@ const KakaoCallBack =()=>{
     useEffect(()=>{
         const KakaoCode = window.location.href.split('=')[1]
         dispatch(userActions.KakaoLogin(KakaoCode))
-        console.log(KakaoCode)
     })
 
     return <Loading />;

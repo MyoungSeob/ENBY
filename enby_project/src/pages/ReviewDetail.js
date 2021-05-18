@@ -28,8 +28,7 @@ const ReviewDetail = (props) => {
   const time = useSelector((store) => store.post.created_At);
   // const data = review_list.id
   const createdBy = review_detail.nickname;
-  console.log(review_detail);
-  // console.log(data);
+
 
   useEffect(() => {
     dispatch(postActions.getReviewDetailDB(review_id));

@@ -19,7 +19,6 @@ const OthersMypage = (props) => {
 
   const write_list = useSelector((store) => store.user.other_write);
   const other_list = useSelector((store) => store.user.other_page);
-  console.log(other_list)
 
   // pagination
     // const [Posts, setPosts] = useState([]);

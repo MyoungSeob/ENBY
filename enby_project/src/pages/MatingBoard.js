@@ -45,7 +45,7 @@ function MatingBoard(props) {
     const post_list = useSelector((store) => store.post.list)
     
     const allposts = post_list // useState대신 바로 값에 넣어주니 새로고침해도 안사라지더라구요..!
-    console.log(isNotDeadlinePosts)
+
     function currentPosts(tmp) {
         let currentPosts = 0;
         currentPosts = tmp.slice(indexOfFirst, indexOfLast);

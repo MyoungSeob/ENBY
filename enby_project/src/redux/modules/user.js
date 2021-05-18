@@ -45,7 +45,6 @@ const KakaoLogin = (KakaoCode) => {
       url: "http://3.36.67.251:8080/callback/kakao?code=" + `${KakaoCode}`,
     })
       .then((res) => {
-        console.log(res)
         localStorage.setItem('token', res.data)
         dispatch(login())
         history.push('/')
@@ -130,7 +129,6 @@ const getOtherPageDB =(otherName)=>{
       url : `http://3.36.67.251:8080/mypage/${otherName}`,
     })
     .then(res => {
-      console.log(res)
       const other_list = [...res.data];
       const other_write = [];
       const other_page = [];

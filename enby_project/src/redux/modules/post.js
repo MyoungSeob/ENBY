@@ -214,8 +214,7 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime, peop
             authorization : `Bearer ${token}`
         }
       })
-        .then((res) => {
-            console.log(res)
+        .then(() => {
             window.alert('게시글이 수정되었습니다.')
             history.push('/')
         })

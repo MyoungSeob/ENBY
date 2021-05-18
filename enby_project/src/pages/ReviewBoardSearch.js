@@ -8,7 +8,6 @@ import ReviewCard from '../components/ReviewCard'
 
 const ReviewBoardSearch = (props) => {
     const id = props.match.params.id;
-  console.log(id)
 
   const [api, setApi] = useState(null);
   const [error, setError] = useState(null);
@@ -24,16 +23,16 @@ const ReviewBoardSearch = (props) => {
           url: `http://3.36.67.251:8080/review/search?Keyword=` + `${id}`,
         });
         setApi(response.data.review);
-        console.log(response)
+
       } catch (e) {
         setError(e);
-        console.log(e)
+
       }
       setLoading(false);
     };
     search();
   }, [id]);
-  console.log(api);
+
   const isSearchResult =()=>{
     if(!api || api.length === 0){
         return <NonResult>검색 결과가 없습니다</NonResult>

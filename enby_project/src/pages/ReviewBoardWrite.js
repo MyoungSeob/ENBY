@@ -25,7 +25,7 @@ const ReviewBoardWrite = (props) => {
   const my_name = decode.nickname
 
   const review_list = useSelector((store) => store.post.review_list);
-  console.log(props)
+  
   const id = Number(props.match.params.id);
   
   const is_edit = my_name ? true : false;
@@ -42,11 +42,11 @@ const ReviewBoardWrite = (props) => {
 
   
   const board_id = _review ? _review.board_id : Number(props.match.params.id);
-  console.log(_review);
+
   const [title, setTitle] = useState(_review ? _review.title : "");
   const [contents, setContents] = useState(_review ? _review.contents : "");
   const [reviewImg, setImage] = useState(_review ? _review.review_imgUrl : "");
-    console.log(reviewImg)
+    
   // 이미지 추가 미리보기`
   const preview = useSelector((state) => state.image.preview);
   const fileInput = useRef();
@@ -59,7 +59,7 @@ const ReviewBoardWrite = (props) => {
   const selectFile = () => {
       const reader = new FileReader();
       const file = fileInput.current.files[0];
-      console.log(file);
+
       if (!file) {
           return;
       }
@@ -69,7 +69,7 @@ const ReviewBoardWrite = (props) => {
       reader.onloadend = () => {
         // setPreviewimg(file)
         setImage(file);
-        console.log(reader.result);
+
         dispatch(imgActions.setPreview(reader.result)); // result: 파일의 내용물
       };
   };

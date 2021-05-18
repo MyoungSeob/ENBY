@@ -32,7 +32,6 @@ const attendApplyDB =(id, kakaoId, applyComment)=>{
           data: formData,
         })
           .then((res) => {
-            console.log(res)
             localStorage.setItem("regist", res.data.split(':')[1])
             window.alert("신청이 완료되었습니다.")
             window.location.reload()
@@ -52,8 +51,7 @@ const cancelApply = (id)=>{
             },
             url : `http://3.36.67.251:8080/board/mating/${id}/register/${regist}`,
         })
-        .then(res => {
-            console.log(res)
+        .then(() => {
             localStorage.removeItem("regist")
             window.alert("신청이 취소됐습니다.")
             window.location.reload()
@@ -74,8 +72,7 @@ const acceptApplyDB =(id, register_id)=>{
                 accepted : "true",
             }
         })
-        .then(res => {
-            console.log(res)
+        .then(() => {
             window.alert("신청을 수락하셨습니다👍")
             window.location.reload();
         })
@@ -113,7 +110,6 @@ const ApplyDeadlineDB =(id)=>{
             }
         })
         .then(res => {
-            console.log(res)
             window.alert(res.data)
             window.location.reload()
         })

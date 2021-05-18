@@ -28,19 +28,19 @@ const MatingBoardWrite = (props) => {
 
     // 수정모드
     const post_id = Number(props.match.params.id);
-    console.log(post_id);
+
     const is_edit = post_id? true : false;
-    console.log(is_edit);
+
     const post_list = useSelector(store => store.post.list);
     let post_img = useSelector((store)=> store.post.detail_list.board_imgUrl)
     let _post = is_edit? post_list.find((p) => p.id === post_id) : null;
-    console.log(_post);
+
 
     const [title, setTitle] = useState(_post? _post.title : "");
     const [contents, setContents] = useState(_post? _post.contents : "");
     // const [boardImg, setImage] = useState();
     const [boardImg, setImage] = useState(_post? post_img : null);
-    console.log(boardImg);
+
     const [location, setLocation] = useState(_post? _post.location : "");
     // const [meetTime, setMeetTime] = useState(_post? _post.meetTime : null);
     const [people_max, setPeople_max] = useState(_post? _post.people_max : "");
@@ -52,22 +52,16 @@ const MatingBoardWrite = (props) => {
     // 날짜, 시간 가져오기(datepicker) => input받은 날짜,시간 형식 변경
     
     const [date, setDate] = useState(new Date());
-    console.log(date);
     const timezoneOffset = date.getTimezoneOffset() * 60000;
     const timezoneDate = new Date(date - timezoneOffset);
     const finalDate = timezoneDate.toISOString();
     const meetTime = finalDate.split(".")[0];
     const deadline_status = "false";
     // {setMeetTime(finalMeetTime)};
-    console.log('그냥 ISOString = '+new Date().toISOString());
-    console.log('timezone 반영 ISOString = '+timezoneDate.toISOString());
+
 
 
     function onchange(value, dateString) {
-      console.log("Selected Time: ", value);
-      console.log("Formatted Selected Time: ", dateString);
-      // setExpireDate(dateString);
-      console.log();
     }
 
     useEffect(() => {
@@ -86,8 +80,6 @@ const MatingBoardWrite = (props) => {
         reader.onloadend = () => {
             // setPreviewimg(file)
             setImage(file)
-            console.log(boardImg);
-            console.log(reader.result);
             dispatch(imgActions.setPreview(reader.result)); // result: 파일의 내용물
         };
     };
@@ -97,7 +89,7 @@ const MatingBoardWrite = (props) => {
 
       setPeople_max(getCount)
     }
-    console.log(_post);
+
 
     const EditPreview=()=>{
       if(boardImg === _post.board_imgUrl){
@@ -170,8 +162,7 @@ const MatingBoardWrite = (props) => {
                   label="제목"
                   value={title}
                   onChange={(e) => {
-                    console.log("제목추가");
-                    console.log(title);
+
                     setTitle(e.target.value);}}
                   placeholder="제목을 입력하세요"
                 />
@@ -193,8 +184,6 @@ const MatingBoardWrite = (props) => {
                   label="제목"
                   value={title}
                   onChange={(e) => {
-                    console.log("제목추가");
-                    console.log(title);
                     setTitle(e.target.value);}}
                   placeholder="제목을 입력하세요"
                 />
@@ -221,7 +210,7 @@ const MatingBoardWrite = (props) => {
                       label="날짜시간"
                       value={date}
                       selected={date}
-                      onChange={(date) => {setDate(date); console.log(date); }}
+                      onChange={(date) => {setDate(date);}}
                       showTimeSelect
                       timeFormat="HH:mm"
                       timeIntervals={15}
@@ -237,8 +226,6 @@ const MatingBoardWrite = (props) => {
                     label="장소"
                     value={location}
                     onChange={(e) => {
-                      console.log("장소추가");
-                      console.log(location);
                       setLocation(e.target.value);}}
                     placeholder="장소"
                   />
@@ -281,7 +268,6 @@ const MatingBoardWrite = (props) => {
                 label="내용"
                 value={contents}
                 onChange={(e) => {
-                  console.log("내용추가");
                   setContents(e.target.value);}}
                 placeholder="내용을 입력하세요"
               />

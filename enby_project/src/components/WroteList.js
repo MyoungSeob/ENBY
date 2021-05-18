@@ -6,7 +6,6 @@ import { actionsCreators as userActions } from "../redux/modules/user";
 
 const WroteList = (props) => {
 
-console.log(props);
   const dispatch = useDispatch();
 
   useEffect(() => {

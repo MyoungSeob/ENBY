@@ -6,7 +6,7 @@ import { history } from "../redux/configStore";
 import serachicon from "../shared/image/searchicon.png";
 
 const Search=(props)=> {
-  console.log(props)
+
   const [text, setText] = useState("");
   const search = () => {
     if (text === "") {

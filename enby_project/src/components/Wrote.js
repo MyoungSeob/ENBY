@@ -15,7 +15,6 @@ const Wrote = (props) => {
   });
 
 
-  console.log(props.key)
   const date = props.meetTime.split("T")[0];
   const week = new Array(
     "일요일",

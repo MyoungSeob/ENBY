@@ -8,11 +8,11 @@ import {actionsCreators as postActions} from '../redux/modules/post'
 const ReviewCardList =(props)=>{
     const dispatch = useDispatch();
     const review_list = useSelector((store) => store.post.review_list)
-    console.log(review_list);
+
     useEffect(() => {
         dispatch(postActions.getPostReviewDB())
     }, [dispatch])
-    console.log(props);
+
     return(
         <ListBody>
             <PostList>

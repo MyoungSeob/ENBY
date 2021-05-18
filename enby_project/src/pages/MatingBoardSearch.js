@@ -9,7 +9,6 @@ import Card from "../components/Card";
 
 const MatingBoardSearch = (props) => {
   const id = props.match.params.id;
-  console.log(props.match.path)
 
   const [api, setApi] = useState(null);
   const [error, setError] = useState(null);
@@ -32,7 +31,6 @@ const MatingBoardSearch = (props) => {
     };
     search();
   }, [id]);
-  console.log(api);
   const isSearchResult =()=>{
     if(!api || api.length === 0){
         return <NonResult>검색 결과가 없습니다</NonResult>

@@ -119,11 +119,20 @@ background-position : center;
 background-repeat : no-repeat;
 position : absolute;
 opacity : 56%;
+@media (max-width: 600px) {
+    min-width: 320px;
+    width: 100%;
+    height: 520px;
+  }
 `
 const ApplyBox = styled.div`
+    width: 100%;
     display : block;
-    width : 1200px;
+    max-width : 1200px;
     margin : 74px auto 0 auto;
+    @media (max-width: 600px) {
+        max-width: 414px;
+      }
 `
 const ApplyMoim = styled.div``
 const ApplySubTit = styled.p`
@@ -131,31 +140,54 @@ const ApplySubTit = styled.p`
     font-size : 18px;
     color : #474747;
     margin : 0;
+    @media (max-width: 600px) {
+        font-size: 11px;
+        margin-left: 20px ;
+        margin-bottom: -10px;
+      }
 `
 const ApplyTit = styled.h2`
 margin : 12px 0 0 0;
 font-family : notosans_bold;
 font-size : 28px;
+@media (max-width: 600px) {
+    font-size: 21px;
+    margin-left: 20px ;
+  }
 `
 const AttendBox = styled.div`
-    width : 1200px;
+    width: 100%;
+    max-width : 1200px;
     margin : 127px auto 0 auto;
+    @media (max-width: 600px) {
+        margin-top: -100px;
+      }
 `
 const AttendSubTit = styled.p`
     margin : 0;
     font-family : notosans_regular;
     font-size : 18px;
     color : #474747;
+    @media (max-width: 600px) {
+        font-size: 11px;
+        margin-left: 20px ;
+        margin-bottom: -10px;
+      }
 `
 const AttendTit = styled.h2`
     margin : 12px 0 0 0;
     font-family : notosans_bold;
     font-size : 28px;
     color : #000000;
+    @media (max-width: 600px) {
+        font-size: 21px;
+        margin-left: 20px ;
+      }
 `
 const WriteBox = styled.div`
+    width: 100%;
     display : block;
-    width : 1200px;
+    max-width : 1200px;
     margin : 127px auto 43px auto;
     
 `
@@ -174,7 +206,8 @@ const WriteTit = styled.h2`
 `;
 const Linetwo = styled.hr`
 border-bottom : 2px solid #383838;
-width : 1200px;
+max-width : 1200px;
+width: 100%;
 margin : auto auto 57px auto;
 `
 export default Mypage;

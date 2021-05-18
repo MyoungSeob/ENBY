@@ -7,8 +7,18 @@ import jwt_decode from "jwt-decode";
 import styled from "styled-components";
 import { actionsCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configStore";
+import { useMediaQuery } from "react-responsive";
 
 const ReviewDetail = (props) => {
+
+   //반응형
+   const isTablet = useMediaQuery({
+    query: "(min-width: 600px) and (max-width: 1170px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 600px)"
+  });
+
   const review_detail = useSelector((store) => store.post.review_detail);
   const review_createdAt = useSelector((store) => store.post.time);
   const review_id = props.match.params.id;
@@ -89,13 +99,19 @@ const ReviewDetail = (props) => {
           </TitleContents>
         </TitleBox>
         <ButtonBox>
-          <TitleButton onClick={moveReviewBoard}>
+          {!isMobile ? (<TitleButton onClick={moveReviewBoard}>
             <TitleBtnName>목록으로</TitleBtnName>
-          </TitleButton>
+          </TitleButton>) : (<FloatingBtn
+          onClick={moveReviewBoard}
+          >목록으로</FloatingBtn>)}
+          
           {is_login()}
         </ButtonBox>
       </TopBox>
       <BottomBox>
+        {isMobile ? (<MoveMoimButton>
+        <Moim onClick={moveMatingDetailBoard}>원본 모집글 보기</Moim>
+      </MoveMoimButton>) : ("")}
         <ContentImage>
           <Image shape="contents" src={review_detail.review_imgUrl} />
         </ContentImage>
@@ -109,15 +125,20 @@ const ReviewDetail = (props) => {
           </Contents>
         </ContentsBox>
       </BottomBox>
-      <MoveMoimButton>
+      {!isMobile ? (<MoveMoimButton>
         <Moim onClick={moveMatingDetailBoard}>원본 모집글 보기</Moim>
-      </MoveMoimButton>
+      </MoveMoimButton>) : ("")}
+      
     </Container>
   );
 };
 
 const Container = styled.div`
   display: block;
+  @media (max-width: 600px) {
+      overflow-y: hidden;
+      margin-bottom: -200px;
+    }
 `;
 const TopBox = styled.div`
   width: 100%;
@@ -130,21 +151,29 @@ const ImageBox = styled.div`
   margin: auto;
   overflow: hidden;
   position: absolute;
+  @media (max-width: 600px) {
+    height: 200px;
+  }
 `;
 const ImageBox_ = styled.div`
-  width: 1920px;
+  margin: 100%;
+  max-width: 1920px;
   margin: auto;
   overflow: hidden;
   position: relative;
 `;
 
 const TitleBox = styled.div`
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   height: 233px;
   margin: auto;
   display: block;
   position: relative;
   z-index: 1;
+  @media (max-width: 600px) {
+    margin-left: 10px;
+   }
 `;
 const TitleContents = styled.div`
   padding-top: 80px;
@@ -155,17 +184,26 @@ const TitleText = styled.h1`
   font-size: 32px;
   float: left;
   color: #ffffff;
+  @media (max-width: 600px) {
+    font-size: 21px; 
+   }
 `;
 const TitleDate = styled.p`
   font-family: notosans_regular;
   font-size: 18px;
   margin: 0;
   color: #b9b9b9;
+  @media (max-width: 600px) {
+    font-size: 14px; 
+   }
 `;
 const ButtonBox = styled.div`
   display: flex;
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   margin: 40px auto 40px auto;
+  @media (max-width: 600px) {
+  }
 `;
 const TitleButton = styled.div`
   // border : 1px solid #FFFFFF;
@@ -190,40 +228,70 @@ const TitleBtnName = styled.button`
   cursor: pointer;
 `;
 const BottomBox = styled.div`
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   display: flex;
   margin: auto auto 40px auto;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    width: 280px;
+    margin: 0;
+   }
 `;
 const ContentImage = styled.div`
   width: 513px;
   margin: 0 48px 0 0;
   display: block;
+  @media (max-width: 600px) {
+    width: 280px;
+   }
+  
 `;
 const ContentsBox = styled.div`
   width: 639px;
   height: 407px;
   margin: 0 auto auto 0;
   display: block;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    margin-left: 30px; 
+    width: 280px;
+   }
 `;
 const ContentsTit = styled.div`
   display: block;
   margin-bottom: 34px;
+  @media (max-width: 600px) {
+    margin-top: 20px;
+   }
 `;
 const ContentsH = styled.h2`
   margin: 0;
   font-family: seravek;
   font-style: italic;
   font-size: 28px;
+  @media (max-width: 600px) {
+    font-size: 21px;
+   }
 `;
 const Contents = styled.div``;
 const ContentsP = styled.p`
   font-family: notosans_regular;
   font-size: 18px;
   margin: 0;
+  @media (max-width: 600px) {
+    font-size: 13px;
+    margin-top: -30px;
+   }
 `;
 const EditButton = styled.div`
   float: right;
   margin: auto 0px auto auto;
+  @media (max-width: 600px) {
+    // max-width: 480px;
+    width: 100%;
+    margin: -40px 0 -200px 200px ;
+   }
 `;
 const EditBtn = styled.button`
   border: none;
@@ -237,6 +305,13 @@ const EditBtn = styled.button`
   color: #ffffff;
   margin-right: 12px;
   cursor: pointer;
+  @media (max-width: 600px) {
+    margin-left: 30px;
+    width: 60px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+    font-size: 11px;
+   }
 `;
 const DeleteBtn = styled.button`
   border: 1px solid #168ed9;
@@ -250,11 +325,23 @@ const DeleteBtn = styled.button`
   color: #000000;
   margin: 0;
   cursor: pointer;
+  @media (max-width: 600px) {
+    width: 60px;
+    font-size: 11px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+   }
 `;
 const MoveMoimButton = styled.div`
   display: block;
   margin: auto auto 90px auto;
   width: 1200px;
+  @media (max-width: 600px) {
+    margin-left: 30px;
+    width: 167px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+   }
 `;
 const Moim = styled.button`
   width: 167px;
@@ -265,5 +352,27 @@ const Moim = styled.button`
   font-size: 18px;
   background-color: #ffffff;
   cursor : pointer;
+  @media (max-width: 600px) {
+    width: 100px;
+    font-size: 10px;
+   }
+`;
+const FloatingBtn = styled.button`
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  font-family: notosans_regular;
+  font-size: 11px;
+  color: #000;
+  background-color: #BBCFDC;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  z-index: 1;
+  bottom: 50px;
+  right: 30px;
 `;
 export default ReviewDetail;

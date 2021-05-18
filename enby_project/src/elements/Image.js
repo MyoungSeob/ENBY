@@ -99,6 +99,13 @@ const ContentsImage = styled.div`
   background-size: 513px 513px;
   background-position: center;
   background-repeat: no-repeat;
+  @media (max-width: 600px) {
+    width: 280px;
+    height: 280px;
+    margin-left: 25px;
+    background-size: cover;
+  background-position: center;
+   }
 `;
 const MiniContentsImage = styled.div`
   width: 410px;

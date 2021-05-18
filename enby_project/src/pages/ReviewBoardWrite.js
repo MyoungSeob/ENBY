@@ -8,8 +8,17 @@ import { actionsCreators as postActions } from "../redux/modules/post";
 import jwt_decode from "jwt-decode";
 import { history } from "../redux/configStore";
 import upload from '../shared/image/upload.png'
+import { useMediaQuery } from "react-responsive";
 
 const ReviewBoardWrite = (props) => {
+  // 반응형 구현
+  const isTablet = useMediaQuery({
+    query: "(min-width: 600px) and (max-width: 1170px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 600px)"
+  });
+
   // 수정모드
   const token = localStorage.getItem('token')
   const decode = jwt_decode(token)
@@ -126,9 +135,17 @@ const ReviewBoardWrite = (props) => {
   }
   return (
     <Container>
+      {isMobile? 
+        (<HeadContainer>
+          <Head>
+            <SubTitle1>Share your experience with ENBY!</SubTitle1>
+            <Title>후기 작성하기</Title>
+          </Head>
+        </HeadContainer>)
+          : ("")}
       <Test>
         <TitleBox>
-          <InputGrid>
+          {!isMobile ? (<InputGrid>
             <InputBox
               label="제목"
               value={title}
@@ -143,7 +160,15 @@ const ReviewBoardWrite = (props) => {
             ) : (
               <PostButton onClick={addReview}>작성하기</PostButton>
             )}
-          </InputGrid>
+          </InputGrid>) : (<InputBox
+              label="제목"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+              placeholder="제목을 입력하세요"
+            />)}
+          
         </TitleBox>
 
         <ContentsBox>
@@ -172,6 +197,11 @@ const ReviewBoardWrite = (props) => {
             />
           </TextBox>
         </ContentsBox>
+        {isMobile? (_review ? (
+              <PostButton onClick={editReview}>수정하기</PostButton>
+            ) : (
+              <PostButton onClick={addReview}>작성하기</PostButton>
+            )) : ("")}
       </Test>
     </Container>
   );
@@ -181,6 +211,44 @@ const Container = styled.div`
   display: block;
   width: 100%;
 `;
+const HeadContainer = styled.div`
+  background-color: #BBCFDC;
+  height: 160px;
+  width: 100%;
+  // min-width: 320px;
+  padding-top: 10px;
+`;
+const Head = styled.div`
+    @media (max-width: 600px) {
+      margin-left: 30px;
+      margin-top: 20px;
+    }
+`;
+const SubTitle1 = styled.div`
+    height: 26px;
+    font-family: notosans_regular;
+    margin-top: 2px;
+    font-size: 18px;
+    line-height: 26px;
+    color: #7D7D7D;
+    @media (max-width: 600px) {
+      font-size: 13px;
+    }
+`;
+
+const Title = styled.div`
+    height: 37px;
+
+    font-family: seravek;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 46px;
+
+    color: #000000;
+    @media (max-width: 600px) {
+      font-size: 28px;
+    }
+`;
 const Test = styled.div`
   width : 100%;
 `;
@@ -188,6 +256,10 @@ const ImageBox = styled.div`
   width: 718px;
   margin : auto 61px 170px auto;
   display : block;
+  @media (max-width: 600px) {
+    width:300px;
+    margin: 0;
+  }
 `;
 const Image = styled.input`
   display : none;
@@ -201,6 +273,10 @@ const Label = styled.label`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  @media (max-width: 600px) {
+    width:300px;
+    height:300px;
+  }
   `
 const ImageUpload = styled.input`
 display : none;
@@ -220,6 +296,10 @@ height: 513px;
 const PreviewImage = styled.img`
   width  : 513px;
   height : 513px;
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 300px;
+  }
 `
 const Label_ = styled.label`
   background-color : #168ed9;
@@ -231,11 +311,21 @@ const Label_ = styled.label`
   margin-top : 20px;
   padding-top : 10px;
   cursor : pointer;
+  @media (max-width: 600px) {
+    margin: auto;
+    margin-top: 20px;
+    font-size: 11px;
+    width: 100px;
+    height: 20px;
+  }
 `
 const LabelBox = styled.div`
   display : flex;
   flex-direction : column;
   margin : 210px 173px;
+  @media (max-width: 600px) {
+    margin: 100px auto;
+  }
 `
 const LabelImage = styled.img`
   width : 24px;
@@ -248,11 +338,19 @@ const TitleBox = styled.div`
   margin: auto;
   background-color : #F8F8F8;
   display : flex;
+  @media (max-width: 600px) {
+    background-color: #ffffff;
+    height: 50px;
+    // margin-left: 30px;
+  }
 `;
 const InputGrid = styled.div`
   width : 1200px;
   margin : auto;
   display : flex;
+  @media (max-width: 600px) {
+    font-size: 28px;
+  }
 `
 const InputBox = styled.input`
   display: flex;
@@ -265,17 +363,31 @@ const InputBox = styled.input`
   border: 1px solid #b9b9b9;
   box-sizing: border-box;
   border-radius: 20px;
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 30px;
+    margin: 50px auto 30px auto;
+    // margin-bottom: 30px;
+  }
 `;
 const TextBox = styled.div`
   width : 615px;
   height : 511px;
   float : right;
-
+  @media (max-width: 600px) {
+    width:300px;
+    height: 300px;
+    margin-top: 30px;
+  }
 `
 const ContentsBox = styled.div`
   display: flex;
   width: 1200px;
   margin : 60px auto auto auto;
+  @media (max-width: 600px) {
+    width:300px;
+    flex-direction: column;
+  }
 `;
 
 const TextBox2 = styled.div`
@@ -289,6 +401,9 @@ const ContentsH = styled.h2`
   font-weight: bold;
   font-size: 28px;
   margin: auto;
+  @media (max-width: 600px) {
+    font-size: 21px;
+  }
 `;
 
 const Contents = styled.textarea`
@@ -304,6 +419,11 @@ const Contents = styled.textarea`
   box-sizing: border-box;
   border-radius: 20px;
   resize : none;
+  @media (max-width: 600px) {
+    width:300px;
+    height:300px;
+    margin-top: 20px;
+  }
 `;
 
 const PostButton = styled.button`
@@ -319,6 +439,12 @@ const PostButton = styled.button`
 
   cursor: pointer;
   border: 0;
+  @media (max-width: 600px) {
+    width:80px;
+    height:30px;
+    font-size: 11px;
+    margin: 80px 140px;
+  }
 `;
 
 

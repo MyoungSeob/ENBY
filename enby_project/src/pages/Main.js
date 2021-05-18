@@ -104,7 +104,7 @@ margin : 100px auto auto auto;
   display: flex;
 }
 @media (max-width: 600px) {
-  margin-top: -60px;
+  margin-top: 30px;
   margin-left: 12px;
   margin-bottom: -20px;
 }

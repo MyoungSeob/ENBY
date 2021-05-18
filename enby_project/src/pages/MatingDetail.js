@@ -79,7 +79,7 @@ const MatingDetail = (props) => {
       return "";
     }
   }
-  console.log(post_list)
+
   const none_login_apply=()=>{
     if(localStorage.getItem("token")!== null){
       const token = localStorage.getItem("token");
@@ -174,6 +174,9 @@ const MatingDetail = (props) => {
 
 const Container = styled.div`
   display: block;
+  @media (max-width: 600px) {
+    overflow-y: hidden;
+  }
 `;
 const ImageBox = styled.div`
   width: 100%;
@@ -196,6 +199,8 @@ const ImageGrid_ = styled.div`
   margin: auto;
   overflow: hidden;
   position: relative;
+  @media (max-width: 600px) {
+   }
 `;
 const DetailBox = styled.div`
   margin: auto;
@@ -261,6 +266,10 @@ const ToListBtn = styled.button`
 const EditButton = styled.div`
   float: right;
   margin: auto 0px auto auto;
+  @media (max-width: 600px) {
+    margin: -40px 10px 0 auto;
+
+   }
 `;
 const EditBtn = styled.button`
   border: none;
@@ -274,6 +283,12 @@ const EditBtn = styled.button`
   color: #ffffff;
   margin-right: 12px;
   cursor: pointer;
+  @media (max-width: 600px) {
+    margin-left: 30px;
+    width: 60px;
+    margin-bottom: 30px;
+    font-size: 11px;
+   }
 `;
 const DeleteBtn = styled.button`
   border: 1px solid #168ED9;
@@ -287,6 +302,12 @@ const DeleteBtn = styled.button`
   color: #000000;
   margin: 0;
   cursor: pointer;
+  @media (max-width: 600px) {
+    width: 60px;
+    font-size: 11px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+   }
 `;
 const IconBox = styled.div`
   max-width: 1200px;

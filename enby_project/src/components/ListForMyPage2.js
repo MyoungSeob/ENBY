@@ -36,16 +36,19 @@ const ListForMyPage2 =(props)=>{
 
 const Container = styled.div`
     width: 100%;
+    margin-top: -60px;
 `;
 const CardBox = styled.div`
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   height: 100%;
   float: left;
   margin: 75px auto 0 auto;
 `;
 
 const AttendBox = styled.div`
-    width : 1200px;
+    max-width : 1200px;
+    width: 100%;
     margin : 0 auto 0 auto;
 `
 

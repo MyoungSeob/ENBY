@@ -323,8 +323,9 @@ const Container = styled.div`
     margin: auto;
     // width: 320;
     @media (max-width: 600px) {
-      margin-top: 180px;
-      z-index: 1;
+      // margin-top: 180px;
+      // z-index: 1;
+      overflow-y: hidden;
     }
 `;
 
@@ -336,9 +337,8 @@ width: 100%;
     align-items: center;
     margin: 98px auto 92px auto;
     @media (max-width: 600px) {
-      margin-top: -120px;
+      margin-top: 50px;
       width: 320px;
-      z-index: 1;
     }
 `;
 const ButtonBox = styled.div`

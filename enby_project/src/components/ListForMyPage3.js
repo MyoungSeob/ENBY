@@ -36,9 +36,11 @@ const ListForMyPage3 =(props)=>{
 
 const Container = styled.div`
     width: 100%;
+    margin-top: -60px;
 `;
 const CardBox = styled.div`
-  width: 1200px;
+width: 100%;
+  max-width: 1200px;
   height: 100%;
   float: left;
 //   margin: 75px auto 158px auto;
@@ -46,7 +48,8 @@ const CardBox = styled.div`
 
 const ApplyBox = styled.div`
     display : block;
-    width : 1200px;
+    width: 100%;
+    max-width : 1200px;
     margin : 74px auto 70px auto;
 `
 

@@ -313,6 +313,7 @@ const Container = styled.div`
     margin-top: 20px;
     background-color : #F8F8F8;
     height: 1300px;
+    overflow-y: hidden;
   }
 `;
 const HeadContainer = styled.div`
@@ -355,15 +356,12 @@ const Title = styled.div`
 `;
 const Test = styled.div`
   width : 100%;
-  // @media (max-width: 600px) {
-  //   height:100%;
-  // }
 `;
 const TitleBox = styled.div`
   width: 100%;
   height : 320px;
   margin: auto;
-  // background-color : #F8F8F8;
+  background-color : #F8F8F8;
   display : flex;
   flex-direction: column;
   margin-bottom: -100px;
@@ -515,7 +513,7 @@ const TextBox = styled.div`
 const ContentsBox = styled.div`
   display: flex;
   width: 1200px;
-  margin : 60px auto auto auto;
+  margin : 150px auto auto auto;
   @media (max-width: 600px) {
     width:300px;
     flex-direction: column;
@@ -554,16 +552,12 @@ const Label = styled.label`
   margin: 210px 173px;
   @media (max-width: 600px) {
     margin: 100px auto;
-
   }
 `
 const LabelImage = styled.img`
   width : 24px;
   height : 34px;
-  margin : auto;
-  // padding-top : -100px;
-  @media (max-width: 600px) {
-  }
+  margin : auto; 
 `
 const Label_ = styled.label`
   background-color : #168ed9;
@@ -654,6 +648,12 @@ const EditButton = styled.button`
   line-height: 150%;
   color: #FFFFFF;
   border: none;
+  @media (max-width: 600px) {
+    width:80px;
+    height:30px;
+    font-size: 11px;
+    margin: 100px 140px;
+  }
 `;
 
 

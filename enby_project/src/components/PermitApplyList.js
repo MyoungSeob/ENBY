@@ -93,6 +93,10 @@ const ApplyTit = styled.h2`
   font-family: seravek;
   font-size: 28px;
   font-style: italic;
+  @media (max-width: 600px) {
+    font-size: 21px;
+    margin-left: 30px;
+       }
 `;
 const Notice = styled.div`
   text-align: center;
@@ -103,6 +107,11 @@ const NoticeTit = styled.h1`
   font-family: notosans_bold;
   color: #b9b9b9;
   margin: 0;
+  @media (max-width: 600px) {
+    
+    font-size: 18px;
+  }
+  
 `;
 
 export default PermitApplyList;

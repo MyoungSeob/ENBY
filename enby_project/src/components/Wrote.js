@@ -1,9 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { history } from '../redux/configStore'
+import { useMediaQuery } from "react-responsive";
 
 
 const Wrote = (props) => {
+
+  // 반응형 구현
+  const isTablet = useMediaQuery({
+    query: "(min-width: 600px) and (max-width: 1170px)"
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 600px)"
+  });
+
+
   console.log(props.key)
   const date = props.meetTime.split("T")[0];
   const week = new Array(
@@ -55,9 +66,10 @@ const Wrote = (props) => {
   return (
     <Container>
       <WroteBox>
+        {isMobile ? ("") : (
         <Number>
           <NumberContents>{props.list_id}.</NumberContents>
-        </Number>
+        </Number>)}
         <Title>
           <TitleContents>{props.title}</TitleContents>
         </Title>
@@ -67,21 +79,29 @@ const Wrote = (props) => {
         <CreatedAt>
           <CreatedAtContents>작성: {writeDate}</CreatedAtContents>
         </CreatedAt>
-        <Button onClick={move_wirte}>작성한 글 확인</Button>
+        {isMobile ? ("") : (<Button onClick={move_wirte}>작성한 글 확인</Button>)}
       </WroteBox>
+        {isMobile ? (<mobileBtn onClick={move_wirte}>글 보러가기</mobileBtn>) : ("")}
       <Line />
     </Container>
   );
 };
 const Container = styled.div`
   width: 100%;
+  @media (max-width: 600px) {
+  }
 `;
 const WroteBox = styled.div`
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   display: flex;
   height: 55.08px;
   margin: auto;
-  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    height: 90px;
+    padding-left: 20px;
+  }
 `;
 const Number = styled.div`
     margin-right : 19px;
@@ -91,6 +111,9 @@ const NumberContents = styled.p`
   font-size: 21px;
   margin: 0;
   color: #7b7b7b;
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 const Title = styled.div`
 margin-right : 21px;
@@ -104,6 +127,9 @@ const TitleContents = styled.p`
   overflow : hidden;
     text-overflow : ellipsis;
     white-space : nowrap;
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 const MeetTime = styled.div`
 margin-right : 21px;
@@ -113,6 +139,9 @@ const MeetTimeContents = styled.p`
   font-family: notosans_regular;
   font-size: 21px;
   margin: 0;
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 const CreatedAt = styled.div`
 width : 314px;
@@ -122,6 +151,9 @@ const CreatedAtContents = styled.p`
   font-size: 21px;
   margin: 0;
   color : #737373;
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 const Button = styled.button`
   margin-left : 33px;
@@ -134,10 +166,15 @@ const Button = styled.button`
   background-color: white;
   cursor : pointer;
 `;
+const mobileBtn = styled.button`
+  float: right;
+`;
 const Line = styled.hr`
     margin : 0 auto 14px auto;
-    width : 1200px;
+    max-width : 1200px;
+    width: 100%;
     border-bottom : 1px solid #C4C4C4;
+    
 `
 
 export default Wrote;

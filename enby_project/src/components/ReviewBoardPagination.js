@@ -25,17 +25,6 @@ const ReviewBoardPagination = ({ postsPerPage, totalPosts, paginate }) => {
       ? Math.ceil(totalPosts / postsPerPage)
       : totalPosts / postsPerPage;
 
-      // 모바일 사이즈 변경
-//   const useStyles_Mbl = makeStyles((theme) =>({
-//     root: {
-//       width : "320px",
-//         display : 'flex',
-//         justifyContent: "center",
-//         margin : 'auto auto 121px auto',
-//       '& > * + *': {},
-//     },
-//   }));
-
 const useStyles = makeStyles((theme) => (
     !isMobile ? {
     root: {
@@ -57,7 +46,6 @@ const useStyles = makeStyles((theme) => (
   ));
 
   const classes = useStyles()
-//   !isMobile? useStyles() : useStyles_Mbl()
 
   return (
     <div className={classes.root}>

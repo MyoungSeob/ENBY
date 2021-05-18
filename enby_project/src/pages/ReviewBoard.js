@@ -144,9 +144,9 @@ const Container = styled.div`
     width: 100%;
     margin: auto;
     @media (max-width: 600px) {
-      width: 100%
-      min-width: 320px;
-      // margin-top: -30px;
+      width: 100%;
+      max-width: 375px;
+      overflow-y: hidden;
     }
 `;
 const HeadContainer = styled.div`
@@ -218,7 +218,8 @@ const SubTitle2 = styled.div`
 `;
 
 const Main = styled.div`
-    width: 1200px;
+    max-width: 1200px;
+    width: 100%;
     height: 100%;
     margin : auto;
     background: #ffffff;
@@ -279,8 +280,10 @@ const FloatingBtn = styled.button`
   outline: none;
   z-index: 1;
   bottom: 50px;
-  right: 30px;
-  }
+  right: 70px;
+  
 `;
 
 export default ReviewBoard
+
+

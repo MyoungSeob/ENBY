@@ -33,7 +33,8 @@ const Detail = (props)=>{
 }
 
 const Container = styled.div`
-    width : 1036px;
+    width: 100%;
+    max-width : 1036px;
     height : 48px;
     position : relative;
     float : left;

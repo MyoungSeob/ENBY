@@ -44,16 +44,6 @@ const MatingBoardPagination = (props) => {
       ? Math.ceil(props.isNotDeadline_Posts / props.postsPerPage)
       : props.isNotDeadline_Posts / props.postsPerPage;
 
-  // 모바일 스타일 주기
-  // const useStyles_Mbl = makeStyles((theme) => ({
-  //   root: {
-  //     width: "320px",
-  //     display: "flex",
-  //     justifyContent: "center",
-  //     margin: "auto auto 121px auto",
-  //     "& > * + *": {},
-  //   },
-  // }));
 
   const useStyles = makeStyles((theme) => (
     !isMobile ? {
@@ -75,7 +65,6 @@ const MatingBoardPagination = (props) => {
     }
   ));
 
-  // const classes = !isMobile ? useStyles() : useStyles_Mbl();
   const classes = useStyles()
 
   const viewPagination = () => {

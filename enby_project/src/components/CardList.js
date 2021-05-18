@@ -10,10 +10,8 @@ const CardList =(props)=>{
     const dispatch = useDispatch();
 
     const post_list = useSelector((store) => store.post.list)
-    const id = post_list.id
     useEffect(()=>{
         dispatch(postActions.getPostMainDB())
-        dispatch(postActions.getPostDetailDB(id))
     }, [dispatch])
     const showReviewCard=()=>{
         if(props.allMoim){

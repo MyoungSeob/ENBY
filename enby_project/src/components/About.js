@@ -19,10 +19,10 @@ const About =(props)=>{
 }
 
 const Container = styled.div`
-  width : 717px;
-  height : 570px;
+  width : 615px;
+  height : 513px;
   float: right;
-  margin-left : 73px;
+  margin-left : 72px;
   @media (max-width: 600px) {
     width: 280px;
     height: 160px;
@@ -47,6 +47,7 @@ const Title = styled.h2`
      }
 `
 const AboutContents = styled.div`
+     overflow : auto;
 `
 const Contents = styled.p`
 font-size : 18px;

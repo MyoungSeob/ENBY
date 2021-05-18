@@ -19,18 +19,21 @@ const MemberCardList=(props)=>{
 const Container = styled.div`
     max-width : 1200px;
     width: 100%;
+    height: 288px;
     @media (max-width: 600px) {
         margin-left : 32px;
     }
 
 `
 const Title = styled.div`
+    padding-top : 50px;
     margin-bottom : 34px;
     @media (max-width: 600px) {
         margin: auto;
        }
 `
 const Tit = styled.h2`
+    margin : 0;
     font-size : 28px;
     font-family : seravek;
     font-style : italic;

@@ -172,11 +172,12 @@ text-align : center;
 `
 const TitleH = styled.p`
   margin : 0;
-  padding-top : 40px;
+  padding-top : 127px;
   font-size : 18px;
   font-family : notosans_regular;
   text-align : cneter;
   @media (max-width: 600px) {
+    padding-top : 40px;
     width: 165px;
     height: 105px;
     max-width: 100%;

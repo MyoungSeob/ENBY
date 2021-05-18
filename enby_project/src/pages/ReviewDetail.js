@@ -141,7 +141,7 @@ const Container = styled.div`
 `;
 const TopBox = styled.div`
   width: 100%;
-  margin: auto auto 60px auto;
+  margin: auto auto 0 auto;
 `;
 
 const ImageBox = styled.div`
@@ -333,7 +333,7 @@ const DeleteBtn = styled.button`
 `;
 const MoveMoimButton = styled.div`
   display: block;
-  margin: auto auto 90px auto;
+  margin: auto auto 50px auto;
   width: 1200px;
   @media (max-width: 600px) {
     margin-left: 30px;

@@ -66,6 +66,7 @@ const MemberImg = styled.img`
    }
 `;
 const MemberNickname = styled.p`
+   margin-top : 8px;
   font-size: 18px;
   font-family: notosans_regular;
   text-align: center;

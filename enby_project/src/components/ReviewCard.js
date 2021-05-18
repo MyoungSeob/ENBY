@@ -128,7 +128,6 @@ const CardTitH = styled.div`
   }
 `;
 const UserInfo = styled.div`
-  position: absolute;
   width: 242px;
   display: flex;
   margin-top: 2px;
@@ -149,13 +148,7 @@ const UserNickname = styled.text`
   font-family: notosans_regular;
   font-style: normal;
   font-weight: normal;
-  font-size: 12px;
-  @media (min-width: 600px) and (max-width: 1170px) {
-    // width: 320px;
-    // height: 210px;
-    // margin: 13px;
-  }
-  
+  font-size: 12px;  
   @media (max-width: 600px) {
     font-size: 8px;
     margin: auto 0 auto 6px;

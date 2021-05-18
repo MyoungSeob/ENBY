@@ -26,34 +26,39 @@ const ReviewBoardPagination = ({ postsPerPage, totalPosts, paginate }) => {
       : totalPosts / postsPerPage;
 
       // 모바일 사이즈 변경
-  const useStyles_Mbl = makeStyles((theme) =>({
-    root: {
-      width : "320px",
-        display : 'flex',
-        justifyContent: "center",
-        margin : 'auto auto 121px auto',
-      '& > * + *': {},
-    },
-  }));
+//   const useStyles_Mbl = makeStyles((theme) =>({
+//     root: {
+//       width : "320px",
+//         display : 'flex',
+//         justifyContent: "center",
+//         margin : 'auto auto 121px auto',
+//       '& > * + *': {},
+//     },
+//   }));
 
-  const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => (
+    !isMobile ? {
     root: {
-      width : "1200px",
-        display : 'flex',
+      width: "1200px",
+      display: "flex",
+      justifyContent: "center",
+      margin: "auto auto 121px auto",
+      "& > * + *": {},
+    },
+  } : {
+      root: {
+        width: "320px",
+        display: "flex",
         justifyContent: "center",
-        margin : 'auto auto 121px auto',
-      '& > * + *': {
-        // width : "1200px",
-        // display : 'flex',
-        // justifyContent: "center",
-        // margin : 'auto'
+        margin: "auto 27.5px 121px 27.5px",
+        "& > * + *": {},
       },
-    },
-  }));
-  const location = window.pageYOffset;
-  console.log(location)
+    }
+  ));
 
-  const classes = !isMobile? useStyles() : useStyles_Mbl()
+  const classes = useStyles()
+//   !isMobile? useStyles() : useStyles_Mbl()
+
   return (
     <div className={classes.root}>
         <Pagination page={page} count={countPage} onChange={handleChange} />
@@ -68,10 +73,8 @@ const Container = styled.div`
   // padding-top: 88px;
   // 카드아래 79마진 되어있는것 적용되서 이부분 주석
   padding-bottom: 120px;
-
   @media (min-width: 600px) and (max-width: 1170px) {
   }
-
   @media (max-width: 600px) {
     margin: 0;
   }
@@ -106,7 +109,6 @@ const PageLi = styled.li`
   }
   @media (min-width: 600px) and (max-width: 1170px) {
   }
-
   @media (max-width: 600px) {
     font-size: 10px;
     padding: 6px;

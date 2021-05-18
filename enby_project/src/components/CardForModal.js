@@ -34,16 +34,7 @@ const CardGrid = styled.div`
   border-radius : 20px;
   cursor: pointer;
   background-color: #ffffff;
-  &:hover {
-    transition-property: box-shadow;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-out;
-    transition-delay: 0s;
-    letter-spacing: 0px;
-    -webkit-font-smoothing: antialiased;
-    overflow-anchor: none;
-    box-shadow: 3px 1px 0 0 rgb(0 0 0 / 10%);
-  }
+
 `;
 const CardImage = styled.img`
   width: 282px;
@@ -51,6 +42,12 @@ const CardImage = styled.img`
   border-radius : 20px;
   objectfit: inherit;
   position: relative;
+  &: hover {
+    filter: drop-shadow(-0.3px 0 0.2rem gray);
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+  }
 `;
 
 const CardTit = styled.div`

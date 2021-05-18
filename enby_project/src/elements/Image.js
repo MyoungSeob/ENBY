@@ -118,7 +118,7 @@ const MiniContentsImageDeadline = styled.div`
   width: 410px;
   height: 421px;
   background-image: url("${(props) => props.src}");
-  background-size: cover;
+  background-size: 410px 421px;
   background-position: center;
   background-repeat: no-repeat;
   filter : grayscale(100%);

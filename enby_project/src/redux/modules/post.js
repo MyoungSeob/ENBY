@@ -4,6 +4,7 @@ import axios from 'axios';
 import { applyMiddleware } from 'redux';
 import ReviewBoardWrite from '../../pages/ReviewBoardWrite';
 
+
 const GET_POST_MAIN = "GET_POST_MAIN";
 const GET_POST_DETAIL = "GET_POST_DETAIL";
 const GET_APPLY_LIST = "GET_APPLY_LIST";
@@ -16,7 +17,8 @@ const GET_REVIEW_DETAIL = "GET_REVIEW_DETAIL";
 const ADD_REVIEW = "ADD_REVIEW"; // 리뷰 추가
 const EDIT_REVIEW = "EDIT_REVIEW"; // 리뷰 수정
 const LOADING = "LOADING";
-const GET_REVIEW_CARD = "GET_REVIEW_CARD"
+const GET_REVIEW_CARD = "GET_REVIEW_CARD";
+const GET_NEED_WRITE_REVIEW = "GET_NEED_WRITE_REIVEW";
 
 const loading = createAction(LOADING, (loading) => (loading));
 const getPostMain = createAction(GET_POST_MAIN, (post_list) => post_list);
@@ -31,6 +33,7 @@ const getReviewDetail = createAction(GET_REVIEW_DETAIL, (review_detail) => revie
 const addReview = createAction(ADD_REVIEW, (review_list) => ({review_list}));
 const editReview = createAction(EDIT_REVIEW, (review_id) => review_id);
 const getReviewCard = createAction(GET_REVIEW_CARD, (review_card) => review_card)
+const getNeedWriteRiview = createAction(GET_NEED_WRITE_REVIEW, (needWrite_list) => needWrite_list)
 
 
 const initialState = {
@@ -43,6 +46,7 @@ const initialState = {
     created_At :[],
     loading : false,
     review_card : [],
+    needWrite_list : [],
 };
 
 const getPostMainDB =()=>{
@@ -309,7 +313,20 @@ const editReviewDB =(review_id, board_id, title, contents, reviewImg)=>{
         .catch(err => console.log(err))
     }
 }
-
+const getNeedWriteRiviewAPI = ()=>{
+  return function (dispatch, getState, {history}) {
+    const token = localStorage.getItem("token")
+    axios({
+      method : 'get',
+      url : 'http://3.36.67.251:8080/board/mating/noreviews',
+      headers : {
+        authorization: `Bearer ${token}`
+    },
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
+}
 export default handleActions(
   {
     [GET_POST_MAIN]: (state, action) =>
@@ -347,6 +364,10 @@ export default handleActions(
     [GET_REVIEW_CARD] : (state, action) => 
       produce(state, (draft) => {
           draft.review_card = action.payload;
+      }),
+      [GET_NEED_WRITE_REVIEW] : (state, action) => 
+      produce(state, (draft) => {
+          draft.needWrite_list = action.payload;
       })
   },
   initialState
@@ -365,7 +386,8 @@ const actionsCreators = {
     getPostReviewDB,
     getReviewDetailDB,
     addReviewDB,
-    editReviewDB
+    editReviewDB,
+    getNeedWriteRiviewAPI
 };
 
 export {actionsCreators};

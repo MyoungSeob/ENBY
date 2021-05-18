@@ -44,17 +44,15 @@ const CardGrid = styled.div`
     // -webkit-font-smoothing: antialiased;
     // overflow-anchor: none;
     // box-shadow: inset 0 0 0 1px rgb(0 0 0 / 16%);
-    box-shadow: 0 0 11px rgba(33,33,33,.2); 
-    transition: box-shadow .15s ease-out;
-    padding-bottom: 5px;
-    box-sizing: border-box;
-    letter-spacing: 0px;
-    -webkit-font-smoothing: antialiased;
-    overflow-anchor: none;
-    // filter: drop-shadow(-0.3px 0 0.2rem gray);
-    // transition-duration: 0.15s;
-    // transition-timing-function: ease-out;
-    // transition-delay: 0s;
+    // box-shadow: 0px 0 11px rgba(33,33,33,.2); 
+    // transition: box-shadow .15s ease-out;
+    // letter-spacing: 0px;
+    // -webkit-font-smoothing: antialiased;
+    // overflow-anchor: none;
+    filter: drop-shadow(0 0.4rem 0.3rem rgba(33,33,33,.2));
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
   }
   border-radius: 20px;
   @media (min-width: 600px) and (max-width: 1170px) {

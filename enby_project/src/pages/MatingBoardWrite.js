@@ -475,7 +475,7 @@ const MaxPeople = styled.select`
 
 width: 322px;
 height: 39px;
-padding: 6px 20px;
+padding: 6px 20px 6px;
 background: #FFFFFF;
 border: 1px solid #B9B9B9;
 box-sizing: border-box;

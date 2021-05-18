@@ -121,7 +121,12 @@ const CardImage = styled.img`
     border-radius: 10px 10px 0 0;
   }
   &: hover {
-    filter: drop-shadow(-0.3px 0 0.2rem gray);
+    // box-shadow: 0px 10px 30px rgba(00,00,00, 0.5); 
+    // transition: box-shadow .15s ease-out;
+    // letter-spacing: 0px;
+    // -webkit-font-smoothing: antialiased;
+    // overflow-anchor: none;
+    filter: drop-shadow(0 0.4rem 0.3rem rgba(33,33,33,.3));
     transition-duration: 0.15s;
     transition-timing-function: ease-out;
     transition-delay: 0s;

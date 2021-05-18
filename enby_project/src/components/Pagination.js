@@ -27,7 +27,7 @@ const PagingMating = ({ postsPerPage, totalPosts, paginate }) => {
 
   const useStyles = makeStyles((theme) => ({
     root: {
-      width : "1200px",
+        width : "1200px",
         display : 'flex',
         justifyContent: "center",
         margin : 'auto auto 121px auto',
@@ -39,9 +39,6 @@ const PagingMating = ({ postsPerPage, totalPosts, paginate }) => {
       },
     },
   }));
-  const location = window.pageYOffset;
-  console.log(location)
-
   const classes = useStyles()
   return (
     <div className={classes.root}>

@@ -16,9 +16,7 @@ const ListForMyPage2 =(props)=>{
     const token = localStorage.getItem("token");
     const decode = jwt_decode(token);
     const name = decode.nickname;
-    console.log(decode)
     const attend_list = useSelector((store) => store.user.attend_list)
-    console.log(props);
     useEffect(() => {
         dispatch(userActions.getMyProfileDB(name));
       }, []);

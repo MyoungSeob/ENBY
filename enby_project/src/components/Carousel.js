@@ -56,8 +56,7 @@ const Title = styled.div`
   width : 1200px;
   height : 520px;
   @media (min-width: 600px) and (max-width: 1170px) {
-    // width: 320px;
-    // height: 235.73px;
+
     }
     @media (max-width: 1440px) {
       width : 1440px;
@@ -86,8 +85,6 @@ const TitleBox = styled.div`
   margin : auto;
   padding-top : 418px;
   @media (min-width: 600px) and (max-width: 1170px) {
-    // width: 320px;
-    // height: 235.73px;
     }
     @media (max-width: 1440px) {
       padding-top : 318px;
@@ -110,8 +107,7 @@ text-align : center;
   font-size : 80px;
   color : #ffffff;
   @media (min-width: 600px) and (max-width: 1170px) {
-    // width: 320px;
-    // height: 235.73px;
+
     }
   
   @media (max-width: 600px) {
@@ -125,8 +121,7 @@ font-size : 32px;
 margin : 0px;
 color : #ffffff;
 @media (min-width: 600px) and (max-width: 1170px) {
-  // width: 320px;
-  // height: 235.73px;
+
   }
 
 @media (max-width: 600px) {
@@ -138,8 +133,7 @@ font-family : notosans_bold;
 font-size : 32px;
 color : #ffffff;
 @media (min-width: 600px) and (max-width: 1170px) {
-  // width: 320px;
-  // height: 235.73px;
+
   }
 
 @media (max-width: 600px) {

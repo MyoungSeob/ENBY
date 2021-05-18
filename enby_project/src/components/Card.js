@@ -38,7 +38,6 @@ const Card = (props) => {
       return <ApplyButton>더보기</ApplyButton>;
     }
   };
-  console.log(props.deadlineStatus)
 
   return (
     <CardGrid onClick={move_page}>
@@ -76,32 +75,7 @@ const CardGrid = styled.div`
   cursor: pointer;
   background-color: #ffffff;
   &:hover {
-    // transition-property: box-shadow;
-    // transition-duration: 0.15s;
-    // transition-timing-function: ease-out;
-    // transition-delay: 0s;
-    // letter-spacing: 0px;
-    // -webkit-font-smoothing: antialiased;
-    // overflow-anchor: none;
-    // box-shadow: 3px 1px 0 0 rgb(0 0 0 / 10%);
-
-    // box-shadow: 2px 2px 4px rgb(0 0 0 / 16%);
     transition: box-shadow 0.15s ease-out;
-    // height: 100%;
-    // left: 0;
-    // top: 0;
-    // width: 100%;
-    // padding-bottom: 5px;
-    // box-sizing: border-box;
-    // letter-spacing: 0px;
-    // -webkit-font-smoothing: antialiased;
-    // overflow-anchor: none;
-    // transition: box-shadow .3s;
-
-    // border: 1px solid #ccc;
-    // background: #fff;
-    // float: left;
-    // box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
   }
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 320px;
@@ -242,10 +216,6 @@ const CardTitH = styled.div`
   }
 `;
 
-const CardButton = styled.div`
-  float: left;
-  margin: 5px 0 0 27px;
-`;
 const ApplyButton = styled.button`
   width: 167px;
   height: 40px;

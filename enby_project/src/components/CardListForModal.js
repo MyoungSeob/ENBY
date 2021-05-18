@@ -11,7 +11,6 @@ import {actionsCreators as userActions} from '../redux/modules/user'
 import jwt_decode from 'jwt-decode';
 
 const ReviewCardList =(props)=>{
-    console.log(props);
     // 참여했던 모임
     const dispatch = useDispatch();
     const apply_list = useSelector((store) => store.user.apply_list)
@@ -25,13 +24,8 @@ const ReviewCardList =(props)=>{
             dispatch(postActions.getNeedWriteRiviewAPI());
         }
         
-        // setPosts(review_list); // for pagination
       }, []);
-    
-    
-    
-    console.log(apply_list);
-   
+       
 
     return(
         <ListBody>

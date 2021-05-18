@@ -16,7 +16,6 @@ const ListForMyPage3 =(props)=>{
     const decode = jwt_decode(token);
     const name = decode.nickname;
     const apply_list = useSelector((store) => store.user.apply_list)
-    console.log(props);
     useEffect(() => {
         dispatch(userActions.getMyProfileDB(name));
       }, []);

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import jwt_decode from 'jwt-decode';
 
 const MypageProfile =(props)=>{
-    console.log(props)
     const token = localStorage.getItem("token");
     const decode = jwt_decode(token);
     const myName = decode.nickname

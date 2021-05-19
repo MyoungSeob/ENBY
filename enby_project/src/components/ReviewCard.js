@@ -44,7 +44,7 @@ const CardGrid = styled.div`
   border-radius: 20px;
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 170px;
-    height: 190px;
+    height: 245px;
     }
   
   @media (max-width: 600px) {
@@ -89,7 +89,7 @@ const CardTit = styled.div`
   height: 27px;
   margin: 17px 20px 2px 20px;
   @media (min-width: 600px) and (max-width: 1170px) {
-    width: 16 0px;
+    width: 160px;
     height: 30px;
     margin: 10px 0 0px 5px;
   }
@@ -110,7 +110,6 @@ const CardTitH = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: left;
-  
   @media (max-width: 600px) {
     font-size: 14px;
     margin: -3px 0 0 6px;
@@ -122,12 +121,11 @@ const UserInfo = styled.div`
   margin-top: 2px;
   margin-left: 20px;
   @media (min-width: 600px) and (max-width: 1170px) {
-    // width: 320px;
-    // height: 210px;
-    // margin: 13px;
+    width: 100px;
   }
   
   @media (max-width: 600px) {
+    width: 100px;
     font-size: 10px;
     margin: -12px 0 0 6px;
   }

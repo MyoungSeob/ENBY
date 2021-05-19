@@ -49,7 +49,7 @@ const cancelApply = (id)=>{
             headers : {
                 authorization: `Bearer ${token}`,
             },
-            url : `http://3.36.67.251:8080/board/mating/${id}/register/${regist}`,
+            url : `http://3.36.67.251:8080/board/mating/${id}/register/99`,
         })
         .then(() => {
             localStorage.removeItem("regist")

@@ -28,7 +28,7 @@ const ReviewBoardPagination = ({ postsPerPage, totalPosts, paginate }) => {
 const useStyles = makeStyles((theme) => (
     isMobile ? {
     root: {
-      width: "320px",
+      width: "337.5px",
       display: "flex",
       justifyContent: "center",
       margin: "auto auto 121px 30px",

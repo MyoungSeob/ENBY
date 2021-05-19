@@ -13,7 +13,7 @@ import jwt_decode from 'jwt-decode';
 const ReviewCardList =(props)=>{
     // 참여했던 모임
     const dispatch = useDispatch();
-    const apply_list = useSelector((store) => store.user.apply_list)
+    const wroteReviewList = useSelector((store) => store.post.needWrite_list)
     
     useEffect(() => {
         if(localStorage.getItem("token") !== null){
@@ -30,7 +30,7 @@ const ReviewCardList =(props)=>{
     return(
         <ListBody>
             <PostList>
-                {props.apply_list.map((p)=>{
+                {wroteReviewList.map((p)=>{
                 return <CardForModal {...p} key={p.id}/>})}          
             </PostList>
         </ListBody>

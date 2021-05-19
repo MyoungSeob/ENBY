@@ -42,12 +42,12 @@ const Card = (props) => {
   return (
     <CardGrid onClick={move_page}>
       {props.deadlineStatus === true ? (
-        <>
+        <ImageGrid>
           <Image shape="deadlinecard" src={props.board_imgUrl} />
           <DeadlineCardTitle>
             <TitleH>마감되었습니다.</TitleH>
           </DeadlineCardTitle>
-        </>
+        </ImageGrid>
       ) : (
         <CardImage src={props.board_imgUrl} />
       )}
@@ -90,6 +90,11 @@ const CardGrid = styled.div`
     margin-bottom: 24px;
   }
 `;
+const ImageGrid = styled.div`
+@media (max-width: 600px) {
+  position : relative;
+}
+`
 const CardImage = styled.img`
   // width: 282px;
   width: 100%;

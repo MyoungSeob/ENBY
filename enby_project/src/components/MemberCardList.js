@@ -21,6 +21,7 @@ const Container = styled.div`
     width: 100%;
     height: 288px;
     @media (max-width: 600px) {
+        height : auto;
     }
 
 `
@@ -28,8 +29,9 @@ const Title = styled.div`
     padding-top : 50px;
     margin-bottom : 34px;
     @media (max-width: 600px) {
+        padding-top : 34px;
         margin: auto;
-       }
+    }
 `
 const Tit = styled.h2`
     margin : 0;

@@ -57,9 +57,17 @@ const PermitApplyList = (props) => {
 };
 const Container = styled.div`
   margin-bottom: 80px;
+  @media (max-width: 600px) {
+    width: 375px;
+    font-size: 11px;
+    margin-right: 16px;
+    margin-bottom : 17px;
+       }
 `;
 const Title = styled.div`
   display: flex;
+   @media (max-width: 600px) {
+       }
 `;
 const DeadLineBtn = styled.button`
   width: 167px;
@@ -77,7 +85,7 @@ const DeadLineBtn = styled.button`
   @media (max-width: 600px) {
     width: 110px;
     font-size: 11px;
-    margin-right: 16px;
+    margin-right: 12.5px;
        }
 `;
 const DidDeadLineBtn = styled.button`
@@ -97,7 +105,7 @@ const DidDeadLineBtn = styled.button`
   @media (max-width: 600px) {
     width: 110px;
     font-size: 11px;
-    margin-right: 16px;
+    margin-right: 12.5px;
        }
 `;
 const ApplyTit = styled.h2`
@@ -107,7 +115,7 @@ const ApplyTit = styled.h2`
   font-style: italic;
   @media (max-width: 600px) {
     font-size: 21px;
-    margin-left: 30px;
+    margin-left: 12.5px;
        }
 `;
 const Notice = styled.div`

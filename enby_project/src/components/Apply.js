@@ -3,12 +3,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { actionsCreators as applyActions } from "../redux/modules/apply";
-import jwt_decode from 'jwt-decode';
+import jwt_decode from "jwt-decode";
 
 const Apply = (props) => {
   const dispatch = useDispatch();
-  // const token = localStorage.getItem('token');
-  // const nickname = jwt_decode(token).nickname
 
   // 리덕스에 저장되어 있는 게시글 상세 정보입니다.
   const post_list = useSelector((store) => store.post.detail_list);
@@ -17,22 +15,18 @@ const Apply = (props) => {
   const id = post_list.id;
   // 게시글 신청 정보와 게시글 신청 시 얻는 토큰 값이 같은지 판별 후 regist_list에 넣어주는 코드입니다.
   const is_login = () => {
-    const token = localStorage.getItem('token');
-    const decodeName = jwt_decode(token).nickname
-    console.log(decodeName)
     if (localStorage.getItem("token") !== null) {
+      const token = localStorage.getItem("token");
+      const decodeName = jwt_decode(token).nickname;
       const regist_list = [];
+
       for (let i = 0; i < apply_list.length; i++) {
-        if (
-          apply_list[i].nickname === decodeName
-        ) {
+        if (apply_list[i].nickname === decodeName) {
           regist_list.push(apply_list[i]);
         }
       }
       // regist_list에는 값이 하나만 들어갈 수 있기에 첫번째를 regist로 설정하였습니다.
       const regist = regist_list[0];
-      console.log(regist_list)
-      console.log(apply_list)
 
       if (fullPerson === 1) {
         return (
@@ -55,7 +49,7 @@ const Apply = (props) => {
               <KakaoId>
                 <Id>Kakao ID</Id>
                 <IdInput
-                  placeholder="연락 가능한 카카오톡 ID를 작성해 주세요."
+                  placeholder="카카오톡 ID를 작성해 주세요."
                   onChange={(e) => {
                     setKakaoId(e.target.value);
                   }}
@@ -98,33 +92,49 @@ const Apply = (props) => {
         );
       }
     } else {
-      return (
-        <>
-          <Contect>
-            <KakaoId>
-              <Id>Kakao ID</Id>
-              <IdInput
-                placeholder="연락 가능한 카카오톡 ID를 작성해 주세요."
-                onChange={(e) => {
-                  setKakaoId(e.target.value);
-                }}
-              />
-            </KakaoId>
-            <Comment>
-              <CommentTit>한마디</CommentTit>
-              <Contents
-                placeholder="신청을 위해 간단한 한마디를 작성해 주세요."
-                onChange={(e) => {
-                  setApplyComment(e.target.value);
-                }}
-              ></Contents>
-            </Comment>
-          </Contect>
-          <ButtonBox>
-            <ApplyButton onClick={applyAttend}>신청하기</ApplyButton>
-          </ButtonBox>
-        </>
-      );
+      if (fullPerson === 1) {
+        return (
+          <NoticeDeadline>
+            <NoticeP>죄송합니다. 현재 모집이 마감된 모임이에요.</NoticeP>
+          </NoticeDeadline>
+        );
+      }
+      if (post_list.deadlineStatus === true) {
+        return (
+          <NoticeDeadline>
+            <NoticeP>죄송합니다. 현재 모집이 마감된 모임이에요.</NoticeP>
+          </NoticeDeadline>
+        );
+      }
+      if (fullPerson < 1) {
+        return (
+          <>
+            <Contect>
+              <KakaoId>
+                <Id>Kakao ID</Id>
+                <IdInput
+                  placeholder="카카오톡 ID를 작성해 주세요."
+                  onChange={(e) => {
+                    setKakaoId(e.target.value);
+                  }}
+                />
+              </KakaoId>
+              <Comment>
+                <CommentTit>한마디</CommentTit>
+                <Contents
+                  placeholder="신청을 위해 간단한 한마디를 작성해 주세요."
+                  onChange={(e) => {
+                    setApplyComment(e.target.value);
+                  }}
+                ></Contents>
+              </Comment>
+            </Contect>
+            <ButtonBox>
+              <ApplyButton onClick={applyAttend}>신청하기</ApplyButton>
+            </ButtonBox>
+          </>
+        );
+      }
     }
   };
 
@@ -137,7 +147,7 @@ const Apply = (props) => {
   // 신청을 할 때, 해당 사항을 검사 후 신청을 합니다.
   const applyAttend = () => {
     if (localStorage.getItem("token") === null) {
-      window.alert("🤖신청하기는 로그인이 필요한 기능입니다.");
+      window.alert("🤖신청하기는 로그인이 필요한 기능입니다");
       return;
     }
     if (kakaoId === "" || applyComment === "") {
@@ -171,8 +181,8 @@ const ApplyBox = styled.div`
   width: 100%;
   @media (max-width: 600px) {
     margin-left: 12.5px;
-    margin-top: -90px;
-       }
+    margin-top: 34px;
+  }
 `;
 const Title = styled.div``;
 const ApplySubTit = styled.p`
@@ -181,8 +191,8 @@ const ApplySubTit = styled.p`
   font-size: 18px;
   color: #474747;
   @media (max-width: 600px) {
-      font-size: 11px;
-       }
+    font-size: 8px;
+  }
 `;
 const ApplyTit = styled.h2`
   margin-top: 5px;
@@ -191,21 +201,17 @@ const ApplyTit = styled.h2`
   font-style: italic;
   @media (max-width: 600px) {
     font-size: 21px;
-       }
+  }
 `;
 const Contect = styled.div`
   display: flex;
-  @media (min-width: 600px) and (max-width: 1170px) {
-    flex-direction: column;
-       }
   @media (max-width: 600px) {
     flex-direction: column;
     margin-top: -15px;
-       }
+  }
 `;
 const KakaoId = styled.div`
   margin-right: 24px;
-  
 `;
 const Id = styled.p`
   font-size: 18px;
@@ -213,7 +219,7 @@ const Id = styled.p`
   font-family: notosans_medium;
   @media (max-width: 600px) {
     font-size: 12px;
-       }
+  }
 `;
 const IdInput = styled.input`
   width: 320px;
@@ -226,8 +232,8 @@ const IdInput = styled.input`
   @media (max-width: 600px) {
     width: 140px;
     height: 24px;
-    font-size: 7px;
-       }
+    font-size: 11px;
+  }
 `;
 const Comment = styled.div`
   margin-bottom: 20px;
@@ -238,7 +244,7 @@ const CommentTit = styled.p`
   font-family: notosans_medium;
   @media (max-width: 600px) {
     font-size: 12px;
-       }
+  }
 `;
 const Contents = styled.input`
   width: 810px;
@@ -248,24 +254,20 @@ const Contents = styled.input`
   font-size: 18px;
   padding-left: 20px;
   outline: none;
-  @media (min-width: 600px) and (max-width: 1170px) {
-    width: 480px;
-    height: 80px;
-  }
   @media (max-width: 600px) {
     width: 326px;
     height: 24px;
-    font-size: 9px;
-       }
+    font-size: 12px;
+  }
 `;
 const ButtonBox = styled.div`
   float: right;
   @media (max-width: 600px) {
-    display : block;
-    width : 350px;
-    float : left;
+    display: block;
+    width: 350px;
+    float: left;
     margin-top: -10px;
-       }
+  }
 `;
 const ApplyButton = styled.button`
   width: 167px;
@@ -276,16 +278,16 @@ const ApplyButton = styled.button`
   border: none;
   border-radius: 20px;
   outline: none;
-  background-color: #168ED9;
+  background-color: #168ed9;
   padding-bottom: 2px;
   cursor: pointer;
   @media (min-width: 600px) and (max-width: 1170px) {
-    margin-right: 40px;
+    margin-left: 40px;
   }
   @media (max-width: 600px) {
     width: 60px;
-    height:30px;
-    float : right;
+    height: 30px;
+    float: right;
     font-size: 9px;
   }
 `;
@@ -319,10 +321,10 @@ const CheckKakaoID = styled.div`
   width: 813px;
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 300px;
-    }
-    @media (max-width: 600px) {
-      width: 150px;
-    }
+  }
+  @media (max-width: 600px) {
+    width: 150px;
+  }
 `;
 const CheckH = styled.h1`
   margin: 0px;
@@ -345,7 +347,7 @@ const CheckButtonBox = styled.div``;
 const NoticeDeadline = styled.div`
   margin: auto auto 80px auto;
   @media (max-width: 600px) {
-    margin-bottom : 54px;
+    margin-bottom: 54px;
   }
 `;
 const NoticeP = styled.p`
@@ -355,8 +357,8 @@ const NoticeP = styled.p`
   font-family: notosans_regular;
   color: #b9b9b9;
   @media (max-width: 600px) {
-    width : 350px;
-    padding-right : 20px;
+    width: 350px;
+    padding-right: 20px;
   }
 `;
 export default Apply;

@@ -47,7 +47,8 @@ const ReviewBox = (props) => {
 const Container = styled.div`
     width : 100%;
     @media (max-width: 600px) {
-      margin-left: 30px;
+      margin-left: 12.5px;
+      width : 375px;
          }
 `
 const TitleBox = styled.div`
@@ -98,7 +99,7 @@ const MoveReviewBoard = styled.button`
       width: 60px;
       height: 30px;
       font-size: 11px;
-      margin-right: 50px;
+      margin-right: 24px;
          }
 `
 const CardListBox = styled.div`
@@ -107,6 +108,10 @@ max-width : 1200px;
 margin : auto;
 display : block;
 margin-bottom: 150px;
+@media (max-width: 600px) {
+  margin-right: 30px;
+  margin-bottom : 34px;
+     }
 `
 const Notice = styled.p`
     text-align : center;
@@ -115,7 +120,8 @@ const Notice = styled.p`
     color : #b9b9b9;
     margin-bottom : 150px;
     @media (max-width: 600px) {
-      margin-right: 55px;
+      margin-right: 30px;
+      margin-bottom : 54px;
          }
 `
 const BottomGrid = styled.div`

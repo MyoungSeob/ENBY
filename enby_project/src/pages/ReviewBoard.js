@@ -71,7 +71,7 @@ function ReviewBoard() {
     // 모달 페이지네이션
     const [modalPosts, setModalPosts] = useState([]);
     const [currentModalPage, setCurrentModalPage] = useState(1);
-    const [modalPostsPerPage, setModalPostsPerPage] = useState(2);
+    const [modalPostsPerPage, setModalPostsPerPage] = useState(isMobile ? 2 : 3);
     const indexOfLastModal = currentModalPage * modalPostsPerPage;
     const indexOfFirstModal = indexOfLastModal - modalPostsPerPage;
     
@@ -286,7 +286,7 @@ const FloatingBtn = styled.button`
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  z-index: 1;
+  z-index: 2;
   bottom: 50px;
   right: 30px;
   

@@ -21,7 +21,6 @@ const Container = styled.div`
     width: 100%;
     height: 288px;
     @media (max-width: 600px) {
-        margin-left : 32px;
     }
 
 `

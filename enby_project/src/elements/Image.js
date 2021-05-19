@@ -125,9 +125,9 @@ const MiniContentsImage = styled.div`
   background-repeat: no-repeat;
   border-radius: 20px;
   @media (max-width: 600px) {
-    width: 240px;
-    height: 240px;
-    margin-left: 25px;
+    width: 350px;
+    height: 350px;
+    margin : 0 auto 0 auto;
    }
 `;
 const MiniContentsImageDeadline = styled.div`

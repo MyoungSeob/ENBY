@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { actionsCreators as applyActions } from "../redux/modules/apply";
-// import jwt_decode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 
 const Apply = (props) => {
   const dispatch = useDispatch();
@@ -17,17 +17,22 @@ const Apply = (props) => {
   const id = post_list.id;
   // 게시글 신청 정보와 게시글 신청 시 얻는 토큰 값이 같은지 판별 후 regist_list에 넣어주는 코드입니다.
   const is_login = () => {
-    if (localStorage.getItem("regist") !== null) {
+    const token = localStorage.getItem('token');
+    const decodeName = jwt_decode(token).nickname
+    console.log(decodeName)
+    if (localStorage.getItem("token") !== null) {
       const regist_list = [];
       for (let i = 0; i < apply_list.length; i++) {
         if (
-          apply_list[i].register_id === parseInt(localStorage.getItem("regist"))
+          apply_list[i].nickname === decodeName
         ) {
           regist_list.push(apply_list[i]);
         }
       }
       // regist_list에는 값이 하나만 들어갈 수 있기에 첫번째를 regist로 설정하였습니다.
       const regist = regist_list[0];
+      console.log(regist_list)
+      console.log(apply_list)
 
       if (fullPerson === 1) {
         return (
@@ -165,7 +170,7 @@ const ApplyBox = styled.div`
   max-width: 1200px;
   width: 100%;
   @media (max-width: 600px) {
-    margin-left: 32px;
+    margin-left: 12.5px;
     margin-top: -90px;
        }
 `;
@@ -241,15 +246,17 @@ const Contents = styled.input`
   padding-left: 20px;
   outline: none;
   @media (max-width: 600px) {
-    width: 240px;
-    height: 70px;
+    width: 326px;
+    height: 24px;
     font-size: 9px;
        }
 `;
 const ButtonBox = styled.div`
   float: right;
   @media (max-width: 600px) {
-    float: left;
+    display : block;
+    width : 350px;
+    float : left;
     margin-top: -10px;
        }
 `;
@@ -268,7 +275,9 @@ const ApplyButton = styled.button`
   @media (max-width: 600px) {
     width: 60px;
     height:30px;
+    float : right;
     font-size: 9px;
+  }
 `;
 const CheckBox = styled.div`
   margin-top: 34px;
@@ -310,6 +319,9 @@ const CheckP = styled.p`
 const CheckButtonBox = styled.div``;
 const NoticeDeadline = styled.div`
   margin: auto auto 80px auto;
+  @media (max-width: 600px) {
+    margin-bottom : 54px;
+  }
 `;
 const NoticeP = styled.p`
   margin: 34px 0 0 0;
@@ -317,5 +329,9 @@ const NoticeP = styled.p`
   font-size: 18px;
   font-family: notosans_regular;
   color: #b9b9b9;
+  @media (max-width: 600px) {
+    width : 350px;
+    padding-right : 20px;
+  }
 `;
 export default Apply;

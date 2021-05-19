@@ -263,7 +263,7 @@ const EditButton = styled.div`
   float: right;
   margin: auto 0px auto auto;
   @media (max-width: 600px) {
-    margin: -40px 10px 0 auto;
+    margin: 0 10px 0 auto;
 
    }
 `;

@@ -92,6 +92,8 @@ const DidDeadLineBtn = styled.button`
   padding-bottom: 2px;
   margin: auto 0px auto auto;
   float: right;
+  @media (min-width: 600px) and (max-width: 1170px) {
+  }
   @media (max-width: 600px) {
     width: 110px;
     font-size: 11px;

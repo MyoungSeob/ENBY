@@ -272,6 +272,9 @@ const ApplyButton = styled.button`
   background-color: #168ED9;
   padding-bottom: 2px;
   cursor: pointer;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 40px;
+  }
   @media (max-width: 600px) {
     width: 60px;
     height:30px;
@@ -286,6 +289,9 @@ const CheckBox = styled.div`
 const CheckMe = styled.div`
   display: flex;
   width: 196px;
+  @media (max-width: 600px) {
+    width: 120px;
+  }
 `;
 const CheckImg = styled.img`
   width: 24px;
@@ -304,17 +310,29 @@ const CheckContents = styled.div`
 `;
 const CheckKakaoID = styled.div`
   width: 813px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 300px;
+    }
+    @media (max-width: 600px) {
+      width: 150px;
+    }
 `;
 const CheckH = styled.h1`
   margin: 0px;
   font-size: 18px;
   font-family: notosans_regular;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 const CheckComment = styled.div``;
 const CheckP = styled.p`
   font-size: 18px;
   font-family: notosans_regular;
   max-width: 1000px;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 const CheckButtonBox = styled.div``;
 const NoticeDeadline = styled.div`

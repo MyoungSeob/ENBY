@@ -95,6 +95,9 @@ const MoveReviewBoard = styled.button`
     font-size : 18px;
     background-color : #ffffff;
     cursor : pointer;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      margin-right: 24px;
+    }
     @media (max-width: 600px) {
       width: 60px;
       height: 30px;

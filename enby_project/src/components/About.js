@@ -23,6 +23,10 @@ const Container = styled.div`
   height : 513px;
   float: right;
   margin-left : 72px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 300px;
+    margin-left: 42px;
+  }
   @media (max-width: 600px) {
     width: 350px;
     height: auto;

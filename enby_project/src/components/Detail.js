@@ -59,6 +59,10 @@ const IconContents = styled.div`
     font-size : 18px;
     padding-top : 12px;
     color : #ffffff;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      font-size: 14px;
+      margin: 0 50px 0 10px;
+  }
     @media (max-width: 600px) {
       font-size: 12px; 
      }
@@ -69,6 +73,10 @@ const Icon = styled.div`
     background-position : center;
     width : 48px;
     height : 48px;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      width: 32px;
+      height: 32px; 
+    }
     @media (max-width: 600px) {
       width: 28px;
       height:28px; 
@@ -99,6 +107,9 @@ const ProgressBar = styled.div`
     margin-left : 20px;
     margin-top : 22px;
     border-radius: 9px;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      width: 100px
+    }
     @media (max-width: 600px) {
       width: 80px;
       height:6px;

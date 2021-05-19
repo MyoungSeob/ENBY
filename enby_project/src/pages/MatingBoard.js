@@ -15,8 +15,8 @@ import { useMediaQuery } from "react-responsive";
 function MatingBoard(props) {
 
   //반응형
-  const isTablet = useMediaQuery({
-    query: "(min-width: 600px) and (max-width: 1170px)"
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1170px)"
   });
   const isMobile = useMediaQuery({
     query: "(max-width: 600px)"
@@ -173,12 +173,12 @@ function MatingBoard(props) {
           </TitleBox>
         </Title>
         <Container>
-          {isMobile ? (
+          {!isDesktop ? (
               <Button5 onClick={moveWrite}>모임<br/> 만들기</Button5>
             ) : ("")}
           <TopButton>
               <Search {...searchWhere}/>
-              {!isMobile ? (
+              {isDesktop ? (
               <Button4
                 onClick={moveWrite}
               >
@@ -616,6 +616,13 @@ const Button5 = styled.button`
   z-index: 2;
   bottom: 50px;
   right: 30px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 80px;
+    height: 80px;
+    bottom: 150px;
+    right: 80px;
+    font-size: 13px;
+    }
 `;
 
 const CardBox = styled.div`

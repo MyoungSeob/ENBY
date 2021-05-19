@@ -63,6 +63,10 @@ width : 100%;
         color: #7B7B7B;
         margin-bottom: 7px;
     }
+    @media (min-width: 600px) and (max-width: 1170px) {
+      width: 200px;
+      margin: 20px 0 0 30px;
+      }
     @media (max-width: 600px) {
       & text {
           font-size: 16px;

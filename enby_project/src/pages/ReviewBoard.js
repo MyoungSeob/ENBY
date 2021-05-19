@@ -16,8 +16,8 @@ import { useMediaQuery } from "react-responsive";
   
 function ReviewBoard() {  
     // 반응형 구현
-    const isTablet = useMediaQuery({
-      query: "(min-width: 600px) and (max-width: 1170px)"
+    const isDesktop = useMediaQuery({
+      query: "(min-width: 1170px)"
     });
     const isMobile = useMediaQuery({
       query: "(max-width: 600px)"
@@ -86,7 +86,7 @@ function ReviewBoard() {
     }
     return (
       <Container>
-        {isMobile? 
+        {!isDesktop?
         (<HeadContainer>
           <Head>
             <SubTitle1>Share your experience with SANTA!</SubTitle1>
@@ -105,7 +105,7 @@ function ReviewBoard() {
         <Main>
           <Top>
             <Search {...searchWhere}/>
-            {isMobile ? (
+            {!isDesktop ? (
               <FloatingBtn
               onClick={openModal}>후기글<br/>작성하기</FloatingBtn>
             ) : (
@@ -158,10 +158,16 @@ const HeadContainer = styled.div`
   width: 100%;
   min-width: 320px;
   padding: 10px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    height: 170px;
+    }
 `;
 const Head = styled.div`
     height: 130px;
     margin: 37px 0 54px 0;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      margin-left: 20px;
+      }
     @media (max-width: 600px) {
       margin-left: 30px;
       margin-top: 20px;
@@ -213,8 +219,11 @@ const SubTitle2 = styled.div`
     font-weight: 500;
     font-size: 24px;
     line-height: 35px;
-
     color: #3A3A3A;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      font-size: 18px;
+      margin-top: 20px;
+      }
     @media (max-width: 600px) {
       font-size: 13px;
     }
@@ -258,6 +267,9 @@ const Button = styled.button`
       transition-delay: 0s;
       background-color : #0d73b2;
     }
+    @media (min-width: 600px) and (max-width: 1170px) {
+      margin-top: 10px;
+      }
 `;
 const Paging = styled.div`
     max-width : 1064px;
@@ -289,7 +301,13 @@ const FloatingBtn = styled.button`
   z-index: 2;
   bottom: 50px;
   right: 30px;
-  
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 80px;
+    height: 80px;
+    bottom: 150px;
+    right: 80px;
+    font-size: 13px;
+    }
 `;
 
 export default ReviewBoard

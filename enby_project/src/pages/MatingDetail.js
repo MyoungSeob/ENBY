@@ -203,6 +203,9 @@ const DetailBox = styled.div`
   max-width: 1200px;
   width: 100%;
   height: 260px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 15px;
+  }
   @media (max-width: 600px) {
     margin-left: 15px;
   }
@@ -223,8 +226,11 @@ const TitleText = styled.h1`
   font-size: 32px;
   float: left;
   color: #ffffff;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    font-size: 26px;
+  }
   @media (max-width: 600px) {
-   font-size: 21px; 
+   font-size: 18px; 
   }
 `;
 const TitleDate = styled.p`
@@ -232,8 +238,11 @@ const TitleDate = styled.p`
   font-size: 20px;
   margin: 0;
   color: #b9b9b9;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    font-size: 16px;
+  }
   @media (max-width: 600px) {
-    font-size: 14px; 
+    font-size: 12px; 
    }
 `;
 const ButtonBox = styled.div`
@@ -241,6 +250,9 @@ const ButtonBox = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: 40px auto 40px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 15px;
+  }
 `;
 const ToListButton = styled.div`
   cursor: pointer;
@@ -322,6 +334,10 @@ const ContentsBox = styled.div`
   height : 513px;
   margin: 0 auto 50px auto;
   display: flex;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 15px;
+    margin-bottom: 0;
+  }
   @media (max-width: 600px) {
     width : 350px;
     flex-direction: column;
@@ -333,6 +349,9 @@ const MemberBox = styled.div`
   height : 288px;
   width: 100%;
   margin: auto auto 80px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 15px;
+  }
   @media (max-width: 600px) {
     width : 350px;
     flex-direction: column;
@@ -343,6 +362,9 @@ const ApplyBox = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 15px;
+  }
   @media (max-width: 600px) {
     width: 375px;
        }
@@ -363,6 +385,9 @@ const ApplicationBox = styled.div`
 const ReviewContainer = styled.div`
   margin-top : 50px;
   // margin: 34px auto 80px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 15px;
+  }
   @media (max-width: 600px) {
     margin-top : 34px;
     margin-bottom : 34px;

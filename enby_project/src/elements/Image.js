@@ -124,6 +124,10 @@ const MiniContentsImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 20px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 380px;
+    height: 380px;
+  }
   @media (max-width: 600px) {
     width: 350px;
     height: 350px;

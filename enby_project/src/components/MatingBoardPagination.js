@@ -48,7 +48,7 @@ const MatingBoardPagination = (props) => {
   const useStyles = makeStyles((theme) => (
     isMobile ? {
     root: {
-      width: "320px",
+        width: "320px",
         display: "flex",
         justifyContent: "center",
         margin: "auto auto 121px auto",
@@ -56,15 +56,15 @@ const MatingBoardPagination = (props) => {
     },
   } : isTablet ? {
   root: {
-    width: "760px",
+      width: "760px",
       display: "flex",
       justifyContent: "center",
       margin: "auto auto 121px auto",
       "& > * + *": {},
   },
  } : {
-      root: {
-        width: "1200px",
+    root: {
+      width: "1200px",
       display: "flex",
       justifyContent: "center",
       margin: "auto auto 121px auto",

@@ -32,6 +32,9 @@ padding: 0;
 margin: 0;
 max-width: 1200px;
 width: 100%;
+@media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 20px;
+    }
 @media (max-width: 600px) {
     margin-left: 5px;
     width: 400px;

@@ -4,7 +4,7 @@ import MatingBoardWrite from '../pages/MatingBoardWrite';
 import MatingBoard from '../pages/MatingBoard';
 import Login from '../pages/Login';
 import MatingDetail from '../pages/MatingDetail';
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import React from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../redux/configStore';
@@ -19,6 +19,7 @@ import ReviewBoardWrite from '../pages/ReviewBoardWrite';
 import ScrollToTop from './ScrollToTop'
 import MatingBoardSearch from '../pages/MatingBoardSearch';
 import ReviewBoardSearch from '../pages/ReviewBoardSearch';
+import NotFound from '../pages/NotFound';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <ConnectedRouter history={history}>
           <ScrollToTop>
           <Header />
+          <Switch>
           <Route path="/" exact component={Main} />
           <Route path="/board/write" exact component={MatingBoardWrite} />
           <Route path="/board/write/:id" exact component={MatingBoardWrite} />
@@ -41,6 +43,8 @@ function App() {
           <Route path="/review/write/:id" exact component={ReviewBoardWrite} />
           <Route path="/mating/search/:id" exact component={MatingBoardSearch} />
           <Route path="/board/review/search/:id" exact component={ReviewBoardSearch} />
+          <Route path="*" component={NotFound} />
+          </Switch>
           <Footer />
           </ScrollToTop>
         </ConnectedRouter>

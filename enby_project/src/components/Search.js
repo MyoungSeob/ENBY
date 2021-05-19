@@ -73,26 +73,32 @@ width : 100%;
 `;
 
 const SearchBox = styled.input`
-    padding: 0px 20px;
-    // padding-right : 45px;
-    width: 350px;
-    height: 40px;
-    // margin: 7px auto 0 0;
-    background: #FFFFFF;
-    border: 1px solid #B9B9B9;
-    box-sizing: border-box;
-    border-radius: 30px;
-    position : absolute;
-    outline : none;
-    @media (min-width: 600px) and (max-width: 1170px) {
-      // width: 320px;
-      // height: 235.73px;
-      }
-    
-    @media (max-width: 600px) {
-      width: 280px;
-      height: 35px;
-    }
+  padding: 0px 20px;
+  // padding-right : 45px;
+  width: 350px;
+  height: 40px;
+  // margin: 7px auto 0 0;
+  background: #ffffff;
+  border: 1px solid #b9b9b9;
+  box-sizing: border-box;
+  border-radius: 30px;
+  position: absolute;
+  outline: none;
+  &: hover {
+    border: 1px solid #168ed9;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+  }
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // width: 320px;
+    // height: 235.73px;
+  }
+
+  @media (max-width: 600px) {
+    width: 280px;
+    height: 35px;
+  }
 `;
 const Icon = styled.div`
 position : relative;

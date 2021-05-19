@@ -350,7 +350,7 @@ const getNeedWriteRiviewAPI = ()=>{
   return function (dispatch, getState, {history}) {
     const token = localStorage.getItem("token")
     axios({
-      method : 'get',
+      method : 'GET',
       url : 'http://3.36.67.251:8080/board/mating/noreviews',
       headers : {
         authorization: `Bearer ${token}`

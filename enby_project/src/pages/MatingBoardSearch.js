@@ -132,6 +132,12 @@ const Button4 = styled.div`
     font-size: 18px;
     line-height: 150%;
     text-align: center;
+    &: hover {
+      transition-duration: 0.15s;
+      transition-timing-function: ease-out;
+      transition-delay: 0s;
+      background-color : #0d73b2;
+    }
   }
 `;
 const ResultBox = styled.div`

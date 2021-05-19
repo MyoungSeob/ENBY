@@ -466,7 +466,7 @@ const People = styled.div`
 const MaxPeople = styled.select`
 // padding: 10px 20px 0 20px;
 
-width: 322px;
+width: 333px;
 height: 39px;
 padding: 6px 20px 6px;
 background: #FFFFFF;

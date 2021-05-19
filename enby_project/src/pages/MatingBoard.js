@@ -169,7 +169,7 @@ function MatingBoard(props) {
         <Title>
           <TitleBox>
             <TitleLogo>New</TitleLogo>
-            <SubTitle>메이트의 새로운 모임을 찾아보세요!</SubTitle>
+            <SubTitle>당신 주변의 산타를 찾아보세요!</SubTitle>
           </TitleBox>
         </Title>
         <Container>
@@ -584,7 +584,14 @@ const Button4 = styled.div`
     line-height: 150%;
     text-align: center;
     color: #FFFFFF;
+    &: hover {
+      transition-duration: 0.15s;
+      transition-timing-function: ease-out;
+      transition-delay: 0s;
+      background-color : #0d73b2;
+    }
   }
+  
   @media (max-width: 600px) {
     width: 80px;
     & text {

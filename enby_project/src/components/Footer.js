@@ -12,6 +12,9 @@ const Footer = (props) => {
   const moveHome =()=>{
     history.push('/')
   };
+  const moveInsta =()=>{
+    window.location.href = "https://www.instagram.com/we.are.santa/";
+  }
 
   return (
     <Container>
@@ -20,7 +23,7 @@ const Footer = (props) => {
           <Title onClick={moveHome}>SANTA</Title>
         </TitleBox>
         <IconBox>
-        <Icon_ src={insta}  />
+        <Icon_ src={insta}  onClick={moveInsta}/>
           <Icon src={home} onClick={moveHome}/>
           <Icon src={question} onClick={googleForms}/>
          

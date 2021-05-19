@@ -257,6 +257,12 @@ const Button = styled.button`
     color: #ffffff;
     // margin-left: 540px;
     cursor: pointer;
+    &: hover {
+      transition-duration: 0.15s;
+      transition-timing-function: ease-out;
+      transition-delay: 0s;
+      background-color : #0d73b2;
+    }
 `;
 const ResultBox = styled.div`
   width : 1200px;

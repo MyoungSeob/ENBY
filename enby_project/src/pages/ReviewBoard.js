@@ -9,6 +9,7 @@ import Pagination from '../components/ReviewBoardPagination';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {actionsCreators as userActions} from '../redux/modules/user'
+import {actionsCreators as postActions} from '../redux/modules/post'
 import jwt_decode from 'jwt-decode';
 import { useMediaQuery } from "react-responsive";
 
@@ -24,7 +25,7 @@ function ReviewBoard() {
 
      // 참여했던 모임
      const dispatch = useDispatch();
-     const apply_list = useSelector((store) => store.user.apply_list)
+     const apply_list = useSelector((store) => store.user.attend_list)
      const empty_list = apply_list.length === 0? true : false;
     // Modal  
     const [ modalOpen, setModalOpen ] = useState(false);
@@ -48,6 +49,7 @@ function ReviewBoard() {
           const decode = jwt_decode(token);
           const name = decode.nickname;
           dispatch(userActions.getMyProfileDB(name));
+          dispatch(postActions.getNeedWriteRiviewAPI())
         }
         // for Modal pagination
       }, []);
@@ -87,16 +89,16 @@ function ReviewBoard() {
         {isMobile? 
         (<HeadContainer>
           <Head>
-            <SubTitle1>Share your experience with ENBY!</SubTitle1>
+            <SubTitle1>Share your experience with SANTA!</SubTitle1>
             <Title>Reviews</Title>
-            <SubTitle2>당신의 엔비를 공유해주세요!</SubTitle2>
+            <SubTitle2>당신의 SANTA를 공유해주세요!</SubTitle2>
           </Head>
         </HeadContainer>)
           : 
         (<Head>
-          <SubTitle1>Share your experience with ENBY!</SubTitle1>
+          <SubTitle1>Share your experience with SANTA!</SubTitle1>
           <Title>Reviews</Title>
-          <SubTitle2>당신의 엔비를 공유해주세요!</SubTitle2>
+          <SubTitle2>당신의 SANTA를 공유해주세요!</SubTitle2>
         </Head>
         )}
         
@@ -204,7 +206,7 @@ const Title = styled.div`
 `;
 
 const SubTitle2 = styled.div`
-    width: 291px;
+    width: 330px;
     height: 28px;
     margin-top: 27px;
     font-family: notosans_regular;
@@ -250,6 +252,12 @@ const Button = styled.button`
     color: #ffffff;
     // margin-left: 540px;
     cursor: pointer;
+    &: hover {
+      transition-duration: 0.15s;
+      transition-timing-function: ease-out;
+      transition-delay: 0s;
+      background-color : #0d73b2;
+    }
 `;
 const Paging = styled.div`
     max-width : 1064px;

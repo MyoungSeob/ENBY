@@ -38,12 +38,18 @@ const ReviewCardList =(props)=>{
 }
 const ListBody = styled.div`
 padding: 5px;
-
+@media (min-width: 600px) and (max-width: 1170px) {
+    margin: auto;
+}
 ;`
 const PostList = styled.div`
 display: flex;
 justify-content : space-around;
-
+@media (min-width: 600px) and (max-width: 1170px) {
+    justify-content: 0;
+    // margin-left: 140px;
+    // margin-top: 30px;
+    }
 `;
 
 export default ReviewCardList

@@ -274,6 +274,9 @@ const ToListBtn = styled.button`
 const EditButton = styled.div`
   float: right;
   margin: auto 0px auto auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-right: 20px;
+  }
   @media (max-width: 600px) {
     margin: 0 10px 0 auto;
 

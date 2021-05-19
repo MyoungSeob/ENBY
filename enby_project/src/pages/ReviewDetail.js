@@ -170,6 +170,10 @@ const TitleBox = styled.div`
   display: block;
   position: relative;
   z-index: 1;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 15px;
+    width: 650px;
+  }
   @media (max-width: 600px) {
     margin-left: 10px;
    }
@@ -183,6 +187,9 @@ const TitleText = styled.h1`
   font-size: 32px;
   float: left;
   color: #ffffff;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    font-size: 25px;
+  }
   @media (max-width: 600px) {
     font-size: 21px; 
    }
@@ -192,6 +199,9 @@ const TitleDate = styled.p`
   font-size: 18px;
   margin: 0;
   color: #b9b9b9;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    font-size: 16px;
+  }
   @media (max-width: 600px) {
     font-size: 14px; 
    }
@@ -201,6 +211,9 @@ const ButtonBox = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: 40px auto 40px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 15px;
+  }
   @media (max-width: 600px) {
   }
 `;
@@ -231,6 +244,9 @@ const BottomBox = styled.div`
   max-width: 1200px;
   display: flex;
   margin: auto auto 40px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 15px;
+  }
   @media (max-width: 600px) {
     flex-direction: column;
     width: 280px;
@@ -241,6 +257,11 @@ const ContentImage = styled.div`
   width: 513px;
   margin: 0 48px 0 0;
   display: block;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    height: 450px;
+    margin-right: 20px;
+  }
   @media (max-width: 600px) {
     width: 280px;
    }
@@ -251,6 +272,10 @@ const ContentsBox = styled.div`
   height: 407px;
   margin: 0 auto auto 0;
   display: block;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 300px;
+    margin-top: 10px;
+  }
   @media (max-width: 600px) {
     flex-direction: column;
     margin-left: 30px; 
@@ -335,6 +360,9 @@ const MoveMoimButton = styled.div`
   display: block;
   margin: auto auto 50px auto;
   width: 1200px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 15px;
+  }
   @media (max-width: 600px) {
     margin-left: 30px;
     width: 167px;

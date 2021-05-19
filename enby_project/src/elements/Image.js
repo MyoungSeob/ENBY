@@ -90,7 +90,8 @@ const ImageRectangle = styled.div`
     z-index : -1;
     position : relative;
     @media (min-width: 600px) and (max-width: 1170px) {
-        // width: 320px;
+        max-width: 1024px;
+        min-width: 600px;
         // height: 235.73px;
         }
       
@@ -109,6 +110,11 @@ const ContentsImage = styled.div`
   background-size: 513px 513px;
   background-position: center;
   background-repeat: no-repeat;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    height: 450px;
+    background-size: cover;
+  }
   @media (max-width: 600px) {
     width: 240px;
     background-size: cover;

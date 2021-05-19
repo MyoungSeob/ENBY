@@ -33,7 +33,9 @@ margin: 0;
 max-width: 1200px;
 width: 100%;
 @media (min-width: 600px) and (max-width: 1170px) {
-    margin-left: 20px;
+    min-width: 700px;
+    max-width: 940px;
+    margin: auto;
     }
 @media (max-width: 600px) {
     margin-left: 5px;

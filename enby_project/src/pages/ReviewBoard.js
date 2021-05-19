@@ -277,6 +277,16 @@ const Paging = styled.div`
     overflow : hidden;
     position: fixed;
     margin-top: 435px;
+    @media(max-width: 1170px) {
+      width: 600px;
+      margin-left: 60px;
+      margin-top: 360px;
+    }
+    @media (max-width: 820px) {
+      width: 440px;
+      margin-left: -20px;
+      margin-top: 360px;
+    }
     @media (max-width: 600px) {
       width: 320px;
       margin-top: 280px;

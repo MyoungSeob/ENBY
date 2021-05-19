@@ -36,19 +36,6 @@ const CardGrid = styled.div`
   background: #ffffff;
   justify-content: space-between;
   &:hover {
-    // transition-property: box-shadow;
-    // transition-duration: 0.15s;
-    // transition-timing-function: ease-out;
-    // transition-delay: 0s;
-    // letter-spacing: 0px;
-    // -webkit-font-smoothing: antialiased;
-    // overflow-anchor: none;
-    // box-shadow: inset 0 0 0 1px rgb(0 0 0 / 16%);
-    // box-shadow: 0px 0 11px rgba(33,33,33,.2); 
-    // transition: box-shadow .15s ease-out;
-    // letter-spacing: 0px;
-    // -webkit-font-smoothing: antialiased;
-    // overflow-anchor: none;
     filter: drop-shadow(0 0.4rem 0.3rem rgba(33,33,33,.2));
     transition-duration: 0.15s;
     transition-timing-function: ease-out;
@@ -56,8 +43,8 @@ const CardGrid = styled.div`
   }
   border-radius: 20px;
   @media (min-width: 600px) and (max-width: 1170px) {
-    width: 320px;
-    height: 235.73px;
+    width: 170px;
+    height: 190px;
     }
   
   @media (max-width: 600px) {
@@ -82,8 +69,8 @@ const CardImage = styled.img`
   objectfit: cover;
   border-radius: 20px 20px 0 0;
   @media (min-width: 600px) and (max-width: 1170px) {
-    width: 320px;
-    height: 210px;
+    width: 170px;
+    height: 170px;
   }
   
   @media (max-width: 600px) {
@@ -102,8 +89,9 @@ const CardTit = styled.div`
   height: 27px;
   margin: 17px 20px 2px 20px;
   @media (min-width: 600px) and (max-width: 1170px) {
-    width: 320px;
-    height: 210px;
+    width: 16 0px;
+    height: 30px;
+    margin: 10px 0 0px 5px;
   }
   
   @media (max-width: 600px) {
@@ -122,6 +110,7 @@ const CardTitH = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: left;
+  
   @media (max-width: 600px) {
     font-size: 14px;
     margin: -3px 0 0 6px;

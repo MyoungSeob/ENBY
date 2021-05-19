@@ -57,7 +57,8 @@ const Container = styled.div`
   display: inline-block;
   font-family : seravek;
   @media (min-width: 600px) and (max-width: 1170px) {
-
+      width: 100%;
+      min-width: 600px;
     }
   
   @media (max-width: 600px) {
@@ -71,6 +72,8 @@ const HeaderGrid = styled.div`
   width: 1200px;
   margin: 0 auto 0 auto;
   @media (min-width: 600px) and (max-width: 1170px) {
+    width: 100%;
+      min-width: 600px;
     }
   
   @media (max-width: 600px) {

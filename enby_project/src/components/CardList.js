@@ -43,17 +43,24 @@ const ListBody = styled.div`
     width: 100%;
     max-width: 1200px;
     margin: 100px auto 0 auto;
-    
+    @media (min-width: 600px) and (max-width: 1170px) {
+        max-width: 800px; 
+      }
 `
 const PostList = styled.div`
 display : flex;
 // justify-content : space-between;
 flex-wrap : wrap;
 padding: 0;
-width: 1200px;
+max-width: 1200px;
+width: 100%;
+@media (min-width: 600px) and (max-width: 1170px) {
+    max-width: 800px; 
+  }
 @media (max-width: 600px) {
     margin-left: 10px;
-    width: 400px;
+    max-width: 400px;
+    width: 100%;
   }
 `
 

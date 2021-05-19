@@ -100,16 +100,16 @@ const ReviewBoardSearch = (props) => {
               {!isMobile? 
               (
               <Head>
-              <SubTitle1>Share your experience with ENBY!</SubTitle1>
+              <SubTitle1>Share your experience with SANTA!</SubTitle1>
               <Title>Reviews</Title>
-              <SubTitle2>당신의 엔비를 공유해주세요!</SubTitle2>
+              <SubTitle2>당신의 SANTA를 공유해주세요!</SubTitle2>
             </Head>
             ) : (
               <HeadContainer>
                 <Head>
-                  <SubTitle1>Share your experience with ENBY!</SubTitle1>
-                  <Title>Reviews</Title>
-                  <SubTitle2>당신의 엔비를 공유해주세요!</SubTitle2>
+                <SubTitle1>Share your experience with SANTA!</SubTitle1>
+                <Title>Reviews</Title>
+                <SubTitle2>당신의 SANTA를 공유해주세요!</SubTitle2>
                 </Head>
             </HeadContainer>
             )}

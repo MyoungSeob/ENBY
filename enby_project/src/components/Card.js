@@ -78,8 +78,8 @@ const CardGrid = styled.div`
     transition: box-shadow 0.15s ease-out;
   }
   @media (min-width: 600px) and (max-width: 1170px) {
-    width: 320px;
-    height: 235.73px;
+    width: 170px;
+    height: 250px;
   }
 
   @media (max-width: 600px) {
@@ -99,8 +99,8 @@ const CardImage = styled.img`
   position: relative;
   border-radius: 20px;
   @media (min-width: 600px) and (max-width: 1170px) {
-    width: 320px;
-    height: 210px;
+    width: 170px;
+    height: 170px;
   }
 
   @media (max-width: 600px) {
@@ -123,7 +123,6 @@ const CardImage = styled.img`
   }
 `;
 const DeadlineCardImage = styled.img`
-  // width: 282px;
   width: 282px;
   height: 282px;
   border-radius: 20px;
@@ -133,8 +132,7 @@ const DeadlineCardImage = styled.img`
   filter : grayscale(100%);
   z-index : 0
   @media (min-width: 600px) and (max-width: 1170px) {
-    width: 320px;
-    height: 210px;
+    
   }
 
   @media (max-width: 600px) {
@@ -162,6 +160,10 @@ height: 282px;
 position : relative;
 z-index : 1;
 text-align : center;
+@media (min-width: 600px) and (max-width: 1170px) {
+  width: 170px;
+  height: 170px;
+}
 @media (max-width: 600px) {
   width: 165px;
   height: 105px;
@@ -176,6 +178,9 @@ const TitleH = styled.p`
   font-size : 18px;
   font-family : notosans_regular;
   text-align : cneter;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    padding-top: 70px;
+  }
   @media (max-width: 600px) {
     padding-top : 40px;
     width: 165px;
@@ -192,8 +197,7 @@ const CardTit = styled.div`
   height: 27px;
   margin: 14px 0 8px 1px;
   @media (min-width: 600px) and (max-width: 1170px) {
-    width: 320px;
-    height: 210px;
+    width: 170px;
   }
 
   @media (max-width: 600px) {

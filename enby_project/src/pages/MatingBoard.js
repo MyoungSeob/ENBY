@@ -221,8 +221,7 @@ height: 520px;
 margin : auto;
 z-index : -1;
 @media (min-width: 600px) and (max-width: 1170px) {
-  // width: 320px;
-  // height: 235.73px;
+  
   }
 
 @media (max-width: 600px) {
@@ -624,6 +623,9 @@ const CardBox = styled.div`
   width: 100%;
   max-width : 1200px;
   margin : auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // height: 1000px;
+    }
   @media (max-width: 600px) {
     min-width: 320px;
   }

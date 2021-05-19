@@ -6,6 +6,9 @@ import { useMediaQuery } from "react-responsive";
 
 const CardDetail =(props)=>{
   // 반응형 구현
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1170px)"
+  });
   const isTablet = useMediaQuery({
     query: "(min-width: 600px) and (max-width: 1170px)"
   });
@@ -63,7 +66,7 @@ const CardDetail =(props)=>{
         </DateBox>
         <PlaceBox>
           <Icon>시간</Icon>
-          {!isMobile ? (<IconContents>{meetdate_}</IconContents>)
+          {isDesktop ? (<IconContents>{meetdate_}</IconContents>)
             :
             (<IconContents>{meetdate_mobile}</IconContents>)}
         </PlaceBox>
@@ -89,10 +92,11 @@ const Container = styled.div`
     height : 75px;
     margin : 8px auto auto auto;
     @media (min-width: 600px) and (max-width: 1170px) {
-      margin: 18px;
+      width: 180px;
     }
     
     @media (max-width: 600px) {
+      width: 140px;
       margin-left: 5px;
     }
 `
@@ -155,7 +159,7 @@ const ProgressBar = styled.div`
     margin-top : 8px;
     border-radius : 20px;
     @media (min-width: 600px) and (max-width: 1170px) {
-      
+      width: 80px;
     }
     
     @media (max-width: 600px) {

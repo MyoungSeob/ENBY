@@ -30,7 +30,8 @@ const ListBody = styled.div`
 const PostList = styled.div`
 padding: 0;
 margin: 0;
-width: 1200px;
+max-width: 1200px;
+width: 100%;
 @media (max-width: 600px) {
     margin-left: 5px;
     width: 400px;

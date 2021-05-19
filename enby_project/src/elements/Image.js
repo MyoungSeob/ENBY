@@ -246,6 +246,10 @@ width: 282px;
   background-size : 282px 282px;
   background-repeat: no-repeat;
   margin : auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 170px;
+    height: 170px;
+  }
   @media (max-width: 600px) {
     width: 165px;
     height: 105px;

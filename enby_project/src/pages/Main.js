@@ -101,7 +101,13 @@ const PostList = styled.div`
   margin: 34px auto -35px auto;
   justify-content : space-around;
   // margin: 34px auto auto auto;
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-bottom: 80px;
+    max-width: 800px; 
+    }
+  }
   @media (max-width: 600px) {
     justify-content: left;
     width : 350px;
@@ -111,10 +117,14 @@ const PostList = styled.div`
   }
 `
 const PostText = styled.div`
-width : 1200px;
+max-width : 1200px;
+width: 100%;
 margin : 79px auto auto auto;
 & span {
   display: flex;
+}
+@media (min-width: 600px) and (max-width: 1170px) {
+  max-width: 800px; 
 }
 @media (max-width: 600px) {
   margin-top: 30px;
@@ -142,6 +152,9 @@ const PostTitle = styled.div`
     font-size: 30px;
     line-height: 150%;
     color: #168ed9;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      margin-left: 20px;
+    }
     @media (max-width: 600px) {
       font-size: 18px;
     }
@@ -158,6 +171,9 @@ const PostButton = styled.button`
   box-sizing: border-box;
   border-radius: 20px;
   cursor: pointer;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin:0 20px 0 0;
+  }
   @media (max-width: 600px) {
     margin-left: 205px;
     margin-bottom : 2px;
@@ -168,13 +184,18 @@ const PostButton = styled.button`
 `;
 
 const ReviewText = styled.div`
-  width : 1200px;
+  max-width : 1200px;
+  width: 100%;
   margin : 21px auto auto auto;
   & span {
     display: flex;
   }
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-top: 30px;
+    max-width: 800px; 
+  }
   @media (max-width: 600px) {
-    margin-top: 50px auto auto;
+    // margin-top: 50px auto auto;
     margin-left: 12px;
     margin-bottom: -20px;
   }
@@ -202,7 +223,9 @@ const ReviewTitle = styled.text`
   font-style: normal;
   font-size: 28px;
   line-height: 150%;
-
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 20px;
+  }
   @media (max-width: 600px) {
     font-size: 18px;
     margin-top: 7px;
@@ -220,6 +243,9 @@ const ReviewButton = styled.button`
   background-color: #FFFFFF;
   cursor: pointer;
   float : right;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-right: 20px;
+  }
   @media (max-width: 600px) {
     margin-left: 245px;
     margin-top: 5px;
@@ -241,8 +267,13 @@ const ReviewList = styled.div`
   display: flex;
   justify-content: space-around;
   margin: 34px auto 71px auto;
-  width: 1200px;
-
+  max-width: 1200px;
+  width: 100%;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    justify-content: 0;
+    margin: 34px auto 0 auto; 
+      max-width: 800px; 
+  }
   @media (max-width: 600px) {
     justify-content: left;
     width: 350px;

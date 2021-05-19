@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { history } from "../redux/configStore";
 import "../shared/App.css";
 import { actionsCreators as userActions } from "../redux/modules/user";
+import logo from '../shared/image/logolarge.jpg'
 import jwt_decode from 'jwt-decode'
 import { generateMedia } from 'styled-media-query';
 
@@ -30,7 +31,7 @@ function Header() {
     <Container>
       <HeaderGrid>
         <LogoBox>
-          <Logo onClick={move_main}>SANTA</Logo>
+          <Logo src={logo} onClick={move_main} />
         </LogoBox>
         {localStorage.getItem("token") ? (
           <CategoryBox>
@@ -62,7 +63,7 @@ const Container = styled.div`
   
   @media (max-width: 600px) {
     width: 100%;
-    min-width: 320px;
+    min-width: 350px;
     height: 80px;
 
   }
@@ -75,7 +76,7 @@ const HeaderGrid = styled.div`
   
   @media (max-width: 600px) {
     width: 100%;
-    min-width: 320px;
+    max-width: 375px;
     height: 80px;
     margin: auto;
   }
@@ -83,9 +84,10 @@ const HeaderGrid = styled.div`
 const LogoBox = styled.div`
   display: inline-block;
   float : left;
-  width: 289px;
-  height: 39px;
-  margin-top : 20px;
+  width: 199px;
+  height: 68px;
+  margin-top : 11px;
+ 
   @media (min-width: 600px) and (max-width: 1170px) {
 
     }
@@ -93,17 +95,14 @@ const LogoBox = styled.div`
   @media (max-width: 600px) {
     width: 40%;
     min-width: 120px;
-    margin-left: 30px;
+    margin-left: 12.5px;
   }
 
 `;
-const Logo = styled.h1`
-  font-size: 32px;
-  margin: 0;
-  color: #168ed9;
-  font-style: italic;
-  font-weight: bold;
-  cursor: pointer;
+const Logo = styled.img`
+width : 168px;
+height : 58px;
+cursor : pointer;
 `;
 
 const CategoryBox = styled.div`
@@ -114,7 +113,7 @@ const CategoryBox = styled.div`
   padding-top: 10px;
   @media (max-width: 600px) {
     margin-top:7px;
-    margin-right:30px;
+    margin-right:12.5px;
   }
 `;
 const Logout = styled.p`

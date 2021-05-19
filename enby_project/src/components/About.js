@@ -24,8 +24,8 @@ const Container = styled.div`
   float: right;
   margin-left : 72px;
   @media (max-width: 600px) {
-    width: 280px;
-    height: 160px;
+    width: 350px;
+    height: auto;
     margin-left: 0;
    }
 `;
@@ -48,6 +48,9 @@ const Title = styled.h2`
 `
 const AboutContents = styled.div`
      overflow : auto;
+     @media (max-width: 600px) {
+      height : auto;
+     }
 `
 const Contents = styled.p`
 font-size : 18px;

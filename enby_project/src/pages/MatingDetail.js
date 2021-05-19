@@ -323,8 +323,9 @@ const ContentsBox = styled.div`
   margin: 0 auto 50px auto;
   display: flex;
   @media (max-width: 600px) {
+    width : 350px;
     flex-direction: column;
-    margin-left: 30px; 
+    margin : auto auto 34px auto;
    }
 `;
 const MemberBox = styled.div`
@@ -332,13 +333,18 @@ const MemberBox = styled.div`
   height : 288px;
   width: 100%;
   margin: auto auto 80px auto;
+  @media (max-width: 600px) {
+    width : 350px;
+    flex-direction: column;
+    margin-bottom : 34px;
+   }
 `;
 const ApplyBox = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: auto;
   @media (max-width: 600px) {
-    // width:
+    width: 375px;
        }
 `;
 const PermitBox = styled.div`
@@ -351,7 +357,6 @@ const ApplicationBox = styled.div`
   padding: 0 0 50px 0;
   background-color: #f8f8f8;
   @media (max-width: 600px) {
-    padding-top:30px;
     padding-bottom: 20px;
        }
 `;
@@ -359,6 +364,8 @@ const ReviewContainer = styled.div`
   margin-top : 50px;
   // margin: 34px auto 80px auto;
   @media (max-width: 600px) {
+    margin-top : 34px;
+    margin-bottom : 34px;
        }
 `
 const FloatingBtn = styled.button`
@@ -375,7 +382,7 @@ const FloatingBtn = styled.button`
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  z-index: 1;
+  z-index: 2;
   bottom: 50px;
   right: 30px;
 `;

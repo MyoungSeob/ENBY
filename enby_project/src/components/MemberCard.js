@@ -71,6 +71,7 @@ const MemberNickname = styled.p`
   font-family: notosans_regular;
   text-align: center;
   @media (max-width: 600px) {
+    width : 70px;
     font-size: 8px;
    }
 `;

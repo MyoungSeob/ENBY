@@ -104,10 +104,10 @@ const PostList = styled.div`
   width: 1200px;
   @media (max-width: 600px) {
     justify-content: left;
-    width : 350px;
-    margin-left: 10px;
+    width : 375px;
+    margin-left: 5px;
     white-space : nowrap;
-    overflow : auto;
+    overflow-x : scroll;
   }
 `
 const PostText = styled.div`
@@ -245,8 +245,8 @@ const ReviewList = styled.div`
 
   @media (max-width: 600px) {
     justify-content: left;
-    width: 350px;
-    margin-left: 10px;
+    width : 375px;
+    margin-left: 5px;
     white-space: nowrap;
     overflow: auto;
   }

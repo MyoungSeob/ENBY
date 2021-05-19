@@ -12,8 +12,8 @@ import { useMediaQuery } from "react-responsive";
 
 const ReviewBoardWrite = (props) => {
   // 반응형 구현
-  const isTablet = useMediaQuery({
-    query: "(min-width: 600px) and (max-width: 1170px)"
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1170px)"
   });
   const isMobile = useMediaQuery({
     query: "(max-width: 600px)"
@@ -135,10 +135,10 @@ const ReviewBoardWrite = (props) => {
   }
   return (
     <Container>
-      {isMobile? 
+      {!isDesktop? 
         (<HeadContainer>
           <Head>
-            <SubTitle1>Share your experience with ENBY!</SubTitle1>
+            <SubTitle1>Share your experience with SANTA!</SubTitle1>
             <Title>후기 작성하기</Title>
           </Head>
         </HeadContainer>)
@@ -227,6 +227,10 @@ const HeadContainer = styled.div`
   padding-top: 10px;
 `;
 const Head = styled.div`
+    @media (min-width: 600px) and (max-width: 1170px) {
+      margin-top: 40px;
+      margin-left: 20px;
+    }
     @media (max-width: 600px) {
       margin-left: 30px;
       margin-top: 20px;
@@ -264,6 +268,11 @@ const ImageBox = styled.div`
   width: 718px;
   margin : auto 61px 170px auto;
   display : block;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    height: 450px;
+    margin: auto;
+  }
   @media (max-width: 600px) {
     width:300px;
     margin: 0;
@@ -282,6 +291,10 @@ const Label = styled.label`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    height: 450px;
+  }
   @media (max-width: 600px) {
     width:300px;
     height:300px;
@@ -301,11 +314,19 @@ const LabelUpload = styled.label`
 position : absolute;
 width: 513px;
 height: 513px;
+@media (min-width: 600px) and (max-width: 1170px) {
+  width: 450px;
+  height: 450px;
+}
 `
 const PreviewImage = styled.img`
   width  : 513px;
   height : 513px;
   border-radius : 20px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    height: 450px;
+  }
   @media (max-width: 600px) {
     width: 300px;
     height: 300px;
@@ -321,6 +342,9 @@ const Label_ = styled.label`
   margin-top : 20px;
   padding-top : 10px;
   cursor : pointer;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: -30px;
+  }
   @media (max-width: 600px) {
     margin: auto;
     margin-top: 20px;
@@ -373,6 +397,10 @@ const InputBox = styled.input`
   border: 1px solid #b9b9b9;
   box-sizing: border-box;
   border-radius: 20px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 600px;
+    margin: auto;
+  }
   @media (max-width: 600px) {
     width: 300px;
     height: 30px;
@@ -384,6 +412,11 @@ const TextBox = styled.div`
   width : 615px;
   height : 511px;
   float : right;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    margin: auto;
+    margin-top: 30px;
+  }
   @media (max-width: 600px) {
     width:300px;
     height: 300px;
@@ -395,6 +428,12 @@ const ContentsBox = styled.div`
   width: 1200px;
   height: 511px;
   margin : 40px auto 30px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 600px;
+    height: 800px;
+    // margin-left: 120px;
+    flex-direction: column;
+  }
   @media (max-width: 600px) {
     width:300px;
     flex-direction: column;
@@ -431,7 +470,11 @@ const Contents = styled.textarea`
   border-radius: 20px;
   resize : none;
   margin-right: 120px;
-
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    height: 320px;
+    margin-top: 12px;
+  }
   @media (max-width: 600px) {
     width:300px;
     height:300px;
@@ -455,7 +498,10 @@ const PostButton = styled.button`
   float: right;
   margin-bottom: 40px;
   margin-right: 120px;
-
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-top: 50px;
+    margin-right: 150px;
+  }
   @media (max-width: 600px) {
     width:80px;
     height:30px;

@@ -19,8 +19,8 @@ registerLocale('ko', ko)
 
 const MatingBoardWrite = (props) => {
   // 반응형 구현
-  const isTablet = useMediaQuery({
-    query: "(min-width: 600px) and (max-width: 1170px)"
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1170px)"
   });
   const isMobile = useMediaQuery({
     query: "(max-width: 600px)"
@@ -146,10 +146,10 @@ const MatingBoardWrite = (props) => {
     
     return (
       <Container>
-        {isMobile? 
+        {!isDesktop? 
         (<HeadContainer>
           <Head>
-            <SubTitle1>Be Connected with ENBY!</SubTitle1>
+            <SubTitle1>Be Connected with SANTA!</SubTitle1>
             <Title>모임글 작성하기</Title>
           </Head>
         </HeadContainer>)
@@ -319,6 +319,10 @@ const HeadContainer = styled.div`
   padding-top: 10px;
 `;
 const Head = styled.div`
+    @media (min-width: 600px) and (max-width: 1170px) {
+      margin-top: 40px;
+      margin-left: 20px;
+    }
     @media (max-width: 600px) {
       margin-left: 30px;
       margin-top: 20px;
@@ -381,6 +385,10 @@ const InputBox = styled.input`
   border: 1px solid #b9b9b9;
   box-sizing: border-box;
   border-radius: 20px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 700px;
+    margin: auto;
+  }
   @media (max-width: 600px) {
     width: 300px;
     height: 30px;
@@ -397,6 +405,10 @@ const PreviewImage = styled.img`
   width  : 513px;
   height : 513px;
   border-radius: 20px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    height: 450px;
+  }
   @media (max-width: 600px) {
     width: 300px;
     height: 300px;
@@ -409,6 +421,9 @@ const DetailGrid = styled.div`
   margin-top: 30px;
   margin-bottom: 46px;
   display : flex;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    max-width: 700px;
+  }
   @media (max-width: 600px) {
     flex-direction: column;
     margin: 0 0 0 40px;
@@ -427,6 +442,9 @@ const Cal = styled(DatePicker)`
   box-sizing: border-box;
   border-radius: 20px;
   // color: #B9B9B9;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 180px;
+  }
   @media (max-width: 600px) {
     width: 160px;
     height: 30px;
@@ -436,6 +454,10 @@ const Cal = styled(DatePicker)`
 const Place = styled.div`
   display: flex;
   margin-left: 240px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 30px;
+    margin-left: 100px;
+  }
   @media (max-width: 600px) {
     width: 160px;
     height: 30px;
@@ -455,6 +477,9 @@ border: 1px solid #B9B9B9;
 box-sizing: border-box;
 border-radius: 20px;
 margin-right: 30px;
+@media (min-width: 600px) and (max-width: 1170px) {
+  width: 180px;
+}
 @media (max-width: 600px) {
   width: 160px;
   height: 30px;
@@ -474,6 +499,9 @@ border: 1px solid #B9B9B9;
 box-sizing: border-box;
 border-radius: 20px;
 outline : none;
+@media (min-width: 600px) and (max-width: 1170px) {
+  width: 180px;
+}
 @media (max-width: 600px) {
   width: 160px;
   height: 30px;
@@ -484,6 +512,11 @@ const ImageBox = styled.div`
   width: 718px;
   margin : auto 61px 170px auto;
   display : block;
+  @media (min-width: 600px) and (max-width: 1170px) {
+  width: 450px;
+  height: 450px;
+  margin: auto;
+  }
   @media (max-width: 600px) {
     width:300px;
     margin: 0;
@@ -499,6 +532,11 @@ const TextBox = styled.div`
   width : 718px;
   height : 421px;
   float : right;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    margin: auto;
+    margin-top: 30px;
+  }
   @media (max-width: 600px) {
     width:300px;
     height: 300px;
@@ -510,6 +548,12 @@ const ContentsBox = styled.div`
   width: 1200px;
   height: 511px;
   margin : 180px auto 30px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 600px;
+    height: 800px;
+    // margin-left: 120px;
+    flex-direction: column;
+  }
   @media (max-width: 600px) {
     width:300px;
     flex-direction: column;
@@ -536,6 +580,10 @@ const Label = styled.label`
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 20px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    height: 450px;
+  }
   @media (max-width: 600px) {
     width:300px;
     height:300px;
@@ -566,6 +614,9 @@ const Label_ = styled.label`
   padding-top : 10px;
   cursor : pointer;
   // margin : 210px 173px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: -30px;
+  }
   @media (max-width: 600px) {
     margin: auto;
     margin-top: 20px;
@@ -581,6 +632,9 @@ const ContentsH = styled.h2`
   font-weight: bold;
   font-size: 28px;
   margin: auto;
+  @media (max-width: 600px) {
+    font-size: 21px;
+  }
 `;
 
 const Contents = styled.textarea`
@@ -596,6 +650,11 @@ const Contents = styled.textarea`
   box-sizing: border-box;
   border-radius: 20px;
   resize : none;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 450px;
+    height: 320px;
+    margin-top: 12px;
+  }
   @media (max-width: 600px) {
     width:300px;
     height:300px;
@@ -606,6 +665,11 @@ const Icon = styled.img`
   width: 48px;
   height: 48px;
   margin-right: 10px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 38px;
+    height: 38px;
+    margin-right: 3px;
+  }
   @media (max-width: 600px) {
     width:30px;
     height:30px;
@@ -627,7 +691,9 @@ const PostButton = styled.button`
   float: right;
   // margin-bottom: 40px;
   margin-right: 120px;
-
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin: 30px 160px 40px 0;
+  }
   @media (max-width: 600px) {
     width:80px;
     height:30px;

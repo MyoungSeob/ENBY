@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => (
       width: "320px",
       display: "flex",
       justifyContent: "center",
-      margin: "auto auto 121px auto",
+      margin: "auto auto 121px 30px",
       "& > * + *": {},
     },
   } : isTablet ? {

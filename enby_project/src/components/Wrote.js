@@ -7,8 +7,8 @@ import { useMediaQuery } from "react-responsive";
 const Wrote = (props) => {
 
   // 반응형 구현
-  const isTablet = useMediaQuery({
-    query: "(min-width: 600px) and (max-width: 1170px)"
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1170px)"
   });
   const isMobile = useMediaQuery({
     query: "(max-width: 600px)"
@@ -82,14 +82,14 @@ const Wrote = (props) => {
             <TitleContents>{props.title}</TitleContents>
           </Title>
           <MeetTime>
-          {isMobile ? (
+          {!isDesktop ? (
             <MeetTimeContents>날짜: {meetdateMobile}</MeetTimeContents>
           ) : (
             <MeetTimeContents>날짜: {meetdate}</MeetTimeContents>
           )}
           </MeetTime>
           <CreatedAt>
-            {isMobile ? (
+            {!isDesktop ? (
             <CreatedAtContents>작성: {writeDateMobile}</CreatedAtContents>
             ) : (
             <CreatedAtContents>작성: {writeDate}</CreatedAtContents>
@@ -113,6 +113,9 @@ const WroteBox = styled.div`
   display: flex;
   height: 55.08px;
   margin: auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 700px;
+  }
   @media (max-width: 600px) {
     // flex-direction: column;
     width: 340px;
@@ -139,7 +142,9 @@ const NumberContents = styled.p`
 const Title = styled.div`
 margin-right : 21px;
 width : 290px;
-height : 30px;
+@media (min-width: 600px) and (max-width: 1170px) {
+  width: 290px;
+}
 @media (max-width: 600px) {
   width: 80px;
   margin-right: 14px;
@@ -152,13 +157,21 @@ const TitleContents = styled.p`
   overflow : hidden;
     text-overflow : ellipsis;
     white-space : nowrap;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 167px;  
+    font-size: 18px;
+    }
   @media (max-width: 600px) {
     font-size: 12px;
+    width: 82px;
   }
 `;
 const MeetTime = styled.div`
 margin-right : 21px;
 width : 314px;
+@media (min-width: 600px) and (max-width: 1170px) {
+  width: 280px;
+}
 @media (max-width: 600px) {
   width: 140px;
   margin-right: 6;
@@ -168,12 +181,18 @@ const MeetTimeContents = styled.p`
   font-family: notosans_regular;
   font-size: 21px;
   margin: 0;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    font-size: 18px;
+  }
   @media (max-width: 600px) {
     font-size: 12px;
   }
 `;
 const CreatedAt = styled.div`
 width : 314px;
+@media (min-width: 600px) and (max-width: 1170px) {
+  width: 280px;
+}
 @media (max-width: 600px) {
   width: 140px;
 }
@@ -183,6 +202,9 @@ const CreatedAtContents = styled.p`
   font-size: 21px;
   margin: 0;
   color : #737373;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    font-size: 18px;
+  }
   @media (max-width: 600px) {
     font-size: 12px;
     margin-left: -10px;
@@ -198,6 +220,10 @@ const Button = styled.button`
   border: 1px solid #808080;
   background-color: white;
   cursor : pointer;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 200px;
+    font-size: 14px;
+  }
   @media (max-width: 600px) {
     width: 80px;
     font-size: 8px;
@@ -212,6 +238,9 @@ const Line = styled.hr`
     max-width : 1200px;
     width: 100%;
     border-bottom : 1px solid #C4C4C4;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      width: 700px;
+    }
     @media (max-width: 600px) {
       margin: 0 auto 24px auto;
     }

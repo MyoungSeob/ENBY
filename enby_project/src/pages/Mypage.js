@@ -107,6 +107,9 @@ const Container = styled.div`
     overflow: hidden;
 `
 const ProfileBox = styled.div`
+@media (min-width: 600px) and (max-width: 1170px) {
+  margin-left: 20px;
+}
 `
 const Image = styled.div`
 width : 100%;
@@ -119,6 +122,10 @@ background-position : center;
 background-repeat : no-repeat;
 position : absolute;
 opacity : 56%;
+@media (min-width: 600px) and (max-width: 1170px) {
+  max-width: 1024px;
+  min-width: 600px;
+}
 @media (max-width: 600px) {
     min-width: 320px;
     width: 100%;
@@ -130,6 +137,10 @@ const ApplyBox = styled.div`
     display : block;
     max-width : 1200px;
     margin : 74px auto 0 auto;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      width: 800px;
+      margin: 74px auto 0 auto;
+    }
     @media (max-width: 600px) {
         max-width: 414px;
       }
@@ -159,6 +170,10 @@ const AttendBox = styled.div`
     width: 100%;
     max-width : 1200px;
     margin : 127px auto 0 auto;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      width: 800px;
+      margin: 74px auto 0 auto;
+    }
     @media (max-width: 600px) {
         margin-top: -60px;
       }
@@ -189,6 +204,9 @@ const WriteBox = styled.div`
     display : block;
     max-width : 1200px;
     margin : 127px auto 43px auto;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      width: 700px;
+    }
     @media (max-width: 600px) {
         margin-top: -60px;
       }
@@ -219,5 +237,8 @@ border-bottom : 2px solid #383838;
 max-width : 1200px;
 width: 100%;
 margin : auto auto 57px auto;
+@media (min-width: 600px) and (max-width: 1170px) {
+  width: 700px;
+}
 `
 export default Mypage;

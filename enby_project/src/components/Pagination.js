@@ -26,17 +26,26 @@ const PagingMating = ({ postsPerPage, totalPosts, paginate }) => {
 
 
   const useStyles = makeStyles((theme) => (
-    !isMobile ? {
+    isMobile ? {
     root: {
-        width : "1200px",
+        width : "320px",
         display : 'flex',
         justifyContent: "center",
         margin : 'auto auto 121px auto',
       '& > * + *': {},
     },
+    }:
+    isTablet ? {
+      root: {
+        width : "760px",
+        display : 'flex',
+        justifyContent: "center",
+        margin : 'auto auto 121px auto',
+      '& > * + *': {},
+      },
     } : {
       root: {
-        width : "320px",
+        width : "1200px",
         display : 'flex',
         justifyContent: "center",
         margin : 'auto auto 121px auto',

@@ -25,9 +25,7 @@ const CardForModal = (props) => {
 };
 
 const Container = styled.div`
-  @media (max-width: 600px) {
-    // width:120px; 
-    // height: 240px;
+@media (min-width: 600px) and (max-width: 1170px) {
   }
 `;
 const CardGrid = styled.div`
@@ -38,6 +36,12 @@ const CardGrid = styled.div`
   border-radius : 20px;
   cursor: pointer;
   background-color: #ffffff;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    float: center;
+    width: 170px;
+    height: 370px;
+    margin: 16px;
+    }
   @media (max-width: 600px) {
     width: 120px;
     margin: 14px; 
@@ -56,6 +60,10 @@ const CardImage = styled.img`
     transition-timing-function: ease-out;
     transition-delay: 0s;
   }
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 160px;
+    height: 160px;
+    }
   @media (max-width: 600px) {
     width: 120px;
     height: 120px;
@@ -67,6 +75,9 @@ const CardTit = styled.div`
   width: 282px;
   height: 27px;
   margin: 14px 0 8px 1px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 160px;
+    }
   @media (max-width: 600px) {
     margin: 0px;
     width: 130px;

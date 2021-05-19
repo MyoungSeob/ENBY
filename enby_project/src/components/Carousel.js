@@ -20,7 +20,7 @@ import { generateMedia } from 'styled-media-query';
     <Title>
       <TitleBox>
       <TitleLogo>Hello, we are SANTA</TitleLogo>
-      <SubTitle>지금, 당신과 함께 할 <Span>하이킹 메이트</Span>를 찾아보세요.</SubTitle>
+      <SubTitle>지금, 당신과 함께 할 <Span>산타</Span>를 찾아보세요.</SubTitle>
       </TitleBox>
     </Title>
     </>

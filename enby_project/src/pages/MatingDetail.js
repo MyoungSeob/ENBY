@@ -240,7 +240,7 @@ const ButtonBox = styled.div`
   display: flex;
   max-width: 1200px;
   width: 100%;
-  margin: 60px auto auto auto;
+  margin: 40px auto 40px auto;
 `;
 const ToListButton = styled.div`
   cursor: pointer;

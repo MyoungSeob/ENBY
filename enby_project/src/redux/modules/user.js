@@ -46,6 +46,7 @@ const KakaoLogin = (KakaoCode) => {
     })
       .then((res) => {
         localStorage.setItem('token', res.data)
+        console.log(res)
         dispatch(login())
         history.push('/')
         window.location.reload()

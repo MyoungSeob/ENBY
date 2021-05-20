@@ -253,6 +253,10 @@ const ButtonBox = styled.div`
   @media (min-width: 600px) and (max-width: 1170px) {
     margin-left: 15px;
   }
+  @media (max-width: 600px) {
+    margin : 17px 0 7px 0;
+
+   }
 `;
 const ToListButton = styled.div`
   cursor: pointer;
@@ -280,6 +284,8 @@ const EditButton = styled.div`
   @media (max-width: 600px) {
     margin: 0 10px 0 auto;
 
+    margin: 7px 10px 0 auto;
+    height : 40px;
    }
 `;
 const EditBtn = styled.button`
@@ -295,10 +301,9 @@ const EditBtn = styled.button`
   margin-right: 12px;
   cursor: pointer;
   @media (max-width: 600px) {
-    margin-left: 30px;
     width: 60px;
-    margin-bottom: 30px;
     font-size: 9px;
+    margin-top: -20px;
    }
 `;
 const DeleteBtn = styled.button`
@@ -317,7 +322,6 @@ const DeleteBtn = styled.button`
     width: 60px;
     font-size: 9px;
     margin-top: -20px;
-    margin-bottom: 30px;
    }
 `;
 const IconBox = styled.div`
@@ -357,6 +361,7 @@ const MemberBox = styled.div`
   }
   @media (max-width: 600px) {
     width : 350px;
+    height : auto;
     flex-direction: column;
     margin-bottom : 34px;
    }

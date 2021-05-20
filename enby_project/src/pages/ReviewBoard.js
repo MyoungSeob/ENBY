@@ -26,6 +26,7 @@ function ReviewBoard() {
      // 참여했던 모임
      const dispatch = useDispatch();
      const apply_list = useSelector((store) => store.user.attend_list)
+     const wroteReviewList = useSelector((store) => store.post.needWrite_list)
      const empty_list = apply_list.length === 0? true : false;
     // Modal  
     const [ modalOpen, setModalOpen ] = useState(false);
@@ -127,11 +128,11 @@ function ReviewBoard() {
             </Modal>
           ) : (
             <Modal open={modalOpen} close={closeModal} header="후기 작성하기">
-              <CardListForModal apply_list={currentModalPosts(modalPosts)} />
+              <CardListForModal wroteReviewList={currentModalPosts(modalPosts)} />
               <Paging>
                 <Pagination
                   postsPerPage={modalPostsPerPage}
-                  totalPosts={apply_list.length}
+                  totalPosts={wroteReviewList.length}
                   paginate={setCurrentModalPage}
                 />
               </Paging>

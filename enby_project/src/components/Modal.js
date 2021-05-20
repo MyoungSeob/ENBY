@@ -26,7 +26,8 @@ const Modal = (props) => {
     )
 }
 const Button = styled.button`
-    z-index : 99;
+    position : relative;
+    z-index : 10;
 `
 
 

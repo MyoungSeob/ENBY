@@ -85,6 +85,24 @@ function ReviewBoard() {
     const searchWhere={
         where : "review"
     }
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const handleScroll = () =>{
+      const position = window.pageYOffset;
+      setScrollPosition(position)
+    }
+    useEffect(()=>{
+      window.addEventListener('scroll', handleScroll, {passive : true});
+        return() => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, [])
+
+  const floatingButton =()=>{
+    if (window.pageYOffset > 400 && 1200 > window.pageYOffset && isDesktop) {
+      return <FloatWriteButton onClick={openModal}>+</FloatWriteButton>;
+    }
+  }
+
     return (
       <Container>
         {!isDesktop?
@@ -113,6 +131,7 @@ function ReviewBoard() {
             <ButtonBox>
               <Button onClick={openModal}>후기글 작성하기</Button>
             </ButtonBox>)}
+            {floatingButton()}
             
           </Top>
           <ReviewCardList review_list={currentPosts(posts)} />
@@ -250,7 +269,7 @@ const Main = styled.div`
 const ButtonBox = styled.div`
     display : inline-block;
     float : right;
-    padding-top: 46px;
+    padding-top: 6px;
 `
 
 const Button = styled.button`
@@ -324,8 +343,30 @@ const FloatingBtn = styled.button`
     font-size: 13px;
     }
 `;
-
+const FloatWriteButton = styled.button`
+  display : inline;
+  width : 60px;
+  height : 60px;
+  border-radius 640px;
+  background-color : #BBCFDC;
+  position : fixed;
+  right : 120px;
+  bottom : 120px;
+  z-index : 30;
+  font-size : 40px;
+  border : none;
+  color : #ffffff;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  cursor : pointer;
+  &: hover {
+    width : 70px;
+    height : 70px;
+    font-size : 50px;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+  }
+`
 export default ReviewBoard
-
 
 

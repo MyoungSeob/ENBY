@@ -36,7 +36,15 @@ const attendApplyDB =(id, kakaoId, applyComment)=>{
             window.alert("신청이 완료되었습니다.")
             window.location.reload()
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+          if (error.response.status === 403) {
+            window.alert(
+              "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
+            );
+            history.replace("/");
+          }
+        }
+          );
     }
 }
 
@@ -56,7 +64,14 @@ const cancelApply = (id)=>{
             window.alert("신청이 취소됐습니다.")
             window.location.reload()
         })
-        .catch(err => console.log(err))
+        .catch((error) => {
+            if (error.response.status === 403) {
+              window.alert(
+                "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
+              );
+              history.replace("/");
+            }
+          })
     }
 }
 const acceptApplyDB =(id, register_id)=>{
@@ -76,7 +91,14 @@ const acceptApplyDB =(id, register_id)=>{
             window.alert("신청을 수락하셨습니다👍")
             window.location.reload();
         })
-        .catch(err => console.log(err))
+        .catch((error) => {
+            if (error.response.status === 403) {
+              window.alert(
+                "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
+              );
+              history.replace("/");
+            }
+          })
     }
 }
 const rejectApplyDB =(id, register_id)=>{
@@ -93,7 +115,14 @@ const rejectApplyDB =(id, register_id)=>{
             window.alert(res.data)
             window.location.reload();
         })
-        .catch(err => console.log(err))
+        .catch((error) => {
+            if (error.response.status === 403) {
+              window.alert(
+                "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
+              );
+              history.replace("/");
+            }
+          })
     }
 }
 const ApplyDeadlineDB =(id)=>{
@@ -113,7 +142,14 @@ const ApplyDeadlineDB =(id)=>{
             window.alert(res.data)
             window.location.reload()
         })
-        .catch(err => console.log(err))
+        .catch((error) => {
+            if (error.response.status === 403) {
+              window.alert(
+                "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
+              );
+              history.replace("/");
+            }
+          })
     }
 }
 

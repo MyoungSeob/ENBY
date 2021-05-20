@@ -41,6 +41,14 @@
   font-family: "gmarketsans_light";
   src: url("./font/GmarketSansLight.otf");
 }
+@font-face {
+  font-family: "roboto_bold";
+  src: url("./font/Roboto-Bold.ttf");
+}
+@font-face {
+  font-family: "roboto_regular";
+  src: url("./font/Roboto-Regular.ttf");
+}
 
 .App-header {
   background-color: #282c34;

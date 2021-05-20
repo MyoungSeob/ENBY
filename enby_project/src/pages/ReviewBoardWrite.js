@@ -197,7 +197,7 @@ const ReviewBoardWrite = (props) => {
               onChange={(e) => {
                 setContents(e.target.value);
               }}
-              placeholder="내용을 입력하세요"
+              placeholder="모임 후기와 관련된 내용을 작성해주세요"
             />
           </TextBox>
         </ContentsBox>

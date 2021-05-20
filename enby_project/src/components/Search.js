@@ -23,9 +23,6 @@ const Search=(props)=> {
 
   return (
     <Container>
-      <Subtitle>
-        <text>검색하기</text>
-      </Subtitle>
       <SearchGrid>
         <SearchBox
           placeholder="찾으시는 모임이 있으신가요?"

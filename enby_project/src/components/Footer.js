@@ -4,6 +4,7 @@ import home from "../shared/image/bluehouse.png";
 import question from "../shared/image/bluequestion.png";
 import insta from "../shared/image/blueinsta.png";
 import { history } from "../redux/configStore";
+import logo from '../shared/image/editlogo.png'
 
 const Footer = (props) => {
   const googleForms = () => {
@@ -20,7 +21,7 @@ const Footer = (props) => {
     <Container>
       <FooterTitle>
         <TitleBox>
-          <Title onClick={moveHome}>SANTA</Title>
+          <Title onClick={moveHome} src={logo}></Title>
         </TitleBox>
         <IconBox>
         <Icon_ src={insta}  onClick={moveInsta}/>
@@ -60,17 +61,13 @@ const TitleBox = styled.div`
   width: 289px;
   height: 39px;
 `;
-const Title = styled.h1`
-  font-family: seravek;
-  font-size: 32px;
-  font-style: italic;
-  color: #168ed9;
-  margin: 0;
-  cursor : pointer;
+const Title = styled.img`
+  width: 168px;
+  height: 58px;
+  cursor: pointer;
   @media (min-width: 600px) and (max-width: 1170px) {
-    
   }
-  
+
   @media (max-width: 600px) {
     font-size: 28px;
     margin: auto 50px;

@@ -31,9 +31,10 @@ const Container = styled.div`
     position : relative;
     max-width : 1200px;
     width: 100%;
-    height : 310px;
-    margin : auto;
-    padding-top : 190px;
+    height : 417px;
+    margin : 0 auto 0 auto;
+    padding-top : 23px;
+
     @media (max-width: 600px) {
       height: 210px;
       padding-top: 80px;

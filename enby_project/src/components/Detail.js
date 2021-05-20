@@ -22,10 +22,11 @@ const Detail = (props)=>{
           </PlaceBox>
           <PersonBox>
             <BigIcon src={person} />
+            <CheckPeople><Check>{props.people_current === 0 ? "0" : (props.people_current)} / {props.people_max}</Check></CheckPeople>
             <ProgressBar>
               <ProgressBar_ style={{ width : gauge }} />
             </ProgressBar>
-            <CheckPeople><Check>{props.people_current === 0 ? "0" : (props.people_current)} / {props.people_max}</Check></CheckPeople>
+           
           </PersonBox>
         </IconBox>
       </Container>
@@ -70,9 +71,10 @@ const IconContents = styled.div`
 const Icon = styled.div`
     background-image : url(${date});
     background-repeat : no-repeat;
-    background-position : center;
-    width : 48px;
-    height : 48px;
+    background-position : auto;
+    width : 36px;
+    height : 36px;
+    margin-top : 10px;
     @media (min-width: 600px) and (max-width: 1170px) {
       width: 32px;
       height: 32px; 
@@ -83,8 +85,9 @@ const Icon = styled.div`
      }
 `
 const BigIcon = styled.img`
-    width : 48px;
-    height : 48px;
+    width : 36px;
+    height : 36px;
+    margin-top : 6px;
     @media (max-width: 600px) {
       width: 32px;
       height:32px; 
@@ -123,7 +126,7 @@ const ProgressBar_ = styled.div`
 `
 const CheckPeople = styled.div`
     margin-top : 10px;
-    margin-left : 12px;
+    margin-left : 16px;
 `
 const Check = styled.h4`
     color : #ffffff;

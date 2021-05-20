@@ -229,7 +229,7 @@ const MatingBoardWrite = (props) => {
                     )}
                   </DateContainer>
                 <Place>
-                  <Icon src={require("../shared/image/place.png").default}/>
+                  <Icon_ src={require("../shared/image/place.png").default}/>
                   <Location
                     label="장소"
                     value={location}
@@ -239,7 +239,7 @@ const MatingBoardWrite = (props) => {
                   />
                 </Place>
                 <People>
-                <Icon src={require("../shared/image/person.png").default}/>
+                <Icon_ src={require("../shared/image/person.png").default}/>
                   <MaxPeople
                     label="인원"
                     name = "countPeople"
@@ -277,7 +277,8 @@ const MatingBoardWrite = (props) => {
                 value={contents}
                 onChange={(e) => {
                   setContents(e.target.value);}}
-                placeholder="내용을 입력하세요"
+                placeholder="모임을 모집하기 위한 내용을 작성해주세요.&#13;&#13;&#10;등산 목표, 일정, 준비물 ,선호 사항 등의 정보를 알려주시면, 신청하시는 메이트에게 더 큰 도움이 될거에요!
+                "
               />
               </TextBox>
             </ContentsBox>
@@ -435,7 +436,7 @@ const DateContainer = styled.div`
 `;
 const Cal = styled(DatePicker)`
   padding: 6px 20px;
-  width: 322px;
+  width: 328px;
   height: 39px;
   background: #FFFFFF;
   border: 1px solid #B9B9B9;
@@ -453,7 +454,7 @@ const Cal = styled(DatePicker)`
 
 const Place = styled.div`
   display: flex;
-  margin-left: 240px;
+  margin-left: 250px;
   @media (min-width: 600px) and (max-width: 1170px) {
     margin-left: 30px;
     margin-left: 100px;
@@ -469,7 +470,7 @@ const Place = styled.div`
 const Location = styled.input`
 padding: 6px 20px;
 
-width: 322px;
+width: 328px;
 height: 39px;
 
 background: #FFFFFF;
@@ -639,7 +640,7 @@ const ContentsH = styled.h2`
 
 const Contents = styled.textarea`
   display: block;
-  padding: 11px 20px;
+  padding: 20px 20px;
 
   width: 615px;
   height: 437px;
@@ -662,9 +663,24 @@ const Contents = styled.textarea`
 `;
 
 const Icon = styled.img`
-  width: 48px;
-  height: 48px;
-  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+  margin-right: 16px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 38px;
+    height: 38px;
+    margin-right: 3px;
+  }
+  @media (max-width: 600px) {
+    width:30px;
+    height:30px;
+  }
+`;
+const Icon_ = styled.img`
+  width: 36px;
+  height: 36px;
+  margin-right: 16px;
+  margin-top : 2px;
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 38px;
     height: 38px;
@@ -680,6 +696,7 @@ const PostButton = styled.button`
   background: #168ED9;
   border-radius: 20px;
   margin-left : 24px;
+  margin-bottom : 40px;
   width: 167px;
   height: 40px;
   cursor: pointer;
@@ -705,6 +722,7 @@ const EditButton = styled.button`
   background: #168ED9;
   border-radius: 20px;
   margin-left : 24px;
+  margin-bottom : 40px;
   width: 167px;
   height: 40px;
   cursor: pointer;

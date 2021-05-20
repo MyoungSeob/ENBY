@@ -213,7 +213,7 @@ const DetailBox = styled.div`
 
 const TitleBox = styled.div`
   margin: 0 auto 0 auto;
-  padding-top: 80px;
+  padding-top: 60px;
   position: relative;
   display: block;
   @media (max-width: 600px) {
@@ -235,7 +235,7 @@ const TitleText = styled.h1`
 `;
 const TitleDate = styled.p`
   font-family: notosans_regular;
-  font-size: 20px;
+  font-size: 18px;
   margin: 0;
   color: #b9b9b9;
   @media (min-width: 600px) and (max-width: 1170px) {

@@ -33,7 +33,12 @@ const Container = styled.div`
   height: 100%;
   margin : 0px auto 0px auto;
   z-index : -1;
-
+    &:hover {
+      width: 100px;
+      // transform: scale(1.5);
+      // transition: transform 1s;
+      // filter: brightness(70%);
+    }
     @media (max-width: 1440px) {
       width : 1440px;
       height: 750px;

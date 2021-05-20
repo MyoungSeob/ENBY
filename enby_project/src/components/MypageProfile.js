@@ -49,12 +49,16 @@ opacity : none;
 }
 `
 const TitleBox = styled.div`
-    margin-bottom : 21px;
+  margin-top: -28px;
+
 `
 const Title = styled.h1`
     margin : 0;
-    font-family : notosans_bold;
+    font-family : seravek;
+    margin-bottom : 28px;
     font-size : 32px;
+    font-style: italic;
+    font-weight: bold;
     color : rgb(0, 0, 0);
     @media (max-width: 600px) {
       font-size: 21px;
@@ -63,6 +67,7 @@ const Title = styled.h1`
 `
 const ProfileBox = styled.div`
     display : flex;
+    margin: auto;
     @media (max-width: 600px) {
       margin-left: 10px;
     }

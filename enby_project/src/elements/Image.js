@@ -188,7 +188,6 @@ const MainTitle = styled.div`
   background-size : 1920px 1000px;
   background-repeat: no-repeat;
   margin : auto;
-
     @media (max-width : 1440px) {
       width: 1440px;
       max-width: 100%;
@@ -211,8 +210,8 @@ const MainTitle = styled.div`
 
 `;
 const Title = styled.div`
-  width: 1920px;
-  max-width : 100%;
+  max-width: 1920px;
+  width : 100%;
   height: 520px;
   background-image: url("${(props) => props.src}");
   background-position: center;
@@ -228,8 +227,6 @@ const Title = styled.div`
 
   }
   @media (min-width: 600px) and (max-width: 1170px) {
-    // width: 320px;
-    // height: 235.73px;
     }
   
   

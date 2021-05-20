@@ -205,6 +205,9 @@ const ApplyTit = styled.h2`
 `;
 const Contect = styled.div`
   display: flex;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    flex-direction: column;
+  }
   @media (max-width: 600px) {
     flex-direction: column;
     margin-top: -15px;
@@ -254,6 +257,10 @@ const Contents = styled.input`
   font-size: 18px;
   padding-left: 20px;
   outline: none;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 580px;
+    height: 90px;
+  }
   @media (max-width: 600px) {
     width: 326px;
     height: 24px;
@@ -282,7 +289,7 @@ const ApplyButton = styled.button`
   padding-bottom: 2px;
   cursor: pointer;
   @media (min-width: 600px) and (max-width: 1170px) {
-    margin-left: 40px;
+    margin-right: 37px;
   }
   @media (max-width: 600px) {
     width: 60px;

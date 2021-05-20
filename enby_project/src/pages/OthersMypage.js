@@ -77,6 +77,9 @@ const Image = styled.div`
   }
 `;
 const ProfileBox = styled.div`
+@media (min-width: 600px) and (max-width: 1170px) {
+  margin-left: 20px;
+}
 @media (max-width: 600px) {
   margin-left: 10px ;
 }
@@ -85,6 +88,9 @@ const WriteBox = styled.div`
   display: block;
   width: 1200px;
   margin: 75px auto 43px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 700px;
+  }
 
 `;
 const WriteSub = styled.p`
@@ -108,6 +114,9 @@ const Linetwo = styled.hr`
   max-width: 1200px;
   width: 100%;
   margin: auto auto 21px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 700px;
+  }
 `;
 const PageBox = styled.div`
   // display : flex;

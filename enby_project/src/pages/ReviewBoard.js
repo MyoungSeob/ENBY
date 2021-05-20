@@ -237,6 +237,10 @@ const Main = styled.div`
     background: #ffffff;
 
     background-size: cover;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      width: 760px;
+      margin: auto;
+    }
     @media (max-width: 600px) {
       width: 100%;
       min-width: 320px;

@@ -10,8 +10,8 @@ import { useMediaQuery } from "react-responsive";
 
 const MatingBoardSearch = (props) => {
   //반응형
-  const isTablet = useMediaQuery({
-    query: "(min-width: 600px) and (max-width: 1170px)"
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1170px)"
   });
   const isMobile = useMediaQuery({
     query: "(max-width: 600px)"
@@ -112,6 +112,8 @@ const TopButton = styled.div`
   flex-direction: row;
   align-items: center;
   margin: 98px auto 92px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+  }
   @media (max-width: 600px) {
     margin-top: 36px;
     margin-bottom: 36px;
@@ -139,10 +141,17 @@ const Button4 = styled.div`
       background-color : #0d73b2;
     }
   }
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin: 60px 50px 0 auto;
+  }
 `;
 const ResultBox = styled.div`
   width : 1200px;
   margin : auto auto 80px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 760px;
+    margin-left: auto;
+  }
   @media (max-width: 600px) {
     width: 365px;
     margin: auto;
@@ -162,6 +171,9 @@ const ResultContents = styled.div`
 const Contents = styled.p`
     font-family: notosans_regular;
     font-size: 18px;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      margin-left: 20px;
+    }
     @media (max-width: 600px) {
       margin-left: 10px;
       font-size: 16px;

@@ -45,6 +45,7 @@ const CardGrid = styled.div`
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 170px;
     height: 245px;
+    margin-bottom: 30px;
     }
   
   @media (max-width: 600px) {

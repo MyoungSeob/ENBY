@@ -15,8 +15,8 @@ import Pagination from '../components/ReviewBoardPagination';
 
 const ReviewBoardSearch = (props) => {
     //반응형
-  const isTablet = useMediaQuery({
-    query: "(min-width: 600px) and (max-width: 1170px)"
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1170px)"
   });
   const isMobile = useMediaQuery({
     query: "(max-width: 600px)"
@@ -97,7 +97,7 @@ const ReviewBoardSearch = (props) => {
     }else{
         return(
             <Container>
-              {!isMobile? 
+              {isDesktop? 
               (
               <Head>
               <SubTitle1>Share your experience with SANTA!</SubTitle1>
@@ -167,6 +167,9 @@ const HeadContainer = styled.div`
   width: 100%;
   min-width: 320px;
   padding: 10px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    padding-bottom: 20px;
+    }
 `;
 const Head = styled.div`
     height: 130px;
@@ -223,7 +226,10 @@ const SubTitle2 = styled.div`
     font-weight: 500;
     font-size: 24px;
     line-height: 35px;
-
+    @media (min-width: 600px) and (max-width: 1170px) {
+      font-size: 18px;
+      margin-top: 18px;
+      }
     color: #3A3A3A;
     @media (max-width: 600px) {
       font-size: 13px;
@@ -237,6 +243,10 @@ const Main = styled.div`
     background: #ffffff;
 
     background-size: cover;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      width: 100%;
+    }
+    
 `;
 const ButtonBox = styled.div`
     display : inline-block;
@@ -263,10 +273,17 @@ const Button = styled.button`
       transition-delay: 0s;
       background-color : #0d73b2;
     }
+    @media (min-width: 600px) and (max-width: 1170px) {
+      margin-right: 50px;
+    }
 `;
 const ResultBox = styled.div`
   width : 1200px;
   margin : auto auto 80px auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 760px;
+    margin: auto;
+    }
   @media (max-width: 600px) {
     width: 365px;
     margin: auto;
@@ -320,6 +337,7 @@ const FloatingBtn = styled.button`
   z-index: 2;
   bottom: 50px;
   right: 30px;
+
 `;
 
 export default ReviewBoardSearch;

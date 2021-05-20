@@ -49,6 +49,9 @@ const FooterTitle = styled.div`
   width: 1200px;
   display: flex;
   margin: auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 720px;
+  }
   @media (max-width: 600px) {
     width : 375px;
     display: flex;
@@ -59,6 +62,10 @@ const TitleBox = styled.div`
   display: flex;
   width: 289px;
   height: 39px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // margin-left: 100px;
+    width: 200px;
+  }
 `;
 const Title = styled.h1`
   font-family: seravek;
@@ -80,9 +87,13 @@ const IconBox = styled.div`
   float: right;
   text-align: right;
   margin: 0 0 0 auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // margin-right: 160px;
+  }
   @media (max-width: 600px) {
     display: flex;
     margin: auto 50px;
+    
   }
 `;
 const Icon = styled.img`
@@ -92,7 +103,6 @@ const Icon = styled.img`
   height: 40px;
   z-index: 1;
   @media (min-width: 600px) and (max-width: 1170px) {
-    
   }
   
   @media (max-width: 600px) {

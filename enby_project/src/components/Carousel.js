@@ -99,7 +99,7 @@ const WhiteContainer = styled.div`
   @media (max-width: 600px) {
     width: 100%;
     height: 270px;
-    padding-top: 50px;
+    padding-top: 60px;
   }
 
 `;
@@ -121,9 +121,9 @@ const WhiteGrid = styled.div`
     }
   
   @media (max-width: 600px) {
-    width: 329px;
-    height: 210px;
-    margin : 0 auto 0 auto;
+    width: 269px;
+    height: 160px;
+    margin : 30px auto 0 20px;
   }
   &: hover {
     background-color: rgba(255, 255, 255, 0.9);
@@ -137,6 +137,9 @@ const WhiteTitle = styled.div`
   @media (max-width : 1440px) {
     padding: 35px 0 0 35px;
   }
+  @media (max-width: 600px) {
+    padding:19px 0 0 14px;
+  }
 `;
 const SubTitText = styled.h2`
   font-family: seravek;
@@ -145,6 +148,9 @@ const SubTitText = styled.h2`
   margin: 0;
   @media (max-width : 1440px) {
     font-size : 23px;
+  }
+  @media (max-width: 600px) {
+    font-size: 19px;
   }
 `;
 const TitText = styled.h1`
@@ -155,11 +161,17 @@ const TitText = styled.h1`
   @media (max-width : 1440px) {
     font-size : 26px;
   }
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
 `;
 const WhiteComment = styled.div`
   padding-left: 45.77px;
   @media (max-width : 1440px) {
     padding-left : 35px;
+  }
+  @media (max-width: 600px) {
+    padding-left: 21px;
   }
 `;
 const ScrollButton = styled.img`
@@ -187,6 +199,9 @@ const Comment = styled.p`
   color: #000000;
   @media (max-width : 1440px) {
     font-size : 13px;
+  }
+  @media (max-width: 600px) {
+    font-size: 12px;
   }
 `;
 

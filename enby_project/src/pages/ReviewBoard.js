@@ -106,7 +106,7 @@ function ReviewBoard() {
         <Main>
           <Top>
             <Search {...searchWhere}/>
-            {!isDesktop ? (
+            {isMobile ? (
               <FloatingBtn
               onClick={openModal}>후기글<br/>작성하기</FloatingBtn>
             ) : (
@@ -274,6 +274,7 @@ const Button = styled.button`
     }
     @media (min-width: 600px) and (max-width: 1170px) {
       margin-top: 10px;
+      margin-right: 10px;
       }
 `;
 const Paging = styled.div`

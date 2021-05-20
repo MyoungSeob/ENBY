@@ -92,7 +92,7 @@ const LogoBox = styled.div`
   margin-top : 11px;
  
   @media (min-width: 600px) and (max-width: 1170px) {
-
+    margin-left: 21.5px;
     }
   
   @media (max-width: 600px) {
@@ -114,6 +114,9 @@ const CategoryBox = styled.div`
   margin: auto 0 auto auto;
   display: flex;
   padding-top: 10px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-right: 21.5px;
+    }
   @media (max-width: 600px) {
     margin-top:7px;
     margin-right:12.5px;

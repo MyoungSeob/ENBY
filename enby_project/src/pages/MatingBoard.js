@@ -22,6 +22,8 @@ function MatingBoard(props) {
     query: "(max-width: 600px)"
   });
 
+  
+
 
     const dispatch = useDispatch();
     // pagination
@@ -53,6 +55,7 @@ function MatingBoard(props) {
     }
         
     useEffect(() => {
+    
       dispatch(postActions.getPostMainDB());
       const isRecruitment = [];
       const deadRecruitment = [];
@@ -67,6 +70,28 @@ function MatingBoard(props) {
       setDeadlinePosts(deadRecruitment);
       setIsNotDeadlinePosts(isRecruitment)
     }, [isDeadline, isNotDeadline]);
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const handleScroll = () =>{
+      const position = window.pageYOffset;
+      setScrollPosition(position)
+    }
+
+    useEffect(()=>{
+      window.addEventListener('scroll', handleScroll, {passive : true});
+        return() => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, [])
+
+  const floatingButton =()=>{
+    if(window.pageYOffset > 835 && 1942 > window.pageYOffset){
+      return(
+        <FloatWriteButton onClick={moveWrite}>+</FloatWriteButton>
+      )
+    }
+  }
+
 
     const allMoimTrueFalse=()=>{
         if(!allMoim){
@@ -91,6 +116,7 @@ function MatingBoard(props) {
           </Button1True>
         }
     }
+
     const isNotDeadlineTrueFalse=()=>{
         if(!isNotDeadline){
             return(
@@ -118,6 +144,7 @@ function MatingBoard(props) {
             )
         }
     }
+
     const isDeadlineTrueFalse=()=>{
         if(!isDeadline){
             return(
@@ -175,7 +202,7 @@ function MatingBoard(props) {
         <Container>
           {isMobile ? (
               <Button5 onClick={moveWrite}>모임<br/> 만들기</Button5>
-            ) : ("")}
+            ) : (floatingButton())}
           <TopButton>
               <Search {...searchWhere}/>
               {!isMobile ? (
@@ -210,6 +237,7 @@ function MatingBoard(props) {
             {...selectButton}
           />
           </PageBox>
+          
         </Container>
   </>
     );
@@ -334,11 +362,15 @@ width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+<<<<<<< HEAD
     margin: 98px auto 92px auto;
     @media (min-width: 600px) and (max-width: 1170px) {
       width: 760px;
       margin: 56px auto;
     }
+=======
+    margin: 105px auto 73px auto;
+>>>>>>> 6be9a253ff4f885d9234316f23028846a5c084cd
     @media (max-width: 600px) {
       margin-top: 50px;
       width: 320px;
@@ -574,7 +606,7 @@ const Button3True = styled.button`
 `;
 const Button4 = styled.div`
   float: right;
-  margin-top: 34px;
+  margin-top : 5px;
   & button {
     background: #168ED9;
     border-radius: 20px;
@@ -652,6 +684,30 @@ const PageBox = styled.div`
   @media (max-width: 600px) {
     width: 100%
     max-width: 320px;
+  }
+`
+const FloatWriteButton = styled.button`
+  display : inline;
+  width : 60px;
+  height : 60px;
+  border-radius 640px;
+  background-color : #BBCFDC;
+  position : fixed;
+  right : 120px;
+  bottom : 120px;
+  z-index : 30;
+  font-size : 40px;
+  border : none;
+  color : #ffffff;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  cursor : pointer;
+  &: hover {
+    width : 70px;
+    height : 70px;
+    font-size : 50px;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
   }
 `
 

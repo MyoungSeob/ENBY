@@ -146,7 +146,7 @@ const PostSubTitle = styled.div`
 `;
 const PostTitle = styled.div`
     // margin-top: 13px;
-    font-family: gmarketsans_medium;
+    font-family: notosans_medium;
     font-style: normal;
     float : left;
     font-size: 30px;
@@ -180,6 +180,14 @@ const PostButton = styled.button`
     width: 52px;
     height: 26px;
     font-size: 10px;
+  }
+  &: hover {
+    border : none;
+    transition-duration: 0.15s;
+      transition-timing-function: ease-out;
+      transition-delay: 0s;
+      background-color : #BBCFDC;
+      color : #ffffff;
   }
 `;
 
@@ -218,7 +226,7 @@ const ReviewTitle = styled.text`
   // margin-top: 12px; 
   // width: 161px;
   height: 35px;
-  font-family: gmarketsans_medium;
+  font-family: notosans_medium;
   color: #168ed9;
   font-style: normal;
   font-size: 28px;
@@ -252,6 +260,14 @@ const ReviewButton = styled.button`
       width: 52px;
       height: 26px;
       font-size: 10px;
+  }
+  &: hover {
+    border : none;
+    transition-duration: 0.15s;
+      transition-timing-function: ease-out;
+      transition-delay: 0s;
+      background-color : #BBCFDC;
+      color : #ffffff;
   }
 `;
 const Span = styled.span`

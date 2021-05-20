@@ -107,6 +107,9 @@ const Container = styled.div`
     overflow: hidden;
 `
 const ProfileBox = styled.div`
+height : 319px;
+padding-top : 121px;
+
 @media (min-width: 600px) and (max-width: 1170px) {
   margin-left: 20px;
 }
@@ -114,8 +117,7 @@ const ProfileBox = styled.div`
 const Image = styled.div`
 width : 100%;
 min-width : 1200px;
-max-height : 720px;
-height : 500px;
+height : 440px;
 background-image : url(${TitImg});
 background-size : cover;
 background-position : center;

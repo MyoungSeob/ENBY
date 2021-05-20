@@ -42,7 +42,7 @@ const ListBody = styled.div`
     text-align : center;
     width: 100%;
     max-width: 1200px;
-    margin: 100px auto 0 auto;
+    margin: 85px auto 0 auto;
     @media (min-width: 600px) and (max-width: 1170px) {
         max-width: 800px; 
       }

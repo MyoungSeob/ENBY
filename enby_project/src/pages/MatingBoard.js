@@ -362,15 +362,12 @@ width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-<<<<<<< HEAD
     margin: 98px auto 92px auto;
     @media (min-width: 600px) and (max-width: 1170px) {
       width: 760px;
       margin: 56px auto;
     }
-=======
     margin: 105px auto 73px auto;
->>>>>>> 6be9a253ff4f885d9234316f23028846a5c084cd
     @media (max-width: 600px) {
       margin-top: 50px;
       width: 320px;
@@ -628,7 +625,7 @@ const Button4 = styled.div`
   }
   @media (min-width: 600px) and (max-width: 1170px) {
     margin-left: 370px;
-    margin-top: 62px;
+    // margin-top: 62px;
   }
   @media (max-width: 600px) {
     width: 80px;

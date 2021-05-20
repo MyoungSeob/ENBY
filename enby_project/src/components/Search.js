@@ -62,7 +62,7 @@ width : 100%;
     }
     @media (min-width: 600px) and (max-width: 1170px) {
       width: 200px;
-      margin: 20px 0 0 0;
+      margin: 0;
       }
     @media (max-width: 600px) {
       & text {

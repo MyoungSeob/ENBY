@@ -197,6 +197,9 @@ const Top = styled.div`
     display: flex;
     justify-content : space-between;
     margin-bottom : 54px;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      margin: 54px 0 54px 0;
+    }
     @media (max-width: 600px) {
       width: 320px;
       z-index: 1;
@@ -270,6 +273,9 @@ const ButtonBox = styled.div`
     display : inline-block;
     float : right;
     padding-top: 6px;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      padding-top:0;
+    }
 `
 
 const Button = styled.button`
@@ -292,7 +298,6 @@ const Button = styled.button`
       background-color : #0d73b2;
     }
     @media (min-width: 600px) and (max-width: 1170px) {
-      margin-top: 10px;
       margin-right: 10px;
       }
 `;

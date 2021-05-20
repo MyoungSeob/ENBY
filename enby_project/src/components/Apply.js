@@ -179,6 +179,9 @@ const ApplyBox = styled.div`
   margin-bottom: 34px;
   max-width: 1200px;
   width: 100%;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    max-width: 600px;
+  }
   @media (max-width: 600px) {
     margin-left: 12.5px;
     margin-top: 34px;
@@ -207,6 +210,7 @@ const Contect = styled.div`
   display: flex;
   @media (min-width: 600px) and (max-width: 1170px) {
     flex-direction: column;
+    margin-left: 35px;
   }
   @media (max-width: 600px) {
     flex-direction: column;
@@ -269,6 +273,10 @@ const Contents = styled.input`
 `;
 const ButtonBox = styled.div`
   float: right;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    float: left;
+    margin-left: 40px;
+  }
   @media (max-width: 600px) {
     display: block;
     width: 350px;
@@ -289,7 +297,6 @@ const ApplyButton = styled.button`
   padding-bottom: 2px;
   cursor: pointer;
   @media (min-width: 600px) and (max-width: 1170px) {
-    margin-right: 37px;
   }
   @media (max-width: 600px) {
     width: 60px;
@@ -301,6 +308,7 @@ const ApplyButton = styled.button`
 const CheckBox = styled.div`
   margin-top: 34px;
   display: flex;
+  
 `;
 const CheckMe = styled.div`
   display: flex;

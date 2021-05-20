@@ -349,6 +349,9 @@ const Container = styled.div`
     width: 100%;
     margin: auto;
     // width: 320;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      width: 750px;
+    }
     @media (max-width: 600px) {
       // margin-top: 180px;
       // z-index: 1;
@@ -667,7 +670,6 @@ const CardBox = styled.div`
   max-width : 1200px;
   margin : auto;
   @media (min-width: 600px) and (max-width: 1170px) {
-    // height: 1000px;
     }
   @media (max-width: 600px) {
     min-width: 320px;

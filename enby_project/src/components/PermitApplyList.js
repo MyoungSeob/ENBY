@@ -66,6 +66,9 @@ const Container = styled.div`
 `;
 const Title = styled.div`
   display: flex;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 35px;
+  }
    @media (max-width: 600px) {
        }
 `;
@@ -82,6 +85,9 @@ const DeadLineBtn = styled.button`
   cursor: pointer;
   margin: auto 0px auto auto;
   float: right;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-right: 35px;
+  }
   @media (max-width: 600px) {
     width: 110px;
     font-size: 11px;
@@ -101,6 +107,7 @@ const DidDeadLineBtn = styled.button`
   margin: auto 0px auto auto;
   float: right;
   @media (min-width: 600px) and (max-width: 1170px) {
+    margin-right: 35px;
   }
   @media (max-width: 600px) {
     width: 110px;

@@ -84,6 +84,9 @@ const Title = styled.h2`
          }
 `
 const MoreReviewBtn = styled.div`
+@media (min-width: 600px) and (max-width: 1170px) {
+  margin-right: 8px;
+}
 `
 const MoveReviewBoard = styled.button`
     margin-top : 20px;

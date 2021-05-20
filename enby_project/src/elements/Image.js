@@ -165,7 +165,11 @@ const Moimcontents = styled.div`
   background-repeat: no-repeat;
   filter: blur(10px) brightness(55%);
   transform : scale(1.2);
-
+  @media (min-width: 600px) and (max-width: 1170px) {
+    max-width: 1024px;
+    width: 100%;
+    background-size: fit;
+  }
 `;
 const MoimcontentsDeadline = styled.div`
   width: 1920px;
@@ -177,7 +181,10 @@ const MoimcontentsDeadline = styled.div`
   background-repeat: no-repeat;
   filter: blur(10px) brightness(50%) grayscale(100%);
   transform : scale(1.2);
-
+  @media (min-width: 600px) and (max-width: 1170px) {
+    max-width: 1024px;
+    width: 100%;
+  }
 `;
 const MainTitle = styled.div`
   width: 1920px;

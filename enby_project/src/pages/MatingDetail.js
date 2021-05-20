@@ -195,6 +195,9 @@ const ImageGrid_ = styled.div`
   margin: auto;
   overflow: hidden;
   position: relative;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    max-width: 1024px;
+  }
   @media (max-width: 600px) {
    }
 `;
@@ -204,7 +207,8 @@ const DetailBox = styled.div`
   width: 100%;
   height: 260px;
   @media (min-width: 600px) and (max-width: 1170px) {
-    margin-left: 15px;
+    max-width: 700px;
+    margin-left: 30px;
   }
   @media (max-width: 600px) {
     margin-left: 15px;
@@ -279,7 +283,7 @@ const EditButton = styled.div`
   float: right;
   margin: auto 0px auto auto;
   @media (min-width: 600px) and (max-width: 1170px) {
-    margin-right: 20px;
+    margin-right: 30px;
   }
   @media (max-width: 600px) {
     margin: 0 10px 0 auto;
@@ -342,8 +346,8 @@ const ContentsBox = styled.div`
   margin: 0 auto 50px auto;
   display: flex;
   @media (min-width: 600px) and (max-width: 1170px) {
-    margin-left: 15px;
-    margin-bottom: 0;
+    width: 760px;
+    margin: 0 auto 0 auto;
   }
   @media (max-width: 600px) {
     width : 350px;
@@ -357,7 +361,8 @@ const MemberBox = styled.div`
   width: 100%;
   margin: auto auto 80px auto;
   @media (min-width: 600px) and (max-width: 1170px) {
-    margin-left: 15px;
+    margin-left: 35px;
+    width: 720px;
   }
   @media (max-width: 600px) {
     width : 350px;
@@ -371,7 +376,8 @@ const ApplyBox = styled.div`
   width: 100%;
   margin: auto;
   @media (min-width: 600px) and (max-width: 1170px) {
-    margin-left: 15px;
+    margin-left: 35px;
+    max-width: 700px;
   }
   @media (max-width: 600px) {
     width: 375px;
@@ -380,6 +386,9 @@ const ApplyBox = styled.div`
 const PermitBox = styled.div`
   max-width: 1200px;
   margin: auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    // margin-left: 35px;
+  }
   @media (max-width: 600px) {
        }
 `;
@@ -394,7 +403,7 @@ const ReviewContainer = styled.div`
   margin-top : 50px;
   // margin: 34px auto 80px auto;
   @media (min-width: 600px) and (max-width: 1170px) {
-    margin-left: 15px;
+    margin-left: 35px;
   }
   @media (max-width: 600px) {
     margin-top : 34px;

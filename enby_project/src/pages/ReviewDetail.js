@@ -245,7 +245,9 @@ const BottomBox = styled.div`
   display: flex;
   margin: auto auto 40px auto;
   @media (min-width: 600px) and (max-width: 1170px) {
-    margin-left: 15px;
+      width: 760px;
+      margin: 0 auto 40px auto;
+    }
   }
   @media (max-width: 600px) {
     flex-direction: column;
@@ -362,6 +364,7 @@ const MoveMoimButton = styled.div`
   width: 1200px;
   @media (min-width: 600px) and (max-width: 1170px) {
     margin-left: 15px;
+    width: 300px;
   }
   @media (max-width: 600px) {
     margin-left: 30px;

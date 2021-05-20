@@ -63,6 +63,9 @@ const CheckBox = styled.div`
   width: 100%;
   display: flex;
   margin: auto;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 35px;
+  }
   @media (max-width: 600px) {
     margin: 0;
   }
@@ -128,6 +131,9 @@ const CheckP = styled.p`
 `;
 const CheckButtonBox = styled.div`
   width: 167px;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-right: 35px;
+  }
   @media (max-width: 600px) {
     float: right;
   }

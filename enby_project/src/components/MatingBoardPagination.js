@@ -59,7 +59,7 @@ const MatingBoardPagination = (props) => {
       width: "760px",
       display: "flex",
       justifyContent: "center",
-      margin: "auto auto 121px auto",
+      margin: "auto auto 80px auto",
       "& > * + *": {},
   },
  } : {

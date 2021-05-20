@@ -708,8 +708,12 @@ const PostButton = styled.button`
   float: right;
   // margin-bottom: 40px;
   margin-right: 120px;
-  @media (min-width: 600px) and (max-width: 1170px) {
+  @media (min-width: 600px) and (max-width: 860px) {
     margin: 30px 160px 40px 0;
+  }
+  @media (min-width: 860px) and (max-width: 1170px) {
+    margin: 30px 290px 40px 0;
+    float: right;
   }
   @media (max-width: 600px) {
     width:80px;
@@ -733,7 +737,14 @@ const EditButton = styled.button`
   color: #FFFFFF;
   border: none;
   margin-bottom: 40px;
-
+  @media (min-width: 600px) and (max-width: 860px) {
+    margin: 30px 160px 40px 0;
+    float:right;
+  }
+  @media (min-width: 860px) and (max-width: 1170px) {
+    margin: 30px 290px 40px 0;
+    float: right;
+  }
   @media (max-width: 600px) {
     width:80px;
     height:30px;

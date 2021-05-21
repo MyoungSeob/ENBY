@@ -57,7 +57,7 @@ const MatingBoardWrite = (props) => {
     const meetTime =  is_edit? _post.meetTime : finalDate.split(".")[0];
     const deadline_status = "false";
     // {setMeetTime(finalMeetTime)};
-    console.log();
+    console.log(date);
     const editDate = () => {
 
     }
@@ -204,7 +204,7 @@ const MatingBoardWrite = (props) => {
                     {_post ? (
                       <Cal
                       label="날짜시간"
-                      // value={_post.meetTime}
+                      value={meetTime}
                       selected={date}
                       onChange={(date) => {setDate(date)}}
                       showTimeSelect
@@ -217,7 +217,7 @@ const MatingBoardWrite = (props) => {
                     ) : (
                       <Cal
                       label="날짜시간"
-                      // value={date}
+                      value={date}
                       selected={date}
                       onChange={(date) => {setDate(date);}}
                       showTimeSelect

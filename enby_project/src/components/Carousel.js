@@ -2,7 +2,7 @@ import "../carousel.css";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "../elements/Image";
-import santa from "../shared/image/MaskGroup.png";
+import santa from "../shared/image/mainlogoedit.png";
 import scroll from '../shared/image/scrollbutton.png'
 import { useMediaQuery } from "react-responsive";
 
@@ -56,7 +56,7 @@ const Carousel = (props) => {
         <WhiteContainer>
           <WhiteGrid>
             <WhiteTitle>
-              <SubTitText>Hello, we are SANTA.</SubTitText>
+              <SubTitText>Hello, we are <Span_>SANTA</Span_>.</SubTitText>
               <TitText>우리, 산타러 갈래요?</TitText>
             </WhiteTitle>
             <WhiteComment>
@@ -106,7 +106,7 @@ const WhiteContainer = styled.div`
 const WhiteGrid = styled.div`
   width: 442px;
   height: 280px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 1);
   margin: 0 auto 0 0;
   @media (max-width : 1440px) {
     width: 330px;
@@ -125,12 +125,6 @@ const WhiteGrid = styled.div`
     height: 160px;
     margin : 30px auto 0 20px;
   }
-  &: hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    transition-duration: 0.15s;
-      transition-timing-function: ease-in-out;
-      transition-delay: 0s;
-  }
 `
 const WhiteTitle = styled.div`
   padding: 47px 0 0 45.77px;
@@ -141,6 +135,9 @@ const WhiteTitle = styled.div`
     padding:19px 0 0 14px;
   }
 `;
+const Span_ = styled.span`
+  font-style : italic;
+`
 const SubTitText = styled.h2`
   font-family: seravek;
   font-size: 31px;
@@ -209,7 +206,6 @@ const Container = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
   margin : 0px auto 0px auto;
   z-index : -1;
     &:hover {
@@ -233,25 +229,6 @@ const Container = styled.div`
     @media (max-width: 600px) {
       height: 320px;
     }
-=======
-  margin: 0px auto 0px auto;
-  z-index: -1;
-
-  @media (max-width: 1440px) {
-    width: 1440px;
-    height: 750px;
-  }
-  @media (max-width: 1200px) {
-    width: 1200px;
-    max-width: 100%;
-    height: 625px;
-    background-size: 1200px 625px;
-    background-position: center;
-  }
-  @media (max-width: 600px) {
-    height: 320px;
-  }
->>>>>>> e0259b51149fab57b181d9961a97f4ddcf939867
 `;
 const Title = styled.div`
   position: relative;

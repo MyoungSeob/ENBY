@@ -18,7 +18,7 @@ const Detail = (props)=>{
           </DateBox>
           <PlaceBox>
             <BigIcon src={place} />
-            <IconContents>{props.location}</IconContents>
+            <IconContents_>{props.location}</IconContents_>
           </PlaceBox>
           <PersonBox>
             <BigIcon src={person} />
@@ -56,6 +56,20 @@ const DateBox = styled.div`
 `
 const IconContents = styled.div`
     margin : 0 131px 0 10px;
+    font-family : notosans_regular;
+    font-size : 18px;
+    padding-top : 12px;
+    color : #ffffff;
+    @media (min-width: 600px) and (max-width: 1170px) {
+      font-size: 14px;
+      margin: 0 50px 0 10px;
+  }
+    @media (max-width: 600px) {
+      font-size: 12px; 
+     }
+`
+const IconContents_ = styled.div`
+margin : 0 131px 0 10px;
     font-family : notosans_regular;
     font-size : 18px;
     padding-top : 12px;

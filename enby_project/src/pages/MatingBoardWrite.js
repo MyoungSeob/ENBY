@@ -199,7 +199,7 @@ const MatingBoardWrite = (props) => {
               </InputGrid>
               <DetailGrid>
                 <DateContainer>
-                    <Icon src={require("../shared/image/date.png").default}/>
+                    <Icon src={require("../shared/image/calendaredit.png").default}/>
                     {_post ? (
                       <Cal
                       label="날짜시간"
@@ -666,6 +666,7 @@ const Icon = styled.img`
   width: 36px;
   height: 36px;
   margin-right: 16px;
+  margin-top : 3px;
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 38px;
     height: 38px;

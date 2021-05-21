@@ -89,25 +89,33 @@ const MoreReviewBtn = styled.div`
 }
 `
 const MoveReviewBoard = styled.button`
-    margin-top : 20px;
-    border : 1px solid #808080;
-    width : 167px;
-    height : 40px;
-    border-radius : 20px;
-    font-family : notosans_regular;
-    font-size : 18px;
-    background-color : #ffffff;
-    cursor : pointer;
-    @media (min-width: 600px) and (max-width: 1170px) {
-      margin-right: 24px;
-    }
-    @media (max-width: 600px) {
-      width: 60px;
-      height: 30px;
-      font-size: 11px;
-      margin-right: 24px;
-         }
-`
+  margin-top: 20px;
+  border: 1px solid #808080;
+  width: 167px;
+  height: 40px;
+  border-radius: 20px;
+  font-family: notosans_regular;
+  font-size: 18px;
+  background-color: #ffffff;
+  cursor: pointer;
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-right: 24px;
+  }
+  @media (max-width: 600px) {
+    width: 60px;
+    height: 30px;
+    font-size: 11px;
+    margin-right: 24px;
+  }
+  &: hover {
+    border: none;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+    background-color: #bbcfdc;
+    color: #ffffff;
+  }
+`;
 const CardListBox = styled.div`
 width: 100%;
 max-width : 1200px;

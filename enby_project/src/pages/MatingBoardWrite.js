@@ -1,3 +1,4 @@
+// 작성게시판
 import React, { useCallback, useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import {useSelector, useDispatch} from "react-redux";
@@ -54,13 +55,10 @@ const MatingBoardWrite = (props) => {
     const timezoneOffset = date.getTimezoneOffset() * 60000;
     const timezoneDate = new Date(date - timezoneOffset);
     const finalDate = timezoneDate.toISOString();
-    const meetTime =  is_edit? _post.meetTime : finalDate.split(".")[0];
+    const meetTime = is_edit? _post.meetTime : finalDate.split(".")[0];
     const deadline_status = "false";
     // {setMeetTime(finalMeetTime)};
-    console.log(date);
-    const editDate = () => {
 
-    }
 
 
     function onchange(value, dateString) {
@@ -110,8 +108,26 @@ const MatingBoardWrite = (props) => {
     // const editDate=()=>{
     //   if(_post.meetTime === )
     // }
-    const addPost = () => {
-      dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime, people_max));
+    const addPost = () => { 
+      if(title === ""){
+        window.alert("제목을 입력해주세요")
+        return
+      }
+      if(contents === ""){
+        window.alert("모집 내용을 입력해주세요")
+        return
+      }
+      if(meetTime === ""){
+        window.alert("만나실 시간을 입력해주세요")
+        return
+      }
+      if(people_max === ""){
+        window.alert("인원수를 입력해주세요")
+        return
+      }else{
+        dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime, people_max));
+      }
+      
     };
     const editPost= () => {
       dispatch(postActions.editPostDB(post_id, title, contents, editImage(), location, meetTime, people_max));
@@ -164,6 +180,7 @@ const MatingBoardWrite = (props) => {
                   label="제목"
                   value={title}
                   onChange={(e) => {
+
                     setTitle(e.target.value);}}
                   placeholder="제목을 입력하세요"
                 />
@@ -236,7 +253,7 @@ const MatingBoardWrite = (props) => {
                     value={location}
                     onChange={(e) => {
                       setLocation(e.target.value);}}
-                    placeholder="장소"
+                    placeholder="등산할 산 이름이나 간략한 목표 지점을 적어주세요."
                   />
                 </Place>
                 <People>
@@ -344,10 +361,12 @@ const SubTitle1 = styled.div`
 
 const Title = styled.div`
     height: 37px;
+
     font-family: seravek;
     font-weight: bold;
     font-size: 32px;
     line-height: 46px;
+
     color: #000000;
     @media (max-width: 600px) {
       font-size: 28px;
@@ -468,8 +487,10 @@ const Place = styled.div`
 
 const Location = styled.input`
 padding: 6px 20px;
+
 width: 328px;
 height: 39px;
+
 background: #FFFFFF;
 border: 1px solid #B9B9B9;
 box-sizing: border-box;
@@ -488,6 +509,7 @@ const People = styled.div`
 `;
 const MaxPeople = styled.select`
 // padding: 10px 20px 0 20px;
+
 width: 333px;
 height: 39px;
 padding: 6px 20px 6px;
@@ -563,6 +585,7 @@ const TextBox2 = styled.div`
   margin: auto;
   @media (max-width: 600px) {
     // width:300px;
+
   }
 `;
 
@@ -636,9 +659,11 @@ const ContentsH = styled.h2`
 const Contents = styled.textarea`
   display: block;
   padding: 20px 20px;
+
   width: 615px;
   height: 437px;
   margin: 33px 0 33px 0;
+
   background: #ffffff;
   border: 1px solid #b9b9b9;
   box-sizing: border-box;
@@ -724,6 +749,7 @@ const EditButton = styled.button`
   width: 167px;
   height: 40px;
   cursor: pointer;
+
   font-family: notosans_regular;
   font-size: 18px;
   line-height: 150%;
@@ -748,3 +774,4 @@ const EditButton = styled.button`
 
 
 export default MatingBoardWrite;
+

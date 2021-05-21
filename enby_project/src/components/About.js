@@ -51,7 +51,10 @@ const Title = styled.h2`
      }
 `
 const AboutContents = styled.div`
+     width : 615px;
+     height : 437px;
      overflow : auto;
+     text-overflow: ellipsis;
      @media (max-width: 600px) {
       height : auto;
      }
@@ -59,6 +62,7 @@ const AboutContents = styled.div`
 const Contents = styled.p`
 font-size : 18px;
 font-family : notosans_regular;
+white-space : pre-wrap;
 @media (max-width: 600px) {
   font-size: 13px;
  }

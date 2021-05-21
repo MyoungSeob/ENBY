@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const OtherpageProfile=(props)=>{
     
     const other_attend = useSelector((store) => store.user.other_attend);
-    console.log(other_attend)
+    const otherInformation = useSelector((store) => store.user.account_information)
     return(
         <Container>
         <Grid>
@@ -13,7 +13,7 @@ const OtherpageProfile=(props)=>{
             <Title>Profile</Title>
           </TitleBox>
           <ProfileBox>
-            <Profile src={props.profile_Img}></Profile>
+            <Profile src={props.profile_imgUrl}></Profile>
             <ProfileContents>
                 <Welcome>안녕하세요, {props.nickname}입니다.</Welcome>
               <MoimCount>

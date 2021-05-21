@@ -19,7 +19,8 @@ const OthersMypage = (props) => {
 
   const write_list = useSelector((store) => store.user.other_write);
   const other_list = useSelector((store) => store.user.other_page);
-  console.log(other_list)
+  const account_information = useSelector((store) => store.user.account_information)
+  console.log(account_information)
   // pagination
     // const [Posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +39,7 @@ const OthersMypage = (props) => {
     <Container>
       <Image shape="rectangle" src={TitImg} />
       <ProfileBox>
-        <OtherpageProfile {...other_list[0]} />
+        <OtherpageProfile {...account_information[0]} />
       </ProfileBox>
       <WriteBox>
         <WriteTit>작성한 글</WriteTit>

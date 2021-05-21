@@ -15,6 +15,7 @@ const LOADING = "LOADING";
 const GET_OTHER_PAGE = "GET_OTHER_PAGE";
 const GET_OTHER_WRITE = "GET_OTHER_WRITE";
 const GET_OTHER_ATTEND = "GET_OTHER_ATTEND";
+const ACCOUNT_INFORMATION = "ACCOUNT_INFORMATION";
 
 const login = createAction(LOG_IN, (user) => ({ user }));
 const logout = createAction(LOG_OUT, (user) => ({ user }));
@@ -25,6 +26,7 @@ const getMyWrite = createAction(GET_MY_WRITE, (write_list) => write_list);
 const getOtherPage = createAction(GET_OTHER_PAGE, (other_page) => other_page);
 const getOtherWrite = createAction(GET_OTHER_WRITE, (other_write) => other_write);
 const getOtherAttend = createAction(GET_OTHER_ATTEND, (other_attend) => other_attend);
+const accountInformation = createAction(ACCOUNT_INFORMATION, account_information => account_information)
 
 const initialState = {
     user : null,
@@ -35,6 +37,7 @@ const initialState = {
     other_page : [],
     other_write : [],
     other_attend : [],
+    account_information : [],
     loading : false,
 }
 
@@ -135,7 +138,9 @@ const getOtherPageDB =(otherName)=>{
       const other_write = [];
       const other_page = [];
       const other_attend = [];
-      for(let i = 0; i < other_list.length ; i ++){
+      const account_information = [];
+      account_information.push(other_list[0])
+      for(let i = 1; i < other_list.length ; i ++){
         if(other_list[i].board_name === "작성한 글"){
           other_write.push(other_list[i])
         }
@@ -145,7 +150,10 @@ const getOtherPageDB =(otherName)=>{
         if(other_list[i].board_name === "참석한 모임"){
           other_attend.push(other_list[i])
         }
-      };
+      }
+      
+
+      ;
       // for(let i = 0; i < other_list.length ; i ++){
       //   if(other_list[i].board_name === "신청한 모임"){
       //     other_page.push(other_list[i])
@@ -162,6 +170,7 @@ const getOtherPageDB =(otherName)=>{
       dispatch(getOtherWrite(other_write));
       dispatch(getOtherPage(other_page));
       dispatch(getOtherAttend(other_attend))
+      dispatch(accountInformation(account_information))
       dispatch(loading(false));
     })
     .catch(err => console.log(err))
@@ -207,6 +216,10 @@ export default handleActions(
     [GET_OTHER_ATTEND] : (state, action) =>
       produce(state, (draft) => {
         draft.other_attend = action.payload
+      }),
+    [ACCOUNT_INFORMATION] : (state, action) =>
+      produce(state, (draft) => {
+        draft.account_information = action.payload
       })
   },
   initialState

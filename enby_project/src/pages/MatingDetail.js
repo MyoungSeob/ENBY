@@ -278,6 +278,14 @@ const ToListBtn = styled.button`
   color: #000000;
   margin: 0;
   cursor: pointer;
+  &: hover {
+    border : none;
+    transition-duration: 0.15s;
+      transition-timing-function: ease-out;
+      transition-delay: 0s;
+      background-color : #BBCFDC;
+      color : #ffffff;
+  }
 `;
 const EditButton = styled.div`
   float: right;

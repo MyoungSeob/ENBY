@@ -209,31 +209,6 @@ const Container = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
-  margin : 0px auto 0px auto;
-  z-index : -1;
-    &:hover {
-      width: 100px;
-      // transform: scale(1.5);
-      // transition: transform 1s;
-      // filter: brightness(70%);
-    }
-    @media (max-width: 1440px) {
-      width : 1440px;
-      height: 750px;
-    }
-    @media (max-width : 1200px) {
-      width: 1200px;
-      max-width: 100%;
-      height: 625px;
-      background-size : 1200px 625px;
-      background-position: center;
-  
-    }
-    @media (max-width: 600px) {
-      height: 320px;
-    }
-=======
   margin: 0px auto 0px auto;
   z-index: -1;
 
@@ -251,7 +226,6 @@ const Container = styled.div`
   @media (max-width: 600px) {
     height: 320px;
   }
->>>>>>> e0259b51149fab57b181d9961a97f4ddcf939867
 `;
 const Title = styled.div`
   position: relative;

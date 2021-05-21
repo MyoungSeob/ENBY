@@ -1,4 +1,3 @@
-// 작성게시판
 import React, { useCallback, useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import {useSelector, useDispatch} from "react-redux";
@@ -162,7 +161,6 @@ const MatingBoardWrite = (props) => {
                   label="제목"
                   value={title}
                   onChange={(e) => {
-
                     setTitle(e.target.value);}}
                   placeholder="제목을 입력하세요"
                 />
@@ -199,7 +197,7 @@ const MatingBoardWrite = (props) => {
               </InputGrid>
               <DetailGrid>
                 <DateContainer>
-                    <Icon src={require("../shared/image/date.png").default}/>
+                    <Icon src={require("../shared/image/calendaredit.png").default}/>
                     {_post ? (
                       <Cal
                       label="날짜시간"
@@ -343,12 +341,10 @@ const SubTitle1 = styled.div`
 
 const Title = styled.div`
     height: 37px;
-
     font-family: seravek;
     font-weight: bold;
     font-size: 32px;
     line-height: 46px;
-
     color: #000000;
     @media (max-width: 600px) {
       font-size: 28px;
@@ -469,10 +465,8 @@ const Place = styled.div`
 
 const Location = styled.input`
 padding: 6px 20px;
-
 width: 328px;
 height: 39px;
-
 background: #FFFFFF;
 border: 1px solid #B9B9B9;
 box-sizing: border-box;
@@ -491,7 +485,6 @@ const People = styled.div`
 `;
 const MaxPeople = styled.select`
 // padding: 10px 20px 0 20px;
-
 width: 333px;
 height: 39px;
 padding: 6px 20px 6px;
@@ -567,7 +560,6 @@ const TextBox2 = styled.div`
   margin: auto;
   @media (max-width: 600px) {
     // width:300px;
-
   }
 `;
 
@@ -641,11 +633,9 @@ const ContentsH = styled.h2`
 const Contents = styled.textarea`
   display: block;
   padding: 20px 20px;
-
   width: 615px;
   height: 437px;
   margin: 33px 0 33px 0;
-
   background: #ffffff;
   border: 1px solid #b9b9b9;
   box-sizing: border-box;
@@ -666,6 +656,7 @@ const Icon = styled.img`
   width: 36px;
   height: 36px;
   margin-right: 16px;
+  margin-top : 3px;
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 38px;
     height: 38px;
@@ -730,7 +721,6 @@ const EditButton = styled.button`
   width: 167px;
   height: 40px;
   cursor: pointer;
-
   font-family: notosans_regular;
   font-size: 18px;
   line-height: 150%;
@@ -755,4 +745,3 @@ const EditButton = styled.button`
 
 
 export default MatingBoardWrite;
-

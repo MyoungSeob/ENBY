@@ -109,7 +109,9 @@ const Container = styled.div`
 const ProfileBox = styled.div`
 height : 319px;
 padding-top : 121px;
-
+@media (max-width: 600px) {
+  height: 180px;
+}
 @media (min-width: 600px) and (max-width: 1170px) {
   margin-left: 20px;
 }

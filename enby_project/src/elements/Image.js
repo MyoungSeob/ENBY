@@ -168,7 +168,6 @@ const Moimcontents = styled.div`
   @media (min-width: 600px) and (max-width: 1170px) {
     max-width: 1024px;
     width: 100%;
-    background-size: fit;
   }
 `;
 const MoimcontentsDeadline = styled.div`

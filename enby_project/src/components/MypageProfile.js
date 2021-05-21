@@ -34,10 +34,9 @@ const Container = styled.div`
     height : 417px;
     margin : 0 auto 0 auto;
     padding-top : 23px;
-
     @media (max-width: 600px) {
       height: 210px;
-      padding-top: 80px;
+      // padding-top: 80px;
       overflow-y: hidden;
     }
 `
@@ -51,7 +50,6 @@ opacity : none;
 `
 const TitleBox = styled.div`
   margin-top: -28px;
-
 `
 const Title = styled.h1`
     margin : 0;
@@ -80,10 +78,15 @@ const Profile = styled.img`
     @media (max-width: 600px) {
       width: 60px;
       height: 60px;
+      margin-top: -26px;
     }
 `
 const ProfileContents = styled.div`
     margin : 5px 0 0 26px;
+    @media (max-width: 600px) {
+      margin-top: -20px;
+      margin-left: 16px;
+    }
 `
 const Welcome = styled.h2`
     margin : 0;

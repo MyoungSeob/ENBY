@@ -54,10 +54,13 @@ const MatingBoardWrite = (props) => {
     const timezoneOffset = date.getTimezoneOffset() * 60000;
     const timezoneDate = new Date(date - timezoneOffset);
     const finalDate = timezoneDate.toISOString();
-    const meetTime = finalDate.split(".")[0];
+    const meetTime =  is_edit? _post.meetTime : finalDate.split(".")[0];
     const deadline_status = "false";
     // {setMeetTime(finalMeetTime)};
+    console.log();
+    const editDate = () => {
 
+    }
 
 
     function onchange(value, dateString) {
@@ -201,7 +204,7 @@ const MatingBoardWrite = (props) => {
                     {_post ? (
                       <Cal
                       label="날짜시간"
-                      value={_post.meetTime}
+                      // value={_post.meetTime}
                       selected={date}
                       onChange={(date) => {setDate(date)}}
                       showTimeSelect
@@ -214,7 +217,7 @@ const MatingBoardWrite = (props) => {
                     ) : (
                       <Cal
                       label="날짜시간"
-                      value={date}
+                      // value={date}
                       selected={date}
                       onChange={(date) => {setDate(date);}}
                       showTimeSelect

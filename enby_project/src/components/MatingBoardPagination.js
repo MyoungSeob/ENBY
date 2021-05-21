@@ -22,13 +22,13 @@ const MatingBoardPagination = (props) => {
   const [deadlinepage, setDeadlinePage] = React.useState(1);
   const isHandleChange = (event, value) => {
     setDeadlinePage(value);
-    props.paginate(value);
+    props.deadPaginate(value);
     window.scrollTo({ top: 850, left: 0, behavior: "smooth" });
   };
   const [notDeadlinepage, setNotDeadlinePage] = React.useState(1);
   const isNotHandleChange = (event, value) => {
     setNotDeadlinePage(value);
-    props.paginate(value);
+    props.notDeadPaginate(value);
     window.scrollTo({ top: 850, left: 0, behavior: "smooth" });
   };
   const countPage =

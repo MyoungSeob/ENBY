@@ -11,7 +11,7 @@ import PagingMating from '../components/Pagination';
 const OthersMypage = (props) => {
 
   const dispatch = useDispatch();
-
+  console.log(props)
   useEffect(() => {
     const otherName = props.match.params.name;
     dispatch(userActions.getOtherPageDB(otherName));
@@ -19,7 +19,7 @@ const OthersMypage = (props) => {
 
   const write_list = useSelector((store) => store.user.other_write);
   const other_list = useSelector((store) => store.user.other_page);
-
+  console.log(other_list)
   // pagination
     // const [Posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);

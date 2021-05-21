@@ -90,7 +90,7 @@ const LogoBox = styled.div`
   float : left;
   width: 199px;
   height: 68px;
-  margin-top : 11px;
+  margin-top : 14px;
  
   @media (min-width: 600px) and (max-width: 1170px) {
     margin-left: 21.5px;

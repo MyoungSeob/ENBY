@@ -38,6 +38,8 @@ const Container = styled.div`
   height: 300px;
   background-color: #f6fbff;
   display: flex;
+  position : relative;
+  z-index : 100;
   @media (min-width: 600px) and (max-width: 1170px) {
     
   }
@@ -61,35 +63,38 @@ const FooterTitle = styled.div`
 `;
 const TitleBox = styled.div`
   display: flex;
-  width: 289px;
-  height: 39px;
+  width: 199px;
+  height: 68px;
   @media (min-width: 600px) and (max-width: 1170px) {
     // margin-left: 100px;
     width: 200px;
   }
 `;
 const Title = styled.img`
-  width: 168px;
-  height: 58px;
+  width: 199px;
+  height: 68px;
   cursor: pointer;
+  margin-bottom : 10px;
   @media (min-width: 600px) and (max-width: 1170px) {
   }
 
   @media (max-width: 600px) {
     font-size: 28px;
-    margin: auto 50px;
+    margin: auto 12.5px;
   }
 `;
 const IconBox = styled.div`
   float: right;
   text-align: right;
   margin: 0 0 0 auto;
+  padding-top : 15px;
   @media (min-width: 600px) and (max-width: 1170px) {
     // margin-right: 160px;
   }
   @media (max-width: 600px) {
     display: flex;
-    margin: auto 50px;
+    margin-right:12.5px;
+    padding-top : 20px;
     
   }
 `;

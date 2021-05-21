@@ -131,6 +131,7 @@ const getOtherPageDB =(otherName)=>{
     })
     .then(res => {
       const other_list = [...res.data];
+      console.log(other_list)
       const other_write = [];
       const other_page = [];
       const other_attend = [];

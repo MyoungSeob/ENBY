@@ -17,6 +17,7 @@ import PermitApplyList from "../components/PermitApplyList";
 import ReviewBox from "../components/ReviewBox";
 import Loading from "../components/Loading";
 import { useMediaQuery } from "react-responsive";
+import swal from 'sweetalert';
 
 const MatingDetail = (props) => {
   //반응형
@@ -59,7 +60,7 @@ const MatingDetail = (props) => {
         switch (value) {
           case "yes":
             dispatch(postActions.deletePostDB(id));
-            swal("삭제 완료!", "", "success");
+            swal("", "삭제 되었습니다!", "success");
             break;
         }
       })

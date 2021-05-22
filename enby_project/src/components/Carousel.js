@@ -61,7 +61,7 @@ const Carousel = (props) => {
             </WhiteTitle>
             <WhiteComment>
               <Comment>
-                등산이 낮선 당신을 위한 메이팅 서비스입니다. <br />
+                등산과는 거리가 먼 당신을 위한 메이팅 서비스입니다. <br />
                 새로운 모임을 만들거나 신청하고, <br />
                 등산 후 당신의 즐거웠던 시간을 공유해보세요!
               </Comment>
@@ -168,7 +168,7 @@ const WhiteComment = styled.div`
     padding-left : 35px;
   }
   @media (max-width: 600px) {
-    padding-left: 21px;
+    padding-left: 15px;
   }
 `;
 const ScrollButton = styled.img`
@@ -198,7 +198,7 @@ const Comment = styled.p`
     font-size : 13px;
   }
   @media (max-width: 600px) {
-    font-size: 12px;
+    font-size: 10px;
   }
 `;
 

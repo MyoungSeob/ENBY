@@ -146,7 +146,7 @@ const addPostDB = (title, contents, boardImg, location, meetTime, people_max, de
 
         axios(DB)
             .then(() => {
-              swal("등록완료 되었습니다😊");
+              swal("", "등록완료 되었습니다😊", "success");
                 history.push("/board/mating");
             })
             .catch((err) => {
@@ -215,7 +215,7 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime, peop
         }
       })
         .then(() => {
-          swal('게시글이 수정되었습니다.')
+          swal("", "게시글이 수정되었습니다.", "success");
             history.push('/')
         })
         .catch((err) => {
@@ -295,8 +295,8 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime, peop
       };
       axios(DB)
         .then(() => {
-          swal("등록 완료 되었습니다😍");
-            history.push("/board/review");
+          swal("", "등록완료 되었습니다😊", "success");
+          history.push("/board/review");
         })
         .catch((err) => {
           if (err.response.status === 403) {
@@ -333,7 +333,8 @@ const editReviewDB =(review_id, board_id, title, contents, reviewImg)=>{
             data : formData,            
         })
         .then(res => {
-            window.alert(res.data)
+          swal("", "게시글이 수정되었습니다.", "success");
+          // swal(res.data)
             history.replace('/board/review')
         })
         .catch((err) => {

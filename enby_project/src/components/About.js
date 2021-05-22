@@ -65,6 +65,9 @@ font-family : notosans_regular;
 white-space : pre-wrap;
 @media (max-width: 600px) {
   font-size: 13px;
+  width : 350px;
+  overflow : hidden;
+  text-overflow: ellipsis;
  }
 `
 

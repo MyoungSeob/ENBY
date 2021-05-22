@@ -7,6 +7,7 @@ import {actionsCreators as postActions} from "../redux/modules/post"
 import Header from '../components/Header'
 import upload from '../shared/image/upload.png'
 import { useMediaQuery } from "react-responsive";
+import swal from 'sweetalert';
 
 // DatePicker
 import DatePicker from "react-datepicker";
@@ -42,23 +43,25 @@ const MatingBoardWrite = (props) => {
     const [boardImg, setImage] = useState(_post? post_img : null);
 
     const [location, setLocation] = useState(_post? _post.location : "");
-    // const [meetTime, setMeetTime] = useState(_post? _post.meetTime : null);
+    // const [meetTime, setMeetTime] = useState(_post? _post.meetTime : finalDate.split(".")[0]);
     const [people_max, setPeople_max] = useState(_post? _post.people_max : "");
     
-    // 이미지 추가 미리보기`
+    // 이미지 추가 미리보기
     const preview = useSelector((state) => state.image.preview);
     const fileInput = useRef();
     const dispatch = useDispatch();
     // 날짜, 시간 가져오기(datepicker) => input받은 날짜,시간 형식 변경
     
     const [date, setDate] = useState(new Date());
+    const [dateEdit, setDateEdit] = useState(false);
     const timezoneOffset = date.getTimezoneOffset() * 60000;
     const timezoneDate = new Date(date - timezoneOffset);
     const finalDate = timezoneDate.toISOString();
-    const meetTime = is_edit? _post.meetTime : finalDate.split(".")[0];
+    
+    const [meetTime, setMeetTime] = useState(_post? _post.meetTime : finalDate.split(".")[0]);
+    // const meetTime = is_edit? _post.meetTime : finalDate.split(".")[0];
     const deadline_status = "false";
     // {setMeetTime(finalMeetTime)};
-
 
 
     function onchange(value, dateString) {
@@ -90,7 +93,6 @@ const MatingBoardWrite = (props) => {
       setPeople_max(getCount)
     }
 
-
     const EditPreview=()=>{
       if(boardImg === _post.board_imgUrl){
         return boardImg
@@ -105,24 +107,66 @@ const MatingBoardWrite = (props) => {
         return boardImg
       }
     }
+    const editDate=()=>{
+      if( dateEdit === false){
+        return meetTime
+      }else{
+        const timezoneOffset = date.getTimezoneOffset() * 60000;
+        const timezoneDate = new Date(date - timezoneOffset);
+        const finalDate = timezoneDate.toISOString();
+
+        return finalDate.split(".")[0]
+      }
+    }
+    const editDateView =()=>{
+      if( dateEdit === false){
+        const alrightMeetTime =
+        meetTime.split("T")[0].split("-")[0] +
+          "/" +
+          meetTime.split("T")[0].split("-")[1] +
+          "/" +
+          meetTime.split("T")[0].split("-")[2] +
+          " " +
+          meetTime.split("T")[1].split(":")[0] +
+          ":" +
+          meetTime.split("T")[1].split(":")[1];
+        return alrightMeetTime
+      }else{
+        const timezoneOffset = date.getTimezoneOffset() * 60000;
+        const timezoneDate = new Date(date - timezoneOffset);
+        const finalDate = timezoneDate.toISOString();
+        const alrightMonth =
+          finalDate.split(".")[0].split("T")[0].split("-")[0] +
+          "/" +
+          finalDate.split(".")[0].split("T")[0].split("-")[1] +
+          "/" +
+          finalDate.split(".")[0].split("T")[0].split("-")[2] +
+          " " +
+          finalDate.split(".")[0].split("T")[1].split(":")[0] +
+          ":" +
+          finalDate.split(".")[0].split("T")[1].split(":")[1];
+
+        return alrightMonth
+      }
+    }
     // const editDate=()=>{
     //   if(_post.meetTime === )
     // }
     const addPost = () => { 
       if(title === ""){
-        window.alert("제목을 입력해주세요")
+        swal("제목을 입력해주세요")
         return
       }
       if(contents === ""){
-        window.alert("모집 내용을 입력해주세요")
+        swal("모집 내용을 입력해주세요")
         return
       }
       if(meetTime === ""){
-        window.alert("만나실 시간을 입력해주세요")
+        swal("만나실 시간을 입력해주세요")
         return
       }
       if(people_max === ""){
-        window.alert("인원수를 입력해주세요")
+        swal("인원수를 입력해주세요")
         return
       }else{
         dispatch(postActions.addPostDB(title, contents, boardImg, location, meetTime, people_max));
@@ -130,7 +174,7 @@ const MatingBoardWrite = (props) => {
       
     };
     const editPost= () => {
-      dispatch(postActions.editPostDB(post_id, title, contents, editImage(), location, meetTime, people_max));
+      dispatch(postActions.editPostDB(post_id, title, contents, editImage(), location, editDate(), people_max));
     };
 
     
@@ -164,22 +208,25 @@ const MatingBoardWrite = (props) => {
     
     return (
       <Container>
-        {!isDesktop? 
-        (<HeadContainer>
-          <Head>
-            <SubTitle1>Be Connected with SANTA!</SubTitle1>
-            <Title>모임글 작성하기</Title>
-          </Head>
-        </HeadContainer>)
-          : ("")}
-          <Test>
-            <TitleBox>
-              {/* {!isMobile?
+        {!isDesktop ? (
+          <HeadContainer>
+            <Head>
+              <SubTitle1>Be Connected with SANTA!</SubTitle1>
+              <Title>모임글 작성하기</Title>
+            </Head>
+          </HeadContainer>
+        ) : (
+          ""
+        )}
+        <Test>
+          <TitleBox>
+            {/* {!isMobile?
               (<InputGrid>
                 <InputBox
                   label="제목"
                   value={title}
                   onChange={(e) => {
+
                     setTitle(e.target.value);}}
                   placeholder="제목을 입력하세요"
                 />
@@ -196,7 +243,7 @@ const MatingBoardWrite = (props) => {
                     작성하기
                   </PostButton>
                 )} */}
-              {/* </InputGrid>):(
+            {/* </InputGrid>):(
                 <InputBox
                   label="제목"
                   value={title}
@@ -205,117 +252,122 @@ const MatingBoardWrite = (props) => {
                   placeholder="제목을 입력하세요"
                 />
               )} */}
-              <InputGrid>
-                <InputBox
-                  label="제목"
-                  value={title}
-                  onChange={(e) => {
-                    setTitle(e.target.value);}}
-                  placeholder="제목을 입력하세요"
-                />
-              </InputGrid>
-              <DetailGrid>
-                <DateContainer>
-                    <Icon src={require("../shared/image/calendaredit.png").default}/>
-                    {_post ? (
-                      <Cal
-                      label="날짜시간"
-                      value={meetTime}
-                      selected={date}
-                      onChange={(date) => {setDate(date)}}
-                      showTimeSelect
-                      timeFormat="HH:mm"
-                      timeIntervals={15}
-                      timeCaption="time"
-                      dateFormat="yyyy/MM/dd h:mm aa"
-                      placeholderText="모임 날짜/시간"
-                    />
-                    ) : (
-                      <Cal
-                      label="날짜시간"
-                      value={date}
-                      selected={date}
-                      onChange={(date) => {setDate(date);}}
-                      showTimeSelect
-                      timeFormat="HH:mm"
-                      timeIntervals={15}
-                      timeCaption="time"
-                      dateFormat="yyyy/MM/dd h:mm aa"
-                      placeholderText="모임 날짜/시간"
-                    />
-                    )}
-                  </DateContainer>
-                <Place>
-                  <Icon_ src={require("../shared/image/place.png").default}/>
-                  <Location
-                    label="장소"
-                    value={location}
-                    onChange={(e) => {
-                      setLocation(e.target.value);}}
-                    placeholder="등산할 산 이름이나 간략한 목표 지점을 적어주세요."
-                  />
-                </Place>
-                <People>
-                <Icon_ src={require("../shared/image/person.png").default}/>
-                  <MaxPeople
-                    label="인원"
-                    name = "countPeople"
-                    id = "countPeople"
-                    onChange={selectHandler}
-                    placeholder="인원"
-                  >
-                    <option value="">총 인원 수 선택</option>
-                    <option value="2">2명</option>
-                    <option value="3">3명</option>
-                    <option value="4">4명</option>
-                  </MaxPeople>
-              </People>
-              </DetailGrid>
-            </TitleBox>                
-              
-            <ContentsBox>
-              <ImageBox>
-              {is_upload()}
-                <Image
-              onChange={selectFile}
-              placeholder="사진을 추가해주세요"
-              id='boardImage'
-              ref={fileInput}
-              type='file'
-              src={_post? EditPreview : preview}
+            <InputGrid>
+              <InputBox
+                label="제목"
+                value={title}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+                placeholder="제목을 입력하세요"
               />
-              </ImageBox>
-              <TextBox>
-                <TextBox2>
-                  <ContentsH>About</ContentsH>
-                </TextBox2>
+            </InputGrid>
+            <DetailGrid>
+              <DateContainer>
+                <Icon
+                  src={require("../shared/image/calendaredit.png").default}
+                />
+                {_post ? (
+                  <Cal
+                    label="날짜시간"
+                    value={editDateView()}
+                    selected={date}
+                    onChange={(date) => {
+                      setDate(date);
+                      setDateEdit(true);
+                    }}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    timeCaption="time"
+                    dateFormat="yyyy/MM/dd h:mm aa"
+                    placeholderText="모임 날짜/시간"
+                  />
+                ) : (
+                  <Cal
+                    label="날짜시간"
+                    value={date}
+                    selected={date}
+                    onChange={(date) => {
+                      setDate(date);
+                    }}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    timeCaption="time"
+                    dateFormat="yyyy/MM/dd h:mm aa"
+                    placeholderText="모임 날짜/시간"
+                  />
+                )}
+              </DateContainer>
+              <Place>
+                <Icon_ src={require("../shared/image/place.png").default} />
+                <Location
+                  label="장소"
+                  value={location}
+                  onChange={(e) => {
+                    setLocation(e.target.value);
+                  }}
+                  placeholder="등산할 산 이름이나 간략한 목표 지점을 적어주세요."
+                />
+              </Place>
+              <People>
+                <Icon_ src={require("../shared/image/person.png").default} />
+                <MaxPeople
+                  label="인원"
+                  name="countPeople"
+                  id="countPeople"
+                  onChange={selectHandler}
+                  placeholder="인원"
+                >
+                  <option value="">총 인원 수 선택</option>
+                  <option value="2">2명</option>
+                  <option value="3">3명</option>
+                  <option value="4">4명</option>
+                </MaxPeople>
+              </People>
+            </DetailGrid>
+          </TitleBox>
+
+          <ContentsBox>
+            <ImageBox>
+              {is_upload()}
+              <Image
+                onChange={selectFile}
+                placeholder="사진을 추가해주세요"
+                id="boardImage"
+                ref={fileInput}
+                type="file"
+                src={_post ? EditPreview : preview}
+              />
+            </ImageBox>
+            <TextBox>
+              <TextBox2>
+                <ContentsH>About</ContentsH>
+              </TextBox2>
               <Contents
                 label="내용"
                 value={contents}
                 onChange={(e) => {
-                  setContents(e.target.value);}}
+                  setContents(e.target.value);
+                }}
                 placeholder="모임을 모집하기 위한 내용을 작성해주세요.&#13;&#13;&#10;등산 목표, 일정, 준비물 ,선호 사항 등의 정보를 알려주시면, 신청하시는 메이트에게 더 큰 도움이 될거에요!
                 "
               />
-              </TextBox>
-            </ContentsBox>
+            </TextBox>
+          </ContentsBox>
           {/* {isMobile? */}
-           {/* ( */}
+          {/* ( */}
+          <EditBox>
             {_post ? (
-            <EditButton
-              onClick={editPost}
-            >
-              수정하기
-            </EditButton>
-          ) : (
-            <PostButton
-              onClick={addPost}
-            >
-              작성하기
-            </PostButton>)}
-           {/* )) : ("") } */}
+              <EditButton onClick={editPost}>수정하기</EditButton>
+            ) : (
+              <PostButton onClick={addPost}>작성하기</PostButton>
+            )}
+            {/* )) : ("") } */}
+          </EditBox>
         </Test>
-      </Container>       
+      </Container>
     );
 }
 
@@ -360,10 +412,12 @@ const SubTitle1 = styled.div`
 
 const Title = styled.div`
     height: 37px;
+
     font-family: seravek;
     font-weight: bold;
     font-size: 32px;
     line-height: 46px;
+
     color: #000000;
     @media (max-width: 600px) {
       font-size: 28px;
@@ -484,8 +538,10 @@ const Place = styled.div`
 
 const Location = styled.input`
 padding: 6px 20px;
+
 width: 328px;
 height: 39px;
+
 background: #FFFFFF;
 border: 1px solid #B9B9B9;
 box-sizing: border-box;
@@ -504,6 +560,7 @@ const People = styled.div`
 `;
 const MaxPeople = styled.select`
 // padding: 10px 20px 0 20px;
+
 width: 333px;
 height: 39px;
 padding: 6px 20px 6px;
@@ -579,6 +636,7 @@ const TextBox2 = styled.div`
   margin: auto;
   @media (max-width: 600px) {
     // width:300px;
+
   }
 `;
 
@@ -652,14 +710,18 @@ const ContentsH = styled.h2`
 const Contents = styled.textarea`
   display: block;
   padding: 20px 20px;
+
   width: 615px;
   height: 437px;
   margin: 33px 0 33px 0;
+
   background: #ffffff;
   border: 1px solid #b9b9b9;
   box-sizing: border-box;
   border-radius: 20px;
   resize : none;
+  overflow : hidden;
+  text-overflow: ellipsis;
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 450px;
     height: 320px;
@@ -701,7 +763,24 @@ const Icon_ = styled.img`
     height:30px;
   }
 `;
-
+const EditBox = styled.div`
+  display : block;
+  width : 1200px;
+  margin : auto;
+  @media (min-width: 600px) and (max-width: 860px) {
+    width : 450px;
+    margin-top : 70px;
+  }
+  @media (min-width: 860px) and (max-width: 1170px) {
+    width : 450px;
+    margin-top : 70px;
+  }
+  @media (max-width: 600px) {
+    width : 300px;
+    font-size: 11px;
+    margin-top : 200px;
+  }
+`
 const PostButton = styled.button`
   background: #168ED9;
   border-radius: 20px;
@@ -715,21 +794,19 @@ const PostButton = styled.button`
   font-size: 18px;
   line-height: 150%;
   color: #FFFFFF;
-  float: right;
+  float : right;
   // margin-bottom: 40px;
-  margin-right: 120px;
   @media (min-width: 600px) and (max-width: 860px) {
     margin: 30px 160px 40px 0;
   }
   @media (min-width: 860px) and (max-width: 1170px) {
-    margin: 30px 290px 40px 0;
     float: right;
   }
   @media (max-width: 600px) {
     width:80px;
     height:30px;
     font-size: 11px;
-    margin: 180px 140px;
+    margin : 0;
   }
   `;
 const EditButton = styled.button`
@@ -740,6 +817,7 @@ const EditButton = styled.button`
   width: 167px;
   height: 40px;
   cursor: pointer;
+  float : right;
   font-family: notosans_regular;
   font-size: 18px;
   line-height: 150%;

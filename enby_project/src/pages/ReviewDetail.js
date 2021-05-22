@@ -36,24 +36,6 @@ const ReviewDetail = (props) => {
     dispatch(postActions.getReviewDetailDB(review_id));
   }, [review_id]);
 
-  // const deletePost = () => {
-  //   swal("게시글을 삭제하시겠습니까?", {
-  //     buttons: {
-  //       cancel: "취소",
-  //       check: {
-  //         text: "확인",
-  //         value: "yes",
-  //       },
-  //   }})
-  //     .then((value) => {
-  //       switch (value) {
-  //         case "yes":
-  //           dispatch(postActions.deletePostDB(id));
-  //           swal("삭제 완료!", "", "success");
-  //           break;
-  //       }
-  //     })
-  //   };
   const deletePost = () => {
     swal("게시글을 삭제하시겠습니까?", {
       buttons: {
@@ -67,7 +49,7 @@ const ReviewDetail = (props) => {
         switch (value) {
           case "yes":
             dispatch(postActions.deleteReviewDB(review_id));
-            swal("삭제 완료!", "", "success");
+            swal("","삭제 되었습니다!", "success");
             break;
         }
       })
@@ -334,11 +316,18 @@ const ContentsH = styled.h2`
     font-size: 21px;
    }
 `;
-const Contents = styled.div``;
+const Contents = styled.div`
+width : 639px;
+height : 437px;
+overflow : auto;
+text-overflow: ellipsis;
+`;
 const ContentsP = styled.p`
   font-family: notosans_regular;
   font-size: 18px;
   margin: 0;
+  white-space : pre-wrap;
+
   @media (max-width: 600px) {
     font-size: 13px;
     margin-top: -30px;

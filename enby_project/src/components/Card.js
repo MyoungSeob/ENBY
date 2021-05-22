@@ -9,7 +9,8 @@ import Image from "../elements/Image";
 import swal from 'sweetalert';
 
 const Card = (props) => {
-  // 이 카드의 정보들을 이용하여 카드를 눌렀을 때 게시글 상세, 후기글 작성으로 이동할 수 있도록 해주는 코드입니다.
+  console.log(props)
+  // 이 카드의 정보들을 이용하여 카드를 눌렀을 때 게시글 상세, 후기글 게시판으로 이동 및 마감된 글을 알려주는 알림을 할 수 있도록 해주는 코드입니다.
   const move_page = () => {
     if(props.deadlineStatus === true){
       swal("이미 모집이 마감된 게시글입니다.")
@@ -19,7 +20,18 @@ const Card = (props) => {
       return;
     }
     if (props.board_name === "참석한 모임") {
-      history.push("/review/write/" + `${props.id}`);
+      swal("후기글 작성은 후기글 게시판에서 작성 가능합니다! 이동하시겠어요?",{      
+          buttons : {
+            cancel : "🤔 여기 있을래요!",
+            ok : "😆 이동할래요!"
+          }
+      })
+      .then((value)=>{
+        switch(value) {
+          case "ok" :
+            history.push('/board/review');
+        }
+      });
       return;
     }
     if (!props.board_name) {
@@ -27,21 +39,10 @@ const Card = (props) => {
       history.push(`/board/mating/${props.id}`);
     }
   };
-  // 카드에 들어가는 버튼의 내용을 카드에 내려오는 정보를 이용하여 상황에 따라 다르게 나타내도록 하는 코드입니다.
-  const view = (board_name) => {
-    if (board_name === "신청한 모임") {
-      return <ApplyButton>더보기</ApplyButton>;
-    }
-    if (board_name === "참석한 모임") {
-      return <ApplyButton>후기 남기기</ApplyButton>;
-    }
-    if (!board_name) {
-      return <ApplyButton>더보기</ApplyButton>;
-    }
-  };
 
   return (
     <CardGrid onClick={move_page}>
+      {/* 마감이 되었다면 흑백효과 및 "마감되었습니다." 라는 문구가 나오도록 하였습니다. */}
       {props.deadlineStatus === true ? (
         <ImageGrid>
           <Image shape="deadlinecard" src={props.board_imgUrl} />
@@ -52,16 +53,10 @@ const Card = (props) => {
       ) : (
         <CardImage src={props.board_imgUrl} />
       )}
-
       <CardTit>
         <CardTitH>{props.title}</CardTitH>
       </CardTit>
       <CardDetail {...props} />
-      {/* <CardButton>
-        <ApplyButton>
-          {view(props.board_name)}
-        </ApplyButton>
-      </CardButton> */}
     </CardGrid>
   );
 };

@@ -1,3 +1,4 @@
+// MatingDetail에서 리뷰카드들이 들어있는 컴포넌트입니다.
 import React, { useEffect, useState } from 'react';
 import {useSelector} from 'react-redux';
 import styled from 'styled-components';
@@ -6,9 +7,11 @@ import Loading from './Loading';
 import ReviewCard from './ReviewCard';
 
 const ReviewBox = (props) => {
+  // 리뷰카드 목록을 불러오는 동안 사용 될 로딩여부를 불러옵니다.
     const loading = useSelector(store => store.post.loading)
+    // redux에 저장되어있는 리뷰카드들입니다.
     const review_card_list = useSelector(store => store.post.review_card)
-    
+    // 해당 주최자가 주최했던 모임들에 대한 리뷰가 있는지 없는지에 대한 코드입니다. 있다면 카드들을 불러오고, 없다면 후기가 없다는 내용을 나타냅니다.
     const isReviewCard =()=>{
         if(review_card_list.length === 0){
             return <Notice>아직 작성된 후기가 없습니다.</Notice>
@@ -18,7 +21,7 @@ const ReviewBox = (props) => {
               })
         }
     }
-
+    // 리뷰게시판으로 이동하는 코드입니다.
     const moveReview=()=>{
       history.push('/board/review')
     }

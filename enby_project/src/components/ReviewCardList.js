@@ -1,3 +1,4 @@
+//리뷰카드들을 나열해주는 컴포넌트입니다.
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';

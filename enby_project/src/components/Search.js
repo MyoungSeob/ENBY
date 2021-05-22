@@ -1,5 +1,4 @@
-// 검색 기능 구현 시 사용 할 컴포넌트!
-
+//검색 컴포넌트입니다. 
 import React, { useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
@@ -9,6 +8,7 @@ import swal from 'sweetalert';
 const Search=(props)=> {
 
   const [text, setText] = useState("");
+  // Search 컴포넌트를 사용하는 MatingBoardSearch, ReviewBoardSearch에서 넣어주는 props의 값에 따라 해당 컴포넌트로 이동합니다.
   const search = () => {
     if (text === "") {
       swal("검색어를 입력해주세요!");
@@ -31,6 +31,7 @@ const Search=(props)=> {
             setText(e.target.value);
           }}
           value={text}
+          // 키보드의 엔터를 누를 시 해당 함수가 실행됩니다.
           onKeyPress ={
             (e) => {
               if(e.key === 'Enter'){

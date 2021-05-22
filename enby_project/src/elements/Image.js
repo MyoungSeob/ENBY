@@ -1,3 +1,4 @@
+// 배너및 카드, 게시판 사진에 들어가는  Image들의 shape에 따라 사이즈 및 효과가 다른 element 컴포넌트입니다.
 import React from 'react';
 import styled from 'styled-components';
 import image from '../redux/modules/image';

@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { actionsCreators as postActions } from "../redux/modules/post";
+// 주최자가 주최했던 모임 카드 컴포넌트입니다. MatingDetail의 자식컴포넌트입니다.
+import React from "react";
 import { history } from "../redux/configStore";
 
 import styled from "styled-components";
 
 const ReviewCard = (props) => {
+  //해당 리뷰들로 이동합니다.
   const move_page = () => {
     history.push(`/board/review/${props.review_id}`);
   };

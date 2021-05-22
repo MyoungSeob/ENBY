@@ -1,3 +1,4 @@
+// 마이페이지 컴포넌트입니다.
 import React from 'react';
 import styled from 'styled-components';
 

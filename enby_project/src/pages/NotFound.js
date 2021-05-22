@@ -1,3 +1,4 @@
+// 사용자가 올바르지 않은 페이지로 이동했을 때 보여주는 404페이지 컴포넌트입니다.
 import React from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configStore';

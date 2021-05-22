@@ -9,10 +9,11 @@ import {actionsCreators as postActions} from '../redux/modules/post'
 const CardList =(props)=>{
     const dispatch = useDispatch();
 
-    const post_list = useSelector((store) => store.post.list)
+    // const post_list = useSelector((store) => store.post.list)
     useEffect(()=>{
         dispatch(postActions.getPostMainDB())
     }, [dispatch])
+    // 해당 컴포넌트가 사용되는 곳 중 MatingBoard에서의 props의 값에 따라 해당 카드리스트가 나열이 됩니다.
     const showReviewCard=()=>{
         if(props.allMoim){
             return (props.all_post_list.map((p)=>{

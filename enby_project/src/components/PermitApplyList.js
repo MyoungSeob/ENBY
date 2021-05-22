@@ -1,3 +1,4 @@
+// 주최자가 보는 참여 신청자들의 목록 컴포넌트입니다.
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -10,10 +11,12 @@ const PermitApplyList = (props) => {
   const detail_list = useSelector((store) => store.post.detail_list);
   const regist_list = useSelector((store) => store.post.apply_list);
   const id = detail_list.id;
-
+  //마감하기 코드
   const apply_deadline = () => {
     dispatch(applyActions.ApplyDeadlineDB(id));
   };
+
+  //마감 했을 때와 하지 않았을 경우의 뷰입니다.
   const deadline_view = () => {
     if (detail_list.deadlineStatus) {
       return <DidDeadLineBtn>이미 마감했습니다</DidDeadLineBtn>;
@@ -25,7 +28,7 @@ const PermitApplyList = (props) => {
   if (localStorage.getItem("token") !== null) {
     const token = localStorage.getItem("token");
     const decode = jwt_decode(token);
-
+    //신청 목록 중 자신의 이름을 제외한 다른 신청자들을 regist라는 배열에 push했습니다.
     const regist = [];
     for (let i = 0; i < regist_list.length; i++) {
       if (regist_list[i].nickname !== decode.nickname) {
@@ -34,18 +37,23 @@ const PermitApplyList = (props) => {
     }
     return (
       <Container>
-        <Title>
-          <ApplyTit>Application</ApplyTit>
-          {regist.length >= 1 ? deadline_view() : ""}
-        </Title>
-        {regist.length < 1 ? (
-          <Notice>
-            <NoticeTit>아직 신청한 사람이 없습니다.</NoticeTit>
-          </Notice>
+        {/* 자신 외에 신청한 인원이 1명 이상일 경우 마감을 할 수 있는 뷰, 1명도 없다면 아직 신청한 사람이 없다는 뷰를 보여줍니다. */}
+        
+        {regist.length >= 1 ? (
+          <Title>
+            <ApplyTit>Application</ApplyTit>
+            {deadline_view()}
+          </Title>
         ) : (
-          ""
+          <>
+            <Title>
+              <ApplyTit>Application</ApplyTit>
+            </Title>
+            <Notice>
+              <NoticeTit>아직 신청한 사람이 없습니다.</NoticeTit>
+            </Notice>
+          </>
         )}
-
         {regist.map((p) => {
           return <PermitApply key={p.id} {...p} />;
         })}

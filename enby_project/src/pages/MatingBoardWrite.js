@@ -58,12 +58,12 @@ const MatingBoardWrite = (props) => {
     const timezoneDate = new Date(date - timezoneOffset);
     const finalDate = timezoneDate.toISOString();
     
-    const [meetTime, setMeetTime] = useState(_post? _post.meetTime : finalDate.split(".")[0]);
-    // const meetTime = is_edit? _post.meetTime : finalDate.split(".")[0];
+    // const [meetTime, setMeetTime] = useState(_post? _post.meetTime : finalDate.split(".")[0]);
+    const meetTime = is_edit? _post.meetTime : finalDate.split(".")[0];
     const deadline_status = "false";
     // {setMeetTime(finalMeetTime)};
-
-
+    console.log(_post);
+    console.log(meetTime);
     function onchange(value, dateString) {
     }
 
@@ -455,6 +455,9 @@ const InputBox = styled.input`
   border: 1px solid #b9b9b9;
   box-sizing: border-box;
   border-radius: 20px;
+  &:focus {
+    outline: none;
+  }
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 700px;
     margin: auto;
@@ -547,6 +550,9 @@ border: 1px solid #B9B9B9;
 box-sizing: border-box;
 border-radius: 20px;
 margin-right: 30px;
+&:focus {
+  outline: none;
+}
 @media (min-width: 600px) and (max-width: 1170px) {
   width: 180px;
 }
@@ -836,7 +842,7 @@ const EditButton = styled.button`
     width:80px;
     height:30px;
     font-size: 11px;
-    margin: 180px 140px;
+    margin : 0;
   }
 `;
 

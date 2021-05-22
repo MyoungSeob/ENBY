@@ -398,6 +398,9 @@ const InputBox = styled.input`
   border: 1px solid #b9b9b9;
   box-sizing: border-box;
   border-radius: 20px;
+  :focus {
+    outline: none;
+  }
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 600px;
     margin: auto;
@@ -471,6 +474,9 @@ const Contents = styled.textarea`
   border-radius: 20px;
   resize : none;
   margin-right: 120px;
+  :focus {
+    outline: none;
+  }
   @media (min-width: 600px) and (max-width: 1170px) {
     width: 450px;
     height: 320px;

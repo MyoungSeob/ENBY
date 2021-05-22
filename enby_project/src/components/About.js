@@ -55,6 +55,11 @@ const AboutContents = styled.div`
      height : 437px;
      overflow : auto;
      text-overflow: ellipsis;
+     @media (min-width: 600px) and (max-width: 1170px) {
+      width: 350px;
+      margin-top: -30px;
+      margin-left: -10px;
+    }
      @media (max-width: 600px) {
       height : auto;
      }

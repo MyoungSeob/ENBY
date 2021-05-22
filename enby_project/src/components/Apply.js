@@ -298,6 +298,7 @@ const ApplyButton = styled.button`
   padding-bottom: 2px;
   cursor: pointer;
   @media (min-width: 600px) and (max-width: 1170px) {
+    
   }
   @media (max-width: 600px) {
     width: 60px;

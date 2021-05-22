@@ -330,7 +330,7 @@ const ContentsP = styled.p`
 
   @media (max-width: 600px) {
     font-size: 13px;
-    margin-top: -30px;
+    // margin-top: -30px;
    }
 `;
 const EditButton = styled.div`

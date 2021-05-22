@@ -13,7 +13,6 @@ import {actionsCreators as postActions} from '../redux/modules/post'
 import jwt_decode from 'jwt-decode';
 import { useMediaQuery } from "react-responsive";
 import swal from 'sweetalert';
-
   
 function ReviewBoard() {  
     // 반응형 구현
@@ -28,7 +27,7 @@ function ReviewBoard() {
      const dispatch = useDispatch();
      const apply_list = useSelector((store) => store.user.attend_list)
      const wroteReviewList = useSelector((store) => store.post.needWrite_list)
-     const empty_list = apply_list.length === 0? true : false;
+     const empty_list = wroteReviewList.length === 0? true : false;
     // Modal  
     const [ modalOpen, setModalOpen ] = useState(false);
     const openModal = () => {
@@ -44,7 +43,27 @@ function ReviewBoard() {
         setModalOpen(false);
     }
     
-
+    const move_page = () => {
+      history.push("/board/mating");
+    }
+    const emptySwal = () => {
+      
+      empty_list ? 
+        swal ("현재 후기를 남길 모임이 없어요🥲")
+        // {buttons: {
+        //   check: {
+        //     text: "모임 구경하러 가기",
+        //     value: "yes"
+        //   },
+        // }})
+        // .then(() => {
+          // switch (value) {
+          //   case "yes":
+            // history.push("/board/mating");
+          // }); 
+         
+          : onClick={openModal}
+    }
     useEffect(() => {
         if (localStorage.getItem("token") !== null) {
           const token = localStorage.getItem("token");
@@ -127,13 +146,18 @@ function ReviewBoard() {
             <Search {...searchWhere}/>
             {isMobile ? (
               <FloatingBtn
-              onClick={openModal}>후기글<br/>작성하기</FloatingBtn>
+              onClick={ () => {
+                emptySwal()
+                }
+              }>후기글<br/>작성하기</FloatingBtn>
             ) : (
             <ButtonBox>
-              <Button onClick={openModal}>후기글 작성하기</Button>
+              {/* <Button onClick={openModal}>후기글 작성하기</Button> */}
+              <Button onClick={ () => {
+                emptySwal()
+              }}>후기글 작성하기</Button>
             </ButtonBox>)}
             {floatingButton()}
-            
           </Top>
           <ReviewCardList review_list={currentPosts(posts)} />
           <Pagination id ="move"
@@ -141,23 +165,16 @@ function ReviewBoard() {
             totalPosts={review_list.length}
             paginate={setCurrentPage}
           />
-          {empty_list ? (
-            <Modal open={modalOpen} close={closeModal} header="후기 작성하기">
-              현재 후기를 남길 모임이 없어요🥲 <br />
-              <button>모임 참여하러 가기!</button>
-            </Modal>
-          ) : (
-            <Modal open={modalOpen} close={closeModal} header="후기 작성하기">
-              <CardListForModal wroteReviewList={currentModalPosts(modalPosts)} />
-              <Paging>
-                <Pagination
-                  postsPerPage={modalPostsPerPage}
-                  totalPosts={wroteReviewList.length}
-                  paginate={setCurrentModalPage}
-                />
-              </Paging>
-            </Modal>
-          )}
+          <Modal open={modalOpen} close={closeModal} header="후기 작성하기">
+            <CardListForModal wroteReviewList={currentModalPosts(modalPosts)} />
+            <Paging>
+              <Pagination
+                postsPerPage={modalPostsPerPage}
+                totalPosts={wroteReviewList.length}
+                paginate={setCurrentModalPage}
+              />
+            </Paging>
+          </Modal>
         </Main>
       </Container>
     );

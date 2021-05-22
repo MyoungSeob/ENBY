@@ -17,6 +17,7 @@ import PermitApplyList from "../components/PermitApplyList";
 import ReviewBox from "../components/ReviewBox";
 import Loading from "../components/Loading";
 import { useMediaQuery } from "react-responsive";
+import swal from 'sweetalert';
 
 const MatingDetail = (props) => {
   //반응형

@@ -334,11 +334,18 @@ const ContentsH = styled.h2`
     font-size: 21px;
    }
 `;
-const Contents = styled.div``;
+const Contents = styled.div`
+width : 639px;
+height : 437px;
+overflow : auto;
+text-overflow: ellipsis;
+`;
 const ContentsP = styled.p`
   font-family: notosans_regular;
   font-size: 18px;
   margin: 0;
+  white-space : pre-wrap;
+
   @media (max-width: 600px) {
     font-size: 13px;
     margin-top: -30px;

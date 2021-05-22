@@ -39,7 +39,7 @@ const Container = styled.div`
   background-color: #f6fbff;
   display: flex;
   position : relative;
-  z-index : 100;
+  z-index : 30;
   @media (min-width: 600px) and (max-width: 1170px) {
     
   }

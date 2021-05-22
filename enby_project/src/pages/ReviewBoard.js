@@ -62,7 +62,7 @@ function ReviewBoard() {
             // history.push("/board/mating");
           // }); 
          
-          : onClick={openModal}
+          : {openModal}
     }
     useEffect(() => {
         if (localStorage.getItem("token") !== null) {

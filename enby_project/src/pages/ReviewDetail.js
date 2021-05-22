@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { actionsCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configStore";
 import { useMediaQuery } from "react-responsive";
+import swal from 'sweetalert';
 
 const ReviewDetail = (props) => {
 
@@ -22,6 +23,7 @@ const ReviewDetail = (props) => {
   const review_detail = useSelector((store) => store.post.review_detail);
   const review_createdAt = useSelector((store) => store.post.time);
   const review_id = props.match.params.id;
+  console.log(review_id);
 
   const dispatch = useDispatch();
 
@@ -29,16 +31,48 @@ const ReviewDetail = (props) => {
   // const data = review_list.id
   const createdBy = review_detail.nickname;
 
-
+  
   useEffect(() => {
     dispatch(postActions.getReviewDetailDB(review_id));
   }, [review_id]);
 
+  // const deletePost = () => {
+  //   swal("게시글을 삭제하시겠습니까?", {
+  //     buttons: {
+  //       cancel: "취소",
+  //       check: {
+  //         text: "확인",
+  //         value: "yes",
+  //       },
+  //   }})
+  //     .then((value) => {
+  //       switch (value) {
+  //         case "yes":
+  //           dispatch(postActions.deletePostDB(id));
+  //           swal("삭제 완료!", "", "success");
+  //           break;
+  //       }
+  //     })
+  //   };
   const deletePost = () => {
-    if (window.confirm("게시글을 삭제하시겠습니까?") === true) {
-      dispatch(postActions.deletePostDB(review_id));
-    }
-  };
+    swal("게시글을 삭제하시겠습니까?", {
+      buttons: {
+        cancel: "취소",
+        check: {
+          text: "확인",
+          value: "yes",
+        },
+    }})
+      .then((value) => {
+        switch (value) {
+          case "yes":
+            dispatch(postActions.deleteReviewDB(review_id));
+            swal("삭제 완료!", "", "success");
+            break;
+        }
+      })
+    };
+
 
   const dateTime =
     parseInt(time[0]) +
@@ -61,7 +95,7 @@ const ReviewDetail = (props) => {
 
       const move_edit = () => {
         if (my_name !== review_detail.nickname) {
-          window.alert("게시글 수정은 작성자만 수정할 수 있습니다.");
+          swal("게시글 수정은 작성자만 수정할 수 있습니다.");
           return;
         } else {
           history.push("/review/write/" + review_id);

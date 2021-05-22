@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import {produce} from 'immer';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import swal from 'sweetalert';
 
 
 const {Kakao} = window;
@@ -62,7 +63,7 @@ const LogoutDB =()=>{
   return function (dispatch, getState, {history}) {
     dispatch(logout());
     localStorage.removeItem("token");
-    window.alert("로그아웃 되었습니다.")
+    swal("로그아웃 되었습니다.")
     history.push('/')
     window.location.reload()
   };

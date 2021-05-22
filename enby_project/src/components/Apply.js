@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { actionsCreators as applyActions } from "../redux/modules/apply";
 import jwt_decode from "jwt-decode";
+import swal from 'sweetalert';
 
 const Apply = (props) => {
   const dispatch = useDispatch();
@@ -147,11 +148,11 @@ const Apply = (props) => {
   // 신청을 할 때, 해당 사항을 검사 후 신청을 합니다.
   const applyAttend = () => {
     if (localStorage.getItem("token") === null) {
-      window.alert("🤖신청하기는 로그인이 필요한 기능입니다");
+      swal("🤖신청하기는 로그인이 필요한 기능입니다");
       return;
     }
     if (kakaoId === "" || applyComment === "") {
-      window.alert(
+      swal(
         "연락가능한 카카오톡 아이디와 신청을 위한 한마디 모두 작성해주세요!"
       );
     } else {

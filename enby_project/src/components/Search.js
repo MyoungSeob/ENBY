@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
 import serachicon from "../shared/image/searchicon.png";
+import swal from 'sweetalert';
 
 const Search=(props)=> {
 
   const [text, setText] = useState("");
   const search = () => {
     if (text === "") {
-      window.alert("검색어를 입력해주세요!");
+      swal("검색어를 입력해주세요!");
     } else {
       if (props.where === "mating") {
         history.push(`/mating/search/${text}`);

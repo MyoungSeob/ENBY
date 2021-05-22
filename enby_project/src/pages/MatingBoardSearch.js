@@ -7,6 +7,7 @@ import Loading from "../components/Loading";
 import santa from '../shared/image/MatingBanner.png'
 import Card from "../components/Card";
 import { useMediaQuery } from "react-responsive";
+import swal from 'sweetalert';
 
 const MatingBoardSearch = (props) => {
   //반응형
@@ -34,7 +35,7 @@ const MatingBoardSearch = (props) => {
         setApi(response.data.board);
       } catch (e) {
         setError(e);
-        window.alert(error);
+        swal(error);
       }
       setLoading(false);
     };

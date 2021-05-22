@@ -3,6 +3,7 @@ import {produce} from 'immer';
 import axios from 'axios';
 import { applyMiddleware } from 'redux';
 import ReviewBoardWrite from '../../pages/ReviewBoardWrite';
+import swal from 'sweetalert';
 
 
 const GET_POST_MAIN = "GET_POST_MAIN";
@@ -145,13 +146,13 @@ const addPostDB = (title, contents, boardImg, location, meetTime, people_max, de
 
         axios(DB)
             .then(() => {
-                window.alert("등록완료 되었습니다 :)");
+              swal("등록완료 되었습니다😊");
                 history.push("/board/mating");
             })
             .catch((err) => {
               {
                 if (err.response.status === 403) {
-                  window.alert("로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏");
+                  swal("로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏");
                   history.replace('/')
                 }
               }
@@ -169,12 +170,11 @@ const deletePostDB = (id) => {
             },
           })
           .then(() => {
-            window.alert("게시글이 삭제되었습니다.");
             history.push("/");
           })
           .catch((err) => {
             if (err.response.status === 403) {
-              window.alert(
+              swal(
                 "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
               );
               history.replace("/");
@@ -215,12 +215,12 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime, peop
         }
       })
         .then(() => {
-            window.alert('게시글이 수정되었습니다.')
+          swal('게시글이 수정되었습니다.')
             history.push('/')
         })
         .catch((err) => {
           if (err.response.status === 403) {
-            window.alert(
+            swal(
               "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
             );
             history.replace("/");
@@ -295,12 +295,12 @@ const editPostDB = (post_id, title, contents, boardImg, location, meetTime, peop
       };
       axios(DB)
         .then(() => {
-            window.alert("등록 완료 되었습니다😍");
+          swal("등록 완료 되었습니다😍");
             history.push("/board/review");
         })
         .catch((err) => {
           if (err.response.status === 403) {
-            window.alert(
+            swal(
               "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
             );
             history.replace("/");
@@ -338,7 +338,7 @@ const editReviewDB =(review_id, board_id, title, contents, reviewImg)=>{
         })
         .catch((err) => {
           if (err.response.status === 403) {
-            window.alert(
+            swal(
               "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
             );
             history.replace("/");
@@ -346,6 +346,29 @@ const editReviewDB =(review_id, board_id, title, contents, reviewImg)=>{
         })
     }
 }
+
+const deleteReviewDB = (review_id) => {
+  return function (dispatch, getState, {history}) {
+    const token = localStorage.getItem("token")
+    axios
+      .delete(`http://3.36.67.251:8080/board/mating/review/`+`${review_id}`, {
+        headers : {
+          authorization: `Bearer ${token}`
+      },
+      })
+      .then(() => {
+        history.push("/");
+      })
+      .catch((err) => {
+        if (err.response.status === 403) {
+          swal(
+            "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
+          );
+          history.replace("/");
+        }
+      })
+}};
+
 const getNeedWriteRiviewAPI = ()=>{
   return function (dispatch, getState, {history}) {
     const token = localStorage.getItem("token")
@@ -423,6 +446,7 @@ const actionsCreators = {
     getReviewDetailDB,
     addReviewDB,
     editReviewDB,
+    deleteReviewDB,
     getNeedWriteRiviewAPI
 };
 

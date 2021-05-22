@@ -12,6 +12,7 @@ import {actionsCreators as userActions} from '../redux/modules/user'
 import {actionsCreators as postActions} from '../redux/modules/post'
 import jwt_decode from 'jwt-decode';
 import { useMediaQuery } from "react-responsive";
+import swal from 'sweetalert';
 
   
 function ReviewBoard() {  
@@ -35,7 +36,7 @@ function ReviewBoard() {
             setModalPosts(apply_list);
             setModalOpen(true);
         }else{
-            window.alert('후기글 작성은 로그인이 후 이용 가능합니다.')
+          swal('후기글 작성은 로그인이 후 이용 가능합니다.')
         }
         
     }

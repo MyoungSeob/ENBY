@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import {produce} from 'immer';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const ATTEND_APPLY = "ATTEND_APPLY"
 const CHECK_ATTEND = "CHECK_ATTEND"
@@ -33,12 +34,12 @@ const attendApplyDB =(id, kakaoId, applyComment)=>{
         })
           .then((res) => {
             localStorage.setItem("regist", res.data.split(':')[1])
-            window.alert("신청이 완료되었습니다.")
+            swal("신청이 완료되었습니다.")
             window.location.reload()
           })
           .catch((error) => {
           if (error.response.status === 403) {
-            window.alert(
+            swal(
               "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
             );
             history.replace("/");
@@ -61,12 +62,12 @@ const cancelApply = (id)=>{
         })
         .then(() => {
             localStorage.removeItem("regist")
-            window.alert("신청이 취소됐습니다.")
+            swal("신청이 취소됐습니다.")
             window.location.reload()
         })
         .catch((error) => {
             if (error.response.status === 403) {
-              window.alert(
+              swal(
                 "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
               );
               history.replace("/");
@@ -88,12 +89,12 @@ const acceptApplyDB =(id, register_id)=>{
             }
         })
         .then(() => {
-            window.alert("신청을 수락하셨습니다👍")
+          swal("신청을 수락하셨습니다👍")
             window.location.reload();
         })
         .catch((error) => {
             if (error.response.status === 403) {
-              window.alert(
+              swal(
                 "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
               );
               history.replace("/");
@@ -112,12 +113,12 @@ const rejectApplyDB =(id, register_id)=>{
             },
         })
         .then(res => {
-            window.alert(res.data)
+          swal(res.data)
             window.location.reload();
         })
         .catch((error) => {
             if (error.response.status === 403) {
-              window.alert(
+              swal(
                 "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
               );
               history.replace("/");
@@ -139,12 +140,12 @@ const ApplyDeadlineDB =(id)=>{
             }
         })
         .then(res => {
-            window.alert(res.data)
+          swal(res.data)
             window.location.reload()
         })
         .catch((error) => {
             if (error.response.status === 403) {
-              window.alert(
+              swal(
                 "로그인 시간이 만료되었습니다. 다시 로그인해주세요🙏"
               );
               history.replace("/");

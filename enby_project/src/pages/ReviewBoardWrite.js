@@ -9,6 +9,7 @@ import jwt_decode from "jwt-decode";
 import { history } from "../redux/configStore";
 import upload from '../shared/image/upload.png'
 import { useMediaQuery } from "react-responsive";
+import swal from 'sweetalert';
 
 const ReviewBoardWrite = (props) => {
   // 반응형 구현
@@ -89,18 +90,18 @@ const ReviewBoardWrite = (props) => {
   }
   const addReview = () => {
     if( title === "" || contents === ""){
-      window.alert("제목과 내용을 적어주세요!")
+      swal("제목과 내용을 적어주세요!")
       return;
     }
     if(reviewImg === ""){
-      window.alert('이미지를 선택해주세요!')
+      swal('이미지를 선택해주세요!')
       return;
     }
     dispatch(postActions.addReviewDB(board_id, title, contents, reviewImg));
   };
   const editReview = () => {
     if( title === "" || contents === ""){
-      window.alert("제목과 내용을 적어주세요!")
+      swal("제목과 내용을 적어주세요!")
       return;
     }else{
       dispatch(postActions.editReviewDB(id, board_id, title, contents, editReviewImage()));

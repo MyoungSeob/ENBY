@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configStore";
 import { actionsCreators as postActions } from "../redux/modules/post";
 import { useMediaQuery } from "react-responsive";
+import swal from 'sweetalert';
 
 function MatingBoard(props) {
   //반응형
@@ -100,7 +101,7 @@ function MatingBoard(props) {
     if (localStorage.getItem("token") !== null) {
       history.push(`/board/write`);
     } else {
-      window.alert("모임게시글 작성은 로그인 후 가능합니다.");
+      swal("모임게시글 작성은 로그인 후 가능합니다.");
       return;
     }
   };

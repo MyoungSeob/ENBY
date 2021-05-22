@@ -11,6 +11,7 @@ import {actionsCreators as userActions} from '../redux/modules/user'
 import Modal from '../components/Modal';
 import CardListForModal from '../components/CardListForModal';
 import Pagination from '../components/ReviewBoardPagination';
+import swal from 'sweetalert';
 
 
 const ReviewBoardSearch = (props) => {
@@ -68,7 +69,7 @@ const ReviewBoardSearch = (props) => {
           setModalPosts(apply_list);
           setModalOpen(true);
       }else{
-          window.alert('후기글 작성은 로그인이 후 이용 가능합니다.')
+        swal('후기글 작성은 로그인이 후 이용 가능합니다.')
       }
       
   }

@@ -47,10 +47,24 @@ const MatingDetail = (props) => {
   }, [id]);
 
   const deletePost = () => {
-    if (window.confirm("게시글을 삭제하시겠습니까?") === true) {
-      dispatch(postActions.deletePostDB(id));
-    }
-  };
+    swal("게시글을 삭제하시겠습니까?", {
+      buttons: {
+        cancel: "취소",
+        check: {
+          text: "확인",
+          value: "yes",
+        },
+    }})
+      .then((value) => {
+        switch (value) {
+          case "yes":
+            dispatch(postActions.deletePostDB(id));
+            swal("삭제 완료!", "", "success");
+            break;
+        }
+      })
+    };
+
   
   const none_login_editButton=()=>{
     if(localStorage.getItem("token") !== null){

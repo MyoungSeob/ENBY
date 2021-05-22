@@ -6,12 +6,13 @@ import CardDetail from "./CardDetail";
 import { generateMedia } from "styled-media-query";
 import { useMediaQuery } from "react-responsive";
 import Image from "../elements/Image";
+import swal from 'sweetalert';
 
 const Card = (props) => {
   // 이 카드의 정보들을 이용하여 카드를 눌렀을 때 게시글 상세, 후기글 작성으로 이동할 수 있도록 해주는 코드입니다.
   const move_page = () => {
     if(props.deadlineStatus === true){
-      window.alert("이미 모집이 마감된 게시글입니다.")
+      swal("이미 모집이 마감된 게시글입니다.")
     }
     if (props.board_name === "신청한 모임") {
       history.push(`/board/mating/${props.id}`);

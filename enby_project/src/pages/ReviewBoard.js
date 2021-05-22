@@ -13,6 +13,7 @@ import {actionsCreators as postActions} from '../redux/modules/post'
 import jwt_decode from 'jwt-decode';
 import { useMediaQuery } from "react-responsive";
 import swal from 'sweetalert';
+import { history } from '../redux/configStore';
   
 function ReviewBoard() {  
     // 반응형 구현
@@ -22,6 +23,7 @@ function ReviewBoard() {
     const isMobile = useMediaQuery({
       query: "(max-width: 600px)"
     });
+
 
      // 참여했던 모임
      const dispatch = useDispatch();
@@ -62,7 +64,7 @@ function ReviewBoard() {
             // history.push("/board/mating");
           // }); 
          
-          : {openModal}
+          : openModal()
     }
     useEffect(() => {
         if (localStorage.getItem("token") !== null) {

@@ -14,7 +14,7 @@ const Footer = (props) => {
     history.push('/')
   };
   const moveInsta =()=>{
-    window.location.href = "https://www.instagram.com/we.are.santa/";
+    window.location.href = "https://www.instagram.com/santamountain/";
   }
 
   return (

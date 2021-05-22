@@ -52,7 +52,7 @@ const KakaoLogin = (KakaoCode) => {
         localStorage.setItem('token', res.data)
         console.log(res)
         dispatch(login())
-        history.push('/')
+        history.replace('/')
         window.location.reload()
       })
       .catch((err) => console.log(err));
@@ -64,7 +64,7 @@ const LogoutDB =()=>{
     dispatch(logout());
     localStorage.removeItem("token");
     swal("로그아웃 되었습니다.")
-    history.push('/')
+    history.replace('/')
     window.location.reload()
   };
 };

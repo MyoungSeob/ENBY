@@ -321,13 +321,18 @@ width : 639px;
 height : 437px;
 overflow : auto;
 text-overflow: ellipsis;
+@media (min-width: 600px) and (max-width: 1170px) {
+  width: 300px;
+}
 `;
 const ContentsP = styled.p`
   font-family: notosans_regular;
   font-size: 18px;
   margin: 0;
   white-space : pre-wrap;
-
+  @media (min-width: 600px) and (max-width: 1170px) {
+    width: 300px;
+  }
   @media (max-width: 600px) {
     font-size: 13px;
     // margin-top: -30px;

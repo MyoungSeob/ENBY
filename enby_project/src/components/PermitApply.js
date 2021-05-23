@@ -19,7 +19,6 @@ const PermitApply = (props) => {
   const rejectApply = () => {
     dispatch(applyActions.rejectApplyDB(id, register_id));
   };
-
   return (
     <Container>
       <CheckBox>

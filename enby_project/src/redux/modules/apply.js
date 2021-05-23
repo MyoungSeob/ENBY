@@ -49,7 +49,7 @@ const attendApplyDB =(id, kakaoId, applyComment)=>{
     }
 }
 
-const cancelApply = (id)=>{
+const cancelApply = (id, register_id)=>{
     return function (dispatch, getState, {history}){
         const token = localStorage.getItem("token")
         const regist = localStorage.getItem("regist")
@@ -58,7 +58,7 @@ const cancelApply = (id)=>{
             headers : {
                 authorization: `Bearer ${token}`,
             },
-            url : `http://3.36.67.251:8080/board/mating/${id}/register/99`,
+            url : `http://3.36.67.251:8080/board/mating/${id}/register/${register_id}`,
         })
         .then(() => {
             localStorage.removeItem("regist")

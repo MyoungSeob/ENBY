@@ -20,7 +20,6 @@ const Apply = (props) => {
       const token = localStorage.getItem("token");
       const decodeName = jwt_decode(token).nickname;
       const regist_list = [];
-
       for (let i = 0; i < apply_list.length; i++) {
         if (apply_list[i].nickname === decodeName) {
           regist_list.push(apply_list[i]);
@@ -28,7 +27,6 @@ const Apply = (props) => {
       }
       // regist_list에는 값이 하나만 들어갈 수 있기에 첫번째를 regist로 설정하였습니다.
       const regist = regist_list[0];
-
       if (fullPerson === 1) {
         return (
           <NoticeDeadline>
@@ -159,10 +157,23 @@ const Apply = (props) => {
       dispatch(applyActions.attendApplyDB(id, kakaoId, applyComment));
     }
   };
+
   //  신청 취소 버튼입니다.
   const cancelAttend = () => {
-    dispatch(applyActions.cancelApply(id));
-  };
+    if (localStorage.getItem("token") !== null) {
+      const token = localStorage.getItem("token");
+      const decodeName = jwt_decode(token).nickname;
+      const regist_list = [];
+      for (let i = 0; i < apply_list.length; i++) {
+        if (apply_list[i].nickname === decodeName) {
+          regist_list.push(apply_list[i]);
+        }
+      }
+      // regist_list에는 값이 하나만 들어갈 수 있기에 첫번째를 regist로 설정하였습니다.
+      const regist = regist_list[0];
+      const register_id = regist.register_id;
+    dispatch(applyActions.cancelApply(id,register_id));
+  }};
   // 현재 이 모임이 마감되었을 때와 모집 중일 때의 뷰를 조건문을 이용하여 나타내었습니다. (모집 인원이 모두 모였을 때, 주최자가 마감버튼을 눌렀을 때)
 
   return (
@@ -181,7 +192,7 @@ const ApplyBox = styled.div`
   max-width: 1200px;
   width: 100%;
   @media (min-width: 600px) and (max-width: 1170px) {
-    max-width: 600px;
+    max-width: 100%;
   }
   @media (max-width: 600px) {
     margin-left: 12.5px;
@@ -212,6 +223,7 @@ const Contect = styled.div`
   @media (min-width: 600px) and (max-width: 1170px) {
     flex-direction: column;
     margin-left: 35px;
+    width: 100%;
   }
   @media (max-width: 600px) {
     flex-direction: column;
@@ -220,6 +232,9 @@ const Contect = styled.div`
 `;
 const KakaoId = styled.div`
   margin-right: 24px;
+  @media (max-width: 600px) {
+    margin-right: 0;
+  }
 `;
 const Id = styled.p`
   font-size: 18px;
@@ -300,6 +315,7 @@ const ApplyButton = styled.button`
   @media (min-width: 600px) and (max-width: 1170px) {
     
   }
+  
   @media (max-width: 600px) {
     width: 60px;
     height: 30px;
@@ -310,7 +326,9 @@ const ApplyButton = styled.button`
 const CheckBox = styled.div`
   margin-top: 34px;
   display: flex;
-  
+  @media (min-width: 600px) and (max-width: 1170px) {
+    
+  }
 `;
 const CheckMe = styled.div`
   display: flex;
@@ -349,9 +367,18 @@ const CheckH = styled.h1`
   font-family: notosans_regular;
   @media (max-width: 600px) {
     font-size: 14px;
+    margin-left: -30px;
   }
 `;
-const CheckComment = styled.div``;
+const CheckComment = styled.div`
+@media (min-width: 600px) and (max-width: 1170px) {
+    width: 300px;
+}
+@media (max-width: 600px) {
+  width: 150px;
+  margin-left: -30px;
+}
+`;
 const CheckP = styled.p`
   font-size: 18px;
   font-family: notosans_regular;

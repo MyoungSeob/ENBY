@@ -227,6 +227,7 @@ const DetailBox = styled.div`
   }
   @media (max-width: 600px) {
     margin-left: 15px;
+    margin-top: -10px;
   }
 `;
 
@@ -250,6 +251,7 @@ const TitleText = styled.h1`
   }
   @media (max-width: 600px) {
    font-size: 18px; 
+   width: 320px;
   }
 `;
 const TitleDate = styled.p`
@@ -400,7 +402,7 @@ const ApplyBox = styled.div`
   margin: auto;
   @media (min-width: 600px) and (max-width: 1170px) {
     margin-left: 35px;
-    max-width: 700px;
+    max-width: 100%;
   }
   @media (max-width: 600px) {
     width: 375px;

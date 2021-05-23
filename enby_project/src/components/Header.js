@@ -24,8 +24,8 @@ function Header() {
   // 카카오 로그인을 위한 함수입니다. 백엔드와 합의한 redirect_uri를 지정하여 주소를 입력합니다.
   const login = () => {
     window.location.href =
-      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://www.santa-mountain.com/oauth"
-      // "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://localhost:3000/oauth"
+      // "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://www.santa-mountain.com/oauth"
+      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://localhost:3000/oauth"
     };
   return (
     <Container>

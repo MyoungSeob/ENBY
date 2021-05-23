@@ -9,7 +9,6 @@ import Image from "../elements/Image";
 import swal from 'sweetalert';
 
 const Card = (props) => {
-  console.log(props)
   // 이 카드의 정보들을 이용하여 카드를 눌렀을 때 게시글 상세, 후기글 게시판으로 이동 및 마감된 글을 알려주는 알림을 할 수 있도록 해주는 코드입니다.
   const move_page = () => {
     if(props.deadlineStatus === true){

@@ -1,11 +1,12 @@
+//타인의 마이페이지 컴포넌트입니다.
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const OtherpageProfile=(props)=>{
-    
+    // 해당 유저가 참여한 목록(리뷰를 쓸 수 있는)을 불러오는 코드입니다.
     const other_attend = useSelector((store) => store.user.other_attend);
-    const otherInformation = useSelector((store) => store.user.account_information)
+
     return(
         <Container>
         <Grid>

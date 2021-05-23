@@ -1,3 +1,4 @@
+//모임게시판 컴포넌트입니다.
 import React, { useState, useEffect } from "react";
 import Image from "../elements/Image";
 import CardList from "../components/CardList";
@@ -20,14 +21,14 @@ function MatingBoard(props) {
   const isMobile = useMediaQuery({
     query: "(max-width: 600px)",
   });
+  // 화면의 height를 구하기 위해서, 해당 6가지의 값 중 최대값을 이용하여 높이를 구하였습니다.
   let scrollHeight = Math.max(
     document.body.scrollHeight, document.documentElement.scrollHeight,
     document.body.offsetHeight, document.documentElement.offsetHeight,
     document.body.clientHeight, document.documentElement.clientHeight
   );
   const dispatch = useDispatch();
-  // pagination
-  // const [allposts, setAllPosts] = useState([]);
+  //모든 모임, 마감, 모집 중 이렇게 3가지의 페이지네이션을 위한 코드들 입니다.
   const [deadlinePosts, setDeadlinePosts] = useState([]);
   const [isNotDeadlinePosts, setIsNotDeadlinePosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -35,11 +36,11 @@ function MatingBoard(props) {
   const [notDeadCurrentPage, setNotDeadCurrentPage] = useState(1);
 
   const [postsPerPage, setPostsPerPage] = useState(12);
-
+  // 모든 모임, 마감, 모집중 버튼을 누를 때마다 true,false로 변환되며 기본적으로 모든 모임이 true입니다.
   const [allMoim, setAllMoim] = useState(true);
   const [isDeadline, setIsDeadline] = useState(false);
   const [isNotDeadline, setIsNotDeadline] = useState(false);
-
+  // 3가지 버튼을 묶어주는 코드입니다.
   const selectButton = { allMoim, isDeadline, isNotDeadline };
 
   const indexOfLast = currentPage * postsPerPage;
@@ -69,6 +70,7 @@ function MatingBoard(props) {
   }
 
   useEffect(() => {
+    // 현재 모든 모임게시글들을 모집중과 마감으로 나누어 배열에 넣어주는 코드입니다.
     dispatch(postActions.getPostMainDB());
     const isRecruitment = [];
     const deadRecruitment = [];
@@ -83,20 +85,21 @@ function MatingBoard(props) {
     setDeadlinePosts(deadRecruitment);
     setIsNotDeadlinePosts(isRecruitment);
   }, [isDeadline, isNotDeadline]);
-
+  //페이지네이션 버튼을 누를 때 첫번째줄의 게시글의 위치로 스크롤이 옮겨질 수 있도록 도와주는 코드입니다.
   const [scrollPosition, setScrollPosition] = useState(0);
+  // 스크롤위치를 알 수 있는 코드입니다.
   const handleScroll = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
   };
-
+  // useEffect를 이용해서 스크롤 이벤트를 구독 및 구독취소하는 코드입니다.
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
+  // 로그인이 되어있다면 작성페이지로 이동하고, 아니라면 로그인 알러트를 띄워줍니다.
   const moveWrite = () => {
     if (localStorage.getItem("token") !== null) {
       history.push(`/board/write`);
@@ -105,13 +108,14 @@ function MatingBoard(props) {
       return;
     }
   };
-
+  // 게시글을 작성 할 수 있는 플로팅버튼입니다.
   const floatingButton = () => {
+    // 위의 스크롤 이벤트를 이용하여 기본 작성하기 버튼이 보이지 않을 때 나타나고, 푸터의 아이콘들을 가리지 않도록 푸터의 위치에서 사라지도록 하는 조건문입니다.
     if (window.pageYOffset > 790 && (scrollHeight-300) > window.pageYOffset) {
       return <FloatWriteButton onClick={moveWrite}>+</FloatWriteButton>;
     }
   };
-
+  // 모든 모임버튼을 눌렀을 때의 useState들의 값의 변화입니다.( true->false, false->true)
   const allMoimTrueFalse = () => {
     if (!allMoim) {
       return (
@@ -139,7 +143,7 @@ function MatingBoard(props) {
       );
     }
   };
-
+  // 모집 중 버튼입니다.
   const isNotDeadlineTrueFalse = () => {
     if (!isNotDeadline) {
       return (
@@ -167,7 +171,7 @@ function MatingBoard(props) {
       );
     }
   };
-
+  //마감버튼입니다.
   const isDeadlineTrueFalse = () => {
     if (!isDeadline) {
       return (
@@ -196,7 +200,7 @@ function MatingBoard(props) {
     }
   };
 
-
+  //search 컴포넌트에 넣어줄 props 값입니다.
   const searchWhere = {
     where: "mating",
   };
@@ -240,6 +244,7 @@ function MatingBoard(props) {
         </ButtonBox>
         <CardBox>
           <CardList
+          // 해당 값에 해당하는 게시글들을 모집, 모든 모임, 마감 3가지 값으로 나누어 넣어줍니다.
             all_post_list={currentPosts(allposts)}
             dead_post_list={deadCurrentPosts(deadlinePosts)}
             not_dead_post_list={notDeadCurrentPosts(isNotDeadlinePosts)}
@@ -248,6 +253,7 @@ function MatingBoard(props) {
         </CardBox>
         <PageBox>
           <Pagination
+          // 페이지네이션에 필요한 값들을 넣어줍니다.
             postsPerPage={postsPerPage}
             totalPosts={post_list.length}
             deadline_Posts={deadlinePosts.length}

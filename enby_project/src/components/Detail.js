@@ -1,3 +1,4 @@
+// 모집게시글 상세에 들어가는 디테일(시간, 장소, 인원)을 나타내는 컴포넌트 입니다. MatingDetail의 자식컴포넌트입니다.
 import React from 'react';
 import styled from 'styled-components'
 import date from '../shared/image/whitecalendar.png'
@@ -6,9 +7,10 @@ import person from '../shared/image/whitepeople.png'
 import { useSelector } from 'react-redux';
 
 const Detail = (props)=>{
+    // props로 넘어오는 현재 신청인원과 총 인원수를 이용하여 비율을 만들었습니다.
     const gauge = 100*(props.people_current/props.people_max) + "%"
+    // 만나기로 한 날짜를 redux에서 불러왔습니다.
     const time = useSelector((store) => store.post.time)
-
     return (
       <Container>
         <IconBox>

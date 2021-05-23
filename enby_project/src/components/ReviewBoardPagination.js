@@ -1,3 +1,4 @@
+//리뷰게시판 페이지네이션
 import React, { useState } from "react";
 import styled from "styled-components";
 import Pagination from "@material-ui/lab/Pagination";

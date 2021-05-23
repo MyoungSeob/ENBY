@@ -1,9 +1,11 @@
+// 멤버카드를 리덕스에 저장되어있는 신청목록을 map을 이용하여 나열하는 컴포넌트입니다.
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MemberCard from './MemberCard';
 
 const MemberCardList=(props)=>{
+    //리덕스에 저장된 해당 게시글의 신청목록입니다.
     const regist_list = useSelector((store) => store.post.apply_list)
     return(
         <Container>

@@ -1,3 +1,4 @@
+// MatingDetail의 신청목록을 나타냅니다. 주최자에게 수락/거절 뷰를 나타냅니다.
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -5,14 +6,16 @@ import { actionsCreators as applyActions } from "../redux/modules/apply";
 
 const PermitApply = (props) => {
   const dispatch = useDispatch();
-
+  //해당 게시글의 id값을 불러옵니다.
   const detail_list = useSelector((store) => store.post.detail_list);
   const id = detail_list.id;
+  // 해당 신청자의 id값을 불러옵니다.
   const register_id = props.register_id;
-
+  // 참여요청을 수락하는 코드입니다.
   const acceptApply = () => {
     dispatch(applyActions.acceptApplyDB(id, register_id));
   };
+  // 참여요청을 거절하는 코드입니다.
   const rejectApply = () => {
     dispatch(applyActions.rejectApplyDB(id, register_id));
   };
@@ -25,6 +28,7 @@ const PermitApply = (props) => {
           <CheckId>{props.nickname}</CheckId>
         </CheckMe>
         <CheckContents>
+          {/* 주최자가 신청을 수락할 경우, 해당 신청자의 카카오ID를 확인할 수 있도록 합니다. */}
           {props.accepted ? (
             <CheckKakaoID>
               <CheckH>Kakao ID : {props.kakao_id}</CheckH>
@@ -39,6 +43,7 @@ const PermitApply = (props) => {
         </CheckContents>
       </CheckBox>
       <CheckButtonBox>
+        {/* 주최자가 신청을 수락할 경우와 아직 응답을 안한경우를 나타내는 뷰입니다. */}
         {props.accepted ? (
           <CheckAccept>수락하셨습니다</CheckAccept>
         ) : (

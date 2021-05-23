@@ -1,3 +1,4 @@
+// 메인페이지의 배너로고 컴포넌트입니다.
 import "../carousel.css";
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -8,6 +9,7 @@ import { useMediaQuery } from "react-responsive";
 
 // function Carousel() {
 const Carousel = (props) => {
+  // 화면 사이즈에 따라 스크롤 위치를 옮겨주기 위해 react-responsive를 이용해서 크고, 작고, 중간의 사이즈를 구분했습니다.
   const isMiddle = useMediaQuery({
     query: "(max-width: 1450px)",
   });
@@ -17,39 +19,22 @@ const Carousel = (props) => {
   const isSmall = useMediaQuery({
     query: "(max-width: 1200px)",
   });
-
+// 클릭 시 게시글 목록이 있는 곳으로 스크롤위치를 옮겨주는 코드입니다. 크고 작은 화면과 그 중간 화면의 높이를 각각 설정해 주었습니다.
   const clickScrollButton = () => {
     if (isMiddle===true) {
       window.scrollTo({ top: 900, left: 0, behavior: "smooth" });
       if (isSmall===true) {
-        window.scrollTo({ top: 770, left: 0, behavior: "smooth" });
-        
+        window.scrollTo({ top: 770, left: 0, behavior: "smooth" });      
       }
     }else{
       window.scrollTo({ top: 1150, left: 0, behavior: "smooth" });
-    }
-    
-    
+    }    
   };
 
-
-        // <TitleGrid>
-        //   <TitleBox>
-        //     <TitleLogo>Hello, we are SANTA</TitleLogo>
-        //     <SubTitle>
-        //       지금, 당신과 함께 할 <Span>산타</Span>를 찾아보세요.
-        //     </SubTitle>
-        //   </TitleBox>
-        // </TitleGrid>
      
   return (
     <>
       <Container>
-        {/* <div data-src={require("../shared/image/santatit.png").default} />
-      <div data-src={require("../shared/image/main_carousel1.png").default} />
-      <div data-src={require("../shared/image/main_carousel3.png").default} />
-      <div data-src={require("../shared/image/main_carousel4.png").default} />
-       */}
         <Image shape="maintitle" src={santa} />
       </Container>
       <Title>
@@ -73,14 +58,6 @@ const Carousel = (props) => {
     </>
   );
 };
-const WhiteBox = styled.div`
-  position: relative;
-  margin: 0px auto 0px auto;
-  width: 1200px;
-  height: 649px;
-  padding-top: 351px;
-  
-`;
 const WhiteContainer = styled.div`
   width: 1200px;
   padding-top: 351px;
@@ -256,70 +233,6 @@ const Title = styled.div`
     background-position: center;
   }
   cursor: default;
-`;
-const TitleGrid = styled.div`
-  width: 1200px;
-  padding-top: 418px;
-  transition-duration: 0.15s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
-`;
-const TitleBox = styled.div`
-  width: 747px;
-  height: 144px;
-  margin: auto;
-
-  @media (min-width: 600px) and (max-width: 1170px) {
-  }
-  @media (max-width: 1440px) {
-    padding-top: 318px;
-  }
-  @media (max-width: 1200px) {
-    padding-top: 248px;
-  }
-
-  @media (max-width: 600px) {
-    width: 100%;
-    padding-top: 120px;
-  }
-`;
-const TitleLogo = styled.h1`
-  text-align: center;
-  width: auto;
-  margin: 0;
-  font-family: seravek;
-  font-size: 80px;
-  color: #ffffff;
-  @media (min-width: 600px) and (max-width: 1170px) {
-  }
-
-  @media (max-width: 600px) {
-    font-size: 30px;
-  }
-`;
-const SubTitle = styled.p`
-  text-align: center;
-  font-family: notosans_regular;
-  font-size: 32px;
-  margin: 0px;
-  color: #ffffff;
-  @media (min-width: 600px) and (max-width: 1170px) {
-  }
-
-  @media (max-width: 600px) {
-    font-size: 13px;
-  }
-`;
-const Span = styled.span`
-font-family : notosans_bold;
-font-size : 32px;
-color : #ffffff;
-@media (min-width: 600px) and (max-width: 1170px) {
-
-  }
-
-@media (max-width: 600px) {
-  font-size: 13px;
 `;
 
 export default Carousel;

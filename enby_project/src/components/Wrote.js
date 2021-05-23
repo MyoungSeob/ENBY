@@ -1,3 +1,4 @@
+// 마이페이지와 다른사람의 페이지에 들어가는 작성글 목록 컴포넌트입니다.
 import React from "react";
 import styled from "styled-components";
 import { history } from '../redux/configStore'
@@ -14,7 +15,7 @@ const Wrote = (props) => {
     query: "(max-width: 600px)"
   });
 
-
+  //요일 및 해당 날짜에 대한 정보를 가공하는 코드들입니다.
   const date = props.meetTime.split("T")[0];
   const week = new Array(
     "일요일",

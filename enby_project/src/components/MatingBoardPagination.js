@@ -1,3 +1,4 @@
+//모집게시판에서의 페이지네이션 컴포넌트입니다.
 import React from "react";
 import styled from "styled-components";
 import Pagination from "@material-ui/lab/Pagination";
@@ -5,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useMediaQuery } from "react-responsive";
 
 const MatingBoardPagination = (props) => {
+  // props로는 모든 모임, 모집 중, 마감 이렇게 3가지에 대한 포스트의 갯수, 해당 사항의 버튼이 눌려있는지 등이 내려옵니다.
   // 반응형 구현
   const isTablet = useMediaQuery({
     query: "(min-width: 600px) and (max-width: 1170px)",
@@ -12,25 +14,28 @@ const MatingBoardPagination = (props) => {
   const isMobile = useMediaQuery({
     query: "(max-width: 600px)",
   });
-
+  // 모든 게시글에 대한 페이지네이션입니다.
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);
     props.paginate(value);
     window.scrollTo({ top: 850, left: 0, behavior: "smooth" });
   };
+  // 마감된 게시글에 대한 페이지네이션입니다.
   const [deadlinepage, setDeadlinePage] = React.useState(1);
   const isHandleChange = (event, value) => {
     setDeadlinePage(value);
     props.deadPaginate(value);
     window.scrollTo({ top: 850, left: 0, behavior: "smooth" });
   };
+  // 모집 중인 게시글에 대한 페이지네이션입니다.
   const [notDeadlinepage, setNotDeadlinePage] = React.useState(1);
   const isNotHandleChange = (event, value) => {
     setNotDeadlinePage(value);
     props.notDeadPaginate(value);
     window.scrollTo({ top: 850, left: 0, behavior: "smooth" });
   };
+  // 총 페이지 수를 나타내는 코드입니다. 
   const countPage =
     props.totalPosts % props.postsPerPage > 0
       ? Math.ceil(props.totalPosts / props.postsPerPage)

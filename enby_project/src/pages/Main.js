@@ -2,14 +2,11 @@ import React, { useEffect } from 'react'
 import CardList from '../components/CardList'
 import Carousel from '../components/Carousel'
 import styled from 'styled-components'
-import Header from '../components/Header'
 import { useDispatch, useSelector } from 'react-redux';
 import {actionsCreators as postActions} from '../redux/modules/post'
 import Card from '../components/Card';
 import ReviewCard from '../components/ReviewCard';
 import { history } from "../redux/configStore";
-import jwt_decode from "jwt-decode";
-import { generateMedia } from 'styled-media-query';
 
 
 

@@ -17,7 +17,7 @@ const MatingBoardSearch = (props) => {
   const isMobile = useMediaQuery({
     query: "(max-width: 600px)"
   });
-
+  // search 컴포넌트에서 넘어오는 단어가 id값이 됩니다.
   const id = props.match.params.id;
 
   const [api, setApi] = useState(null);
@@ -25,6 +25,7 @@ const MatingBoardSearch = (props) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // async와 await를 이용하여 검색을 할 때 동기적일 수 있도록 함.
     const search = async (param) => {
       try {
         setLoading(true);
@@ -41,6 +42,7 @@ const MatingBoardSearch = (props) => {
     };
     search();
   }, [id]);
+  // 결과값이 있을 경우와 없을 경우를 나타냅니다.
   const isSearchResult =()=>{
     if(!api || api.length === 0){
         return <NonResult>검색 결과가 없습니다</NonResult>
@@ -51,10 +53,11 @@ const MatingBoardSearch = (props) => {
         
     }
   }
+  // search에 넣어줄 props값입니다.
   const searchWhere = {
     where : "mating"
   }  
-
+  //검색 후 결과값을 기다리는 동안 로딩화면을 보여줍니다.
   if(loading){
     return  <Loading />
   }else{

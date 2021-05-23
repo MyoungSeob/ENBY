@@ -219,7 +219,7 @@ function MatingBoard(props) {
         </TitleBox>
       </Title>
       <Container>
-        {!isDesktop ? (
+        {isMobile ? (
           <Button5 onClick={moveWrite}>
             모임
             <br /> 만들기
@@ -229,7 +229,7 @@ function MatingBoard(props) {
         )}
         <TopButton>
           <Search {...searchWhere} />
-          {isDesktop ? (
+          {!isMobile ? (
             <Button4 onClick={moveWrite}>
               <button>모임 만들기</button>
             </Button4>
@@ -644,7 +644,9 @@ const Button4 = styled.div`
       background-color: #0d73b2;
     }
   }
-
+  @media (min-width: 600px) and (max-width: 1170px) {
+    margin-left: 380px;
+  }
   @media (max-width: 600px) {
     width: 80px;
     & text {

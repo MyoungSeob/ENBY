@@ -7,6 +7,9 @@ import {actionsCreators as postActions} from '../redux/modules/post'
 import Card from '../components/Card';
 import ReviewCard from '../components/ReviewCard';
 import { history } from "../redux/configStore";
+import notification from '../shared/image/notification.png'
+import event from '../shared/image/event.png'
+import Swal from 'sweetalert2';
 
 
 
@@ -64,9 +67,46 @@ const Main =(props)=>{
             return <ReviewCard {...p} key={p.id} />;
           })}
         </ReviewList>
+        <Notification 
+          src={notification}
+          onClick={()=>{
+            Swal.fire({
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonText: "나중에 할래요",
+              imageUrl: 'https://santa-notification.s3.ap-northeast-2.amazonaws.com/santa-notification.png',
+              imageWidth: 450,
+              imageHeight: 450,
+              imageAlt: 'Custom image',
+              confirmButtonText:'설문 제출하러 가기'
+              }).then((result) => {
+                if (result.value) {
+                  window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSc28bunSJlIlnomfZRS4TBCFKW0NOA6TTtczdE-LHi1np68Pg/viewform'
+                }
+            });
+          }}></Notification>
       </Container>
     );
 }
+const Notification = styled.img`
+// background-image : url(${notification});
+position: fixed;
+  width: 70px;
+  height: 70px;
+  font-family: notosans_regular;
+  font-size: 11px;
+  color: #000;
+  background-color: #bbcfdc;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  z-index: 2;
+  bottom: 50px;
+  right: 30px;
+`;
 const Container = styled.div`
 display : block;
 @media (max-width: 600px) {

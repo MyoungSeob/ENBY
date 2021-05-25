@@ -9,8 +9,19 @@ import { actionsCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configStore";
 import { useMediaQuery } from "react-responsive";
 import swal from 'sweetalert';
+import ReactGA from 'react-ga';
 
 const ReviewDetail = (props) => {
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
 
    //반응형
    const isTablet = useMediaQuery({
@@ -335,6 +346,7 @@ const ContentsP = styled.p`
   }
   @media (max-width: 600px) {
     font-size: 13px;
+    width : 300px;
     // margin-top: -30px;
    }
 `;

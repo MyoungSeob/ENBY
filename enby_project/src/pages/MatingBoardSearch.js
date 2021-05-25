@@ -8,8 +8,19 @@ import santa from '../shared/image/MatingBanner.png'
 import Card from "../components/Card";
 import { useMediaQuery } from "react-responsive";
 import swal from 'sweetalert';
+import ReactGA from 'react-ga';
 
 const MatingBoardSearch = (props) => {
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
   //반응형
   const isDesktop = useMediaQuery({
     query: "(min-width: 1170px)"

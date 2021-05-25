@@ -14,8 +14,20 @@ import jwt_decode from 'jwt-decode';
 import { useMediaQuery } from "react-responsive";
 import swal from 'sweetalert';
 import { history } from '../redux/configStore';
+import ReactGA from 'react-ga';
   
 function ReviewBoard() {  
+
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
     // 반응형 구현
     const isDesktop = useMediaQuery({
       query: "(min-width: 1170px)"
@@ -29,7 +41,7 @@ function ReviewBoard() {
      const dispatch = useDispatch();
      const apply_list = useSelector((store) => store.user.attend_list)
      const wroteReviewList = useSelector((store) => store.post.needWrite_list)
-     const empty_list = wroteReviewList.length === 0? true : false;
+     const empty_list = wroteReviewList.length === 0 ? true : false;
     // Modal  
     const [ modalOpen, setModalOpen ] = useState(false);
     const openModal = () => {
@@ -247,6 +259,7 @@ const Title = styled.div`
     font-weight: bold;
     font-size: 32px;
     line-height: 46px;
+    font-style : italic;
 
     color: #000000;
     @media (max-width: 600px) {

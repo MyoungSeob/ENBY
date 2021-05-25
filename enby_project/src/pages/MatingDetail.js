@@ -18,8 +18,19 @@ import ReviewBox from "../components/ReviewBox";
 import Loading from "../components/Loading";
 import { useMediaQuery } from "react-responsive";
 import swal from 'sweetalert';
+import ReactGA from 'react-ga';
 
 const MatingDetail = (props) => {
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
   //반응형
   const isTablet = useMediaQuery({
     query: "(min-width: 600px) and (max-width: 1170px)"

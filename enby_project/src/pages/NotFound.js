@@ -1,9 +1,21 @@
 // 사용자가 올바르지 않은 페이지로 이동했을 때 보여주는 404페이지 컴포넌트입니다.
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configStore';
+import ReactGA from 'react-ga';
 
 const NotFound = (props) =>{
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
+
     const moveHome=()=>{
         history.replace('/');
     }

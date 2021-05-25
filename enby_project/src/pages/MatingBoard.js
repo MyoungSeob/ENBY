@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "../elements/Image";
 import CardList from "../components/CardList";
-
+import ReactGA from 'react-ga';
 import Search from "../components/Search";
 import styled from "styled-components";
 import MatingBanner from "../shared/image/MatingBanner.png";
@@ -14,6 +14,16 @@ import { useMediaQuery } from "react-responsive";
 import swal from 'sweetalert';
 
 function MatingBoard(props) {
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
   //반응형
   const isDesktop = useMediaQuery({
     query: "(min-width: 1170px)",

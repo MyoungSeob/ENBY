@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-
+import ReactGA from 'react-ga';
 import {actionsCreators as userActions} from '../redux/modules/user'
 import MypageProfile from '../components/MypageProfile';
 import TitImg from '../shared/image/mypagetitle.png';
@@ -15,6 +15,16 @@ import PagingMating from '../components/Pagination';
 
 
 const Mypage =(props)=>{
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
     const dispatch = useDispatch();
     const token = localStorage.getItem("token");
     const decode = jwt_decode(token);

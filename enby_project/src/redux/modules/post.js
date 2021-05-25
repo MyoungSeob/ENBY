@@ -322,8 +322,6 @@ const editReviewDB =(review_id, board_id, title, contents, reviewImg)=>{
             formData.append("contents", contents);
             formData.append("reviewImg", reviewImg);
         }
-          
-          
         axios({
             method : 'put',
             headers : {
@@ -381,7 +379,13 @@ const getNeedWriteRiviewAPI = ()=>{
     },
     })
     .then(res => {
-      const needWrite_list = [...res.data]
+      const needWrite_list = []
+      console.log(res.data)
+      for(let i = 0; i < res.data.length; i++){
+        if(res.data[i].deadlineStatus === true){
+          needWrite_list.push(res.data[i])
+        }
+      }
       dispatch(getNeedWriteRiview(needWrite_list))
     })
     .catch(err => console.log(err))

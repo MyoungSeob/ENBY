@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { history } from "../redux/configStore";
 import "../shared/App.css";
 import { actionsCreators as userActions } from "../redux/modules/user";
-import logo from '../shared/image/logolarge.jpg'
+import logo from '../shared/image/kakaologo.png'
 import jwt_decode from 'jwt-decode'
 import { generateMedia } from 'styled-media-query';
 
@@ -24,8 +24,8 @@ function Header() {
   // 카카오 로그인을 위한 함수입니다. 백엔드와 합의한 redirect_uri를 지정하여 주소를 입력합니다.
   const login = () => {
     window.location.href =
-      // "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://www.santa-mountain.com/oauth"
-      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://localhost:3000/oauth"
+      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://www.santa-mountain.com/oauth"
+      // "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=17fb08cb376f564b3375667a799fda1f&redirect_uri=http://localhost:3000/oauth"
     };
   return (
     <Container>
@@ -89,7 +89,7 @@ const LogoBox = styled.div`
   float : left;
   width: 199px;
   height: 68px;
-  margin-top : 14px;
+  
  
   @media (min-width: 600px) and (max-width: 1170px) {
     margin-left: 21.5px;
@@ -103,8 +103,8 @@ const LogoBox = styled.div`
 
 `;
 const Logo = styled.img`
-width : 168px;
-height : 58px;
+width : 152px;
+height : 80px;
 cursor : pointer;
 `;
 

@@ -8,22 +8,86 @@ import Card from '../components/Card';
 import ReviewCard from '../components/ReviewCard';
 import { history } from "../redux/configStore";
 import notification from '../shared/image/notification.png'
+import information from '../shared/image/information.png'
 import event from '../shared/image/event.png'
 import Swal from 'sweetalert2';
-
+import { useState } from 'react';
+import ReactGA from 'react-ga';
 
 
 const Main =(props)=>{
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
   const dispatch = useDispatch();
   const post_list = useSelector((store) => store.post.list)
   const review_list = useSelector((store) => store.post.review_list)
   const review_lst = review_list.slice(0,4)
   const post_lst = post_list.slice(0,4)
+  const moveSantaGuide =()=>{
+    window.open("https://www.notion.so/SANTA-aec3960db5f4423fa2a6fd57e1394cda");
+  }
+
+  // 화면의 height를 구하기 위해서, 해당 6가지의 값 중 최대값을 이용하여 높이를 구하였습니다.
+  let scrollHeight = Math.max(
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight,
+    document.body.clientHeight, document.documentElement.clientHeight
+  );
+  const [scrollPosition, setScrollPosition] = useState(0);
+  // 스크롤위치를 알 수 있는 코드입니다.
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+  
+  // useEffect를 이용해서 스크롤 이벤트를 구독 및 구독취소하는 코드입니다.
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(()=>{
     dispatch(postActions.getPostMainDB())
     dispatch(postActions.getPostReviewDB())
   }, [dispatch])
+  // 게시글을 작성 할 수 있는 플로팅버튼입니다.
+  const scrollDepth = ((window.scrollY + window.innerHeight)/document.body.scrollHeight)*100
+  const floatingButton = () => {
+    // 위의 스크롤 이벤트를 이용하여 기본 작성하기 버튼이 보이지 않을 때 나타나고, 푸터의 아이콘들을 가리지 않도록 푸터의 위치에서 사라지도록 하는 조건문입니다.
+    if ((scrollDepth) < 91) {
+      return<>  
+      <SantaGuide src={information} onClick={moveSantaGuide}/>
+      <Notification 
+        src={notification}
+        onClick={()=>{
+          Swal.fire({
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonText: "나중에 할래요",
+            imageUrl: 'https://santa-notification.s3.ap-northeast-2.amazonaws.com/event_santa.png',
+            imageWidth: 450,
+            imageHeight: 450,
+            imageAlt: 'Custom image',
+            confirmButtonText:'설문 제출하러 가기'
+            }).then((result) => {
+              if (result.value) {
+                window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSc28bunSJlIlnomfZRS4TBCFKW0NOA6TTtczdE-LHi1np68Pg/viewform'
+              }
+          });
+        }}></Notification>
+        </>
+    }
+  };
 
     return (
       <Container>
@@ -67,32 +131,15 @@ const Main =(props)=>{
             return <ReviewCard {...p} key={p.id} />;
           })}
         </ReviewList>
-        <Notification 
-          src={notification}
-          onClick={()=>{
-            Swal.fire({
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonText: "나중에 할래요",
-              imageUrl: 'https://santa-notification.s3.ap-northeast-2.amazonaws.com/santa-notification.png',
-              imageWidth: 450,
-              imageHeight: 450,
-              imageAlt: 'Custom image',
-              confirmButtonText:'설문 제출하러 가기'
-              }).then((result) => {
-                if (result.value) {
-                  window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSc28bunSJlIlnomfZRS4TBCFKW0NOA6TTtczdE-LHi1np68Pg/viewform'
-                }
-            });
-          }}></Notification>
+       {floatingButton()}
       </Container>
     );
 }
 const Notification = styled.img`
 // background-image : url(${notification});
 position: fixed;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   font-family: notosans_regular;
   font-size: 11px;
   color: #000;
@@ -103,10 +150,42 @@ position: fixed;
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  z-index: 2;
+  z-index: 100;
   bottom: 50px;
   right: 30px;
+  &: hover {
+    width : 70px;
+    height : 70px;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+  }
 `;
+const SantaGuide = styled.img`
+position: fixed;
+width: 60px;
+height: 60px;
+font-family: notosans_regular;
+font-size: 11px;
+color: #000;
+background-color: #bbcfdc;
+border: none;
+border-radius: 45px;
+box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+transition: all 0.3s ease 0s;
+cursor: pointer;
+outline: none;
+z-index: 100;
+bottom: 125px;
+right: 30px;
+&: hover {
+  width : 70px;
+  height : 70px;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+`
 const Container = styled.div`
 display : block;
 @media (max-width: 600px) {

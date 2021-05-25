@@ -15,10 +15,21 @@ import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 import "../datepicker.css";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
+import ReactGA from 'react-ga';
 import ko from "date-fns/locale/ko";
 registerLocale("ko", ko);
 
 const MatingBoardWrite = (props) => {
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
   // 반응형 구현
   const isDesktop = useMediaQuery({
     query: "(min-width: 1170px)",

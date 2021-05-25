@@ -12,9 +12,19 @@ import Modal from '../components/Modal';
 import CardListForModal from '../components/CardListForModal';
 import Pagination from '../components/ReviewBoardPagination';
 import swal from 'sweetalert';
-
+import ReactGA from 'react-ga';
 
 const ReviewBoardSearch = (props) => {
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
     //반응형
   const isDesktop = useMediaQuery({
     query: "(min-width: 1170px)"

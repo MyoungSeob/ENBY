@@ -28,7 +28,6 @@ const Detail = (props)=>{
             <ProgressBar>
               <ProgressBar_ style={{ width : gauge }} />
             </ProgressBar>
-           
           </PersonBox>
         </IconBox>
       </Container>

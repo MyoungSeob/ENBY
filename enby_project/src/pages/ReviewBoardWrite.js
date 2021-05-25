@@ -10,8 +10,19 @@ import { history } from "../redux/configStore";
 import upload from '../shared/image/upload.png'
 import { useMediaQuery } from "react-responsive";
 import swal from 'sweetalert';
+import ReactGA from 'react-ga';
 
 const ReviewBoardWrite = (props) => {
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
   // 반응형 구현
   const isDesktop = useMediaQuery({
     query: "(min-width: 1170px)"
@@ -313,8 +324,8 @@ background-position: center;
 `
 const LabelUpload = styled.label`
 position : absolute;
-width: 513px;
-height: 513px;
+width: 300px;
+height: 300px;
 @media (min-width: 600px) and (max-width: 1170px) {
   width: 450px;
   height: 450px;

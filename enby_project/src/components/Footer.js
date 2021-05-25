@@ -4,24 +4,24 @@ import home from "../shared/image/bluehouse.png";
 import question from "../shared/image/bluequestion.png";
 import insta from "../shared/image/blueinsta.png";
 import { history } from "../redux/configStore";
-import logo from '../shared/image/editlogo.png'
+import logo from '../shared/image/kakaologo.png'
 
 const Footer = (props) => {
   const googleForms = () => {
-    window.location.href = "https://forms.gle/1RNjUCKvpipXhW6RA";
+    window.open("https://forms.gle/1RNjUCKvpipXhW6RA");
   };
   const moveHome =()=>{
-    history.push('/')
+    window.open("https://www.notion.so/SANTA-7c68c69d05a541bb8469706ba823427f");
   };
   const moveInsta =()=>{
-    window.location.href = "https://www.instagram.com/santamountain/";
+    window.open("https://www.instagram.com/santamountain/");
   }
 
   return (
     <Container>
       <FooterTitle>
         <TitleBox>
-          <Title onClick={moveHome} src={logo}></Title>
+          <Title onClick={()=>{history.push('/')}} src={logo}></Title>
         </TitleBox>
         <IconBox>
         <Icon_ src={insta}  onClick={moveInsta}/>
@@ -64,17 +64,17 @@ const FooterTitle = styled.div`
 const TitleBox = styled.div`
   display: flex;
   width: 199px;
-  height: 68px;
+  height: 80px;
   @media (min-width: 600px) and (max-width: 1170px) {
     // margin-left: 100px;
     width: 200px;
   }
 `;
 const Title = styled.img`
-  width: 199px;
-  height: 68px;
+width : 152px;
+height : 80px;
+padding-bottom : 20px;
   cursor: pointer;
-  margin-bottom : 10px;
   @media (min-width: 600px) and (max-width: 1170px) {
   }
 
@@ -87,7 +87,7 @@ const IconBox = styled.div`
   float: right;
   text-align: right;
   margin: 0 0 0 auto;
-  padding-top : 15px;
+  padding-top : 20px;
   @media (min-width: 600px) and (max-width: 1170px) {
     // margin-right: 160px;
   }

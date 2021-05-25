@@ -7,8 +7,20 @@ import { actionsCreators as userActions } from "../redux/modules/user";
 import OtherpageProfile from "../components/OtherpageProfile";
 import WroteList from "../components/WroteList";
 import PagingMating from '../components/Pagination';
+import ReactGA from 'react-ga';
 
 const OthersMypage = (props) => {
+
+  useEffect(()=>{
+    getGA();
+  }, []);
+
+  const getGA =()=>{
+    const pathName = window.location.pathname;
+    ReactGA.initialize('G-YCWTTJWZF4');
+    ReactGA.set({page : pathName});
+    ReactGA.pageview(pathName);
+  }
 
   const dispatch = useDispatch();
   console.log(props)
@@ -18,9 +30,9 @@ const OthersMypage = (props) => {
   }, []);
 
   const write_list = useSelector((store) => store.user.other_write);
-  const other_list = useSelector((store) => store.user.other_page);
+  const other_list = useSelector((store) => store.user.other_attend);
   const account_information = useSelector((store) => store.user.account_information)
-  console.log(account_information)
+  console.log(other_list)
   // pagination
     // const [Posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);

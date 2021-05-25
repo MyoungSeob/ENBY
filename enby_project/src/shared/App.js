@@ -5,7 +5,8 @@ import MatingBoard from '../pages/MatingBoard';
 import Login from '../pages/Login';
 import MatingDetail from '../pages/MatingDetail';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import React from 'react';
+import React, { useEffect } from 'react';
+import ReactGA from 'react-ga';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../redux/configStore';
 import KakaoCallBack from '../pages/KakaoCallBack';
@@ -22,6 +23,17 @@ import ReviewBoardSearch from '../pages/ReviewBoardSearch';
 import NotFound from '../pages/NotFound';
 
 function App() {
+
+  // useEffect(()=>{
+  //   getGA();
+  // }, []);
+
+  // const getGA =()=>{
+  //   const pathName = window.location.pathname;
+  //   ReactGA.initialize('G-YCWTTJWZF4');
+  //   ReactGA.set({page : pathName});
+  //   ReactGA.pageview(pathName);
+  // }
   return (
     <React.Fragment>
       <BrowserRouter>

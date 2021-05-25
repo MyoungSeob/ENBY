@@ -1,7 +1,7 @@
 # SANTA
  등산메이트 찾기 서비스
 <br /> Front-end : 이명섭 (https://seobe22.tistory.com)<br />
-Front-end : 여지영 (https://jennayeo.tistory.com)
+Front-end : 여지영 (https://jennayeo.tistory.com, https://github.com/Jennayeo)
 
 ## ⛰SANTA⛰란?
 

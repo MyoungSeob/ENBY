@@ -12,11 +12,11 @@ Front-end : 여지영 (https://jennayeo.tistory.com, https://github.com/Jennayeo
 
 
 ## 개요
-- 개발기간: 2021.04.28 - 2021.05.12
-개발 인원: 프론트엔드 2, 백엔드 3, 디자이너 2
-FrontEnd(React): 2명
-BackEnd(Spring): 3명(Github)
-Designer: 2명(UI/UX Wireframe)
+- 개발기간: 2021.04.28 - 2021.05.12 <br />
+개발 인원: 프론트엔드 2, 백엔드 3, 디자이너 2 <br />
+FrontEnd(React): 2명 <br />
+BackEnd(Spring): 3명(Github) <br />
+Designer: 2명(UI/UX Wireframe) <br />
 
 
 ## ⛰SANTA⛰란?

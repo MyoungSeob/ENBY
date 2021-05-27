@@ -40,7 +40,7 @@ Front-end : 여지영 (https://github.com/Jennayeo)
 - Other Tools (Git, Github, notion, Slack etc.)
 
 
-## 기능 소개 마크다운 왜안돼..
+## 기능 소개
 + 카카오 소셜 로그인
 + 모임 모집하기(주최자)
   + 원하는 날짜, 장소, 인원, 이미지, 내용을 추가해 모집글을 작성할 수 있다.

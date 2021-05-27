@@ -4,7 +4,7 @@
 Front-end : 여지영 (https://jennayeo.tistory.com, https://github.com/Jennayeo)
 
 ## ⛰SANTA⛰란?
-
+<a href="http://www.santa-mountain.com"> 산타 바로가기 </a>
 <p align="center">
     <br />
 <img width="200px" height="108px" src="https://user-images.githubusercontent.com/79817557/119305735-194bf980-bca4-11eb-8c08-481ae336867c.png" />

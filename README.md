@@ -2,7 +2,8 @@
  등산메이트 찾기 서비스
 <br /> Front-end : 이명섭 (https://seobe22.tistory.com)<br />
 Front-end : 여지영 (https://github.com/Jennayeo)
-
+- <a href="http://www.santa-mountain.com"> 산타 바로가기 </a> <br />
+- <a href="https://youtu.be/jELf9Zxg8Ss"> 산타 시연영상 </a>
 
 ## 목차
 [1. 프로젝트 개요](#개요)<br />
@@ -20,8 +21,6 @@ Front-end : 여지영 (https://github.com/Jennayeo)
 
 
 ## ⛰SANTA⛰란?
-<a href="http://www.santa-mountain.com"> 산타 바로가기 </a> <br />
-<a href="https://youtu.be/jELf9Zxg8Ss"> 산타 시연영상 </a>
 <p align="center">
     <br />
 <img width="200px" height="108px" src="https://user-images.githubusercontent.com/79817557/119305735-194bf980-bca4-11eb-8c08-481ae336867c.png" />

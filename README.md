@@ -20,7 +20,7 @@ Front-end : 여지영 (https://github.com/Jennayeo)
 
 
 ## ⛰SANTA⛰란?
-<a href="http://www.santa-mountain.com"> 산타 바로가기 </a>
+<a href="http://www.santa-mountain.com"> 산타 바로가기 </a> <br />
 <a href="https://youtu.be/jELf9Zxg8Ss"> 산타 시연영상 </a>
 <p align="center">
     <br />

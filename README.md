@@ -5,7 +5,7 @@ Front-end : 여지영 (https://jennayeo.tistory.com, https://github.com/Jennayeo
 ##### 개발기간: 2021.04.28 - 2021.05.12
 
 ## 목차
-[1.프로젝트 소개](#⛰SANTA⛰란?)<br />
+[1. 프로젝트 소개](#⛰SANTA⛰-란?)<br />
 [2. 사용 기술](#사용-기술)<br />
 [3. 기능 소개](#기능-소개)<br />
 

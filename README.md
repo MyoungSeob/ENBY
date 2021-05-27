@@ -2,7 +2,7 @@
  등산메이트 찾기 서비스
 <br /> Front-end : 이명섭 (https://seobe22.tistory.com)<br />
 Front-end : 여지영 (https://jennayeo.tistory.com, https://github.com/Jennayeo)
-### 개발기간: 2021.04.28 - 2021.05.12
+##### 개발기간: 2021.04.28 - 2021.05.12
 ## ⛰SANTA⛰란?
 <a href="http://www.santa-mountain.com"> 산타 바로가기 </a>
 <p align="center">

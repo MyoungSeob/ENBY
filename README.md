@@ -21,5 +21,12 @@ Front-end : 여지영 (https://jennayeo.tistory.com, https://github.com/Jennayeo
 
 
 ## 사용 기술
+- View (React with JavaScript, React-Router, antd, Styled-components)
+- State Management (Redux, Immer, Redux-actions)
+- Build Tool (Create React App)
+- Code Quality Tool (ESLint, Prettier)
+- Infrastructure (AWS S3)
+- Design Tool (Figma)
+- Other Tools (Git, Github, notion, Slack etc.)
 
 ## 기능 소개

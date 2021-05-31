@@ -91,7 +91,7 @@ const getMyProfileDB =(name)=>{
         ) {
           apply_list.push(mypage_list[i]);
         }
-        if (mypage_list[i].board_name === "참석한 모임") {
+        if (mypage_list[i].board_name === null) {
           attend_list.push(mypage_list[i]);
         }
         if (mypage_list[i].board_name === "작성한 글") {
@@ -135,7 +135,6 @@ const getOtherPageDB =(otherName)=>{
     })
     .then(res => {
       const other_list = [...res.data];
-      console.log(other_list)
       const other_write = [];
       const other_page = [];
       const other_attend = [];
@@ -148,7 +147,7 @@ const getOtherPageDB =(otherName)=>{
         if(other_list[i].board_name === "신청한 모임"){
           other_page.push(other_list[i])
         }
-        if(other_list[i].board_name === "참석한 모임"){
+        if(other_list[i].board_name === null){
           other_attend.push(other_list[i])
         }
       }

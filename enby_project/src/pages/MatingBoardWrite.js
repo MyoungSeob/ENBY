@@ -172,7 +172,7 @@ const MatingBoardWrite = (props) => {
       return alrightMonth;
     }
   };
-
+  console.log(people_max)
   const addPost = () => {
     if (title === "") {
       swal("제목을 입력해주세요");

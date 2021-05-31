@@ -34,7 +34,6 @@ const ReviewDetail = (props) => {
   const review_detail = useSelector((store) => store.post.review_detail);
   const review_createdAt = useSelector((store) => store.post.time);
   const review_id = props.match.params.id;
-  console.log(review_id);
 
   const dispatch = useDispatch();
 
@@ -135,9 +134,6 @@ const ReviewDetail = (props) => {
         </ButtonBox>
       </TopBox>
       <BottomBox>
-        {isMobile ? (<MoveMoimButton>
-        <Moim onClick={moveMatingDetailBoard}>원본 모집글 보기</Moim>
-      </MoveMoimButton>) : ("")}
         <ContentImage>
           <Image shape="contents" src={review_detail.review_imgUrl} />
         </ContentImage>
@@ -179,6 +175,8 @@ const ImageBox = styled.div`
   position: absolute;
   @media (max-width: 600px) {
     height: 200px;
+    overflow: hidden;
+  position: absolute;
   }
 `;
 const ImageBox_ = styled.div`
@@ -187,6 +185,9 @@ const ImageBox_ = styled.div`
   margin: auto;
   overflow: hidden;
   position: relative;
+  @media (max-width: 600px) {
+    height: 200px;
+  }
 `;
 
 const TitleBox = styled.div`
@@ -202,7 +203,8 @@ const TitleBox = styled.div`
     width: 650px;
   }
   @media (max-width: 600px) {
-    margin-left: 10px;
+    margin-left: 12.5px;
+    height : 200px;
    }
 `;
 const TitleContents = styled.div`
@@ -242,6 +244,8 @@ const ButtonBox = styled.div`
     margin-left: 15px;
   }
   @media (max-width: 600px) {
+    margin: 10px 12.5px 10px auto;
+    float : right;
   }
 `;
 const TitleButton = styled.div`
@@ -292,7 +296,7 @@ const ContentImage = styled.div`
     margin-right: 20px;
   }
   @media (max-width: 600px) {
-    width: 280px;
+    width: 350px;
    }
   
 `;
@@ -307,8 +311,9 @@ const ContentsBox = styled.div`
   }
   @media (max-width: 600px) {
     flex-direction: column;
-    margin-left: 30px; 
-    width: 280px;
+    margin-left: 12.5px; 
+    width: 350px;
+    height : 100%;
    }
 `;
 const ContentsTit = styled.div`
@@ -335,6 +340,12 @@ text-overflow: ellipsis;
 @media (min-width: 600px) and (max-width: 1170px) {
   width: 300px;
 }
+@media (max-width: 600px) {
+  width : 350px;
+  display : block;
+  overflow : auto;
+  text-overflow: ellipsis;
+ }
 `;
 const ContentsP = styled.p`
   font-family: notosans_regular;
@@ -345,8 +356,8 @@ const ContentsP = styled.p`
     width: 300px;
   }
   @media (max-width: 600px) {
+    width : 350px;
     font-size: 13px;
-    width : 300px;
     // margin-top: -30px;
    }
 `;
@@ -356,7 +367,7 @@ const EditButton = styled.div`
   @media (max-width: 600px) {
     // max-width: 480px;
     width: 100%;
-    margin: -40px 0 -200px 200px ;
+    margin: 5px 0 5px 0 ;
    }
 `;
 const EditBtn = styled.button`
@@ -374,8 +385,6 @@ const EditBtn = styled.button`
   @media (max-width: 600px) {
     margin-left: 30px;
     width: 60px;
-    margin-top: -20px;
-    margin-bottom: 30px;
     font-size: 11px;
    }
 `;
@@ -394,8 +403,6 @@ const DeleteBtn = styled.button`
   @media (max-width: 600px) {
     width: 60px;
     font-size: 11px;
-    margin-top: -20px;
-    margin-bottom: 30px;
    }
 `;
 const MoveMoimButton = styled.div`

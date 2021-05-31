@@ -380,7 +380,6 @@ const getNeedWriteRiviewAPI = ()=>{
     })
     .then(res => {
       const needWrite_list = []
-      console.log(res.data)
       for(let i = 0; i < res.data.length; i++){
         if(res.data[i].deadlineStatus === true){
           needWrite_list.push(res.data[i])

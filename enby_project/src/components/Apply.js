@@ -1,5 +1,5 @@
 // MatingDetail의 신청 & 신청 취소하기 컴포넌트입니다.
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { actionsCreators as applyActions } from "../redux/modules/apply";
@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 
 const Apply = (props) => {
   const dispatch = useDispatch();
-
+  console.log(props)
   // 리덕스에 저장되어 있는 게시글 상세 정보입니다.
   const post_list = useSelector((store) => store.post.detail_list);
   // 리덕스에 저장되어 있는 게시글 신청 정보입니다.

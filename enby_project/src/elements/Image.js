@@ -117,10 +117,10 @@ const ContentsImage = styled.div`
     background-size: cover;
   }
   @media (max-width: 600px) {
-    width: 240px;
+    width: 350px;
     background-size: cover;
-    height: 240px;
-    margin-left: 30px;
+    height: 350px;
+    margin-left: 12.5px;
   }
 `;
 const MiniContentsImage = styled.div`

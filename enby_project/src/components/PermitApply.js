@@ -171,8 +171,8 @@ const AcceptButton = styled.button`
   cursor: pointer;
   margin-bottom: 10px;
   @media (max-width: 600px) {
-    width: 60px;
-    font-size: 11px;
+    width: 62px;
+    font-size: 10px;
     margin-right: 12.5px;
     float: right;
   }
@@ -189,8 +189,8 @@ const RejectButton = styled.button`
   padding-bottom: 2px;
   cursor: pointer;
   @media (max-width: 600px) {
-    width: 60px;
-    font-size: 11px;
+    width: 62px;
+    font-size: 10px;
     margin-right: 12.5px;
     float: right;
   }
